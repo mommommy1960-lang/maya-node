@@ -1,0 +1,7 @@
+site_type: fleet_depot
+location: "urban"
+inputs: [pv, grid]
+storage_kwh: 200
+priority_loads_kw: 25
+thermal_integration: false
+notes: "Edge compute & charging; V2G roadmap."
