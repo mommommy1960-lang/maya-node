@@ -1,0 +1,7 @@
+site_type: clinic_shelter
+location: "island"
+inputs: [pv, genset]
+storage_kwh: 150
+priority_loads_kw: 14
+thermal_integration: true
+notes: "Storm-shelter clinic; 3-phase 208 Vac output; O&M 5 yrs."
