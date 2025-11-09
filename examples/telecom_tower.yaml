@@ -1,0 +1,7 @@
+site_type: telecom_tower
+location: "rural"
+inputs: [pv, wind, genset, grid]
+storage_kwh: 100
+priority_loads_kw: 8
+thermal_integration: true
+notes: "Pilot for remote cell tower, 80% fuel offset goal."
