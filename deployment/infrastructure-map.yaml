@@ -1,0 +1,14 @@
+# Infrastructure Map
+
+# Define all required infrastructure resources, their interconnections, and dependencies for sovereign node deployment.
+# Example structure:
+#
+# nodes:
+#   - id: node-1
+#     location: us-west-1
+#     resources:
+#       - type: compute
+#         size: large
+#     dependencies:
+#       - network
+# ...
