@@ -1,0 +1,58 @@
+# Market Data Sources Configuration
+
+# Primary data sources for market intelligence
+sources:
+  # Energy market data providers
+  - name: energy_markets
+    type: api
+    enabled: true
+    refresh_interval: 3600  # seconds
+    endpoints:
+      - url: https://api.energy.market/v1/prices
+        auth_type: api_key
+      - url: https://api.energy.market/v1/demand
+        auth_type: api_key
+    
+  # Weather and climate data
+  - name: weather_service
+    type: api
+    enabled: true
+    refresh_interval: 1800
+    endpoints:
+      - url: https://api.weather.service/v2/forecast
+        auth_type: bearer
+      - url: https://api.weather.service/v2/historical
+        auth_type: bearer
+    
+  # Industry news and reports
+  - name: industry_news
+    type: rss
+    enabled: true
+    refresh_interval: 7200
+    feeds:
+      - url: https://feeds.energy.industry/news
+      - url: https://feeds.renewable.sector/updates
+    
+  # Regulatory filings and compliance
+  - name: regulatory_filings
+    type: web_scraper
+    enabled: false
+    refresh_interval: 86400  # daily
+    targets:
+      - url: https://regulatory.agency.gov/filings
+        selectors:
+          - ".filing-notice"
+          - ".compliance-update"
+
+# Source priority for conflict resolution
+priority:
+  - energy_markets
+  - weather_service
+  - industry_news
+  - regulatory_filings
+
+# Quality thresholds
+quality_control:
+  min_confidence: 0.7
+  max_staleness: 86400  # seconds
+  require_validation: true
