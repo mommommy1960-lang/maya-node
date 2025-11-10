@@ -1,0 +1,35 @@
+flow_type: recurring_capital_streams
+cadence: "monthly"
+flows:
+  - name: "operational_reserve"
+    source: "primary_pool"
+    destination: "operations_buffer"
+    allocation_pct: 15
+    priority: 1
+    notes: "Core operational expenses and infrastructure"
+  
+  - name: "yield_reinvestment"
+    source: "yield_pool"
+    destination: "strategic_allocations"
+    allocation_pct: 40
+    priority: 2
+    notes: "Compound growth through strategic reinvestment"
+  
+  - name: "liquidity_maintenance"
+    source: "primary_pool"
+    destination: "liquidity_buffer"
+    allocation_pct: 25
+    priority: 1
+    notes: "Maintain minimum liquidity thresholds"
+  
+  - name: "reserve_accumulation"
+    source: "revenue_streams"
+    destination: "sovereign_reserves"
+    allocation_pct: 20
+    priority: 3
+    notes: "Long-term treasury strengthening"
+
+governance:
+  approval_threshold: 0.66
+  timelock_hours: 24
+  emergency_halt: true
