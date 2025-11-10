@@ -1,0 +1,14 @@
+# Recurring Flows Configuration
+
+# This YAML defines automated, periodic capital flows and rebalancing logic for the sovereign treasury.
+#
+# Example structure:
+# streams:
+#   - name: operating-reserve-allocation
+#     interval: monthly
+#     amount: 50000
+#     destination: infrastructure
+#
+# Add and structure flow specifications as mechanisms are designed.
+
+streams: []
