@@ -1,0 +1,6 @@
+# Liquidity Networks
+
+# This YAML documents interlinked liquidity pools, exchange gateways, and flow balancing rules
+# supporting the economic mesh layer.
+
+liquidity_networks: []
