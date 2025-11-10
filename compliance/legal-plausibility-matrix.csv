@@ -1,0 +1,27 @@
+jurisdiction,action_type,plausibility_score,risk_level,mitigation_strategy,notes
+US-Federal,asset_transfer,0.85,low,standard_documentation,Well-established legal framework
+US-NY,trading_activity,0.90,low,bitlicense_compliance,BitLicense requirements met
+EU-General,cross_border_flow,0.78,medium,mifid_compliance,MiFID II considerations
+UK,custody_services,0.82,medium,fca_registration,FCA oversight required
+Singapore,digital_asset_ops,0.88,low,mas_framework,Progressive regulatory environment
+Switzerland,banking_integration,0.92,low,finma_compliance,Crypto-friendly jurisdiction
+Japan,exchange_operations,0.75,medium,fsa_licensing,Strict licensing requirements
+Hong_Kong,asset_management,0.80,medium,sfc_authorization,SFC regulatory framework
+Cayman_Islands,fund_structure,0.95,low,offshore_compliance,Favorable fund domicile
+Malta,blockchain_services,0.87,low,vfa_framework,Virtual Financial Assets Act
+Liechtenstein,token_services,0.89,low,tvtg_compliance,Token and TT Service Provider Act
+Gibraltar,dlt_provider,0.86,low,dlt_framework,DLT regulatory framework
+UAE-Dubai,crypto_custody,0.83,medium,vara_compliance,VARA regulatory oversight
+Bermuda,digital_asset_business,0.84,medium,digital_asset_act,Digital Asset Business Act
+BVI,corporate_structure,0.91,low,offshore_standard,Established offshore jurisdiction
+Seychelles,exchange_operations,0.72,high,limited_oversight,Minimal regulatory framework
+Estonia,payment_services,0.81,medium,fiu_licensing,Payment institution license
+Lithuania,emi_services,0.79,medium,lb_supervision,Electronic money institution framework
+Panama,asset_holding,0.68,high,limited_regulation,Weak regulatory framework
+Cyprus,investment_services,0.77,medium,cysec_compliance,CySEC regulatory oversight
+Canada,securities_trading,0.86,low,csa_framework,Canadian Securities Administrators oversight
+Australia,financial_services,0.84,medium,asic_licensing,ASIC regulatory requirements
+South_Korea,exchange_licensing,0.74,medium,fsc_oversight,Financial Services Commission regulation
+India,crypto_operations,0.65,high,unclear_framework,Evolving and uncertain regulations
+Brazil,payment_processing,0.76,medium,bcb_regulation,Central Bank oversight
+Mexico,fintech_operations,0.78,medium,fintech_law,Fintech Law compliance
