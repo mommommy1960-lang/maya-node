@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MPRS Input Schema",
+  "description": "Schema for Multi-Party Resonance Suppression inputs",
+  "type": "object",
+  "properties": {
+    "resonance_threshold": {
+      "type": "number",
+      "description": "Threshold for resonance detection",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "suppression_factor": {
+      "type": "number",
+      "description": "Factor for resonance suppression",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "burst_detection_window": {
+      "type": "integer",
+      "description": "Time window for burst detection in milliseconds",
+      "minimum": 1
+    },
+    "collapse_lock_timeout": {
+      "type": "integer",
+      "description": "Timeout for collapse lock in milliseconds",
+      "minimum": 1
+    },
+    "telemetry_enabled": {
+      "type": "boolean",
+      "description": "Enable telemetry logging"
+    }
+  },
+  "required": ["resonance_threshold", "suppression_factor", "burst_detection_window", "collapse_lock_timeout"]
+}
