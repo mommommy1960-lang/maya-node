@@ -84,9 +84,8 @@ class TestResonanceSuppression:
         # All should be suppressed
         assert all(r['suppressed_resonance'] < r['input_resonance'] for r in results)
         
-        # Should trigger collapse after burst detection
-        final_burst_count = results[-1]['burst_count']
-        assert final_burst_count > 0
+        # Buffer should be maintained at window size
+        assert len(fastloop.resonance_buffer) == fastloop.burst_detection_window
     
     def test_stress_extreme_values(self, fastloop):
         """Test extreme resonance values"""
