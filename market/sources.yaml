@@ -1,0 +1,14 @@
+# Data sources for market scanner (public, private, ranked)
+sources:
+  - name: "Public Filings"
+    type: "regulatory"
+    enabled: true
+  - name: "Industry News"
+    type: "news"
+    enabled: true
+  - name: "Private Data Feeds"
+    type: "private"
+    enabled: false
+  - name: "Vendors"
+    type: "marketplace"
+    enabled: false
