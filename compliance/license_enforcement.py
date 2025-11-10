@@ -90,14 +90,22 @@ class License:
         Returns:
             LicenseStatus enum value
         """
-        now = datetime.now()
+        from datetime import timezone
+        
+        # Ensure we're comparing timezone-aware datetimes
+        now = datetime.now(timezone.utc)
+        
+        # Make expiry_date timezone-aware if it isn't
+        expiry = self.expiry_date
+        if expiry.tzinfo is None:
+            expiry = expiry.replace(tzinfo=timezone.utc)
         
         if not self.license_id or not self.signature:
             return LicenseStatus.NOT_ACTIVATED
             
-        if now > self.expiry_date:
+        if now > expiry:
             # Check if within grace period (30 days)
-            grace_end = self.expiry_date + timedelta(days=30)
+            grace_end = expiry + timedelta(days=30)
             if now <= grace_end:
                 return LicenseStatus.GRACE_PERIOD
             return LicenseStatus.EXPIRED
