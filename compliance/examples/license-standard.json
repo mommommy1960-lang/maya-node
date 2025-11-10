@@ -1,0 +1,32 @@
+{
+  "license_id": "MAYA-STD-123456-78AB",
+  "tier": "standard",
+  "deployment_type": "production",
+  "issue_date": "2025-11-10T00:00:00Z",
+  "expiry_date": "2028-11-10T00:00:00Z",
+  "max_capacity_kw": 250,
+  "max_sites": 1,
+  "site_id": "SITE-TELECOM-TOWER-001",
+  "features": [
+    "basic_dispatch",
+    "priority_loads",
+    "soc_scheduling",
+    "brownout_protection",
+    "local_hmi",
+    "modbus_tcp",
+    "basic_forecasting",
+    "mqtt_telemetry",
+    "opc_ua",
+    "web_dashboard",
+    "auto_updates",
+    "rest_api"
+  ],
+  "telemetry_required": true,
+  "signature": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6",
+  "issued_by": "MAYA Node License Authority",
+  "customer_name": "Example Telecom Corp",
+  "customer_id": "CUST-001234",
+  "support_tier": "standard",
+  "support_email": "support@maya-node.example.com",
+  "notes": "Standard Edition - Single telecom tower deployment"
+}
