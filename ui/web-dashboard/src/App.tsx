@@ -6,6 +6,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { SovereignPane } from './SovereignPane';
+import { EthicsDecisionViewer } from './EthicsDecisionViewer';
+import { AuditHistoryViewer } from './AuditHistoryViewer';
 import { login, logout, getCurrentUser, storeAuthState, clearAuthState, User } from './auth';
 
 function App() {
@@ -109,6 +111,18 @@ function App() {
           Sovereign Runtime
         </button>
         <button
+          className={activeTab === 'ethics' ? 'active' : ''}
+          onClick={() => setActiveTab('ethics')}
+        >
+          Ethics Decisions
+        </button>
+        <button
+          className={activeTab === 'audit' ? 'active' : ''}
+          onClick={() => setActiveTab('audit')}
+        >
+          Audit History
+        </button>
+        <button
           className={activeTab === 'status' ? 'active' : ''}
           onClick={() => setActiveTab('status')}
         >
@@ -124,6 +138,8 @@ function App() {
 
       <main className="dashboard-content">
         {activeTab === 'sovereign' && <SovereignPane />}
+        {activeTab === 'ethics' && <EthicsDecisionViewer />}
+        {activeTab === 'audit' && <AuditHistoryViewer />}
         {activeTab === 'status' && (
           <div className="placeholder-pane">
             <h2>System Status</h2>
@@ -139,7 +155,7 @@ function App() {
       </main>
 
       <footer className="dashboard-footer">
-        <p>MAYA Node - Sovereign Architecture Bootstrap Phase F</p>
+        <p>MAYA Node - Sovereign Architecture Phase Omega</p>
         <p>Licensed under CERL-1.0 | No unvetted AI models</p>
       </footer>
     </div>
