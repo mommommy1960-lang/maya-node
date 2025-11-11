@@ -246,8 +246,21 @@ def get_attestation_report():
 
 def main():
     """Run the API server"""
-    logger.info("Starting MAYA Node API server...")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    import os
+    
+    # Security: Use environment variable to control debug mode
+    # In production, set FLASK_ENV=production
+    debug_mode = os.environ.get('FLASK_ENV', 'development') == 'development'
+    host = os.environ.get('FLASK_HOST', '127.0.0.1')  # Default to localhost for security
+    port = int(os.environ.get('FLASK_PORT', '5000'))
+    
+    logger.info(f"Starting MAYA Node API server on {host}:{port}")
+    logger.info(f"Debug mode: {debug_mode}")
+    
+    if debug_mode:
+        logger.warning("Running in DEBUG mode - not suitable for production!")
+    
+    app.run(host=host, port=port, debug=debug_mode)
 
 
 if __name__ == '__main__':
