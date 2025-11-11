@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: CERL-1.0
+// Copyright (c) 2025 MAYA Node Contributors
+// 
+// Constrained Ethics Runtime License 1.0
+// 
+// This code is licensed under the Constrained Ethics Runtime License (CERL-1.0).
+// 
+// Key terms:
+// - Must not be used for weaponization, surveillance, or harm
+// - Must respect privacy and human autonomy
+// - AI systems must be transparent and auditable
+// - No closed/black-box AI models permitted
+// - Commercial use allowed under ethical constraints
+// 
+// For full license terms, see LICENSE-CERL-1.0 file in repository root.
