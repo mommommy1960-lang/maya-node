@@ -1,0 +1,59 @@
+Constrained Ethics Runtime License 1.0 (CERL-1.0)
+
+Copyright (c) 2025 MAYA Node Contributors
+
+Permission is hereby granted, free of charge, to any person or organization 
+obtaining a copy of this software and associated documentation files (the "Software"),
+to use, copy, modify, merge, publish, and distribute the Software, subject to the 
+following conditions:
+
+ETHICAL CONSTRAINTS:
+
+1. PROHIBITED USES:
+   - The Software shall NOT be used for weaponization, military applications, 
+     or systems designed to cause harm to humans.
+   - The Software shall NOT be used for mass surveillance, tracking individuals 
+     without consent, or violating privacy rights.
+   - The Software shall NOT be used to manipulate, deceive, or coerce individuals.
+   - The Software shall NOT be used in ways that discriminate based on protected 
+     characteristics.
+
+2. AI TRANSPARENCY REQUIREMENTS:
+   - Any AI models integrated with this Software must be transparent and auditable.
+   - Black-box AI models, closed-source models, or unvetted neural network weights 
+     are prohibited.
+   - AI decision-making processes must be explainable and subject to human oversight.
+   - All AI training data sources must be documented and ethically sourced.
+
+3. SOVEREIGNTY AND AUTONOMY:
+   - Systems built with this Software must respect human autonomy and agency.
+   - Users must maintain control over their data and AI interactions.
+   - No backdoors, hidden telemetry, or unauthorized data collection permitted.
+
+4. SAFETY AND COMPLIANCE:
+   - Implementations must include safety checks and ethical guardrails.
+   - Systems must comply with applicable safety regulations and standards.
+   - Security vulnerabilities must be responsibly disclosed and patched.
+
+5. OPEN ETHICS:
+   - Any modifications must preserve these ethical constraints.
+   - Derivative works must carry this license or a compatible ethical license.
+   - Commercial use is permitted under these ethical constraints.
+
+DISCLAIMER:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION 
+OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ENFORCEMENT:
+Violation of these ethical constraints constitutes a material breach of this license.
+The copyright holders reserve the right to revoke the license for any party found 
+to be in violation of these terms.
+
+---
+
+For questions or clarifications regarding this license, please contact the 
+maintainers or open an issue in the project repository.
