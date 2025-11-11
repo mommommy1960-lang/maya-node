@@ -67,7 +67,7 @@ def get_bridge_status():
         return jsonify(status)
     except Exception as e:
         logger.error(f"Error getting bridge status: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to retrieve bridge status'}), 500
 
 
 @app.route('/api/runtime/status', methods=['GET'])
@@ -83,7 +83,7 @@ def get_runtime_status():
         })
     except Exception as e:
         logger.error(f"Error getting runtime status: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to retrieve runtime status'}), 500
 
 
 @app.route('/api/audit/trail', methods=['GET'])
@@ -95,7 +95,7 @@ def get_audit_trail():
         return jsonify(trail)
     except Exception as e:
         logger.error(f"Error getting audit trail: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to retrieve audit trail'}), 500
 
 
 @app.route('/api/audit/verify', methods=['GET'])
@@ -112,7 +112,7 @@ def verify_ledger_integrity():
         })
     except Exception as e:
         logger.error(f"Error verifying ledger: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to verify ledger integrity'}), 500
 
 
 @app.route('/api/consent/request', methods=['POST'])
@@ -141,7 +141,7 @@ def request_consent():
         return jsonify(token.to_dict())
     except Exception as e:
         logger.error(f"Error requesting consent: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to generate consent token'}), 500
 
 
 @app.route('/api/runtime/execute', methods=['POST'])
@@ -177,11 +177,18 @@ def execute_operation():
             'success': True,
             'result': result
         })
+    except RuntimeError as e:
+        # Log detailed error but return generic message
+        logger.error(f"Runtime error executing operation: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Operation execution failed'
+        }), 500
     except Exception as e:
         logger.error(f"Error executing operation: {e}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': 'Operation execution failed'
         }), 500
 
 
@@ -194,7 +201,7 @@ def get_ethics_violations():
         return jsonify([])
     except Exception as e:
         logger.error(f"Error getting ethics violations: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to retrieve ethics violations'}), 500
 
 
 @app.route('/api/ethics/decisions', methods=['GET'])
@@ -206,7 +213,7 @@ def get_ethics_decisions():
         return jsonify([])
     except Exception as e:
         logger.error(f"Error getting ethics decisions: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to retrieve ethics decisions'}), 500
 
 
 @app.route('/api/runtime/operations', methods=['GET'])
@@ -230,7 +237,7 @@ def get_runtime_operations():
         return jsonify(formatted)
     except Exception as e:
         logger.error(f"Error getting operations: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to retrieve runtime operations'}), 500
 
 
 @app.route('/api/attestation/report', methods=['GET'])
@@ -241,7 +248,7 @@ def get_attestation_report():
         return jsonify(report)
     except Exception as e:
         logger.error(f"Error generating attestation report: {e}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to generate attestation report'}), 500
 
 
 def main():
