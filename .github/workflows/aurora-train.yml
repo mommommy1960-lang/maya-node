@@ -1,0 +1,5 @@
+.github/workflows/aurora-train.yml
+scripts/aurora_train.py
+docs/aurora/README.md
+docs/ethics/README.md
+AURORA_STATUS.md
