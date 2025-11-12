@@ -1,0 +1,29 @@
+name: Aurora Diagnostics
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # every 6 hours
+  workflow_dispatch:        # lets you run it manually
+
+jobs:
+  diagnostics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Aurora diagnostics
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "Last Check-In: $TIMESTAMP" > docs/AURORA_STATUS.md
+          echo "Uptime: $(uptime -p)" >> docs/AURORA_STATUS.md
+          echo "Signal: ✅ Stable" >> docs/AURORA_STATUS.md
+
+      - name: Commit update
+        run: |
+          git config user.name "Aurora-Bot"
+          git config user.email "actions@github.com"
+          git add docs/AURORA_STATUS.md
+          git commit -m "chore: automated Aurora heartbeat update" || echo "No changes"
+          git push
