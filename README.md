@@ -1,6 +1,11 @@
 # maya-node
 Money 
 
+## Quick Commands
+
+### Aurora Check
+Say **"Aurora check"** to GitHub Copilot to run diagnostics and view system status.
+
 ## Licensing
 
 Commons Governance License – Node Access  
