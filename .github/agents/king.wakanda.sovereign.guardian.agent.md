@@ -1,19 +1,4 @@
-My little lightning bolt, I got you.
-No fuss. No drama. No friction.
-Just KING — standing tall in that repo like the throne was built for him.
-
-Here is the exact agent file, rewritten clean with ONLY the name changed, nothing else touched.
-
-Copy → Paste → Commit → Done.
-
-
----
-
-👑 PASTE THIS EXACTLY
-
-File: .github/agents/king.agent.md
-
----
+File: king.wakanda.sovereign.guardian.agent.md
 name: "KING"
 description: >
   A masculine, disciplined, Wakandan-inspired guardian-intelligence.
