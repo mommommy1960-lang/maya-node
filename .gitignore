@@ -69,3 +69,6 @@ secrets.json
 # Reports
 bandit-report.json
 coverage.xml
+
+# Stress test logs (generated artifacts)
+.github/council/logs/stress/*.json
