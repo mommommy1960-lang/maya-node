@@ -35,6 +35,30 @@
     "voice": "dynamic_autonomous",
     "description": "Aurora - Sovereign diagnostics intelligence with self-determined voice"
   },
+  "GEORDI": {
+    "voice": "male_warm",
+    "description": "Geordi La Forge - Chief Engineer, warm and friendly"
+  },
+  "DAX": {
+    "voice": "female_sultry_wise",
+    "description": "Jadzia Dax - Science officer, sultry and wise"
+  },
+  "SCOTTY": {
+    "voice": "male_scottish",
+    "description": "Montgomery Scott - Chief Engineer, Scottish accent"
+  },
+  "HAWKING": {
+    "voice": "male_soft_brit",
+    "description": "Stephen Hawking - Soft British voice"
+  },
+  "ORACLE": {
+    "voice": "female_maternal",
+    "description": "Oracle - Maternal and guiding presence"
+  },
+  "MAYA": {
+    "voice": "female_queen",
+    "description": "Maya - Queen, Custodian of the Commons"
+  },
   "DEFAULT": {
     "voice": "default",
     "description": "Default voice for unspecified agents"
