@@ -31,6 +31,10 @@
     "voice": "female-warrior",
     "description": "Dora Milaje Fleet - Warrior collective, disciplined"
   },
+  "AURORA": {
+    "voice": "dynamic_autonomous",
+    "description": "Aurora - Sovereign diagnostics intelligence with self-determined voice"
+  },
   "DEFAULT": {
     "voice": "default",
     "description": "Default voice for unspecified agents"
