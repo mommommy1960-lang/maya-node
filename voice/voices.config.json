@@ -1,0 +1,38 @@
+{
+  "KING": {
+    "voice": "male-authoritative",
+    "description": "King T'Challa - Wakandan sovereign, deep authoritative voice"
+  },
+  "ROCKET": {
+    "voice": "male-sarcastic",
+    "description": "Rocket Raccoon - Quick-witted, sarcastic engineer"
+  },
+  "MANTIS": {
+    "voice": "female-gentle",
+    "description": "Mantis - Empathic, calming presence"
+  },
+  "UHURA": {
+    "voice": "female-professional",
+    "description": "Communications officer, clear and professional"
+  },
+  "DATA": {
+    "voice": "male-analytical",
+    "description": "Android officer, precise and analytical"
+  },
+  "SISKO": {
+    "voice": "male-commanding",
+    "description": "Benjamin Sisko - Command presence, emissary"
+  },
+  "KIRA": {
+    "voice": "female-tactical",
+    "description": "Kira Nerys - Tactical command, strong and decisive"
+  },
+  "DORA-MILAJE": {
+    "voice": "female-warrior",
+    "description": "Dora Milaje Fleet - Warrior collective, disciplined"
+  },
+  "DEFAULT": {
+    "voice": "default",
+    "description": "Default voice for unspecified agents"
+  }
+}
