@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: CERL-1.0
+# Copyright (c) 2025 MAYA Node Contributors
+#
+# MANIFEST.in - Package distribution file inclusion rules
+
+# Include license files
+include LICENSE-CERL-1.0
+include LICENSE-BUSL-1.1
+include LICENSE-Apache-2.0
+include CERL-1.0-HEADER.txt
+
+# Include documentation
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include DEVELOPMENT.md
+include ONBOARDING.md
+include SECURITY.md
+include AUTHORS.md
+include CODE_OF_CONDUCT.md
+
+# Include configuration files
+include pyproject.toml
+include setup.py
+include requirements.txt
+include requirements-dev.txt
+include .editorconfig
+include .pre-commit-config.yaml
+include Makefile
+
+# Include phase summaries
+include PHASE-*.md
+
+# Include examples
+recursive-include examples *.yaml *.yml *.json
+
+# Include documentation
+recursive-include docs *.md *.rst *.txt
+
+# Include tests (optional, for source distributions)
+recursive-include tests *.py
+
+# Exclude compiled Python files
+global-exclude *.py[cod]
+global-exclude __pycache__
+global-exclude *.so
+global-exclude .DS_Store
+
+# Exclude development and build artifacts
+prune .git
+prune .github
+prune venv
+prune env
+prune build
+prune dist
+prune *.egg-info
+prune htmlcov
+prune .pytest_cache
+prune .mypy_cache
+prune .tox

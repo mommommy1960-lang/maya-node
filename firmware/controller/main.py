@@ -4,10 +4,10 @@
 # Constrained Ethics Runtime License 1.0
 # This code is licensed under CERL-1.0. See LICENSE-CERL-1.0 for full terms.
 
-from scheduler import PowerScheduler
-from sensors import SensorBus
-from actuators import ActuatorBus
-from safety import Safety
+from firmware.controller.scheduler import PowerScheduler
+from firmware.controller.sensors import SensorBus
+from firmware.controller.actuators import ActuatorBus
+from firmware.controller.safety import Safety
 
 def main():
     sensors = SensorBus()
