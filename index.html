@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MayaNode – Commons Verified Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="MayaNode delivers Commons Verified Engineering & Knowledge Services: ethical, Black-led, high-clarity technical frameworks, safety docs, and AI-powered insight."
+  />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-alt: #0b1020;
+      --bg-soft: #101628;
+      --accent: #f97316;
+      --accent-soft: rgba(249,115,22,0.14);
+      --accent-strong: #fb923c;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-soft: #1f2937;
+      --danger: #ef4444;
+      --ok: #22c55e;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(to right, rgba(15,23,42,0.9), rgba(3,7,18,0.95));
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f97316, #7c2d12);
+      box-shadow: 0 0 18px rgba(249,115,22,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-strong);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.85rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    .btn-outline {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(15,23,42,0.8);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-soft);
+      color: var(--text);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #c4b5fd);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(249,115,22,0.45);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 16px 35px rgba(249,115,22,0.55);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.8rem 1.2rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-cta .btn-outline {
+        display: none;
+      }
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15,23,42,0.75);
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-kicker span.tag {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border-radius: 999px;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw + 1.3rem, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #f97316, #facc15, #c4b5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-footnote {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-footnote span {
+      color: var(--accent-strong);
+      font-weight: 600;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #111827, #020617);
+      border-radius: 1.3rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.3rem 1.4rem;
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.9),
+        0 0 30px rgba(15,23,42,0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--muted);
+    }
+
+    .hero-signal {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--ok);
+      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+      margin-left: 0.4rem;
+      display: inline-block;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-card-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .metric {
+      background: rgba(15,23,42,0.9);
+      border-radius: 0.75rem;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid var(--border-soft);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .metric-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .metric-value span {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: 0.2rem;
+    }
+
+    .hero-card-footer {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.75rem;
+      color: #e5e7eb;
+    }
+
+    .hero-tagline span {
+      color: var(--accent-strong);
+      font-weight: 600;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(244,114,182,0.16), transparent 55%),
+                  radial-gradient(circle at 100% 0, rgba(56,189,248,0.16), transparent 60%);
+      opacity: 0.65;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* Sections & cards */
+    .section-header {
+      max-width: 640px;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-strong);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 720px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: var(--bg-soft);
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem 1.1rem 1.2rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.73rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .pill-accent {
+      border-color: var(--accent-soft);
+      color: var(--accent-strong);
+      background: rgba(15,23,42,0.7);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.35rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid var(--border-soft);
+      color: var(--muted);
+    }
+
+    .price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .price span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 0.2rem;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0.3rem 0 0.6rem;
+      padding: 0;
+    }
+
+    li {
+      font-size: 0.84rem;
+      color: var(--muted);
+      display: flex;
+      gap: 0.4rem;
+      align-items: flex-start;
+      margin-bottom: 0.25rem;
+    }
+
+    li::before {
+      content: "•";
+      color: var(--accent-strong);
+      margin-top: 0.1rem;
+    }
+
+    .card-footer {
+      margin-top: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .pill-status {
+      font-size: 0.72rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--ok);
+      background: rgba(22,163,74,0.2);
+    }
+
+    .pill-warning {
+      color: var(--danger);
+      border-color: rgba(239,68,68,0.3);
+      background: rgba(127,29,29,0.25);
+    }
+
+    /* About / contact / footer */
+    .about-layout {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 860px) {
+      .about-layout {
+        grid-template-columns: 1.4fr 1fr;
+      }
+    }
+
+    .about-highlight {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+      color: var(--muted);
+    }
+
+    .about-highlight strong {
+      color: #e5e7eb;
+    }
+
+    .contact-box {
+      background: var(--bg-soft);
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .contact-box p + p {
+      margin-top: 0.45rem;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      margin-top: 2rem;
+      padding: 1.2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(3,7,18,0.95);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .footer-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .footer-row span strong {
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-logo">MN</div>
+          <div class="brand-text">
+            <span>MAYANODE</span>
+            <span>Commons Verified Engineering</span>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#insight">Insight Engine</a>
+          <a href="#creators">Creators Kits</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+        </div>
+        <div class="nav-cta">
+          <a href="#contact" class="btn btn-outline">Contact</a>
+          <a href="mailto:mommommy1960@gmail.com" class="btn btn-primary">
+            Book a clarity call
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section">
+        <div class="hero">
+          <div>
+            <div class="hero-kicker">
+              <span class="tag">Black-led · Ethics-first · Real-world only</span>
+              <span>Commons Verified · 2025</span>
+            </div>
+            <h1 class="hero-title">
+              Turn chaotic ideas into
+              <span class="highlight">audit-ready, fundable engineering.</span>
+            </h1>
+            <p class="hero-subtitle">
+              MayaNode is your <strong>Commons Verified Engineering &amp; Knowledge Service</strong>:
+              high-clarity frameworks, safety docs, and technical blueprints built with
+              human-reviewed AI precision. No hype. No sci-fi. Just documents that
+              win trust, funding, and time.
+            </p>
+            <div class="hero-actions">
+              <a href="mailto:mommommy1960@gmail.com" class="btn btn-primary">
+                Request a consult
+              </a>
+              <a href="#pricing" class="btn btn-outline">
+                View pricing &amp; offers
+              </a>
+            </div>
+            <p class="hero-footnote">
+              Built for <span>founders, researchers, &amp; organizations</span> who are tired
+              of messy pitches and vague “strategy decks.”
+            </p>
+          </div>
+
+          <div class="hero-right">
+            <div class="hero-card">
+              <div class="hero-orbit"></div>
+              <div class="hero-card-header">
+                <div>
+                  <div class="hero-card-title">Project Readiness Snapshot</div>
+                  <div class="hero-card-subtitle">
+                    How investors &amp; reviewers see your stack at first glance
+                  </div>
+                </div>
+                <div class="hero-pill">
+                  Commons Verified
+                  <span class="hero-signal"></span>
+                </div>
+              </div>
+
+              <div class="hero-metrics">
+                <div class="metric">
+                  <div class="metric-label">Documentation clarity</div>
+                  <div class="metric-value">
+                    94<span>%</span>
+                  </div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Safety &amp; ethics readiness</div>
+                  <div class="metric-value">
+                    91<span>%</span>
+                  </div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Funding-review appeal</div>
+                  <div class="metric-value">
+                    88<span>%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-card-footer">
+                <div class="hero-tagline">
+                  <span>MayaNode</span> translates your genius into reviewer-proof, investor-proof,
+                  regulator-proof language.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES / FLAGSHIP -->
+      <section class="section" id="services">
+        <div class="section-header">
+          <div class="section-kicker">Flagship service</div>
+          <h2 class="section-title">Commons Verified Engineering &amp; Knowledge Services</h2>
+          <p class="section-subtitle">
+            High-ticket, high-trust documentation that makes you look like you actually know
+            what you’re doing. Because you do. I just make sure the paperwork proves it.
+          </p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="pill pill-accent">For orgs, labs &amp; serious founders</div>
+            <h3>What you get</h3>
+            <p>
+              A full engineering and knowledge package tuned to your project:
+              clean, structured, and ready to show to investors, regulators, or partners.
+            </p>
+            <ul>
+              <li>System &amp; architecture frameworks</li>
+              <li>Safety documentation &amp; operational protocols</li>
+              <li>Technical manuals &amp; compliance overviews</li>
+              <li>Ethical research blueprints &amp; risk registers</li>
+              <li>Custom AI-assisted reports, always human-reviewed</li>
+            </ul>
+            <p class="price">
+              Starting at $7,500
+              <span>per project package</span>
+            </p>
+            <div class="badge-row">
+              <span class="badge">Grant-ready</span>
+              <span class="badge">Investor-friendly</span>
+              <span class="badge">Commons Verified</span>
+            </div>
+            <div class="card-footer">
+              <span>Ideal for 1–3 core initiatives at a time.</span>
+              <a href="mailto:mommommy1960@gmail.com" class="btn btn-primary" style="padding: 0.35rem 0.9rem; font-size: 0.8rem;">
+                Request proposal
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="pill">How it works</div>
+            <h3>Process</h3>
+            <ul>
+              <li>You send raw notes, chaos docs, voice notes, or existing drafts.</li>
+              <li>MayaNode decomposes them into clean architecture &amp; documentation.</li>
+              <li>We iterate via 1–2 clarity calls to lock in scope &amp; language.</li>
+              <li>You get a final, polished document set plus source files.</li>
+            </ul>
+            <p class="about-highlight">
+              You’re not buying “AI content.”  
+              <strong>You’re buying a translator for your genius.</strong>
+            </p>
+            <p class="about-highlight">
+              Black-led, ethics-first, and structurally designed so credit, control,
+              and narrative stay in your hands.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSIGHT ENGINE & CREATORS KITS -->
+      <section class="section" id="insight">
+        <div class="section-header">
+          <div class="section-kicker">Recurring revenue &amp; DIY</div>
+          <h2 class="section-title">MayaNode Premium Insight Engine &amp; Commons Creators Kits</h2>
+          <p class="section-subtitle">
+            Not everyone needs a $7,500+ package. Some people just need sharp guidance,
+            repeatable templates, or a kit they can build in their kitchen, classroom, or lab.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <!-- Insight Engine -->
+          <div class="card">
+            <div class="pill pill-accent">Subscription · Insight Engine</div>
+            <h3>MayaNode Premium Insight Engine</h3>
+            <p>
+              A recurring stream of tailored reports, templates, and breakdowns that answer:
+              “What does this mean, and what should I do next?”
+            </p>
+            <ul>
+              <li>Strategic micro-reports (per topic or question)</li>
+              <li>Deep-dive analyses with citations &amp; structure</li>
+              <li>Reusable frameworks &amp; document templates</li>
+              <li>Delivered on a predictable monthly rhythm</li>
+            </ul>
+            <p class="price">
+              From $39<span>/month</span>
+            </p>
+            <div class="badge-row">
+              <span class="badge">Leaders</span>
+              <span class="badge">Educators</span>
+              <span class="badge">Researchers</span>
+            </div>
+            <div class="card-footer">
+              <span>Perfect when you need clarity on tap.</span>
+              <span class="pill-status">Launching soon</span>
+            </div>
+          </div>
+
+          <!-- Creators Kits -->
+          <div class="card" id="creators">
+            <div class="pill pill-accent">Digital &amp; physical</div>
+            <h3>Commons Creators Kits</h3>
+            <p>
+              Six micro-prototype “kitbooks” that walk you through building small but
+              real hardware demos: Aurora centrifuge, smart armor tile, soft limb,
+              multi-material printer, nav bot, and XR pod.
+            </p>
+            <ul>
+              <li>Step-by-step, middle-school-friendly build guides</li>
+              <li>Bill of materials with realistic price ranges</li>
+              <li>Safety notes and test procedures</li>
+              <li>Perfect for STEM clubs, home labs, and classrooms</li>
+            </ul>
+            <p class="price">
+              $19<span>/kitbook · $80 bundle (all six)</span>
+            </p>
+            <div class="badge-row">
+              <span class="badge">STEM educators</span>
+              <span class="badge">Makers</span>
+              <span class="badge">Parents</span>
+            </div>
+            <div class="card-footer">
+              <span>Physical kits available at higher tier.</span>
+              <span class="pill-status pill-warning">Pre-order phase</span>
+            </div>
+          </div>
+
+          <!-- Support / Ecosystem -->
+          <div class="card">
+            <div class="pill">Support &amp; ecosystem</div>
+            <h3>Support the Commons · MayaNode Ecosystem</h3>
+            <p>
+              For people who want to fund the work, get early access, and help push
+              ethical engineering out into the world without needing a full package.
+            </p>
+            <ul>
+              <li>Support tiers starting at $5/month</li>
+              <li>Behind-the-scenes briefs &amp; breakdowns</li>
+              <li>Access to selected prompts, models &amp; templates</li>
+            </ul>
+            <p class="price">
+              $5–$100<span>/month supporter tiers</span>
+            </p>
+            <div class="badge-row">
+              <span class="badge">Patreon / Ko-fi ready</span>
+            </div>
+            <div class="card-footer">
+              <span>Ideal for allies, fans, and early backers.</span>
+              <span>Support links coming soon.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING SECTION -->
+      <section class="section" id="pricing">
+        <div class="section-header">
+          <div class="section-kicker">Pricing</div>
+          <h2 class="section-title">A simple ladder from “try it” to “build the whole thing.”</h2>
+          <p class="section-subtitle">
+            You don’t have to start at flagship. You can start small, prove the value,
+            and then decide when to scale.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="pill">Starter</div>
+            <h3>Micro-Prototype Kitbooks</h3>
+            <p>
+              Start with a single micro-prototype, build it in your home, classroom, or lab,
+              and see how the Commons style of engineering feels in your hands.
+            </p>
+            <p class="price">
+              $19<span>/kitbook · $80 bundle</span>
+            </p>
+            <ul>
+              <li>6 detailed guides (Aurora, PFHMS, BRL, CRTS, MPRS, CALEXS)</li>
+              <li>Bill of materials &amp; safety notes</li>
+              <li>Experiment prompts &amp; logging pages</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="pill pill-accent">Most leverage</div>
+            <h3>Insight Engine Subscription</h3>
+            <p>
+              Ongoing guidance for leaders and builders who need a stream of clear,
+              structured thinking around science, tech, and strategy.
+            </p>
+            <p class="price">
+              $39–$199<span>/month</span>
+            </p>
+            <ul>
+              <li>Micro-reports &amp; deep-dives</li>
+              <li>Templates and framework libraries</li>
+              <li>Priority content requests</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="pill">Flagship</div>
+            <h3>Engineering &amp; Knowledge Services</h3>
+            <p>
+              When you’re ready to look like a billion-dollar org on paper, this is the lane.
+              Full documentation, frameworks, and safety for serious initiatives.
+            </p>
+            <p class="price">
+              From $7,500<span>/project package</span>
+            </p>
+            <ul>
+              <li>End-to-end architecture &amp; safety docs</li>
+              <li>Regulator- and investor-friendly language</li>
+              <li>Live sessions &amp; iteration cycles included</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / CONTACT -->
+      <section class="section" id="about">
+        <div class="about-layout">
+          <div>
+            <div class="section-kicker">About</div>
+            <h2 class="section-title">Who’s behind MayaNode?</h2>
+            <p class="about-highlight">
+              MayaNode is the work of <strong>Mya P. Brown</strong> — a Black founder,
+              Commons architect, and relentless clarity engine, building a future where
+              ethical AI and real-world engineering are tools for liberation, not control.
+            </p>
+            <p class="about-highlight">
+              The “Commons Verified” seal isn’t a cute brand. It is a stance:
+              no weapons, no extraction, no hype-heavy scams. Just real physics,
+              real docs, and real pathways for people who’ve historically been shut
+              out of the lab and the boardroom.
+            </p>
+            <p class="about-highlight">
+              If you’re tired of being underestimated, talked down to, or buried under
+              jargon, you’re in the right place. I don’t coddle nonsense. I do, however,
+              build blueprints that hold up under pressure.
+            </p>
+          </div>
+
+          <div id="contact">
+            <div class="contact-box">
+              <div class="contact-label">Contact</div>
+              <p>
+                <strong>Email:</strong>
+                <a href="mailto:mommommy1960@gmail.com">mommommy1960@gmail.com</a>
+              </p>
+              <p>
+                <strong>Location:</strong> Seattle, Washington (serving clients worldwide)
+              </p>
+              <p>
+                <strong>Working style:</strong> Async-friendly, trauma-aware, and
+                brutally honest about what’s possible and what is not.
+              </p>
+              <p style="margin-top: 0.6rem;">
+                Ready for a clarity call?  
+                Send a short email with your situation, your goal, and your timeline.
+                You’ll get a direct, no-fluff response.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-row">
+          <span>&copy; <strong>MayaNode</strong> · Commons Verified Engineering &amp; Knowledge Services</span>
+        </div>
+        <div class="footer-row">
+          <span>Ethics-first · Black-led · No sci-fi lies · Just real-world physics and paperwork that hits.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
