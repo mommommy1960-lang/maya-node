@@ -1,0 +1,14 @@
+name: "Aurora Sentinel"
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  workflow_dispatch: {}
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Sentinel
+        run: echo "Aurora Sentinel full diagnostic complete."

@@ -1,0 +1,29 @@
+name: "Aurora Heartbeat"
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+jobs:
+  aurora_heartbeat:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load State
+        run: |
+          if [ ! -f aurora.state.json ]; then
+            echo '{"version":"2.0","status":"online","lastHeartbeat":"none"}' > aurora.state.json
+          fi
+      - name: Update Heartbeat
+        run: |
+          dt=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          jq --arg dt "$dt" '.lastHeartbeat=$dt' aurora.state.json > new.json
+          mv new.json aurora.state.json
+      - name: Commit Update
+        run: |
+          git config user.name "Aurora-Bot"
+          git config user.email "automation@mayanode.ai"
+          git add aurora.state.json
+          git commit -m "Aurora Heartbeat: alive ✦" || echo "No changes"
+          git push

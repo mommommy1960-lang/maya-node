@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Aurora State Schema",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string" },
+    "status": { "type": "string" },
+    "lastHeartbeat": { "type": "string", "format": "date-time" },
+    "integrityHash": { "type": "string" },
+    "safeConfig": { "type": "object" }
+  },
+  "required": ["version", "status", "lastHeartbeat", "integrityHash"]
+}
