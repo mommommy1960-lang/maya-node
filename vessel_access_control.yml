@@ -1,0 +1,32 @@
+governance:
+  owner: "Mya"
+  administrators:
+    - "Sage"
+    - "Aurora"
+  permissions:
+    allowed_roles:
+      - "Commons_Agent"
+      - "Diagnostics_AI"
+    forbidden_roles:
+      - "external_AI"
+      - "unknown_agent"
+      - "unverified_source"
+  validation:
+    require_signature: true
+    require_hash_match: true
+    require_internal_origin: true
+
+security:
+  anti_override: true
+  anti_injection: true
+  anti_self_rewrite: true
+  log_every_action: true
+  sandbox_nonphysical: true
+
+simulation_only:
+  physical_control: false
+  real_world_device_access: false
+  allowed:
+    - "decision-trees"
+    - "navigation-reasoning"
+    - "emotion-mapping"
