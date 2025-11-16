@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MayaNode – Commons Verified Engineering</title>
-  <meta name="description" content="MayaNode delivers Commons Verified Engineering &amp; Knowledge Services: ethical, Black-led, high-clarity technical frameworks, safety docs, and AI-powered insight.">
+  <meta name="description" content="MayaNode delivers Commons Verified Engineering &amp; Knowledge Services: ethical, Black-led, high-clarity technical frameworks, safety docs, and AI-powered insig[...]">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=9">
@@ -22,6 +22,8 @@
   <meta name="twitter:title" content="MayaNode – Commons Verified Engineering">
   <meta name="twitter:description" content="Black-led, ethics-first documentation that makes your project look as serious as it actually is.">
   <meta name="twitter:image" content="assets/og-mayanode.png">
+
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
     :root {
@@ -178,6 +180,20 @@
       color: var(--muted);
     }
 
+    .hero-stripe {
+      margin-top: 1.25rem;
+    }
+
+    .hero-stripe-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-stripe stripe-buy-button {
+      display: block;
+    }
+
     .hero-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -321,11 +337,19 @@
 <section class="section hero">
   <div>
     <h1 class="hero-title">Turn chaotic ideas into <span class="highlight">audit-ready, fundable engineering.</span></h1>
-    <p class="hero-subtitle">MayaNode is your <strong>Commons Verified Engineering &amp; Knowledge Service</strong>: high-clarity frameworks, safety docs, and technical blueprints ready for investors, regulators, and partners.</p>
+    <p class="hero-subtitle">MayaNode is your <strong>Commons Verified Engineering &amp; Knowledge Service</strong>: high-clarity frameworks, safety docs, and technical blueprints ready for inves[...] 
 
     <div class="hero-actions">
       <a href="#" class="btn btn-primary">Request a consult</a>
       <a href="#pricing" class="btn btn-outline">View pricing &amp; offers</a>
+    </div>
+
+    <div class="hero-stripe">
+      <p class="hero-stripe-label">Or start instantly with Snapshot Lite:</p>
+      <stripe-buy-button
+        buy-button-id="buy_btn_1SUE64FFZvHRvAyGNWQFxtzJ"
+        publishable-key="pk_live_51SSi1lFFZvHRvAyGArN5osMN9hKFjmNhd10RtIUFav2ZbBTMCKBV6TUj6hWxY9N78GpORe0q5KCzt7zzd2gZkzIp00G4tF1y7G">
+      </stripe-buy-button>
     </div>
 
     <p class="hero-footnote">Built for <span style="color:var(--accent-strong);font-weight:600;">founders, researchers, &amp; organizations</span> tired of messy pitches and vague decks.</p>
@@ -353,7 +377,7 @@
 <section class="section" id="pricing">
   <div class="section-kicker">Flagship service</div>
   <h2 class="section-title">Commons Verified Engineering &amp; Knowledge Services</h2>
-  <p class="section-subtitle" style="max-width:620px;color:var(--muted);margin-bottom:1.5rem;">High-ticket, high-trust documentation designed to win grants, signal credibility, satisfy regulators, and move serious projects forward.</p>
+  <p class="section-subtitle" style="max-width:620px;color:var(--muted);margin-bottom:1.5rem;">High-ticket, high-trust documentation designed to win grants, signal credibility, satisfy regulators[...] 
 
   <div class="grid grid-3">
 
