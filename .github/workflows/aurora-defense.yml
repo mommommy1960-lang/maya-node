@@ -1,0 +1,15 @@
+name: "Aurora Defense Grid"
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+jobs:
+  defense_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrity Check
+        run: |
+          python3 aurora/watchers/integrity_check.py
+      - name: Log Result
+        run: echo "Defense scan complete."

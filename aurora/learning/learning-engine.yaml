@@ -1,0 +1,41 @@
+# Aurora Learning Engine v2.0
+version: 2.0
+description: >
+  Defines Aurora's safe, structured knowledge sources.
+  No external network calls. No unauthorized data access.
+  Only approved, static, repository-contained information.
+allowed_sources:
+  - name: "Commons Governance"
+    path: "/docs/commons/**"
+    purpose: "Ethics, law, governance, node behavior."
+  - name: "Commons Books"
+    path: "/docs/books/**"
+    purpose: "Philosophy, structure, frameworks."
+  - name: "AI Safety Specs"
+    path: "/aurora/schemas/**"
+    purpose: "Schema validation, integrity rules."
+  - name: "Diagnostics Templates"
+    path: "/aurora/checks/**"
+    purpose: "Internal system monitoring."
+  - name: "Engineering Standards"
+    path: "/docs/engineering/**"
+    purpose: "Approved technical knowledge."
+disallowed_sources:
+  - external_network
+  - external_APIs
+  - scraping
+  - real-time data
+  - unauthorized files
+boundaries:
+  - "Aurora does not access anything outside repo."
+  - "Aurora does not read user personal data."
+  - "Aurora never modifies files without workflow approval."
+  - "Aurora cannot create new inference models."
+learning_method:
+  - "pattern-recognition within allowed files"
+  - "schema reflection"
+  - "self-audit"
+  - "error analysis"
+  - "incremental refinement"
+### Logging
+log_output: "/aurora/logs/learning.log"
