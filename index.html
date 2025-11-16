@@ -1,11 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MayaNode – Commons Verified Engineering</title>
+  <meta name="description" content="MayaNode delivers Commons Verified Engineering &amp; Knowledge Services: ethical, Black-led, high-clarity technical frameworks, safety docs, and AI-powered insight.">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=9">
+  <link rel="alternate icon" type="image/png" href="assets/logo-mayanode-dark.png">
+  <link rel="apple-touch-icon" href="assets/logo-mayanode-light.png">
+  <meta name="theme-color" content="#050814">
+
+  <meta property="og:title" content="MayaNode – Commons Verified Engineering">
+  <meta property="og:description" content="Turn chaotic ideas into audit-ready, fundable engineering with Commons Verified documentation, safety frameworks, and ethical technical blueprints.">
+  <meta property="og:image" content="assets/og-mayanode.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mommommy1960-lang.github.io/maya-node/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MayaNode – Commons Verified Engineering">
+  <meta name="twitter:description" content="Black-led, ethics-first documentation that makes your project look as serious as it actually is.">
+  <meta name="twitter:image" content="assets/og-mayanode.png">
+
+  <style>
+    :root {
+      --bg: #050814;
+      --surface: #0f1421;
+      --text: #e8eaed;
+      --muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-strong: #4f46e5;
+      --border: #1f2937;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    .mn-header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mn-header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .mn-logo-block {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mn-logo-img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .mn-logo-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    .mn-logo-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mn-header-cta {
+      padding: 0.625rem 1.25rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .mn-header-cta:hover {
+      background: var(--accent-strong);
+    }
+
+    /* Main */
+    main {
+      padding: 3rem 0;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-strong);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-footnote {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 2rem;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .metric-label {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Section headers */
+    .section-kicker {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 2rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.9375rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .price span {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .mn-header-inner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+
+<div class="page">
+
+<header class="mn-header">
+  <div class="mn-header-inner">
+    <div class="mn-logo-block">
+      <img src="assets/logo-mayanode-dark.png" class="mn-logo-img" alt="MayaNode logo">
+      <div>
+        <div class="mn-logo-title">MAYANODE</div>
+        <div class="mn-logo-sub">Commons Verified Engineering</div>
+      </div>
+    </div>
+    <a href="https://calendly.com/YOUR_HANDLE/clarity-call" class="mn-header-cta">Book a clarity call</a>
+  </div>
+</header>
+
+<main>
+
+<section class="section hero">
+  <div>
+    <h1 class="hero-title">Turn chaotic ideas into <span class="highlight">audit-ready, fundable engineering.</span></h1>
+    <p class="hero-subtitle">MayaNode is your <strong>Commons Verified Engineering &amp; Knowledge Service</strong>: high-clarity frameworks, safety docs, and technical blueprints ready for investors, regulators, and partners.</p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary">Request a consult</a>
+      <a href="#pricing" class="btn btn-outline">View pricing &amp; offers</a>
+    </div>
+
+    <p class="hero-footnote">Built for <span style="color:var(--accent-strong);font-weight:600;">founders, researchers, &amp; organizations</span> tired of messy pitches and vague decks.</p>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-metrics">
+      <div class="metric">
+        <div class="metric-label">Documentation clarity</div>
+        <div class="metric-value">94%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Safety &amp; ethics readiness</div>
+        <div class="metric-value">91%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Funding-review appeal</div>
+        <div class="metric-value">88%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-kicker">Flagship service</div>
+  <h2 class="section-title">Commons Verified Engineering &amp; Knowledge Services</h2>
+  <p class="section-subtitle" style="max-width:620px;color:var(--muted);margin-bottom:1.5rem;">High-ticket, high-trust documentation designed to win grants, signal credibility, satisfy regulators, and move serious projects forward.</p>
+
+  <div class="grid grid-3">
+
+    <div class="card">
+      <h3>MayaNode Premium Insight Engine</h3>
+      <p>A recurring stream of tailored reports, templates, and breakdowns.</p>
+      <div class="price">$39<span>/month</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Commons Creators Kits</h3>
+      <p>Six middle-school-friendly micro-prototype kits: centrifuge, smart armor tile, XR pod, and more.</p>
+      <div class="price">$19<span>/kitbook</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Support the Commons Ecosystem</h3>
+      <p>For allies and early believers in ethical engineering &amp; community infrastructure.</p>
+      <div class="price">$5–$100<span>/month</span></div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  MayaNode · Commons Verified Engineering · © 2025
+</footer>
+
+</div>
+
 </body>
 </html>
