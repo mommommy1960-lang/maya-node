@@ -1,0 +1,21 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- MayaNode Logo - Light Theme -->
+  <defs>
+    <linearGradient id="accentGradientLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fb923c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Monogram "M" with node connections -->
+  <g id="monogram">
+    <path d="M 15 45 L 15 15 L 25 30 L 35 15 L 35 45" stroke="url(#accentGradientLight)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="15" cy="15" r="3" fill="#f97316"/>
+    <circle cx="25" cy="30" r="3" fill="#fb923c"/>
+    <circle cx="35" cy="15" r="3" fill="#f97316"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="50" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#101628">MayaNode</text>
+  <text x="50" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#1f2937">Commons Verified Engineering</text>
+</svg>
