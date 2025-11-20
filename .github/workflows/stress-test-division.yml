@@ -1,0 +1,133 @@
+# SPDX-License-Identifier: CERL-1.0
+# Copyright (c) 2025 MAYA Node Contributors
+#
+# Constrained Ethics Runtime License 1.0
+# This code is licensed under CERL-1.0. See LICENSE-CERL-1.0 for full terms.
+
+name: Stress Test Division
+
+on:
+  # Run on manual trigger
+  workflow_dispatch:
+    inputs:
+      test_intensity:
+        description: 'Test intensity level'
+        required: false
+        default: 'normal'
+        type: choice
+        options:
+          - light
+          - normal
+          - aggressive
+  
+  # Run on schedule (weekly on Sundays at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * 0'
+  
+  # Run on push to stress-test branches
+  push:
+    branches:
+      - 'stress-test/**'
+
+jobs:
+  stress-test-sweep:
+    name: Destructive Stress Test Sweep
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+      
+      - name: Create log directory
+        run: |
+          mkdir -p .github/council/logs/stress
+          echo "Stress test log directory created at $(date -u)"
+      
+      - name: Run workflow stress tests
+        run: |
+          python tests/stress_tests/test_workflow_stress.py
+        continue-on-error: true
+      
+      - name: Run config stress tests
+        run: |
+          python tests/stress_tests/test_config_stress.py
+        continue-on-error: true
+      
+      - name: Run TTS engine stress tests
+        run: |
+          python tests/stress_tests/test_tts_stress.py
+        continue-on-error: true
+      
+      - name: Run pipeline stress tests
+        run: |
+          python tests/stress_tests/test_pipeline_stress.py
+        continue-on-error: true
+      
+      - name: Run complete stress test suite
+        run: |
+          echo "========================================"
+          echo "Running Complete Stress Test Division"
+          echo "========================================"
+          python tests/stress_tests/run_stress_tests.py
+        continue-on-error: true
+      
+      - name: List generated logs
+        if: always()
+        run: |
+          echo "Generated stress test logs:"
+          ls -lah .github/council/logs/stress/
+          echo ""
+          echo "Latest log file:"
+          cat $(ls -t .github/council/logs/stress/*.json | head -1) || echo "No log files found"
+      
+      - name: Commit stress test logs
+        if: always()
+        run: |
+          git config user.name "Stress-Test-Bot"
+          git config user.email "actions@github.com"
+          git add .github/council/logs/stress/
+          git commit -m "chore: stress test cycle logs [skip ci]" || echo "No new logs to commit"
+          git push || echo "Nothing to push"
+      
+      - name: Upload stress test logs as artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stress-test-logs-${{ github.run_id }}
+          path: .github/council/logs/stress/
+          retention-days: 30
+      
+      - name: Generate summary report
+        if: always()
+        run: |
+          echo "## Stress Test Division Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔥 **Destructive Stress Test Sweep Completed**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "$(ls -t .github/council/logs/stress/*.json | head -1)" ]; then
+            LATEST_LOG=$(ls -t .github/council/logs/stress/*.json | head -1)
+            echo "📊 **Latest Results:**" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            cat "$LATEST_LOG" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No log files generated" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📁 Logs saved to: \`.github/council/logs/stress/\`" >> $GITHUB_STEP_SUMMARY
