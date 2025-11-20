@@ -30,5 +30,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
           publish_branch: gh-pages
-          force_orphan: true
-          Add deploy-docs workflow
+          force_orphan: true 
