@@ -1,0 +1,59 @@
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-intro,
+.about-mission,
+.about-approach {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.about-intro h2,
+.about-mission h2,
+.about-approach h2 {
+  color: var(--accent-strong);
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-intro p,
+.about-mission p,
+.about-approach p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-values {
+  margin: var(--spacing-3xl) 0;
+}
+
+.about-values .card h3 {
+  color: var(--foreground);
+  margin-bottom: var(--spacing-md);
+}
+
+.about-approach ul {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--spacing-lg);
+}
+
+.about-approach ul li {
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  background: var(--card-background);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.about-cta {
+  margin-top: var(--spacing-3xl);
+  padding: var(--spacing-2xl);
+  background: var(--card-background);
+  border-radius: var(--radius-lg);
+}
+
+.about-cta h2 {
+  margin-bottom: var(--spacing-lg);
+}

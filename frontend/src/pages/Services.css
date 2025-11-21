@@ -1,0 +1,80 @@
+.services-intro {
+  max-width: 700px;
+  margin: 0 auto var(--spacing-3xl);
+  font-size: 1.2rem;
+}
+
+.services-grid {
+  margin-top: var(--spacing-3xl);
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.service-card h3 {
+  color: var(--foreground);
+  margin-bottom: var(--spacing-md);
+}
+
+.service-card p {
+  color: var(--muted);
+  margin-bottom: var(--spacing-lg);
+  flex-grow: 1;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-features li {
+  padding: var(--spacing-sm) 0;
+  padding-left: var(--spacing-lg);
+  position: relative;
+  color: var(--foreground);
+  font-size: 0.95rem;
+}
+
+.service-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.services-cta {
+  margin-top: var(--spacing-3xl);
+  padding: var(--spacing-3xl);
+  background: var(--card-background);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.services-cta h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.services-cta p {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+  }
+}
