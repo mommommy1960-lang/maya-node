@@ -59,6 +59,8 @@ temp/
 *.dll
 *.so
 *.dylib
+dist/
+build/
 
 # Security
 *.pem
