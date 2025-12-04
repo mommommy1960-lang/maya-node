@@ -1,0 +1,141 @@
+.contact-intro {
+  max-width: 700px;
+  margin: 0 auto var(--spacing-3xl);
+  font-size: 1.2rem;
+}
+
+.contact-content {
+  margin-top: var(--spacing-3xl);
+  align-items: start;
+}
+
+.contact-info h2 {
+  color: var(--accent-strong);
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact-info p {
+  color: var(--muted);
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.1rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.contact-method {
+  display: flex;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--card-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.method-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.method-content h3 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--foreground);
+}
+
+.method-content p {
+  color: var(--muted);
+  margin-bottom: var(--spacing-md);
+  font-size: 0.95rem;
+}
+
+.contact-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent-hover);
+}
+
+.contact-form-container {
+  position: relative;
+}
+
+.contact-form {
+  padding: var(--spacing-2xl);
+}
+
+.contact-form h3 {
+  margin-bottom: var(--spacing-xl);
+  color: var(--foreground);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--card-background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.success-message {
+  padding: var(--spacing-3xl);
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.success-message h3 {
+  color: var(--accent-strong);
+  margin-bottom: var(--spacing-md);
+}
+
+.success-message p {
+  color: var(--muted);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-method {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .method-icon {
+    margin: 0 auto;
+  }
+}
