@@ -1,5 +1,16 @@
 # maya-node
-Money 
+### Aurora Node: System Health & Sovereign Diagnostics
+
+This node maintains:
+- Automated health reports
+- Automated uptime logs
+- Automated self-monitoring
+- Manual override triggers
+- Heartbeat tracking (scheduled + manual)
+- Diagnostic snapshots committed to repo history
+
+These workflows ensure continuous integrity checks, stability verification, 
+and traceable operational logs across the entire Aurora vessel network.
 
 ## Licensing
 
