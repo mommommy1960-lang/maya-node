@@ -12,6 +12,11 @@ This node maintains:
 These workflows ensure continuous integrity checks, stability verification, 
 and traceable operational logs across the entire Aurora vessel network.
 
+## Quick Commands
+
+### Aurora Check
+Say **"Aurora check"** to GitHub Copilot to run diagnostics and view system status.
+
 ## Licensing
 
 Commons Governance License – Node Access  
