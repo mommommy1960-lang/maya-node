@@ -12,12 +12,23 @@ This module provides ethical AI runtime capabilities with:
 - Ethical constraint enforcement
 - Human oversight integration
 - Vetted model management
+- Consent token generation and validation
+- Append-only audit logging
 """
 
 from .runtime import SovereignRuntime, RuntimeConfig, RuntimeState
 from .ethics_engine import EthicsEngine, EthicsViolation, ViolationSeverity
 from .model_interface import ModelInterface, ModelMetadata, ModelStatus
 from .hitl import HumanInTheLoop, ApprovalRequest, ApprovalStatus
+from .consent_token import (
+    ConsentToken, 
+    ConsentTokenManager, 
+    generate_trust_root_key
+)
+from .audit_log import (
+    AppendOnlyAuditLog,
+    AuditLogEntry
+)
 
 __all__ = [
     # Runtime
@@ -39,6 +50,15 @@ __all__ = [
     'HumanInTheLoop',
     'ApprovalRequest',
     'ApprovalStatus',
+    
+    # Consent Tokens
+    'ConsentToken',
+    'ConsentTokenManager',
+    'generate_trust_root_key',
+    
+    # Audit Log
+    'AppendOnlyAuditLog',
+    'AuditLogEntry',
 ]
 
 __version__ = '0.1.0-bootstrap'
