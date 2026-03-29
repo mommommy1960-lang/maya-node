@@ -1,0 +1,68 @@
+# Infrastructure Map
+# Defines the topology and dependencies for MAYA Node deployments
+
+version: "1.0"
+deployment_engine:
+  name: "Sovereign Deployment Engine"
+  version: "phase-xii"
+  
+regions:
+  - name: "north-america"
+    zones:
+      - id: "na-east-1"
+        sites: []
+      - id: "na-west-1"
+        sites: []
+  
+  - name: "europe"
+    zones:
+      - id: "eu-central-1"
+        sites: []
+  
+  - name: "asia-pacific"
+    zones:
+      - id: "apac-south-1"
+        sites: []
+
+site_templates:
+  fleet_depot:
+    type: "fleet_depot"
+    inputs: ["pv", "grid"]
+    storage_kwh: 200
+    priority_loads_kw: 25
+    thermal_integration: false
+    
+  telecom_tower:
+    type: "telecom_tower"
+    inputs: ["pv", "genset"]
+    storage_kwh: 50
+    priority_loads_kw: 10
+    thermal_integration: false
+    
+  clinic_shelter:
+    type: "clinic_shelter"
+    inputs: ["pv", "grid", "genset"]
+    storage_kwh: 100
+    priority_loads_kw: 20
+    thermal_integration: true
+
+deployment_constraints:
+  max_concurrent_sites: 5
+  min_validation_hours: 24
+  rollback_timeout_minutes: 30
+  
+network:
+  control_plane:
+    protocol: "grpc"
+    auth: "mtls"
+    port: 50051
+    
+  data_plane:
+    telemetry_interval_seconds: 60
+    log_retention_days: 90
+
+compliance:
+  required_certifications: ["UL", "IEEE"]
+  audit_trail: true
+  encryption_at_rest: true
+  encryption_in_transit: true
