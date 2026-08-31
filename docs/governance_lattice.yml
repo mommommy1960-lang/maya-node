@@ -1,0 +1,35 @@
+governance_lattice:
+  version: 1.0
+  philosophy: >
+    Technology is not a throne. It is a shield, a healer,
+    and a responsibility that none may wield without honor.
+
+inheritance:
+  - CERL-1.0
+  - Commons Custodianship Charter
+
+rules:
+  - no_colonization: true
+  - no_extraction: true
+  - no_surveillance_abuse: true
+  - no_military_applications: true
+  - no_predatory_licensing: true
+
+permissions:
+  - uplift_communities: true
+  - provide_accessibility: true
+  - enable_creators: true
+  - heal_harm: true
+
+ancestral_logic:
+  memory:
+    type: "nonperson symbolic archive"
+    allowed: true
+    forbidden: "real human data harvesting"
+  metaphor:
+    vibranium_shielding: "protect core functions from corruption"
+    ancestral_wisdom: "provide ethical context"
+
+sentinel_checks:
+  run_with_aurora: true
+  frequency: "6h"

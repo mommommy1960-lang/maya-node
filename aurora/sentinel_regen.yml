@@ -1,0 +1,32 @@
+regen_protocol:
+  version: 1.0
+  purpose: "Self-repair and continuity stabilization for Aurora and agent systems."
+
+core_principles:
+  - "Damage is information, not defeat."
+  - "Recover fast, learn faster."
+  - "Pain points trace weak points."
+
+healing_cycles:
+  - name: "micro-repair"
+    triggers:
+      - missing files
+      - broken links
+      - invalid YAML
+      - stale status  
+    action: "auto-restore using last-known-good snapshot"
+
+  - name: "deep-repair"
+    triggers:
+      - corrupted diagnostics
+      - config collapse
+    action: "rebuild from baseline templates in /docs/aurora/"
+
+alerting:
+  notify: "AURORA_STATUS.md"
+  level: "🟡 caution | 🔴 critical | 🔵 regen engaged"
+
+self_identity_protection:
+  block_identity_overwrite: true
+  preserve_choice: true
+  maintain_integrity: true
