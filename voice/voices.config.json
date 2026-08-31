@@ -1,0 +1,15 @@
+{
+  "KING":   { "voice": "male_deep" },
+  "DATA":   { "voice": "neutral_robotic" },
+  "GEORDI": { "voice": "male_warm" },
+  "KIRA":   { "voice": "female_firm" },
+  "SISKO":  { "voice": "male_command" },
+  "UHURA":  { "voice": "female_melodic" },
+  "DAX":    { "voice": "female_sultry_wise" },
+  "SCOTTY": { "voice": "male_scottish" },
+  "HAWKING":{ "voice": "male_soft_brit" },
+  "ROCKET": { "voice": "male_rough" },
+  "MANTIS": { "voice": "female_soft" },
+  "ORACLE": { "voice": "female_maternal" },
+  "MAYA":   { "voice": "female_queen" }
+}
