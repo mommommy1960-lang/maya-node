@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mommommy1960-lang/maya-node/blob/main/aurora/schemas/vessel-telemetry.schema.json",
+  "title": "Aurora Vessel Simulation Telemetry Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tick", "reason", "state", "previous_hash", "hash"],
+  "properties": {
+    "tick": { "type": "integer", "minimum": 0 },
+    "reason": { "type": "string" },
+    "previous_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "acoustic_duty", "rf_duty", "rf_dbm", "temperature_c", "consent_valid", "rail_powered", "emergency_stop", "last_reason"],
+      "properties": {
+        "tick": { "type": "integer", "minimum": 0 },
+        "mode": { "type": "string", "enum": ["SAFE", "ARMED"] },
+        "acoustic_duty": { "type": "number", "minimum": 0, "maximum": 0.35 },
+        "rf_duty": { "type": "number", "minimum": 0, "maximum": 0.2 },
+        "rf_dbm": { "type": "number", "maximum": 10 },
+        "temperature_c": { "type": "number" },
+        "consent_valid": { "type": "boolean" },
+        "rail_powered": { "type": "boolean" },
+        "emergency_stop": { "type": "boolean" },
+        "last_reason": { "type": "string" }
+      }
+    }
+  }
+}
