@@ -132,7 +132,9 @@ class AuroraVesselSim:
         self._fail_safe("emergency_stop")
 
     def reset(self) -> bool:
-        if self.state.temperature_c > self.limits.max_temperature_c:
+        # Emergency stop is a deliberate latch; only a fresh process/operator
+        # reset may clear it after the physical safety condition is reviewed.
+        if self.state.emergency_stop or self.state.temperature_c > self.limits.max_temperature_c:
             return False
         self.state = VesselState(tick=self.state.tick, temperature_c=self.state.temperature_c, last_reason="reset")
         self._record("reset")
