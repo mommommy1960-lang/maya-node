@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mommommy1960-lang/maya-node/blob/main/aurora/schemas/aurora-flux-contract.schema.json",
+  "title": "Aurora to Flux Drive Simulation Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sequence", "acoustic_duty", "rf_duty", "rf_dbm", "human_approved", "simulation_only"],
+  "properties": {
+    "sequence": { "type": "integer", "minimum": 0 },
+    "acoustic_duty": { "type": "number", "minimum": 0, "maximum": 0.35 },
+    "rf_duty": { "type": "number", "minimum": 0, "maximum": 0.2 },
+    "rf_dbm": { "type": "number", "maximum": 10 },
+    "human_approved": { "type": "boolean" },
+    "simulation_only": { "const": true }
+  }
+}
