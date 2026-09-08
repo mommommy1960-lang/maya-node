@@ -26,6 +26,7 @@ This is a design review—not certification, legal advice, penetration testing, 
 - **Learn more:** https://maya-node-founding-review.myqueen1960.chatgpt.site
 - **Reserve a founding review:** https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
 - **Detailed project note:** [docs/MAYA_NODE_FOUNDING_REVIEW.md](docs/MAYA_NODE_FOUNDING_REVIEW.md)
+- **Zenodo record draft:** [docs/ZENODO_RECORD_DESCRIPTION.md](docs/ZENODO_RECORD_DESCRIPTION.md)
 
 ## Licensing
 
