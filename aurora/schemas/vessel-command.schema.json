@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mommommy1960-lang/maya-node/blob/main/aurora/schemas/vessel-command.schema.json",
+  "title": "Aurora Vessel Simulation Command",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sequence", "acoustic_duty", "rf_duty", "rf_dbm"],
+  "properties": {
+    "sequence": { "type": "integer", "minimum": 0 },
+    "acoustic_duty": { "type": "number", "minimum": 0, "maximum": 0.35 },
+    "rf_duty": { "type": "number", "minimum": 0, "maximum": 0.2 },
+    "rf_dbm": { "type": "number", "maximum": 10 },
+    "temperature_delta_c": { "type": "number" },
+    "action": { "type": "string", "enum": ["step", "command", "emergency_stop"] }
+  }
+}
