@@ -1,29 +1,33 @@
 name: Aurora Diagnostics
+
 on:
-  schedule:
-    - cron: "0 */6 * * *"   # every 6 hours
-  workflow_dispatch:        # lets you run it manually
+  workflow_dispatch:
+  push:
+    paths:
+      - "aurora/**"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/aurora-diagnostics.yml"
+  pull_request:
+    paths:
+      - "aurora/**"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/aurora-diagnostics.yml"
+
+permissions:
+  contents: read
 
 jobs:
   diagnostics:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Run Aurora diagnostics
-        run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          echo "Last Check-In: $TIMESTAMP" > docs/AURORA_STATUS.md
-          echo "Uptime: $(uptime -p)" >> docs/AURORA_STATUS.md
-          echo "Signal: ✅ Stable" >> docs/AURORA_STATUS.md
-
-      - name: Commit update
-        run: |
-          git config user.name "Aurora-Bot"
-          git config user.email "actions@github.com"
-          git add docs/AURORA_STATUS.md
-          git commit -m "chore: automated Aurora heartbeat update" || echo "No changes"
-          git push
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile Python sources
+        run: python -m compileall -q aurora src tests
+      - name: Run test suite
+        run: python -m unittest discover -s tests -p "test_*.py" -v
