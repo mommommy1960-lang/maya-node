@@ -1,17 +1,33 @@
-name: "Aurora Defense Grid"
+name: Aurora Defense Grid
+
 on:
-  schedule:
-    - cron: "0 */12 * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - "aurora/**"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/aurora-defense.yml"
+  pull_request:
+    paths:
+      - "aurora/**"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/aurora-defense.yml"
+
+permissions:
+  contents: read
+
 jobs:
   defense_scan:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Integrity Check
-        run: |
-          python3 aurora/watchers/integrity_check.py
-      - name: Log Result
-        run: echo "Defense scan complete."
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run integrity check
+        run: python aurora/watchers/integrity_check.py
+      - name: Run security and governance tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
