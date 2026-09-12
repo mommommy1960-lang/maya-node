@@ -1,33 +1,49 @@
-name: Deploy VitePress Docs to GitHub Pages
+name: Deploy Maya Node Site to GitHub Pages
 
 on:
   push:
     branches:
       - main
+    paths:
+      - "index.html"
+      - "assets/**"
+      - ".github/workflows/deploy-docs.yml"
+  pull_request:
+    paths:
+      - "index.html"
+      - "assets/**"
+      - ".github/workflows/deploy-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maya-node-pages
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-      - name: Checkout main branch
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build VitePress site
-        run: npm run build
+      - name: Stage static site
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          if [ -d assets ]; then cp -R assets _site/assets; fi
+          touch _site/.nojekyll
+          test -s _site/index.html
 
       - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          publish_dir: _site
           publish_branch: gh-pages
-          force_orphan: true 
+          force_orphan: true
