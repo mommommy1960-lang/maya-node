@@ -65,7 +65,7 @@ class AuroraVesselSim:
             tick=s.tick,
             temperature_c=s.temperature_c,
             consent_valid=s.consent_valid,
-            emergency_stop=reason == "emergency_stop",
+            emergency_stop=s.emergency_stop or reason == "emergency_stop",
             last_reason=reason,
         )
         self._record(reason)
