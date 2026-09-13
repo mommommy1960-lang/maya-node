@@ -31,3 +31,14 @@ This is a design review—not certification, legal advice, penetration testing, 
 ## Licensing
 
 Commons Governance License – Node Access  
+
+## COMMONS NETWORK
+
+Maya Node is part of the Commons Initiative project nervous system.
+
+- **Continuity spine:** https://github.com/mommommy1960-lang/commons-sentience-sandbox/tree/main/docs/continuity
+- **Network map:** https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/continuity/PROJECT_NERVOUS_SYSTEM.md
+- **Aurora:** https://github.com/mommommy1960-lang/aurora-sovereign-core
+- **Flux:** https://github.com/mommommy1960-lang/flux-drive-kernel
+
+Project status, dependencies, handoffs, and evidence boundaries are synchronized through the continuity spine.
