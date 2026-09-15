@@ -70,8 +70,15 @@ class AuroraVesselSim:
         )
         self._record(reason)
 
-    def grant_consent(self, token: str) -> bool:
-        valid = token == "AURORA_SIM_CONSENT_V1"
+    def grant_consent(self, operator_confirmed: bool) -> bool:
+        """Record an explicit simulation consent decision.
+
+        Consent is an authorization decision, not authentication. A fixed token
+        would be a hard-coded credential and would provide no meaningful security.
+        Authentication belongs at the caller boundary; this state machine only
+        records the caller's explicit, boolean authorization decision.
+        """
+        valid = operator_confirmed is True
         self.state = VesselState(
             **{**asdict(self.state), "consent_valid": valid, "last_reason": "consent_granted" if valid else "consent_denied"}
         )
