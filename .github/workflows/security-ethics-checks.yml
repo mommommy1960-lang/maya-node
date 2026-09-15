@@ -22,6 +22,17 @@ jobs:
       - name: Execute 100 enumerated adversarial cases
         run: python -m pytest tests/security/test_adaptive_redteam_100.py -v
 
+  nightwatch-1000:
+    name: Nightwatch Contingency 1000
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install pytest
+      - name: Execute established 100 plus 900 additional adversarial mutations
+        run: python -m pytest tests/security/test_adaptive_redteam_1000.py -v
+
   security-scan:
     name: Security Scanning
     runs-on: ubuntu-latest
