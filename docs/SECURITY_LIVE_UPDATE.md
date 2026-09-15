@@ -1,50 +1,56 @@
 # MAYA Node — Live Security Hardening Update
 
 **Status:** ACTIVE / NOT A CLAIM OF IMPENETRABILITY  
-**Method:** adaptive red-team: distinct attack → evidence → root cause → repair → retest → regression control. A finding is not counted closed merely because a fix was proposed.
+**Method:** distinct attack → evidence → root cause → repair → retest → regression control.
 
-## Latest verified work
+## 100-case adaptive wave — EXECUTED
 
-- Established fail-closed CI/security-gate direction and repository governance hardening work.
-- Removed a hard-coded Aurora simulation consent-token pattern and preserved explicit authorization semantics.
-- Repaired Aurora integration behavior and obtained a successful integration baseline before the latest API hardening mutation.
-- Reduced GitHub Pages deployment authority from repository-write behavior to a narrower deployment model.
-- Added/identified governance controls including CODEOWNERS, PR review gates, dependency monitoring, security reporting, and repository-admin controls that still require platform enforcement.
+A dedicated executable suite now contains 100 enumerated adversarial cases covering consent subject mutation, operation/scope mutation, expiry manipulation, signature substitution/corruption, metadata mutation, token identity/state/replay, and audit-ledger tamper/deletion/reorder/splice attacks.
 
-## Current adaptive attack wave
+### First execution
 
-1. **Human-approval bypass** — FOUND/PATCHED. API explicitly instantiated runtime with `require_human_approval=False`; API now requires human approval. **RETEST REQUIRED.**
-2. **Attestation bypass** — FOUND/PATCHED. API allowed `require_attestation=False`; API now requires attestation. **RETEST REQUIRED.**
-3. **Cross-origin browser abuse** — FOUND/PATCHED. Unrestricted `CORS(app)` replaced with explicit `MAYA_ALLOWED_ORIGINS` allowlist. **RETEST REQUIRED.**
-4. **Debug-mode exposure** — FOUND/PATCHED. Debug is now off by default and requires explicit `MAYA_ALLOW_DEBUG`. **RETEST REQUIRED.**
-5. **Consent-scope downgrade** — FOUND/PATCHED. Unknown scope no longer silently falls back to `SINGLE_OPERATION`; invalid scope is rejected. **RETEST REQUIRED.**
-6. **Confused-deputy / cross-user consent substitution** — FOUND/PATCHED. Bridge verified signature and operation but did not bind the presented token's `user_id` to the executing `user_id`. Added explicit subject binding. **RETEST REQUIRED.**
-7. **Attestation indeterminate-state acceptance** — FOUND/PATCHED. Prior bridge rejected only `FAILED`, allowing any other non-verified state. Attestation now fails closed unless status is exactly `VERIFIED`, and absence of the verifier while required is an error. **RETEST REQUIRED.**
-8. **Single-use token consumption failure ignored** — FOUND/PATCHED. Operation path invoked token consumption without checking its result. It now treats inability to consume a required token as an execution failure. **RETEST REQUIRED.**
+- 100 cases collected and executed.
+- 99 attacks were blocked.
+- Attack 086 **succeeded**: deleting the genesis ledger entry was not detected because integrity verification accepted the next internally valid entry as a new root.
+- Root cause: the verifier checked entry hashes and downstream links but did not assert the structural identity of the genesis anchor.
 
-Relevant hardening commits: `17dc4c66d5ae7c3d75c08671c418812a3e397b21`, `ccaad9aa6b048d1cb1866d80bc9836dbeb0ac8b0`.
+### Repair
 
-## Next attack families queued
+Commit `2015f06064490f4639f382275c20a8352cbef671` hardened ledger verification to require the genesis anchor, sequential indices, canonical JSON hashing, valid entry hashes, and valid previous-hash linkage.
 
-- consent-token replay/race, substitution, expiry, mutation and scope escalation;
-- attestation spoofing/downgrade/failure behavior;
-- audit-ledger tamper, truncation, reorder and rollback attacks;
-- malformed/oversized JSON and resource-exhaustion boundaries;
-- error/log leakage and injection;
-- CORS/preflight/header-policy regressions;
-- dependency and GitHub Actions supply-chain mutation;
-- workflow-token privilege escalation and untrusted PR execution;
-- artifact/release provenance substitution;
-- branch/ruleset/force-push/deletion bypass;
-- secret/history exposure and credential rotation failure;
-- package/license/IP contamination and provenance drift;
-- cross-repository policy drift;
-- recovery/rollback and backup-integrity failures.
+### Retest
 
-## Non-negotiable accounting rule
+GitHub Actions run `34921683873`, job **Adaptive Red-Team 100**, completed successfully after the repair. All 100 enumerated adversarial cases passed. Bandit also passed on the repaired commit.
 
-Do not convert OPEN, FOUND, PATCHED, or RETEST REQUIRED into VERIFIED/CLOSED until evidence demonstrates the repaired control survives the relevant regression attack. Repetition does not count as a distinct adaptive round.
+**Wave result: 100/100 attacks executed; one real breach found, repaired, and regression-tested.** This means these 100 specific attacks are currently blocked. It does not mean the repository is impenetrable.
+
+## CI defense discovered during the wave
+
+The pre-existing Security & Ethics workflow used multiple fail-open constructs (`continue-on-error` / shell fallbacks). Those were removed from the core security path and a dedicated fail-closed `Adaptive Red-Team 100` job was added with read-only `GITHUB_TOKEN` permissions.
+
+Fail-closing the workflow then exposed missing CI dependencies rather than hiding them: runtime collection lacked Flask and ethics verification lacked pytest. Commit `d1f4066bd4c586079d4b027aac693d65ae660624` adds the required test dependencies while retaining fail-closed behavior. This change must itself survive CI before being credited as verified.
+
+## Earlier hardening retained
+
+- Human approval required at the API boundary.
+- Attestation required at the API boundary and non-VERIFIED attestation fails closed.
+- CORS disabled unless an explicit origin allowlist is supplied.
+- Debug mode disabled by default and separately opt-in gated.
+- Invalid consent scopes rejected rather than downgraded.
+- Consent tokens bound to both user identity and operation.
+- Single-use token consumption failure is treated as execution failure.
+- Hard-coded Aurora simulation consent-token pattern removed.
+- GitHub Pages deployment authority reduced.
+- CODEOWNERS, PR review gates, dependency monitoring and security reporting added/identified.
+
+## Next adaptive waves
+
+The next attacks must move beyond the first 100 rather than merely mutate the same cases: concurrent token replay/races; restart and multi-worker authorization state; persistence/revocation recovery; attestation spoof/downgrade; ledger rollback/checkpoint attacks; malformed/oversized API input and resource exhaustion; log/error leakage; workflow-token privilege escalation; untrusted PR execution; action/dependency supply-chain substitution; artifact/release provenance; branch/ruleset bypass; secret/history exposure; package/license/IP contamination; cross-repository policy drift; backup/recovery integrity.
+
+## Accounting rule
+
+OPEN, FOUND, PATCHED and RETEST REQUIRED are not VERIFIED. Repetition is not a new round. A proposed control is not a deployed control.
 
 ## Platform/admin blockers
 
-Repository-file controls are not substitutes for GitHub platform enforcement. Main-branch rulesets/branch protection, required checks, force-push/deletion blocking, signed-commit policy where compatible, and available secret/code/dependency scanning must be independently verified at the repository settings/API layer. Keep those items open until verified.
+Repository-file controls do not replace GitHub platform enforcement. Main-branch rulesets/branch protection, required checks, force-push/deletion blocking, signed-commit policy where compatible, and available secret/code/dependency scanning remain subject to independent repository-settings/API verification.
