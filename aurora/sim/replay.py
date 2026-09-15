@@ -12,7 +12,7 @@ def replay_commands(commands: Iterable[Mapping[str, object]]) -> dict:
     for command in commands:
         action = command.get("action", "command")
         if action == "consent":
-            vessel.grant_consent(str(command.get("token", "")))
+            vessel.grant_consent(command.get("confirmed") is True)
         elif action == "arm":
             vessel.arm()
         elif action == "emergency_stop":
