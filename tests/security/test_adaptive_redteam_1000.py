@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: CERL-1.0
 """1000-case defensive contingency campaign.
 
-The first 100 cases are the established adaptive red-team suite. Cases 101-1000
-are deterministic malicious mutations generated across consent-token and ledger
-trust boundaries. This is regression/stress evidence, not a claim of universal
+Cases 101-1000 are deterministic malicious mutations generated across
+consent-token and ledger trust boundaries. The established first 100 cases live
+in test_adaptive_redteam_100.py and are run by their own CI gate. Together the
+two suites provide 1000 numbered adversarial cases without duplicate pytest
+collection. This is regression/stress evidence, not a claim of universal
 security or 1000 unique vulnerability classes.
 """
 import copy
@@ -11,7 +13,6 @@ import unittest
 
 from src.sovereign.consent_tokens import ConsentTokenManager, ConsentScope
 from src.services.ledger.ledger import ImmutableLedger
-from tests.security.test_adaptive_redteam_100 import TestAdaptiveRedTeam100
 
 
 class TestContingencyCampaign900(unittest.TestCase):
@@ -83,6 +84,3 @@ for i in range(101, 551):
     setattr(TestContingencyCampaign900, f"test_{i:04d}_token_mutation", _token_case(i))
 for i in range(551, 1001):
     setattr(TestContingencyCampaign900, f"test_{i:04d}_ledger_mutation", _ledger_case(i))
-
-# Keep the established first 100 discoverable in this campaign module as well.
-EstablishedAdaptiveRedTeam100 = TestAdaptiveRedTeam100
