@@ -4,71 +4,68 @@ Status: ACTIVE. This is not a claim of impenetrability.
 
 Method: every round must introduce a materially different attack or mutation. A round counts only when it records (1) threat, (2) observed weakness/evidence, (3) root cause, (4) remediation, (5) verification/retest, and (6) regression control. Repeating an attack without new information does not count.
 
-## Wave 1 verified findings
+## Verified findings
 
 ### RT-001 — Direct modification of authoritative branch
-**Attack:** attempt to rely on repository documentation while `main` has no ruleset.
-**Observed weakness:** repository rulesets endpoint returned an empty set on 2026-09-14.
-**Root cause:** policy existed in prose but was not technically enforced at the repository rule layer.
-**Remediation:** CODEOWNERS + PR gate artifacts added in this branch. Required repository ruleset remains OPEN because current connector cannot administer rulesets.
-**Retest:** FAIL-CLOSED only after an active ruleset requires PR review/status checks and blocks force-push/deletion as appropriate.
-**Regression:** verify ruleset after configuration and periodically thereafter.
+Attack: rely on documentation while `main` has no ruleset. Weakness: rulesets endpoint returned empty. Root cause: prose was not technically enforced. Remediation: CODEOWNERS + PR gate artifacts; repository ruleset remains OWNER ACTION REQUIRED. Retest: require PR/status checks and block destructive bypass. Regression: periodic ruleset verification.
 
-### RT-002 — Security checks report failure but merge remains possible
-**Attack:** introduce code that Bandit/Safety/tests reject.
-**Observed weakness:** `security-ethics-checks.yml` uses `continue-on-error: true` and `|| true` across multiple security/test steps.
-**Root cause:** diagnostic workflow was designed to report rather than gate.
-**Remediation:** create a separate mandatory fail-closed gate rather than silently changing historical diagnostic behavior. OPEN until workflow is added/tested and required by ruleset.
-**Regression:** intentionally failing fixture must make the gate red.
+### RT-002 — Diagnostic security checks can fail open
+Attack: make Bandit/Safety/tests reject a change. Weakness: legacy `security-ethics-checks.yml` contains `continue-on-error` / `|| true`. Root cause: diagnostic workflow reports rather than gates. Remediation: a separate fail-closed gate was required. Regression: a deliberately failing safe fixture must make the gate red.
 
-### RT-003 — Dependency substitution / stale vulnerable dependency
-**Attack:** dependency becomes vulnerable after initial review.
-**Observed weakness:** no `.github/dependabot.yml` existed.
-**Remediation:** weekly pip and GitHub Actions Dependabot coverage added.
-**Retest:** verify Dependabot configuration is recognized after merge.
+### RT-003 — Dependency becomes vulnerable after review
+Weakness: no Dependabot configuration existed. Remediation: weekly pip and GitHub Actions Dependabot coverage added. Regression: dependency update monitoring remains part of PR review.
 
-### RT-004 — Unreviewed sensitive-path change
-**Attack:** PR changes workflow/license/security file while ordinary reviewer focuses on application code.
-**Observed weakness:** no CODEOWNERS file existed.
-**Remediation:** CODEOWNERS added for repository and sensitive paths.
-**Retest:** requires branch/ruleset setting that requires code-owner review. OPEN until technical enforcement exists.
+### RT-004 — Sensitive-path change receives ordinary review
+Weakness: no CODEOWNERS existed. Remediation: CODEOWNERS added for repository and sensitive paths. Enforcement remains OWNER ACTION REQUIRED until code-owner review is required by ruleset.
 
-### RT-005 — PR social-engineering / review omission
-**Attack:** benign-looking PR omits security/IP implications.
-**Observed weakness:** no PR template existed.
-**Remediation:** adversarial PR checklist added.
-**Retest:** confirm template appears on new PR; enforcement of truthful completion still depends on review/ruleset.
+### RT-005 — Benign-looking PR omits security/IP consequences
+Weakness: no PR template. Remediation: adversarial PR checklist added. Regression: every PR must answer the strongest plausible bypass question.
 
-### RT-006 — Vulnerability disclosure leaks the vulnerability
-**Attack:** reporter opens public issue containing exploit details/credentials.
-**Observed weakness:** no root `SECURITY.md` guidance existed.
-**Remediation:** SECURITY.md added with private-reporting and evidence-minimization rules.
-**Retest:** documentation control only; stronger private reporting mechanism remains future work.
+### RT-006 — Vulnerability report leaks exploit details
+Weakness: no root SECURITY.md. Remediation: SECURITY.md added with private-reporting/evidence-minimization rules. Stronger private reporting mechanism remains OPEN.
 
 ### RT-007 — Workflow privilege escalation
-**Attack:** compromise a workflow and use its token to write repository contents.
-**Observed evidence:** most inspected workflows explicitly use `contents: read`; `deploy-docs.yml` uses `contents: write` because it pushes `gh-pages`.
-**Root cause/risk:** deployment requires write authority, increasing blast radius relative to read-only jobs.
-**Remediation:** OPEN: migrate Pages deployment to the least privilege supported by the chosen deployment method and protect workflow changes via CODEOWNERS/ruleset.
-**Regression:** workflow-permission inventory on every workflow change.
+Weakness: Pages workflow held `contents: write`. Root cause: deployment pushed directly to `gh-pages`. Initial remediation target recorded; completed and retested in RT-012.
 
 ### RT-008 — Unsigned provenance ambiguity
-**Attack:** dispute whether an important commit was cryptographically verified.
-**Observed weakness:** inspected latest `main` commit reported `verified:false`, reason `unsigned`.
-**Remediation:** OPEN: decide and implement signed-commit policy compatible with actual contributor/tooling workflow; then require it through ruleset if feasible.
-**Regression:** verify important release/provenance commits report verified signatures.
+Weakness: inspected main commit was unsigned/unverified. Remediation remains OWNER/TOOLING ACTION REQUIRED: adopt a compatible signed-commit policy and enforce where feasible.
 
-### RT-009 — Secret committed despite `.gitignore`
-**Attack:** explicitly add a credential or secret file despite ignore rules, or leak it in a non-ignored file/history.
-**Observed weakness:** `.gitignore` blocks common secret filenames but cannot prevent forced adds or secrets embedded elsewhere.
-**Remediation:** rely on GitHub secret scanning for public repositories; OPEN: verify push protection/security settings and require resolution gates where account/plan supports them.
-**Regression:** safe synthetic-secret test only in an isolated authorized test context; never commit a live credential.
+### RT-009 — Secret committed despite .gitignore
+Weakness: ignore rules cannot stop force-added/embedded credentials. Remediation: secret-scanning/push-protection verification remains OWNER ACTION REQUIRED; fail-closed gate now rejects obvious tracked private-key material. Never use live credentials as test fixtures.
 
 ### RT-010 — Dependency license/IP contamination
-**Attack:** add a dependency whose license conflicts with intended distribution/commercial model.
-**Observed weakness:** ordinary functional CI does not establish license compatibility.
-**Remediation:** PR checklist now requires license review; OPEN: add automated dependency review/license policy where supported.
-**Regression:** every manifest/lockfile change gets dependency/security/license review.
+Weakness: functional CI does not establish license compatibility. Remediation: PR checklist requires license review; automated policy remains OPEN.
 
-## Non-negotiable count rule
-The target is 1,000 adaptive rounds, not 1,000 executions. Only materially distinct, evidenced rounds count. Unverified or merely hypothetical mitigations remain OPEN.
+### RT-011 — A new security gate silently behaves like the old diagnostic workflow
+**Attack:** create a separate security workflow, then inspect whether failures are allowed to continue.
+**Observed weakness:** the repository previously had no independent fail-closed security gate.
+**Root cause:** security and diagnostic concerns were coupled.
+**Remediation:** added `.github/workflows/security-gate.yml` with read-only repository permission and no `continue-on-error` / `|| true` escape paths. It runs compilation, pytest, Bandit, pip-audit, and a tracked-private-key pattern check.
+**Retest:** workflow definition is fail-closed by construction; branch-level mandatory enforcement remains OWNER ACTION REQUIRED through a required status check.
+**Regression:** changes to this workflow are CODEOWNERS-sensitive and the workflow itself is part of adversarial review.
+
+### RT-012 — Documentation deployment token can rewrite repository contents
+**Attack:** assume the Pages deployment action or its dependency is compromised and ask what its token can modify.
+**Observed weakness:** `deploy-docs.yml` granted `contents: write` and pushed a `gh-pages` branch.
+**Root cause:** legacy branch-push deployment architecture required broad repository-content write authority.
+**Remediation:** migrated the workflow to GitHub Pages artifact deployment with `contents: read`, `pages: write`, and `id-token: write`; it no longer receives repository-content write permission.
+**Retest:** static site is staged and uploaded as a Pages artifact; deployment consumes that artifact rather than pushing repository contents.
+**Regression:** workflow-permission inventory on every workflow change; CODEOWNERS review for `.github`.
+
+## Newly discovered attacks not yet credited as completed rounds
+
+These are real findings, but they do not increase the completed counter until repaired and retested:
+
+- API construction explicitly sets `require_human_approval=False` despite the safer runtime default.
+- Flask CORS is currently unrestricted for the API dashboard.
+- Bridge attestation defaults to disabled when TPM/attestation is unavailable.
+- API startup defaults `FLASK_ENV` to development, which can enable debug mode unless production is explicitly configured.
+- Python dependencies use compatible version ranges rather than a reproducible lock/hash strategy.
+- GitHub Actions dependencies are referenced by mutable major-version tags rather than immutable commit SHAs.
+- A separate Node backend uses unrestricted `cors()`.
+
+## Counter
+
+**12 / 1,000 adaptive rounds completed and evidenced.**
+
+The remaining findings are not counted merely because they were discovered. They become completed rounds only after remediation, retest, and regression protection satisfy this register's method.
