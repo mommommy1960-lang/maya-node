@@ -17,10 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install test dependencies
-        run: pip install pytest
+        with: {python-version: '3.11'}
+      - run: pip install pytest
       - name: Execute 100 enumerated adversarial cases
         run: python -m pytest tests/security/test_adaptive_redteam_100.py -v
 
@@ -30,10 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install scanners
-        run: pip install bandit
+        with: {python-version: '3.11'}
+      - run: pip install bandit
       - name: Bandit must pass
         run: bandit -r src/ -f txt
 
@@ -43,8 +39,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+        with: {python-version: '3.11'}
+      - run: pip install pytest
       - name: Verify CERL headers
         run: |
           missing=0
@@ -64,10 +60,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install test dependencies
-        run: pip install pytest
+        with: {python-version: '3.11'}
+      - name: Install runtime test dependencies
+        run: pip install pytest flask flask-cors
       - name: Runtime tests
         run: python -m pytest tests/runtime/ -v
       - name: Ledger tests
