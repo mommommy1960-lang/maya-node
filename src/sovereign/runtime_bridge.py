@@ -44,8 +44,6 @@ class RuntimeBridge:
                 raise RuntimeError("Consent token required but not provided")
             if not self.consent_manager.verify_token(consent_token):
                 raise RuntimeError("Invalid or expired consent token")
-            # Bind authorization to BOTH subject and operation. A valid token issued
-            # to one user must never act as a bearer capability for another user.
             if consent_token.user_id != user_id:
                 raise RuntimeError("Consent token user mismatch")
             if consent_token.operation != operation:
@@ -116,13 +114,28 @@ class RuntimeBridge:
             "ethics_checks_enabled": self.runtime.config.enable_ethics_checks,
             "human_approval_required": self.runtime.config.require_human_approval,
             "ledger_enabled": self.config.ledger_enabled,
+            "ledger_integrity": self.ledger.verify_integrity() if self.ledger else None,
             "consent_required": self.config.require_consent,
             "attestation_required": self.config.require_attestation,
         }
 
     def generate_attestation_report(self) -> Dict[str, Any]:
+        now = time.time()
+        runtime_status = self.get_runtime_status()
         if not self.attestation:
-            return {"enabled": False, "status": "not_configured"}
+            return {
+                "enabled": False,
+                "status": "not_configured",
+                "timestamp": now,
+                "runtime_status": runtime_status,
+                "ledger_verification": runtime_status["ledger_integrity"],
+            }
         result = self.attestation.verify_platform_integrity()
-        return {"enabled": True, "status": result.status.value,
-                "notes": result.notes, "timestamp": time.time()}
+        return {
+            "enabled": True,
+            "status": result.status.value,
+            "notes": result.notes,
+            "timestamp": now,
+            "runtime_status": runtime_status,
+            "ledger_verification": runtime_status["ledger_integrity"],
+        }
