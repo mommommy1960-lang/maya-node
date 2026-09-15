@@ -2,8 +2,7 @@ name: Deploy Maya Node Site to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - "index.html"
       - "assets/**"
@@ -16,21 +15,21 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: maya-node-pages
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Stage static site
         run: |
           mkdir -p _site
@@ -38,12 +37,18 @@ jobs:
           if [ -d assets ]; then cp -R assets _site/assets; fi
           touch _site/.nojekyll
           test -s _site/index.html
-
-      - name: Deploy to GitHub Pages
+      - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
-        uses: peaceiris/actions-gh-pages@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _site
-          publish_branch: gh-pages
-          force_orphan: true
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
