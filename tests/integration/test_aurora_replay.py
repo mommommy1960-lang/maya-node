@@ -5,7 +5,7 @@ from aurora.sim.replay import replay_commands
 
 
 TRACE = [
-    {"action": "consent", "token": "AURORA_SIM_CONSENT_V1"},
+    {"action": "consent", "confirmed": True},
     {"action": "arm"},
     {"action": "command", "acoustic_duty": 0.10, "rf_duty": 0.05, "rf_dbm": -3.0},
     {"action": "step", "temperature_delta_c": 1.0},
