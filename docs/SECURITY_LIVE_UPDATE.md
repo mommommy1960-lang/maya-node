@@ -13,20 +13,20 @@
 
 ## Current adaptive attack wave
 
-### API boundary attacks
+1. **Human-approval bypass** — FOUND/PATCHED. API explicitly instantiated runtime with `require_human_approval=False`; API now requires human approval. **RETEST REQUIRED.**
+2. **Attestation bypass** — FOUND/PATCHED. API allowed `require_attestation=False`; API now requires attestation. **RETEST REQUIRED.**
+3. **Cross-origin browser abuse** — FOUND/PATCHED. Unrestricted `CORS(app)` replaced with explicit `MAYA_ALLOWED_ORIGINS` allowlist. **RETEST REQUIRED.**
+4. **Debug-mode exposure** — FOUND/PATCHED. Debug is now off by default and requires explicit `MAYA_ALLOW_DEBUG`. **RETEST REQUIRED.**
+5. **Consent-scope downgrade** — FOUND/PATCHED. Unknown scope no longer silently falls back to `SINGLE_OPERATION`; invalid scope is rejected. **RETEST REQUIRED.**
+6. **Confused-deputy / cross-user consent substitution** — FOUND/PATCHED. Bridge verified signature and operation but did not bind the presented token's `user_id` to the executing `user_id`. Added explicit subject binding. **RETEST REQUIRED.**
+7. **Attestation indeterminate-state acceptance** — FOUND/PATCHED. Prior bridge rejected only `FAILED`, allowing any other non-verified state. Attestation now fails closed unless status is exactly `VERIFIED`, and absence of the verifier while required is an error. **RETEST REQUIRED.**
+8. **Single-use token consumption failure ignored** — FOUND/PATCHED. Operation path invoked token consumption without checking its result. It now treats inability to consume a required token as an execution failure. **RETEST REQUIRED.**
 
-1. **Human-approval bypass** — FOUND. API explicitly instantiated the runtime with `require_human_approval=False`. **Repair applied:** API now requires human approval by default. **State:** RETEST REQUIRED.
-2. **Attestation bypass** — FOUND. API bridge allowed `require_attestation=False`. **Repair applied:** attestation is now required at this boundary. **State:** RETEST REQUIRED.
-3. **Cross-origin browser abuse** — FOUND. API used unrestricted `CORS(app)`. **Repair applied:** cross-origin access is disabled unless `MAYA_ALLOWED_ORIGINS` explicitly supplies an allowlist. **State:** RETEST REQUIRED.
-4. **Debug-mode exposure** — FOUND. development was effectively the default debug posture. **Repair applied:** debug is off by default and requires explicit `MAYA_ALLOW_DEBUG` opt-in. **State:** RETEST REQUIRED.
-5. **Consent-scope downgrade** — FOUND. unknown scope could fall back to `SINGLE_OPERATION`. **Repair applied:** invalid scope is rejected. **State:** RETEST REQUIRED.
-
-Latest API hardening commit: `17dc4c66d5ae7c3d75c08671c418812a3e397b21`.
+Relevant hardening commits: `17dc4c66d5ae7c3d75c08671c418812a3e397b21`, `ccaad9aa6b048d1cb1866d80bc9836dbeb0ac8b0`.
 
 ## Next attack families queued
 
-- authorization/identity binding and confused-deputy attacks;
-- consent-token replay, substitution, expiry and scope escalation;
+- consent-token replay/race, substitution, expiry, mutation and scope escalation;
 - attestation spoofing/downgrade/failure behavior;
 - audit-ledger tamper, truncation, reorder and rollback attacks;
 - malformed/oversized JSON and resource-exhaustion boundaries;
