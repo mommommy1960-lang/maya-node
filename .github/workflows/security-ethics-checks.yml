@@ -14,9 +14,10 @@ jobs:
   adaptive-redteam:
     name: Adaptive Red-Team 100
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with: {python-version: '3.11'}
       - run: pip install pytest
       - name: Execute 100 enumerated adversarial cases
@@ -25,9 +26,10 @@ jobs:
   nightwatch-1000:
     name: Nightwatch Contingency 1000
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with: {python-version: '3.11'}
       - run: pip install pytest
       - name: Execute established 100 plus 900 additional adversarial mutations
@@ -36,9 +38,10 @@ jobs:
   security-scan:
     name: Security Scanning
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with: {python-version: '3.11'}
       - run: pip install bandit
       - name: Bandit must pass
@@ -47,9 +50,10 @@ jobs:
   ethics-verification:
     name: Ethics Constraint Verification
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with: {python-version: '3.11'}
       - run: pip install pytest
       - name: Verify CERL headers
@@ -68,9 +72,10 @@ jobs:
   core-tests:
     name: Core Runtime and Ledger Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with: {python-version: '3.11'}
       - name: Install runtime test dependencies
         run: pip install pytest flask flask-cors
