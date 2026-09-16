@@ -12,10 +12,14 @@ on:
       - "tests/integration/**"
       - ".github/workflows/aurora-simulation.yml"
 
+permissions:
+  contents: read
+
 jobs:
   simulation:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Run Aurora simulation tests
         run: python -m unittest discover -s tests/integration -p "test_*.py" -v
