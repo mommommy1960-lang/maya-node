@@ -1,0 +1,4 @@
+review_id,payment_confirmed,intake_complete,scope_accepted,test_complete,report_delivered,clarification_closed,feedback_permission,notes
+FR-001,no,no,no,no,no,no,not_requested,No customer PII or confidential findings
+FR-002,no,no,no,no,no,no,not_requested,No customer PII or confidential findings
+FR-003,no,no,no,no,no,no,not_requested,No customer PII or confidential findings
