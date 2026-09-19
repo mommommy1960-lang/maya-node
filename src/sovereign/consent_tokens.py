@@ -44,6 +44,7 @@ class ConsentStatus(Enum):
     EXPIRED = "expired"
     REVOKED = "revoked"
     USED = "used"
+    FROZEN = "frozen"
 
 
 @dataclass
@@ -243,6 +244,31 @@ class ConsentTokenManager:
             token.status = ConsentStatus.USED
             logger.info(f"Token used: {token_id}")
         
+        return True
+
+    def freeze_token(self, token_id: str) -> bool:
+        """Freeze an active token without consuming or revoking it."""
+        token = self.tokens.get(token_id)
+        if token is None or token.status != ConsentStatus.ACTIVE:
+            return False
+        token.status = ConsentStatus.FROZEN
+        logger.info(f"Token frozen: {token_id}")
+        return True
+
+    def restore_token(self, token_id: str, fresh_authorization: ConsentToken) -> bool:
+        """Restore only with a fresh, narrowly scoped authorization token."""
+        token = self.tokens.get(token_id)
+        if token is None or token.status != ConsentStatus.FROZEN:
+            return False
+        expected_operation = f"restore:{token_id}"
+        if (fresh_authorization.user_id != token.user_id or
+                fresh_authorization.operation != expected_operation or
+                not self.verify_token(fresh_authorization)):
+            return False
+        if not self.use_token(fresh_authorization.token_id):
+            return False
+        token.status = ConsentStatus.ACTIVE
+        logger.info(f"Token restored: {token_id}")
         return True
     
     def revoke_token(self, token_id: str) -> bool:
