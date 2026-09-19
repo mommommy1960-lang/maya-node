@@ -17,7 +17,7 @@ This work does not claim sentience, a finished product, production readiness, ce
 Public overview:
 https://maya-node-founding-review.myqueen1960.chatgpt.site
 
-Founding review checkout (first three places, $25 each):
+Founding review checkout (first 50 places, $25 each):
 https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
 
 Source repository:
