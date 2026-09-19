@@ -19,9 +19,24 @@ The architecture therefore separates:
 
 This is not presented as legal certification or a guarantee of safety. It is a technical and governance architecture intended to make authority inspectable and bounded.
 
+## Current project status
+
+The primary diligence subject is **Maya Node and its SAGE integration**. The broader Civic Continuum portfolio is a separate public workbench containing related governance software, curricula, research programs, physical prototype studies, and Blue Book work packages.
+
+For the broader portfolio, use:
+
+**Civic Continuum Public Workbench:**  
+https://github.com/mommommy1960-lang/commons-sentience-sandbox/tree/main/docs/civic-continuum
+
+**Reviewer dashboard with evidence-stage meters:**  
+https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/DR_THOMAS_REVIEW_DASHBOARD.md
+
+The dashboard distinguishes concept, paper specification, reproducible test, prototype, independent review, and supervised pilot. It does not represent every invention as physically validated.
+
 ## Evidence path
 
 ### 1. Maya Node repository
+
 This repository contains the core consent/control work and should be reviewed first.
 
 **Repository:** https://github.com/mommommy1960-lang/maya-node
@@ -38,6 +53,7 @@ Key concepts represented in the public work include:
 - separation of human permission from technical capability.
 
 ### 2. SAGE Situated Companion
+
 SAGE is a separate system used to test how a user-governed control layer can wrap a persistent, situated AI runtime without collapsing identity, memory, and authority into one undifferentiated permission switch.
 
 **Repository:** https://github.com/mommommy1960-lang/sage-situated-companion
@@ -51,25 +67,39 @@ Public milestone records document:
 - automated verification of core runtime behavior.
 
 ### 3. Commercial translation: Maya Node Founding Review
+
 The review service translates the same ideas into a bounded human-delivered assessment of consent, authority, stale instructions, auditability, revocation, and human override.
 
 **Public review page:** https://maya-node-founding-review.myqueen1960.chatgpt.site
 
 The service is intentionally limited. It is **not** legal advice, certification, penetration testing, or a guarantee of production safety.
 
+## Related systems and research
+
+The wider Civic Continuum workbench links to the portfolio index, Consent Token and governance proofs, the Systems Accountability curriculum, Reality Audit, Aurora, Flux Drive, Crowned Coil, and other documented programs.
+
+Aurora and Flux Drive are **not the subject of the original focused diligence email**. They are related research programs with separate evidence boundaries:
+
+- Aurora: requirements and experiment architecture; no validated flying city-ship.
+- Flux Drive: falsification and measurement program; no independently validated propulsion.
+- Maya Node/SAGE: the primary subject of Dr. Thomas’s requested technical diligence.
+
 ## Public research provenance
 
 ### Artifact 32 — Structural Illegality Block (SIB)
+
 https://zenodo.org/records/17440618
 
 Public provenance and licensing record associated with the Commons Ethical Research License (CERL-1.0) and audit-oriented IP protection.
 
 ### Article 30A — Commons Declaration on Artificial Intelligence
+
 https://zenodo.org/records/17437485
 
 Governance principles concerning stewardship, boundaries, non-exploitation, and responsible AI development.
 
 ### Reality Audit Integration Documentation — Stage 1
+
 https://zenodo.org/records/19636622
 
 A falsification-first technical record emphasizing provenance, controls, instrumentation, failure preservation, and evidence boundaries.
