@@ -1,8 +1,8 @@
-# Maya Node Founding Review — First Three Customer Launch
+# Maya Node Founding Review — First 50 Customer Launch
 
 ## Objective
 
-Sell and complete the first three $25 Maya Node Founding Reviews. The experiment tests whether a small, bounded consent-and-authority design review solves a problem people will pay to examine.
+Sell and complete the first 50 $25 Maya Node Founding Reviews. The experiment tests whether a small, bounded consent-and-authority design review solves a problem people will pay to examine.
 
 - Public overview: https://maya-node-founding-review.myqueen1960.chatgpt.site
 - Secure checkout: https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
@@ -22,13 +22,13 @@ Do not market the service as certification, compliance, penetration testing, leg
 
 ## Plain-language offer
 
-> Building an AI workflow that can remember, recommend, or act? The Maya Node Founding Review gives you a written map of who has authority, what the system may do, how permission expires or is revoked, and where the design may fail open. The first three reviews are $25 and include one written boundary-risk report, one practical adversarial test, and one clarification response.
+> Building an AI workflow that can remember, recommend, or act? The Maya Node Founding Review gives you a written map of who has authority, what the system may do, how permission expires or is revoked, and where the design may fail open. The first 50 reviews are $25 and include one written boundary-risk report, one practical adversarial test, and one clarification response.
 
 ## LinkedIn post
 
 AI systems are often evaluated for what they can produce. They are not always examined with equal discipline for what they are allowed to do.
 
-I have opened three founding places for a small, human-delivered Maya Node design review.
+I have opened 50 founding places for a small, human-delivered Maya Node design review.
 
 For $25, a participant receives:
 
@@ -46,7 +46,7 @@ Checkout: https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
 
 “Your AI may be capable of doing something—but who actually authorized it?
 
-I’m opening three $25 Maya Node Founding Reviews for builders working with AI agents, memory, tools, or approval workflows.
+I’m opening 50 $25 Maya Node Founding Reviews for builders working with AI agents, memory, tools, or approval workflows.
 
 You receive a written boundary-risk report and one adversarial test aimed at consent, authority, revocation, or fail-closed behavior.
 
@@ -56,7 +56,7 @@ The link is in the description.”
 
 ## YouTube description
 
-Maya Node Founding Review — first three places, $25 each.
+Maya Node Founding Review — first 50 places, $25 each.
 
 A bounded, human-delivered review of consent, permission scope, authority escalation, expiration, revocation, auditability, fail-closed behavior, and human override.
 
@@ -76,7 +76,7 @@ Hello [Name],
 
 I saw your work on [specific public project or feature]. Because it involves [specific memory, tool use, approval, or external-action boundary], I thought this small review might be relevant.
 
-I have opened three founding places for the Maya Node Founding Review. It is a $25, human-delivered design review focused on consent, permission scope, expiration, revocation, audit evidence, fail-closed behavior, and human override.
+I have opened 50 founding places for the Maya Node Founding Review. It is a $25, human-delivered design review focused on consent, permission scope, expiration, revocation, audit evidence, fail-closed behavior, and human override.
 
 The deliverable is one written boundary-risk report, one practical adversarial test, and one clarification response. It is not certification, legal advice, penetration testing, or a safety guarantee.
 
