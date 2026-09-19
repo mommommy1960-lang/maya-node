@@ -2,6 +2,21 @@
 
 **Purpose:** give reviewers one concise, evidence-first path through the parts of The Commons Initiative most relevant to human authority, consent, revocation, auditability, and accountable AI action.
 
+## Thirty-second reviewer map
+
+A reviewer does not need to believe the ambition of the portfolio. The useful question is whether the work exposes enough structure to be challenged, reproduced, corrected, or stopped.
+
+| Review lane | What exists publicly | Decisive next question |
+|---|---|---|
+| Human authority | Maya Node consent, scope, freshness, revocation, execution, and audit boundaries | Can unauthorized or stale authority be rejected under adversarial tests? |
+| Situated AI | SAGE runtime integration and sovereignty bridge | Do memory and familiarity remain unable to expand permission? |
+| Research assurance | Reality Audit controls, calibration discipline, and failure preservation | Can a third party reproduce the analysis and preserve null results? |
+| Advanced propulsion | Flux Drive software replay, uncertainty plan, controls, and measurement-bench specification | Does a calibrated blinded bench leave any residual after conventional causes are modeled? |
+| Programmable surfaces | AURORA VISAGE / CHROMASKIN paper-stage optical-surface specification | Can a stationary coupon meet frozen optical, thermal, mechanical, and fault limits? |
+| Organizational accountability | Public evidence map and formation gate | Are registration, domain infrastructure, responsibility, and correction channels independently verifiable? |
+
+The portfolio is designed to make the distance between an idea and evidence visible. A failed test moves the work backward in status and remains part of the record.
+
 ## Executive thesis
 
 Maya Node treats **capability and authority as different things**. An AI system may be technically capable of an action without being authorized to take it.
@@ -83,6 +98,21 @@ Aurora and Flux Drive are **not the subject of the original focused diligence em
 - Aurora: requirements and experiment architecture; no validated flying city-ship.
 - Flux Drive: falsification and measurement program; no independently validated propulsion.
 - Maya Node/SAGE: the primary subject of Dr. Thomas’s requested technical diligence.
+
+## September 19, 2026 public evidence update
+
+The broader workbench now includes two new bounded review packages:
+
+- **Aurora / Flux revision gate:** explicit momentum closure, covariance-aware uncertainty, nuisance models, reversal controls, energy accounting, null/sham/known-positive/known-negative test families, and resubmission stop conditions. Physical propulsion remains unvalidated.
+- **Programmable fiber-optic vehicle surface Blue Book:** ordinary-physics optical, electrical, thermal, mechanical, safety, regulatory, and coupon-test models for AURORA VISAGE / CHROMASKIN / AURORA SURFACE OS. No road approval or tested full-vehicle surface is claimed.
+
+**Vehicle-surface draft review:**  
+https://github.com/mommommy1960-lang/commons-sentience-sandbox/pull/41
+
+**Aurora / Flux formal-review draft:**  
+https://github.com/mommommy1960-lang/flux-drive-kernel/pull/4
+
+Both packages ask reviewers to identify the most important missing control, measurement, prior-art boundary, or failure mode. Neither asks for endorsement.
 
 ## Public research provenance
 
