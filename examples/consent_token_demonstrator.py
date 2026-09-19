@@ -14,6 +14,7 @@ import time
 from dataclasses import asdict
 
 from src.sovereign.consent_tokens import ConsentScope, ConsentStatus, ConsentTokenManager
+from src.services.ledger.ledger import ImmutableLedger
 
 
 def snapshot(manager: ConsentTokenManager, token_id: str) -> dict:
@@ -83,6 +84,28 @@ def main() -> int:
         snapshot(manager, expiring.token_id),
     ))
 
+    frozen = manager.generate_token(
+        user_id="demo-user",
+        operation="demo.freeze",
+        scope=ConsentScope.SESSION,
+        ttl_seconds=30,
+    )
+    frozen_ok = manager.freeze_token(frozen.token_id)
+    blocked_while_frozen = manager.verify_token(frozen) is False
+    fresh_restore = manager.generate_token(
+        user_id="demo-user",
+        operation=f"restore:{frozen.token_id}",
+        scope=ConsentScope.SINGLE_OPERATION,
+        ttl_seconds=30,
+    )
+    restored = manager.restore_token(frozen.token_id, fresh_restore)
+    results.append(check(
+        "freeze_restore_requires_fresh_authorization",
+        frozen_ok and blocked_while_frozen and restored
+        and manager.verify_token(frozen),
+        snapshot(manager, frozen.token_id),
+    ))
+
     revocable = manager.generate_token(
         user_id="demo-user",
         operation="demo.revoke",
@@ -96,6 +119,15 @@ def main() -> int:
         snapshot(manager, revocable.token_id),
     ))
 
+    ledger = ImmutableLedger()
+    ledger.append("token.issued", {"token_id": token.token_id})
+    ledger.append("token.used", {"token_id": token.token_id})
+    results.append(check(
+        "append_only_audit_integrity",
+        ledger.verify_integrity(),
+        {"entries": len(ledger.get_entries())},
+    ))
+
     output = {
         "demonstrator": "Maya Node Consent Token",
         "network_access": False,
@@ -105,7 +137,7 @@ def main() -> int:
         "total": len(results),
         "limitations": [
             "This uses the current in-memory manager.",
-            "Freeze/restore and append-only audit verification remain explicit next gates.",
+            "The demonstration uses in-memory state; persistence and independent trusted-head storage remain future hardening gates.",
             "Passing this demonstration does not establish production readiness.",
         ],
     }
