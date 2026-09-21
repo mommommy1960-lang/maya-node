@@ -13,9 +13,9 @@ Independent socio-technical systems accountability engineer, public-interest sys
 
 Brown's practice is distinguished by turning lived institutional failure into inspectable system requirements. Her work asks who authorized an action, what limits apply, whether permission is current, how a person can refuse or appeal, whether intervention remains possible, and what evidence survives after failure. The portfolio includes eleven public GitHub repositories, DOI-registered research records, reader-facing governance materials, software test suites, public corrections, null-result preservation, and reviewer-facing evidence maps.
 
-Brown's systems imagination began in childhood. Science fiction—especially *Star Trek*—prompted early questions about why institutions fail people, how technology changes power, and how better human futures might be designed. It was an intellectual catalyst, not a literal blueprint: her present work is grounded in testable controls, documented limitations, human authority, and real-world institutional conditions.
+Brown's present public engineering and governance record dates to at least 2025, while the underlying idea archive was developed over many years. Her current practice is grounded in testable controls, documented limitations, human authority, and real-world institutional conditions.
 
-Brown reports a private and public archive of more than 300 ideas, concepts, and invention directions developed over many years. A growing, selected portion is publicly traceable through Zenodo and GitHub; the full archive has not been independently counted or validated as 300 completed inventions.
+Brown maintains a cross-platform archive exceeding 300 idea, concept, research, governance, curriculum, business, and invention records. The direct public proof route demonstrates the scale without pretending every entry is a distinct completed invention: preserved Zenodo profile captures showed 262–272 results; 60 exact Zenodo records have been recovered and linked in the current public catalog; a separately maintained invention inventory reports 50 concepts; and eleven public GitHub repositories preserve software, tests, governance records, corrections, and research logs. These collections overlap and therefore are not added together as a false unique-item total.
 
 ### Signature value
 
@@ -64,6 +64,14 @@ These capabilities align with the practical risk-management work identified by t
 ## Selected technical and governance portfolio
 
 The projects below are representative selections, not a complete inventory.
+
+### Portfolio scale and direct proof
+
+- **Zenodo catalog:** 60 exact recovered records, with earlier preserved profile captures showing 262–272 results — https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/portfolio/zenodo/README.md
+- **Invention inventory:** 50 currently indexed concepts with maturity lanes, evidence boundaries, and next actions — https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/portfolio/complete-invention-portfolio-inventory.md
+- **Complete Blue Book registry:** paper-proof targets and next gates across the broader invention and program portfolio — https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/blue-books/civic-continuum-complete-invention-blue-book-registry.md
+- **Public code and governance portfolio:** eleven repositories — https://github.com/mommommy1960-lang
+- **Public research archive:** DOI-bearing Zenodo records are linked throughout the catalog and selected-publications section below.
 
 ### Maya Node
 
