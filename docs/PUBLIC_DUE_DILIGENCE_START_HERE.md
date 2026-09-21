@@ -17,6 +17,13 @@ A reviewer does not need to believe the ambition of the portfolio. The useful qu
 
 The portfolio is designed to make the distance between an idea and evidence visible. A failed test moves the work backward in status and remains part of the record.
 
+## Focused reviewer materials — 2026-09-21
+
+- **One-page human-authority alignment brief:** https://github.com/mommommy1960-lang/maya-node/blob/main/docs/HUMAN_AUTHORITY_AI_ALIGNMENT_BRIEF_2026-09-21.md
+- **Mya P. Brown public portfolio résumé:** https://github.com/mommommy1960-lang/maya-node/blob/main/docs/MYA_P_BROWN_PUBLIC_PORTFOLIO_RESUME_2026-09-21.md
+
+These materials are prepared for serious governance reviewers, including Dr. Thomas Ainsworth. The reference identifies conceptual alignment only; it does not imply his endorsement, participation, or validation.
+
 ## Executive thesis
 
 Maya Node treats **capability and authority as different things**. An AI system may be technically capable of an action without being authorized to take it.
