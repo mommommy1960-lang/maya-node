@@ -36,17 +36,12 @@ This is not presented as legal certification or a guarantee of safety. It is a t
 
 ## Current project status
 
-The primary diligence subject is **Maya Node and its SAGE integration**. The broader Civic Continuum portfolio is a separate public workbench containing related governance software, curricula, research programs, physical prototype studies, and Blue Book work packages.
+The primary diligence subject is **human-centered AI governance through Maya Node, SAGE integration, and the wider Commons accountability architecture**.
 
-For the broader portfolio, use:
+**AI Governance and Accountability Evidence Map:**  
+https://github.com/mommommy1960-lang/maya-node/blob/main/docs/AI_GOVERNANCE_ACCOUNTABILITY_EVIDENCE_MAP_2026-09-21.md
 
-**Civic Continuum Public Workbench:**  
-https://github.com/mommommy1960-lang/commons-sentience-sandbox/tree/main/docs/civic-continuum
-
-**Reviewer dashboard with evidence-stage meters:**  
-https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/DR_THOMAS_REVIEW_DASHBOARD.md
-
-The dashboard distinguishes concept, paper specification, reproducible test, prototype, independent review, and supervised pilot. It does not represent every invention as physically validated.
+The evidence map connects the original Commons record, the Charter of Human Advancement, the Governance Architecture Reference, Emergency Response Systems, consent tokens, immutable audit, safe-mode recovery, Maya Node, public Zenodo records, and the seven governance areas publicly identified by Dr. Thomas Ainsworth. It distinguishes original source records, normative frameworks, paper-stage mechanisms, tested software components, legacy drafts, and unverified claims.
 
 ## Evidence path
 
@@ -89,30 +84,19 @@ The review service translates the same ideas into a bounded human-delivered asse
 
 The service is intentionally limited. It is **not** legal advice, certification, penetration testing, or a guarantee of production safety.
 
-## Related systems and research
+## Governance and accountability comparison
 
-The wider Civic Continuum workbench links to the portfolio index, Consent Token and governance proofs, the Systems Accountability curriculum, Reality Audit, Aurora, Flux Drive, Crowned Coil, and other documented programs.
+The evidence map organizes the work around:
 
-Aurora and Flux Drive are **not the subject of the original focused diligence email**. They are related research programs with separate evidence boundaries:
+- organizational accountability,
+- executive and board oversight,
+- AI risk management,
+- human review, challenge, override, and escalation,
+- policy and framework development,
+- responsible implementation,
+- post-deployment monitoring and continuing review.
 
-- Aurora: requirements and experiment architecture; no validated flying city-ship.
-- Flux Drive: falsification and measurement program; no independently validated propulsion.
-- Maya Node/SAGE: the primary subject of Dr. Thomas’s requested technical diligence.
-
-## September 19, 2026 public evidence update
-
-The broader workbench now includes two new bounded review packages:
-
-- **Aurora / Flux revision gate:** explicit momentum closure, covariance-aware uncertainty, nuisance models, reversal controls, energy accounting, null/sham/known-positive/known-negative test families, and resubmission stop conditions. Physical propulsion remains unvalidated.
-- **Programmable fiber-optic vehicle surface Blue Book:** ordinary-physics optical, electrical, thermal, mechanical, safety, regulatory, and coupon-test models for AURORA VISAGE / CHROMASKIN / AURORA SURFACE OS. No road approval or tested full-vehicle surface is claimed.
-
-**Vehicle-surface draft review:**  
-https://github.com/mommommy1960-lang/commons-sentience-sandbox/pull/41
-
-**Aurora / Flux formal-review draft:**  
-https://github.com/mommommy1960-lang/flux-drive-kernel/pull/4
-
-Both packages ask reviewers to identify the most important missing control, measurement, prior-art boundary, or failure mode. Neither asks for endorsement.
+This comparison does not imply endorsement or partnership. It is an invitation to identify the single most important missing control or accountability link.
 
 ## Public research provenance
 
