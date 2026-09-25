@@ -140,7 +140,7 @@ The following public work is now connected to this reviewer doorway. The links d
 ### Patent-readiness and invention-development status
 
 - [SAGE Situated Companion](https://github.com/mommommy1960-lang/sage-situated-companion) remains the public, non-confidential technical record for the current software/hardware companion architecture.
-- Mya P. Brown completed the USPTO Basic Patent Training on September 24, 2026.
+- [Mya P. Brown completed the USPTO Basic Patent Training on September 24, 2026.](./USPTO_BASIC_PATENT_TRAINING_COMPLETION_2026-09-24.md)
 - An intake package was sent to the Washington State/TILE Patent Pro Bono Hub on September 25, 2026 and is awaiting screening. Submission is not acceptance, attorney placement, a patent filing, a patentability opinion, or a grant of rights.
 - Identity documents, income evidence, signatures, private implementation details, claim strategy, and other patent-sensitive material are intentionally excluded from this public route.
 
