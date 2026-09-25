@@ -125,6 +125,29 @@ https://zenodo.org/records/19636622
 
 A falsification-first technical record emphasizing provenance, controls, instrumentation, failure preservation, and evidence boundaries.
 
+
+## Verified additions — September 25, 2026
+
+The following public work is now connected to this reviewer doorway. The links document work and provenance; they do not imply endorsement, patentability, scientific validation, or production readiness.
+
+### Institutional accountability and incentive alignment
+
+- [Institutional Enclosure Act](https://github.com/mommommy1960-lang/institutional-enclosure-act) — public accountability framework and structured evidence schema for institutional metric inversion and lifecycle harm.
+- [Socio-Technical Incentive Alignment](https://github.com/mommommy1960-lang/socio-technical-incentive-alignment) — public work on how incentives, authority, measurement, and human outcomes interact in institutional systems.
+- [Civic Continuum Credibility and Human Dignity Standard](https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/CIVIC_CONTINUUM_CREDIBILITY_AND_HUMAN_DIGNITY_STANDARD.md) — claims, evidence stages, correction trails, attribution, confidentiality boundaries, and human-dignity requirements.
+- [AI Governance and Accountability Evidence Map](https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/AI_GOVERNANCE_ACCOUNTABILITY_EVIDENCE_MAP_2026-09-21.md) — source-to-control map for human authority, revocation, audit, correction, and accountability.
+
+### Patent-readiness and invention-development status
+
+- [SAGE Situated Companion](https://github.com/mommommy1960-lang/sage-situated-companion) remains the public, non-confidential technical record for the current software/hardware companion architecture.
+- Mya P. Brown completed the USPTO Basic Patent Training on September 24, 2026.
+- An intake package was sent to the Washington State/TILE Patent Pro Bono Hub on September 25, 2026 and is awaiting screening. Submission is not acceptance, attorney placement, a patent filing, a patentability opinion, or a grant of rights.
+- Identity documents, income evidence, signatures, private implementation details, claim strategy, and other patent-sensitive material are intentionally excluded from this public route.
+
+### Complete public repository route
+
+For the full public portfolio, use the [GitHub organization profile](https://github.com/mommommy1960-lang) and the [Civic Continuum reviewer dashboard](https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/DR_THOMAS_REVIEW_DASHBOARD.md). The dashboard organizes the work by evidence stage and next verification gate.
+
 ## What a reviewer should evaluate
 
 The most useful review questions are:
@@ -150,7 +173,7 @@ No claim should be read more broadly than the evidence supporting it.
 ## Founder / rights notice
 
 **Mya P. Brown**  
-Founder & Principal Architect, The Commons Initiative  
+Founder & Principal Architect, Civic Continuum (formerly The Commons Initiative)  
 Seattle, Washington
 
 © 2025 Mya P. Brown. All Rights Reserved.  
