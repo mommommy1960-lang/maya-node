@@ -66,3 +66,24 @@ class QueueTests(unittest.TestCase):
         self.q.approve('one'); self.q.claim('one')
         with self.assertRaises(ValueError):
             self.q.complete('one','wrong', {'id':'receipt'})
+
+    def test_worker_alerts_uncertain_outcome(self):
+        self.q.approve('one'); alerts=[]
+        def fail(payload): raise TimeoutError()
+        self.q.run_once(fail, alerts.append)
+        self.assertEqual(alerts[0]['state'], 'unknown')
+        self.assertEqual(self.q.inspection()['counts']['unknown'], 1)
+        calls=[]
+        DispatchQueue(self.path).run_once(lambda p: calls.append(p), alerts.append)
+        self.assertEqual(calls, [])
+
+    def test_alert_failure_is_visible(self):
+        self.q.approve('one'); self.q.claim('one')
+        def fail_alert(item): raise RuntimeError('alert unavailable')
+        with self.assertRaises(RuntimeError): self.q.run_once(lambda p: None, fail_alert)
+
+    def test_actual_process_restart_keeps_cancellation(self):
+        import subprocess, sys
+        self.q.approve('one'); self.q.cancel('one')
+        code = 'from src.sovereign.dispatch_queue import DispatchQueue; import sys; q=DispatchQueue(sys.argv[1]); assert q.claim("one") is None; assert q.status("one")=="canceled"'
+        subprocess.run([sys.executable, '-c', code, str(self.path)], check=True)

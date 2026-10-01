@@ -17,3 +17,5 @@ Run: `python -m unittest discover -s tests/runtime -p test_dispatch_queue.py -v`
 ## Morning outreach receipt
 
 Four separate $25 founding-review introductions were sent from the authorized Gmail account on October 1: Marc-Tek, Pulsework AI, Click Smith, and Cryudine. No customer workflows were accessed or defects claimed. Replies and sales were unconfirmed at the last mailbox check. Public site sample-review links were removed at the user's request.
+
+Staging follow-up: the approved queue job was claimed, a Gmail connector send was performed under that claim, its receipt recorded, and reopening blocked a duplicate. The canceled job never dispatched; injected timeout remained unknown and blocked. This was manual connector orchestration, not an installed daemon. `run_once(sender, alert)` now provides a bounded worker pass, with inspectable state counts and event history and callback alerts for uncertain/committed jobs. An authenticated adapter and durable host scheduler still must be supplied. Alert sink errors propagate. Tests also cover worker alerts, failed alert delivery, and reopening from a genuinely new Python process.

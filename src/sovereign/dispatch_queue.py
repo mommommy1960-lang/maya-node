@@ -109,3 +109,27 @@ class DispatchQueue:
             if not row:
                 raise KeyError(job_id)
             return row[0]
+
+    def inspection(self):
+        """Operator snapshot; committed and unknown jobs require reconciliation."""
+        with self._transaction() as db:
+            counts = dict(db.execute('SELECT state,COUNT(*) FROM jobs GROUP BY state'))
+            alerts = [dict(job_id=r[0], state=r[1], attempt=r[2]) for r in db.execute("SELECT id,state,attempt FROM jobs WHERE state IN ('unknown','dispatch_committed') ORDER BY id")]
+            events = [dict(sequence=r[0], job_id=r[1], event=r[2]) for r in db.execute('SELECT sequence,job_id,event FROM events ORDER BY sequence')]
+            return {'counts': counts, 'alerts': alerts, 'events': events}
+
+    def run_once(self, sender, alert):
+        """Bounded worker pass. Host owns scheduling and authenticated adapter.
+
+        Alert sink failures propagate; they are never reported as successful.
+        Separate workers may inspect the same jobs; transactional claims decide.
+        """
+        for item in self.inspection()['alerts']:
+            alert(item)
+        with self._transaction() as db:
+            ids = [row[0] for row in db.execute("SELECT id FROM jobs WHERE state='queued' ORDER BY rowid")]
+        for job_id in ids:
+            try:
+                self.dispatch(job_id, sender)
+            except Exception as error:
+                alert({'job_id': job_id, 'state': self.status(job_id), 'error_type': type(error).__name__})
