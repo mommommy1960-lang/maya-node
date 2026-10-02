@@ -91,6 +91,15 @@ export default {
       const text=await request.text();
       if(text.length>24000) return new Response('Too large',{status:413});
       const data=JSON.parse(text);
+      if(url.pathname==='/mail-config-check') {
+        const checks = {};
+        for(const key of ['GMAIL_CLIENT_ID','GMAIL_CLIENT_SECRET','GMAIL_REFRESH_TOKEN']) {
+          if(typeof data[key] !== 'string' || !data[key]) return new Response('Expected comparison values missing',{status:400});
+          const actual = typeof env[key] === 'string' ? env[key] : '';
+          checks[key] = {matches:actual === data[key],matches_after_trim:actual.trim() === data[key].trim()};
+        }
+        return Response.json(checks,{headers:{'Cache-Control':'no-store'}});
+      }
       if(typeof data.id!=='string'||! /^[a-zA-Z0-9_-]{1,100}$/.test(data.id)) throw new Error('Invalid id');
       if(url.pathname==='/enqueue') {
         const payload=payloadText(data.payload);
