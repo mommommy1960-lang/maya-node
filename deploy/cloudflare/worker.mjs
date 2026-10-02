@@ -24,7 +24,15 @@ async function gmailSender(env) {
   for (const k of ['GMAIL_CLIENT_ID','GMAIL_CLIENT_SECRET','GMAIL_REFRESH_TOKEN','MAIL_FROM']) if (!env[k]) throw new Error('Missing mail configuration');
   if (!/^[^\s<>@,;]+@[^\s<>@,;]+$/.test(env.MAIL_FROM)) throw new Error('Invalid sender');
   const response = await fetch('https://oauth2.googleapis.com/token', {method:'POST', body:new URLSearchParams({client_id:env.GMAIL_CLIENT_ID,client_secret:env.GMAIL_CLIENT_SECRET,refresh_token:env.GMAIL_REFRESH_TOKEN,grant_type:'refresh_token'}),signal:AbortSignal.timeout(15000)});
-  if (!response.ok) throw new Error('Mail authentication failed');
+  if (!response.ok) {
+    // Log only known OAuth error codes, never tokens or provider descriptions.
+    let code = 'unclassified';
+    try {
+      const detail = await response.json();
+      if (['invalid_client','invalid_grant','invalid_request','unauthorized_client','unsupported_grant_type','invalid_scope'].includes(detail.error)) code = detail.error;
+    } catch {}
+    throw new Error(`Mail authentication failed: ${code} (HTTP ${response.status})`);
+  }
   const token = (await response.json()).access_token;
   if (!token) throw new Error('Missing access token');
   return async p => {
