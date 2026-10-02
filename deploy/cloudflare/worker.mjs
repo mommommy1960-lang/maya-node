@@ -45,11 +45,44 @@ async function gmailSender(env) {
     return r.json();
   };
 }
+
+export function safeFailure(error) {
+  const message = String(error?.message || '');
+  const match = /^Mail authentication failed: (invalid_client|invalid_grant|invalid_request|unauthorized_client|unsupported_grant_type|invalid_scope|unclassified) \(HTTP (\d{3})\)$/.exec(message);
+  if (match) return {code:match[1],http_status:Number(match[2])};
+  const known = {'Missing mail configuration':'mail_configuration_missing','Invalid sender':'sender_invalid','Missing access token':'access_token_missing','Provider submission failed':'mail_submission_failed','Missing provider receipt':'receipt_missing'};
+  return {code:known[message] || 'runtime_failure'};
+}
+export async function reportHealth(env, state, detail = {}) {
+  const report = {service:'maya-node',state,at:new Date().toISOString(),...detail};
+  // Never include raw exceptions, email bodies, recipients, or credentials.
+  console[state === 'error' ? 'error' : 'log'](JSON.stringify({health:report}));
+  try {
+    await env.DB.prepare("CREATE TABLE IF NOT EXISTS runtime_health (id INTEGER PRIMARY KEY CHECK(id=1), report TEXT NOT NULL)").run();
+    await env.DB.prepare("INSERT INTO runtime_health(id,report) VALUES(1,?) ON CONFLICT(id) DO UPDATE SET report=excluded.report").bind(JSON.stringify(report)).run();
+  } catch { console.error('{"health_report_storage":"failed"}'); }
+  if (state === 'error' && env.ALERT_WEBHOOK_URL) {
+    try {
+      const url = new URL(env.ALERT_WEBHOOK_URL);
+      if (url.protocol !== 'https:') throw new Error('Invalid alert URL');
+      const headers = {'Content-Type':'application/json'};
+      if (env.ALERT_WEBHOOK_TOKEN) headers.Authorization = `Bearer ${env.ALERT_WEBHOOK_TOKEN}`;
+      const result = await fetch(url, {method:'POST',headers,body:JSON.stringify(report),signal:AbortSignal.timeout(10000),redirect:'error'});
+      if (!result.ok) throw new Error('Alert rejected');
+    } catch { console.error('{"health_alert_delivery":"failed"}'); }
+  }
+}
+
 export default {
   async fetch(request,env) {
     if (!env.CONTROLLER_TOKEN || request.headers.get('Authorization') !== `Bearer ${env.CONTROLLER_TOKEN}`) return new Response('Unauthorized',{status:401});
     try {
       const url=new URL(request.url);
+      if (request.method==='GET' && url.pathname==='/health') {
+        await env.DB.prepare("CREATE TABLE IF NOT EXISTS runtime_health (id INTEGER PRIMARY KEY CHECK(id=1), report TEXT NOT NULL)").run();
+        const row=await env.DB.prepare("SELECT report FROM runtime_health WHERE id=1").first();
+        return Response.json({latest:row ? JSON.parse(row.report) : null, alert_route_configured:Boolean(env.ALERT_WEBHOOK_URL)});
+      }
       if (request.method==='GET' && url.pathname==='/status') {
         const rows=await env.DB.prepare('SELECT state,COUNT(*) AS count FROM jobs GROUP BY state').all();
         return Response.json(rows.results);
@@ -78,11 +111,17 @@ export default {
     } catch {return new Response('Invalid request or unavailable database',{status:400});}
   },
   async scheduled(event,env) {
-    if(env.SEND_ENABLED!=='true') return;
+    if(env.SEND_ENABLED!=='true') {await reportHealth(env,'disabled'); return;}
+    try {
     const sender=await gmailSender(env); // authenticate before claiming jobs
     const rows=await env.DB.prepare("SELECT id FROM jobs WHERE state='queued' LIMIT 3").all();
     for(const row of rows.results) await dispatch(env.DB,row.id,sender);
     const alerts=await env.DB.prepare("SELECT id,state FROM jobs WHERE state IN ('unknown','dispatch_committed') LIMIT 20").all();
-    if(alerts.results.length) console.error(JSON.stringify({alerts:alerts.results}));
+    if(alerts.results.length) await reportHealth(env,'error',{code:'dispatch_requires_review',affected_jobs:alerts.results.length});
+    else await reportHealth(env,'ok');
+    } catch(error) {
+      await reportHealth(env,'error',safeFailure(error));
+      throw error;
+    }
   }
 };
