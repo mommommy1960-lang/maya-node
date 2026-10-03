@@ -1,0 +1,10 @@
+[Unit]
+Description=Check Maya approved mail queue every minute
+
+[Timer]
+OnBootSec=60
+OnUnitInactiveSec=60
+Unit=maya-mail.service
+
+[Install]
+WantedBy=timers.target
