@@ -5,7 +5,7 @@
 Sell and complete the first 50 $25 Maya Node Founding Reviews. The experiment tests whether a small, bounded consent-and-authority design review solves a problem people will pay to examine.
 
 - Public overview: https://maya-node-founding-review.myqueen1960.chatgpt.site
-- Secure checkout: https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
+- Secure checkout: https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
 - Fulfillment kit: [README.md](README.md)
 
 ## Best-fit first customers
@@ -40,7 +40,7 @@ This is not certification, legal advice, penetration testing, or a safety guaran
 
 Overview: https://maya-node-founding-review.myqueen1960.chatgpt.site
 
-Checkout: https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
+Checkout: https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
 
 ## Short-video script
 
@@ -66,7 +66,7 @@ Not certification, legal advice, penetration testing, a safety guarantee, or pro
 
 Learn more: https://maya-node-founding-review.myqueen1960.chatgpt.site
 
-Reserve: https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
+Reserve: https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
 
 ## Direct outreach template
 
