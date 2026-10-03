@@ -27,6 +27,6 @@ The complete fulfillment process and templates are preserved in the [Founding Re
 ## Learn more and reserve a place
 
 - Public overview: https://maya-node-founding-review.myqueen1960.chatgpt.site
-- Secure checkout: https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
+- Secure checkout: https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
 
 The public page explains the scope, evidence boundaries, and what a client receives before purchase.
