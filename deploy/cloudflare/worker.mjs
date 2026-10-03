@@ -73,8 +73,83 @@ export async function reportHealth(env, state, detail = {}) {
   }
 }
 
+const REVIEW_LINKS = new Set(['plink_1UFNOZJYOy8NtnKHK8eCz4BP','plink_1UDIsVJYOy8NtnKHxpszTuON']);
+const INTAKE_URL = 'https://maya-node-founding-review.myqueen1960.chatgpt.site/intake.html';
+export async function verifyStripeSignature(body, header, secret, now = Math.floor(Date.now()/1000)) {
+  if (!secret || !header) return false;
+  const fields = header.split(',').map(p=>p.trim().split('='));
+  const times = fields.filter(([k])=>k==='t');
+  if(times.length!==1 || !/^\d+$/.test(times[0][1])) return false;
+  const timestamp = Number(times[0][1]);
+  if(Math.abs(now-timestamp)>300) return false;
+  const key = await crypto.subtle.importKey('raw',new TextEncoder().encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
+  const signature = new Uint8Array(await crypto.subtle.sign('HMAC',key,new TextEncoder().encode(`${timestamp}.${body}`)));
+  const expected = Array.from(signature,b=>b.toString(16).padStart(2,'0')).join('');
+  return fields.some(([k,v])=>{
+    if(k!=='v1' || !/^[0-9a-f]{64}$/.test(v||'')) return false;
+    let difference=0;
+    for(let i=0;i<64;i++) difference |= expected.charCodeAt(i)^v.charCodeAt(i);
+    return difference===0;
+  });
+}
+export function reviewMessages(event) {
+  if(!['checkout.session.completed','checkout.session.async_payment_succeeded'].includes(event?.type)) return null;
+  const s = event.data?.object;
+  if(event.livemode!==true || s?.livemode!==true || (event.account && event.account!=='acct_1TOD3RJYOy8NtnKH')) return null;
+  if(s?.mode!=='payment' || s.payment_status!=='paid' || !REVIEW_LINKS.has(s.payment_link) || s.currency!=='usd' || s.amount_total!==2500) return null;
+  if(!/^cs_live_[a-zA-Z0-9]{1,160}$/.test(s.id||'')) throw new Error('Invalid session');
+  const buyer=s.customer_details?.email || s.customer_email;
+  const reference=s.id;
+  const body=`Thank you for purchasing your $25 Maya Node Founding Review.\n\nComplete your intake here:\n${INTAKE_URL}\n\nDownload the completed intake file and email it, with authorized supporting materials, to mommommy1960@gmail.com from the email used at checkout. Include your payment date and order reference below.\n\nYour review is human-delivered within five business days after complete intake and usable materials are confirmed. Do not send passwords, private keys, sensitive personal data, or trade secrets.\n\nOrder reference: ${reference}\nSupport, cancellation and refunds: https://maya-node-founding-review.myqueen1960.chatgpt.site/support.html\n\nMya P. Brown\nMaya Node / The Commons Initiative`;
+  const messages=[{recipient:buyer,subject:'Maya Node Founding Review — your intake instructions',body},
+    {recipient:'mommommy1960@gmail.com',subject:'Maya Node — new paid $25 review',body:`A $25 Maya Node Founding Review was paid through Stripe.\n\nCheckout email: ${buyer}\nOrder reference: ${reference}\nPayment link: ${s.payment_link}\n\nThe buyer's intake email is handled by the payment delivery queue. Confirm complete intake before starting the five-business-day review period. Check the payment in Stripe before any refund or delivery decision.`}];
+  for(const message of messages) payloadText(message);
+  return {reference,messages};
+}
+export async function fulfillStripeEvent(event, env, senderFactory = gmailSender) {
+  const order=reviewMessages(event);
+  if(!order) return {ignored:true};
+  if(env.SEND_ENABLED!=='true') throw new Error('Mail delivery disabled');
+  const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(order.reference)));
+  const base='stripe_'+Array.from(digest,b=>b.toString(16).padStart(2,'0')).join('');
+  const ids=order.messages.map((_,i)=>`${base}_${i}`);
+  for(let i=0;i<ids.length;i++) {
+    const payload=payloadText(order.messages[i]);
+    await env.DB.prepare("INSERT INTO jobs(id,payload,state) VALUES (?,?,'queued') ON CONFLICT(id) DO NOTHING").bind(ids[i],payload).run();
+    const row=await env.DB.prepare('SELECT payload,state FROM jobs WHERE id=?').bind(ids[i]).first();
+    if(row?.payload!==payload) throw new Error('Payload conflict');
+    if(['unknown','dispatch_committed','canceled','pending'].includes(row.state)) throw new Error('Dispatch requires review');
+  }
+  const sender=await senderFactory(env); // OAuth failures leave jobs queued for a safe retry.
+  for(const id of ids) {
+    await dispatch(env.DB,id,sender);
+    const row=await env.DB.prepare('SELECT state FROM jobs WHERE id=?').bind(id).first();
+    if(row?.state!=='sent') throw new Error('Dispatch requires review');
+  }
+  return {accepted:true};
+}
+export async function stripeWebhook(request,env) {
+  if(request.method!=='POST') return new Response('Method not allowed',{status:405});
+  if(!env.STRIPE_WEBHOOK_SECRET || !env.DB) return new Response('Payment handoff unavailable',{status:503});
+  const length=Number(request.headers.get('content-length')||0);
+  if(length>262144) return new Response('Too large',{status:413});
+  const body=await request.text();
+  if(new TextEncoder().encode(body).length>262144) return new Response('Too large',{status:413});
+  if(!await verifyStripeSignature(body,request.headers.get('stripe-signature'),env.STRIPE_WEBHOOK_SECRET)) return new Response('Invalid signature',{status:400});
+  let event;
+  try {event=JSON.parse(body);} catch {return new Response('Invalid event',{status:400});}
+  try {
+    const result=await fulfillStripeEvent(event,env);
+    return Response.json(result,{headers:{'Cache-Control':'no-store'}});
+  } catch(error) {
+    await reportHealth(env,'error',{...safeFailure(error),source:'stripe_payment_handoff'});
+    return new Response('Payment handoff requires retry or review',{status:503});
+  }
+}
+
 export default {
   async fetch(request,env) {
+    if(new URL(request.url).pathname==='/stripe/webhook') return stripeWebhook(request,env);
     if (!env.CONTROLLER_TOKEN || request.headers.get('Authorization') !== `Bearer ${env.CONTROLLER_TOKEN}`) return new Response('Unauthorized',{status:401});
     try {
       const url=new URL(request.url);
