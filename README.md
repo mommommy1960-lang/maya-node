@@ -24,7 +24,7 @@ For the first three clients, the one-time founding review is **$25** and include
 This is a design review, not certification, legal advice, penetration testing, or a claim that the system is production-ready.
 
 - **Learn more:** https://maya-node-founding-review.myqueen1960.chatgpt.site
-- **Reserve a founding review:** https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
+- **Reserve a founding review:** https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
 - **Detailed project note:** [docs/MAYA_NODE_FOUNDING_REVIEW.md](docs/MAYA_NODE_FOUNDING_REVIEW.md)
 - **Zenodo record draft:** [docs/ZENODO_RECORD_DESCRIPTION.md](docs/ZENODO_RECORD_DESCRIPTION.md)
 
