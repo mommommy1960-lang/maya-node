@@ -18,7 +18,7 @@ Public overview:
 https://maya-node-founding-review.myqueen1960.chatgpt.site
 
 Founding review checkout (first 50 places, $25 each):
-https://buy.stripe.com/14A9AUc1A8bjeR75VE5wI00
+https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
 
 Source repository:
 https://github.com/mommommy1960-lang/maya-node
