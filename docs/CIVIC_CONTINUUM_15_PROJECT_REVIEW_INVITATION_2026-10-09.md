@@ -8,6 +8,18 @@ We are seeking business advice, focused technical reviews and short customer wal
 
 Initial discussions use public summaries and redacted workflow descriptions. Detailed implementation, unpublished designs, customer data and private test evidence are excluded from this page. Disclosure and any paid engagement are agreed separately. No reviewer, laboratory or adviser is presented as endorsing the work.
 
+## Outreach and review progress — October 9, 2026
+
+- Consolidated the founder's four source documents into one private printable working packet with an action/review guide. The private packet is not distributed through this public page.
+- Sent four follow-up invitations in existing prospective-customer threads for short, non-confidential walkthroughs of one AI-assisted workflow. These are invitations, not confirmed meetings or sales.
+- Requested an adviser conversation about customer discovery, delivery capacity and the business-registration/licensing checklist.
+- Requested a referral to a qualified software/security engineer for one focused Maya Node Ingestion Guard review. The defined question is whether malformed, non-finite or out-of-range structured inputs are rejected while valid inputs follow the documented contract.
+- Prepared a review brief identifying the source version and test evidence, and requesting written procedures, findings, counterexamples and limitations. Detailed materials remain outside the initial public disclosure.
+- Published these 15 current project summaries, each with its bounded prototype scope and help sought. Prepared a public announcement and 15 LinkedIn Projects descriptions; LinkedIn publication has not been completed.
+
+The next milestone is a recipient response, then an agreed conversation or review scope. No independent review, customer agreement or hardware-performance certification is claimed complete. Public summaries exclude source, unpublished designs, internal thresholds, private correspondence, credentials and supplier terms. Historical research and earlier evidence records are preserved.
+
+
 ## 1. HFT Synchronization Core
 
 Developing clock and timestamp diagnostics for timing-sensitive systems.
