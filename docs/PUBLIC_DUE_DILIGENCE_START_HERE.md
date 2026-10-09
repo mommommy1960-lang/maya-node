@@ -2,6 +2,15 @@
 
 **Purpose:** give reviewers one concise, evidence-first path through the parts of The Commons Initiative most relevant to human authority, consent, revocation, auditability, and accountable AI action.
 
+## Latest public update — October 9, 2026
+
+The current [15-project development and review invitation](./CIVIC_CONTINUUM_15_PROJECT_REVIEW_INVITATION_2026-10-09.md) gives a non-confidential overview of the software/engineering directions now being scoped for customer conversations and focused technical review. It includes each direction's bounded prototype scope and the expertise sought. The catalog is distinct from the wider historical portfolio and does not establish fifteen production products.
+
+Current next steps are business advising, redacted customer walkthroughs, and a qualified review of one defined module question. Independent review and device-specific timing/thermal measurements are not claimed complete. Detailed implementation and private evidence are excluded from this public route.
+
+The existing organizational verification gate remains open: this update does not claim completed Washington formation, UBI, business licensing, an endorsement, or a formal relationship with any named reviewer. Historical entries below retain their original dates and scopes.
+
+
 ## Thirty-second reviewer map
 
 A reviewer does not need to believe the ambition of the portfolio. The useful question is whether the work exposes enough structure to be challenged, reproduced, corrected, or stopped.
