@@ -11,6 +11,8 @@ Current next steps are business advising, redacted customer walkthroughs, and a 
 The existing organizational verification gate remains open: this update does not claim completed Washington formation, UBI, business licensing, an endorsement, or a formal relationship with any named reviewer. Historical entries below retain their original dates and scopes.
 
 
+**Outreach now underway:** four existing customer threads have received walkthrough invitations, and an adviser meeting plus qualified technical-review referral have been requested. The linked overview records these completed requests separately from unconfirmed meetings, sales and reviews.
+
 ## Thirty-second reviewer map
 
 A reviewer does not need to believe the ambition of the portfolio. The useful question is whether the work exposes enough structure to be challenged, reproduced, corrected, or stopped.
