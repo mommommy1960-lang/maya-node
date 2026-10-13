@@ -95,19 +95,35 @@ class Demo:
         self.record("case.acknowledged", case_id=case_id, actor=actor, at=now)
         return now-c["opened"] < 120
 
-    def grant_advocate(self, case_id, actor, advocate):
+    def grant_advocate(self, case_id, actor, advocate, expires=300):
         c = self.cases[case_id]
         if actor != c["subject"]:
             raise PermissionError("Affected demo person must grant access")
         c["advocate"] = advocate
+        c["advocate_expires"] = expires
         self.record("advocate.granted", case_id=case_id, actor=actor,
                     advocate=advocate, simulated_notification=True)
 
-    def view(self, case_id, actor):
+    def revoke_advocate(self, case_id, actor):
         c = self.cases[case_id]
-        if actor not in (c["subject"], c["owner"], c["advocate"]):
+        if actor != c["subject"]:
+            raise PermissionError("Affected demo person must revoke access")
+        c["advocate"] = None
+        self.record("advocate.revoked", case_id=case_id, actor=actor)
+
+    def view(self, case_id, actor, now=0):
+        c = self.cases[case_id]
+        advocate_valid = (actor == c["advocate"] and
+                          now < c.get("advocate_expires", 0))
+        if actor not in (c["subject"], c["owner"]) and not advocate_valid:
             raise PermissionError("Case access denied")
         return dict(c)
+
+    def export_case(self, case_id, actor, now=0):
+        case = self.view(case_id, actor, now)
+        # Exclude every other case, even when its actor happens to be the same.
+        evidence = [dict(e) for e in self.events if e.get("case_id") == case_id]
+        return {"scope": "SYNTHETIC CASE EXPORT", "case": case, "events": evidence}
 
     def correct(self, case_id, actor, evidence):
         c = self.cases[case_id]
