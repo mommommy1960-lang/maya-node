@@ -12,6 +12,14 @@ Core design principle: **technical capability does not itself confer authority.*
 
 The architecture separates identity, requested operation, authorization scope, expiration, revocation, execution, post-action evidence, and human challenge/override pathways.
 
+## October 13, 2026 accountability development update
+
+[Public review index: school and billing accountability](docs/ACCOUNTABILITY_REVIEW_START_HERE_2026-10-13.md)
+
+Published methods, sources, corrections and limits. Current local evidence: 28 selected checks passed and a separate 2,256-decision synthetic model sweep matched expected labels. Implementation is available for review in [PR #61](https://github.com/mommommy1960-lang/maya-node/pull/61); no live deployment or 99% field-reliability claim.
+
+Purchasing organizations assign incident staff and backups. Provider responsibilities remain separately mapped.
+
 ## Public Maya Node Founding Review
 
 Maya Node is a focused design-review service for founders, builders, and researchers who want a plain-English second look at consent, permission boundaries, authority escalation, auditability, and fail-closed behavior in an AI design.
