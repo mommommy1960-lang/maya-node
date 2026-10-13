@@ -67,6 +67,22 @@ class AccountabilityTests(unittest.TestCase):
         d.verify(cid, d.lead, False)
         self.assertEqual(d.cases[cid]["status"], "review_required")
 
+    def test_advocate_expiration_and_revocation(self):
+        d = Demo(); cid = d.attempt("a", "charge", "sub", 0)["case_id"]
+        d.grant_advocate(cid, "a", "advocate", expires=20)
+        self.assertEqual(d.view(cid, "advocate", 19)["id"], cid)
+        with self.assertRaises(PermissionError): d.view(cid, "advocate", 20)
+        d.revoke_advocate(cid, "a")
+        with self.assertRaises(PermissionError): d.view(cid, "advocate", 1)
+
+    def test_export_does_not_leak_another_case(self):
+        d = Demo(); first = d.attempt("a", "charge", "sub", 0)["case_id"]
+        second = d.attempt("b", "charge", "private", 0)["case_id"]
+        exported = d.export_case(first, "a")
+        self.assertTrue(exported["events"])
+        self.assertTrue(all(e["case_id"] == first for e in exported["events"]))
+        with self.assertRaises(PermissionError): d.export_case(second, "a")
+
     def test_walkthrough_reports_simulation(self):
         result = walkthrough()
         self.assertIn("SIMULATION", result["scope"])
