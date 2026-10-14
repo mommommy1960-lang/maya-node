@@ -49,3 +49,9 @@ The publication work fixed a missing CERL header, shell examples mistakenly appe
 ## Continuing gates
 
 Registration, insurance, actual customer validation and live integrations remain open. Protected research implementation remains private; public summaries are linked from the repository index. No endorsement by Juan Garcia, Dr. Thomas Ainsworth, course providers or a regulator is claimed.
+
+## Additional recovered training record
+
+[USPTO Basic Patent Training — September 24, 2026](USPTO_BASIC_PATENT_TRAINING_COMPLETION_2026-09-24.md). The existing public record states the original certificate was reviewed before publication and retained privately. This is basic patent training, not practitioner licensure or an issued patent.
+
+The corrected PR60 integration job passed **1,129 tests** at its final head, in addition to all 111 hosted check results recorded above.
