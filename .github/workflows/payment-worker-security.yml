@@ -1,0 +1,25 @@
+name: Payment worker security
+on:
+  pull_request:
+    paths: ['deploy/cloudflare/**', '.github/workflows/payment-worker-security.yml']
+  push:
+    branches: [main]
+    paths: ['deploy/cloudflare/**', '.github/workflows/payment-worker-security.yml']
+permissions:
+  contents: read
+concurrency:
+  group: payment-worker-security-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  request-and-payment-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Run payment and abuse regression tests
+        run: node --test deploy/cloudflare/*.test.mjs deploy/cloudflare/test.mjs
