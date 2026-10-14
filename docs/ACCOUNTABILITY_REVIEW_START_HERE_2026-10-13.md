@@ -1,4 +1,13 @@
 # Civic Continuum / Maya Node - public review starting point
+## Named review areas — October 14, 2026
+
+| Business advising | Governance review preparation |
+|---|---|
+| [**Juan Antonio Garcia — assignments and business readiness**](JUAN_ANTONIO_GARCIA_BUSINESS_REVIEW.md) | [**Dr. Thomas Ainsworth — human authority and accountability**](HUMAN_AUTHORITY_AI_ALIGNMENT_BRIEF_2026-09-21.md) |
+
+Juan's area records business-advising work. Dr. Ainsworth's area is prepared for potential review; no endorsement, partnership or technical validation is implied. Follow the named areas for their distinct evidence and open goals.
+
+
 Published October 13, 2026 (Pacific). Founder: Mya P. Brown.
 Public documentation milestone completed. Operational product release remains incomplete.
 
