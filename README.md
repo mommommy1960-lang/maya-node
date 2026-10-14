@@ -68,9 +68,9 @@ PR #61 merged as `14c84be13352fe48e1ff48c5ff7f3ad1400f4f19`. Its hosted integrat
 
 - [School and banking browser demo](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html)
 - [School and banking customer pitches](https://civic-continuum-contact.freshcoin8.chatgpt.site/pitches.html)
-- [Download browser demo source](../demos/database_browser_demo.html)
-- [Run the Python walkthrough](../demos/accountability_demo.py)
-- [Local sandbox guide](ACCOUNTABILITY_SANDBOX.md)
+- [Download browser demo source](demos/database_browser_demo.html)
+- [Run the Python walkthrough](demos/accountability_demo.py)
+- [Local sandbox guide](docs/ACCOUNTABILITY_SANDBOX.md)
 
 
 ## Professional titles and organizations — verified October 14, 2026
