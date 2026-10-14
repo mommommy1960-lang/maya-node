@@ -48,3 +48,8 @@ State HMAC cannot prevent rollback/key compromise; local queue/session state lac
 The preliminary $2,500/month planning target is $500 operations plus $2,000 provisional owner pay before personal taxes. Costs/quotes and income need validation; registration, prototypes and other startup/project costs are separate. Actual private finances are not disclosed here.
 
 The public record explains what, how, when, why, results, corrections and gaps. Credentials, private correspondence and real child/customer records remain private.
+
+
+## October14 update
+
+[Current customer demos and rerun evidence](CUSTOMER_DEMOS_AND_ASSIGNMENT_UPDATE_2026-10-14.md). Founder-selected initial audiences are school database and banking database teams. Earlier billing/pickup evidence is preserved. [Open the fictional two-sector demonstration](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html) or [contact/service page](https://civic-continuum-contact.freshcoin8.chatgpt.site). The bounded human Founding Review costs $25. The browser illustration is not a production database system. Private adviser correspondence remains private.
