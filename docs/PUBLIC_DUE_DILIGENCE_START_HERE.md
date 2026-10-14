@@ -213,3 +213,18 @@ The official complete course workbook was obtained, and supported business respo
 Today's business-development work includes defining a bounded initial human review service, documenting delivery and cost assumptions, separating proposed research directions from demonstrated products, preparing adviser questions, and maintaining the existing customer-walkthrough and focused-review requests. Invitations and requests are distinguished from completed reviews, verified sales and accepted meetings.
 
 This is a record of founder training and business preparation. It does not establish production readiness, hardware timing or thermal performance, independent technical validation, or an SBDC endorsement. Private workbook answers, personal finances, correspondence and implementation details are excluded from this public page.
+
+## Professional titles and organizations — verified October 14, 2026
+
+| Name | Professional title | Organization | Official website |
+|---|---|---|---|
+| Juan Antonio Garcia (listed publicly as Juan Garcia) | Certified Business Advisor | Washington Small Business Development Center (Washington SBDC), hosted by Washington State University | [Official adviser profile](https://wsbdc.org/advisors/juan-garcia/) · [Washington SBDC](https://wsbdc.org/) |
+| Dr. Thomas Edward Ainsworth | Founder and Principal Consultant | Human-Centered AI Governance Institute LLC | [Institute](https://hcaigovernance.org/) · [Official leadership profile](https://hcaigovernance.org/about/) |
+
+These are their professional affiliations. Civic Continuum's materials for review do not imply organizational endorsement, partnership or technical approval.
+
+## Live customer routes — October 14, 2026
+
+[Contact and digital business card](https://civic-continuum-contact.freshcoin8.chatgpt.site) · [School and banking pitches](https://civic-continuum-contact.freshcoin8.chatgpt.site/pitches.html) · [Fictional sector demos](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html).
+
+Accountability implementation and runnable demos were merged through PR #61. The contact Site version 5 was published successfully; this does not activate the separate mail worker or a live school/bank system.
