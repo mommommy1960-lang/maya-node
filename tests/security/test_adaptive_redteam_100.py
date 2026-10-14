@@ -76,8 +76,8 @@ class TestAdaptiveRedTeam100(unittest.TestCase):
     def test_035_signature_extend(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature',t.signature+'0'))
     def test_036_signature_upper(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature',t.signature.upper()))
     def test_037_signature_reverse(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature',t.signature[::-1]))
-    def test_038_signature_prefix(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature','00'+t.signature[2:]))
-    def test_039_signature_suffix(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature',t.signature[:-2]+'00'))
+    def test_038_signature_prefix(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature',f'{int(t.signature[:2],16)^1:02x}'+t.signature[2:]))
+    def test_039_signature_suffix(self): self._assert_tamper_rejected(lambda t:setattr(t,'signature',t.signature[:-2]+f'{int(t.signature[-2:],16)^1:02x}'))
     def test_040_signature_other_token(self):
         a=self._fresh(); b=self._fresh(operation='op.write'); a.signature=b.signature; self.assertFalse(self.m.verify_token(a))
     def test_041_signature_other_manager(self):

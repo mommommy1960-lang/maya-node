@@ -1,0 +1,22 @@
+[Unit]
+Description=Maya approved mail queue worker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=maya-mail
+Group=maya-mail
+WorkingDirectory=/opt/maya-node
+ExecStart=/usr/bin/python3 -m src.sovereign.mail_worker
+EnvironmentFile=/etc/maya-mail/config
+LoadCredential=smtp_password:/etc/maya-mail/smtp_password
+StateDirectory=maya-mail
+StateDirectoryMode=0700
+Environment=MAYA_QUEUE_PATH=/var/lib/maya-mail/queue.db
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+TimeoutStartSec=300
