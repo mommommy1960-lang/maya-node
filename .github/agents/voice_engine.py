@@ -115,8 +115,11 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
-  python voice/voice_engine.py --agent KING --text "The Custodian takes no unnecessary risks."
-python voice/voice_engine.py --agent MANTIS --text "Queen, breathe. Let’s soften your nervous system."
-python voice/voice_engine.py --agent ROCKET --text "Okay but who signed off on this plan?"
-{"agent":"ROCKET","text":"Queen, this is absolutely going to explode."}
-echo '{"agent":"ROCKET","text":"Queen, this is absolutely going to explode."}' | python voice/voice_engine.py
+
+# Additional shell usage examples (documentation only):
+#   python voice/voice_engine.py --agent KING --text "The Custodian takes no unnecessary risks."
+# python voice/voice_engine.py --agent MANTIS --text "Queen, breathe. Let’s soften your nervous system."
+# python voice/voice_engine.py --agent ROCKET --text "Okay but who signed off on this plan?"
+# {"agent":"ROCKET","text":"Queen, this is absolutely going to explode."}
+# echo '{"agent":"ROCKET","text":"Queen, this is absolutely going to explode."}' | python voice/voice_engine.py
+# 
