@@ -128,13 +128,42 @@ export async function fulfillStripeEvent(event, env, senderFactory = gmailSender
   }
   return {accepted:true};
 }
+export async function boundedRequestText(request, limit) {
+  const declared = request.headers.get('content-length');
+  if (declared !== null && (!/^\d+$/.test(declared) || !Number.isSafeInteger(Number(declared)))) {
+    throw Object.assign(new Error('Invalid content length'), {status:400});
+  }
+  if (declared !== null && Number(declared) > limit) {
+    throw Object.assign(new Error('Too large'), {status:413});
+  }
+  if (!request.body) return '';
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder('utf-8', {fatal:true});
+  let bytes = 0;
+  const parts = [];
+  try {
+    while (true) {
+      const {done,value} = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > limit) throw Object.assign(new Error('Too large'), {status:413});
+      parts.push(decoder.decode(value, {stream:true}));
+    }
+    parts.push(decoder.decode());
+    return parts.join('');
+  } catch (error) {
+    try { await reader.cancel(); } catch {}
+    if (error.status) throw error;
+    throw Object.assign(new Error('Invalid body'), {status:400});
+  } finally { reader.releaseLock(); }
+}
+
 export async function stripeWebhook(request,env) {
   if(request.method!=='POST') return new Response('Method not allowed',{status:405});
   if(!env.STRIPE_WEBHOOK_SECRET || !env.DB) return new Response('Payment handoff unavailable',{status:503});
-  const length=Number(request.headers.get('content-length')||0);
-  if(length>262144) return new Response('Too large',{status:413});
-  const body=await request.text();
-  if(new TextEncoder().encode(body).length>262144) return new Response('Too large',{status:413});
+  let body;
+  try { body=await boundedRequestText(request,262144); }
+  catch(error) { return new Response(error.status===413 ? 'Too large' : 'Invalid body',{status:error.status||400}); }
   if(!await verifyStripeSignature(body,request.headers.get('stripe-signature'),env.STRIPE_WEBHOOK_SECRET)) return new Response('Invalid signature',{status:400});
   let event;
   try {event=JSON.parse(body);} catch {return new Response('Invalid event',{status:400});}
@@ -163,8 +192,9 @@ export default {
         return Response.json(rows.results);
       }
       if (request.method!=='POST') return new Response('Not found',{status:404});
-      const text=await request.text();
-      if(text.length>24000) return new Response('Too large',{status:413});
+      let text;
+      try { text=await boundedRequestText(request,24000); }
+      catch(error) { return new Response(error.status===413 ? 'Too large' : 'Invalid body',{status:error.status||400}); }
       const data=JSON.parse(text);
       if(url.pathname==='/mail-config-check') {
         const checks = {};
