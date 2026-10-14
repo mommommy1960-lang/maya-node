@@ -20,21 +20,13 @@ Published methods, sources, corrections and limits. Current local evidence: 28 s
 
 Purchasing organizations assign incident staff and backups. Provider responsibilities remain separately mapped.
 
-## Public Maya Node Founding Review
+## Maya Node software offer — corrected October 14, 2026
 
-Maya Node is a focused design-review service for founders, builders, and researchers who want a plain-English second look at consent, permission boundaries, authority escalation, auditability, and fail-closed behavior in an AI design.
+**Mya P. Brown (M-Y-A) is the founder. Maya Node (M-A-Y-A) is the software.** The intended paid product is Maya Node performing governance, permission and accountability operations through software, not a manual review performed by the founder.
 
-For the first three clients, the one-time founding review is **$25** and includes:
+Current implemented evidence covers deterministic permission controls, local demonstrations and documented tests. It does not establish a live general-purpose AI assistant or deployed customer integrations. The intended price is $25; duration, renewal terms, entitlement and paid delivery must be finalized before enabling software checkout. The browser demo hour is illustrative, not server-enforced anti-abuse protection.
 
-- A written boundary-risk report
-- One practical adversarial test aimed at the design's stated limits
-
-This is a design review, not certification, legal advice, penetration testing, or a claim that the system is production-ready.
-
-- **Learn more:** https://maya-node-founding-review.myqueen1960.chatgpt.site
-- **Reserve a founding review:** https://book.stripe.com/cNi7sM3v4crzdN30Bk5wI09
-- **Detailed project note:** [docs/MAYA_NODE_FOUNDING_REVIEW.md](docs/MAYA_NODE_FOUNDING_REVIEW.md)
-- **Zenodo record draft:** [docs/ZENODO_RECORD_DESCRIPTION.md](docs/ZENODO_RECORD_DESCRIPTION.md)
+[Try the interactive demonstration](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html). Earlier founding-review descriptions and checkout were for a different service and must not be used to sell the new software offer.
 
 ## SAGE integration
 
