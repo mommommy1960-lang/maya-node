@@ -27,9 +27,8 @@ service, hosted CI, security certification, or an end-to-end purchase test.
    every server request. A client-side timer alone is bypassable. Current browser
    demonstrations use invented records and are not live customer integrations.
 4. Create/configure a **software** Stripe product, price and checkout session.
-   The historical $25 review link must not grant software access. The founder has
-   requested paid software at $25, but paid duration and recurring versus one-time
-   terms are not yet settled. Do not invent a monthly subscription or charge.
+   The historical $25 review link must not grant software access. The selected starter plan is $25 for 30 days, 100 replies, one-time payment;
+   no automatic renewal. See server/DEPLOYMENT.md for terms and integration gates.
 5. Verify raw webhook signatures, exact price/product, currency, paid status,
    account/mode, and a server-created order-to-subject mapping before invoking
    `grant_verified_order`. A browser success redirect is not payment evidence.
@@ -52,3 +51,10 @@ site or its checkout has been disabled.
 No checkout, customer charge, hosted entitlement or live Maya service is activated
 by this preparation. Next release must connect verified identity, payment and
 Maya execution rather than advertising a working subscription prematurely.
+
+## HTTP and hosting preparation
+
+The server/ folder now contains the HTTP controller, D1 adapter and schema,
+customer UI, and deployment guide. 24 additional local Node tests passed.
+Provider calls are stubbed in those tests; a real card purchase and live AI
+execution have not been verified. No production code was deployed in this update.
