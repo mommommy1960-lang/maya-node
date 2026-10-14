@@ -1,3 +1,21 @@
+# Current Maya sandbox resumption — October 14, 2026
+
+The founder explicitly resumed sandbox work. Live sales remain disabled. This section is current; the original 10:20 AM pause record is preserved below for history.
+
+- **Confirmed deployment:** existing public contact Site version 11; source `f0871febd976ea50070e3113f334c5f22bd70483`. Deployment succeeded at 4:40 PM Pacific. Site identity, audience and contact pages were preserved.
+- **Corrections:** failed, timed-out and incomplete provider replies restore their allowance exactly once; overlapping requests and rapid retries are limited per account. Signed refund/payment reconciliation continues while sales are paused. Stripe runtime key/session mode and HTTPS checkout links are checked.
+- **Local verification:** 38 tests passed, zero failures, covering persistent SQL access, migration preservation, request controls, quota reconciliation and simulated provider/payment responses. Build and a 221-file source/output credential scan passed.
+- **Hosted verification:** the new database columns are present. Availability returned HTTP 200 with ready=false. A signed no-op sandbox webhook probe returned HTTP 200; this confirms route/signature handling, not delivery of a Stripe-originated payment event.
+- **Sandbox setup:** existing $25 USD one-time software product/price reconciled without duplication; sandbox webhook created and signing secret installed in hosted settings.
+- **Blocked provider execution:** a newly provisioned local key reached the OpenAI Responses API, but the actual reply request returned HTTP 429 / billing_not_active. No completed real reply, API credit purchase or customer charge occurred.
+- **Pending:** secure hosted OpenAI key installation, sandbox restricted Stripe runtime key, approved API funding amount, real sandbox purchase-to-access-to-reply testing, expiry/refund/dispute checks, final refund terms, broader abuse controls and browser/mobile verification.
+
+MAYA_LAUNCH_ENABLED remains false. These fixes and hosted infrastructure checks do not establish production readiness or a delivered paid software service. Runtime preparation PR63 is separate from the Sites deployment and was not merged by this work.
+
+---
+
+## Retained earlier pause record
+
 # Maya Node software launch — pause and resume
 Updated October 14, 2026, 10:20 AM Pacific. Prepared for Civic Continuum's public review routes.
 
