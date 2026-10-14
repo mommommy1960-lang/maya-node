@@ -16,7 +16,7 @@
     }
   ],
   "vars": {
-    "SEND_ENABLED": "true",
+    "SEND_ENABLED": "false",
     "MAIL_FROM": "mommommy1960@gmail.com"
   },
   "observability": {
