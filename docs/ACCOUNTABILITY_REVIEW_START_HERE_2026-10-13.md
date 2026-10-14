@@ -62,3 +62,23 @@ The public record explains what, how, when, why, results, corrections and gaps. 
 ## October14 update
 
 [Current customer demos and rerun evidence](CUSTOMER_DEMOS_AND_ASSIGNMENT_UPDATE_2026-10-14.md). Founder-selected initial audiences are school database and banking database teams. Earlier billing/pickup evidence is preserved. [Open the fictional two-sector demonstration](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html) or [contact/service page](https://civic-continuum-contact.freshcoin8.chatgpt.site). The bounded human Founding Review costs $25. The browser illustration is not a production database system. Private adviser correspondence remains private.
+
+## Publication checkpoint — October 14, 2026
+
+PR #61 merged as `14c84be13352fe48e1ff48c5ff7f3ad1400f4f19`. Its hosted integration run passed 1,113 tests on the proposed merge snapshot; this differs from the earlier 28 selected local checks. A separate Cloudflare build failed at the PR head, so code publication is not production deployment. During publication, 24 newly added local model/sandbox/public-record checks passed, and the 2,256-decision sweep matched all expected labels.
+
+- [School and banking browser demo](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html)
+- [School and banking customer pitches](https://civic-continuum-contact.freshcoin8.chatgpt.site/pitches.html)
+- [Download browser demo source](../demos/database_browser_demo.html)
+- [Run the Python walkthrough](../demos/accountability_demo.py)
+- [Local sandbox guide](ACCOUNTABILITY_SANDBOX.md)
+
+
+## Professional titles and organizations — verified October 14, 2026
+
+| Name | Professional title | Organization | Official website |
+|---|---|---|---|
+| Juan Antonio Garcia (listed publicly as Juan Garcia) | Certified Business Advisor | Washington Small Business Development Center (Washington SBDC), hosted by Washington State University | [Official adviser profile](https://wsbdc.org/advisors/juan-garcia/) · [Washington SBDC](https://wsbdc.org/) |
+| Dr. Thomas Edward Ainsworth | Founder and Principal Consultant | Human-Centered AI Governance Institute LLC | [Institute](https://hcaigovernance.org/) · [Official leadership profile](https://hcaigovernance.org/about/) |
+
+These are their professional affiliations. Civic Continuum's materials for review do not imply organizational endorsement, partnership or technical approval.
