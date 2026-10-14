@@ -1,0 +1,1522 @@
+{
+  "retrieved_at": "2026-10-14T11:09:43.785956+00:00",
+  "irs": {
+    "source": "https://www.irs.gov/pub/irs-soi/eo_wa.csv",
+    "source_sha256": "a04c7897480c07b89ed5cb1e32fc756ef3561a8a901f9e79c5621d9c31ab0c3c",
+    "full_file_rows": 42812,
+    "selection": "first 100 records in downloaded file order; not random",
+    "rows": [
+      {
+        "NAME": "OKANOGAN REGIONAL HUMANE",
+        "CITY": "OMAK",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "D20"
+      },
+      {
+        "NAME": "OROMO CULTURAL CENTER",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A23"
+      },
+      {
+        "NAME": "GLOBAL GATEWAY NETWORK",
+        "CITY": "NINE MILE FLS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X20"
+      },
+      {
+        "NAME": "SW WASHINGTON HIGH TECHNOLOGY COUNCIL",
+        "CITY": "VANCOUVER",
+        "STATE": "WA",
+        "SUBSECTION": "06",
+        "STATUS": "01",
+        "NTEE_CD": "S41"
+      },
+      {
+        "NAME": "VANCOUVER LAKE CREW",
+        "CITY": "VANCOUVER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N67"
+      },
+      {
+        "NAME": "IN HIS SERVICE AMIANAN",
+        "CITY": "BATTLE GROUND",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X21"
+      },
+      {
+        "NAME": "OLYMPIC PENINSULA COMMUNITY CLINIC",
+        "CITY": "PORT ANGELES",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "E30"
+      },
+      {
+        "NAME": "WASHINGTON ASSOCIATION OF PHYSICIANS OF INDIAN ORIGIN",
+        "CITY": "BELLEVUE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B99"
+      },
+      {
+        "NAME": "SPOKANE VALLEY HERITAGE MUSEUM",
+        "CITY": "SPOKANE VLY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A50"
+      },
+      {
+        "NAME": "NORTH THURSTON PARAEDUCATORS ASSOCIATION",
+        "CITY": "TUMWATER",
+        "STATE": "WA",
+        "SUBSECTION": "05",
+        "STATUS": "01",
+        "NTEE_CD": "J40"
+      },
+      {
+        "NAME": "HIRES FAMILY RESOURCES INC",
+        "CITY": "YAKIMA",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P40"
+      },
+      {
+        "NAME": "SPIRITVISION",
+        "CITY": "FEDERAL WAY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B99"
+      },
+      {
+        "NAME": "HIGHLAND MUSIC BOOSTER CLUB",
+        "CITY": "COWICHE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A6C"
+      },
+      {
+        "NAME": "WASHINGTON INTERNATIONAL SCHOOL",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B28"
+      },
+      {
+        "NAME": "OUR TOWN FOUNDATION",
+        "CITY": "LYNDEN",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "S30"
+      },
+      {
+        "NAME": "CLEAN & SOBER SOFTBALL ASSOCIATION",
+        "CITY": "REDMOND",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "F21"
+      },
+      {
+        "NAME": "IGLESIA TORRE FUERTE",
+        "CITY": "BELLINGHAM",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X21"
+      },
+      {
+        "NAME": "WHITMAN COUNTY CROP IMPROVEMENT ASSOCIATION",
+        "CITY": "COLFAX",
+        "STATE": "WA",
+        "SUBSECTION": "05",
+        "STATUS": "01",
+        "NTEE_CD": "C99"
+      },
+      {
+        "NAME": "PREVENTION SPECIALIST CERTIFICATION BOARD OF WASHINGTON STATE",
+        "CITY": "CLARKSTON",
+        "STATE": "WA",
+        "SUBSECTION": "06",
+        "STATUS": "01",
+        "NTEE_CD": "S41"
+      },
+      {
+        "NAME": "AMERICAN SEWING GUILD INC",
+        "CITY": "EDMONDS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "SPOKANE FLY FISHERS CLUB",
+        "CITY": "SPOKANE",
+        "STATE": "WA",
+        "SUBSECTION": "07",
+        "STATUS": "01",
+        "NTEE_CD": "N61"
+      },
+      {
+        "NAME": "BIRCH BAY CHAMBER OF COMMERCE",
+        "CITY": "BLAINE",
+        "STATE": "WA",
+        "SUBSECTION": "06",
+        "STATUS": "01",
+        "NTEE_CD": "S41"
+      },
+      {
+        "NAME": "WASHINGTON MUSEUM OF MILITARY TECHNOLOGY",
+        "CITY": "SNOHOMISH",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A50"
+      },
+      {
+        "NAME": "FIRCREST WA FOURSQUARE GOSPEL CHURCH",
+        "CITY": "UNIVERSITY PL",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "NORTH BEACH ALANO CLUB",
+        "CITY": "OCEAN SHORES",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "F50"
+      },
+      {
+        "NAME": "PORTAGE BAY INSURANCE",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "Y990"
+      },
+      {
+        "NAME": "TOPPENISH COMMUNITY FOUNDATION",
+        "CITY": "TOPPENISH",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "S30"
+      },
+      {
+        "NAME": "SEHOME PTSA 8-3-100",
+        "CITY": "BELLINGHAM",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B112"
+      },
+      {
+        "NAME": "TRI-CITIES PREP FOUNDATION",
+        "CITY": "PASCO",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B12"
+      },
+      {
+        "NAME": "SOUTHWEST WASHINGTON WORKFORCE DEVELOPMENT COUNCIL",
+        "CITY": "VANCOUVER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "T20"
+      },
+      {
+        "NAME": "FRESH-WIND MINISTRIES",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "METHOW RECYCLES",
+        "CITY": "TWISP",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "C27"
+      },
+      {
+        "NAME": "PORT ORCHARD FOURSQUARE CHURCH",
+        "CITY": "PORT ORCHARD",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "LEAVENWORTH SKI HILL HERITAGE FOUNDATION",
+        "CITY": "LEAVENWORTH",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N50"
+      },
+      {
+        "NAME": "VIKING TRACK BOOSTERS",
+        "CITY": "KENMORE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "T20"
+      },
+      {
+        "NAME": "COLBERT ELEMENTRY PTO",
+        "CITY": "COLBERT",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B94"
+      },
+      {
+        "NAME": "LITERACY FOR HAITI INC",
+        "CITY": "CLARKSTON",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "Q33"
+      },
+      {
+        "NAME": "RICHARD W HOTES FOUNDATION",
+        "CITY": "KIRKLAND",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P99"
+      },
+      {
+        "NAME": "JANICE LARSEN CANCER FOUNDATION",
+        "CITY": "KIRKLAND",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "H30"
+      },
+      {
+        "NAME": "NORTHWEST BAPTIST CONVENTION",
+        "CITY": "EDMONDS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "VETERINARY MEDICAL ASSOCIATION EXECUTIVES INC",
+        "CITY": "CAMAS",
+        "STATE": "WA",
+        "SUBSECTION": "06",
+        "STATUS": "01",
+        "NTEE_CD": "S41"
+      },
+      {
+        "NAME": "LAKEWOOD FIRST LIONS COMMUNITY FOUNDATION",
+        "CITY": "LAKEWOOD",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "T50"
+      },
+      {
+        "NAME": "GRACE COMMUNION PORT ORCHARD",
+        "CITY": "PORT ORCHARD",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "FUSION-FRIENDS UNITED TO SHELTER THE INDIGENT OPPRESSED AND NEEDY",
+        "CITY": "FEDERAL WAY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P85"
+      },
+      {
+        "NAME": "BELLEVUE GIRLS BASKETBALL BOOSTER CLUB",
+        "CITY": "MEDINA",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N62"
+      },
+      {
+        "NAME": "GENERAL FEDERATION OF WOMENS CLUB",
+        "CITY": "RAINIER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "ASSOCIATION OF ERITREAN CHURCHES IN NORTH AMERICA",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X03"
+      },
+      {
+        "NAME": "TEAM READ",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B92"
+      },
+      {
+        "NAME": "JET CITY JUMPERS INC",
+        "CITY": "ISSAQUAH",
+        "STATE": "WA",
+        "SUBSECTION": "07",
+        "STATUS": "01",
+        "NTEE_CD": "N50"
+      },
+      {
+        "NAME": "WASHINGTONS NATIONAL PARK FUND",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N32"
+      },
+      {
+        "NAME": "WOLVERTON MOUNTAIN PEACEKEEPERS INC",
+        "CITY": "VANCOUVER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N61"
+      },
+      {
+        "NAME": "BRIDGE OF GRACE CHURCH",
+        "CITY": "KENT",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "GLOBAL AID AGAINST POVERTY INC",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "Q30"
+      },
+      {
+        "NAME": "BACKSTRETCH CHAPEL",
+        "CITY": "AUBURN",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "WANA DUMA CHILDRENS PROJECT",
+        "CITY": "STANWOOD",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B90"
+      },
+      {
+        "NAME": "CLAN BAILEY SOCIETY INTERNATIONAL",
+        "CITY": "MUKILTEO",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "A23"
+      },
+      {
+        "NAME": "BASEL ACTION NETWORK",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "C30"
+      },
+      {
+        "NAME": "PREVENT HOMELESS PETS",
+        "CITY": "BENTON CITY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "D20"
+      },
+      {
+        "NAME": "RAINIER EDUCATION ASSOCIATION",
+        "CITY": "RAINIER",
+        "STATE": "WA",
+        "SUBSECTION": "05",
+        "STATUS": "01",
+        "NTEE_CD": "J40"
+      },
+      {
+        "NAME": "DISABLED AMERICAN VETERANS",
+        "CITY": "MOUNT VERNON",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "W30"
+      },
+      {
+        "NAME": "AMERICAN FEDERATION OF STATE COUNTY & MUNICIPAL EMPLOYEES",
+        "CITY": "EVERETT",
+        "STATE": "WA",
+        "SUBSECTION": "05",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "CAMP TEN TREES",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N20"
+      },
+      {
+        "NAME": "IGLESIA CRISTIANA NUEVA VIDA",
+        "CITY": "FEDERAL WAY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X20"
+      },
+      {
+        "NAME": "HERO HOUSE",
+        "CITY": "BELLEVUE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P82"
+      },
+      {
+        "NAME": "ISLAND TIME ACTIVITIES",
+        "CITY": "BAINBRIDGE IS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P20"
+      },
+      {
+        "NAME": "EASTSIDE FIREFIGHTERS PIPES AND DRUMS",
+        "CITY": "KIRKLAND",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "W99"
+      },
+      {
+        "NAME": "HAZEL WOLF K-8 PTSA 6 15 24",
+        "CITY": "TACOMA",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B94"
+      },
+      {
+        "NAME": "OLYMPIA ART LEAGUE",
+        "CITY": "LACEY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A20"
+      },
+      {
+        "NAME": "CAMAS-WASHOUGAL FLYING CLUB INC",
+        "CITY": "CAMAS",
+        "STATE": "WA",
+        "SUBSECTION": "07",
+        "STATUS": "01",
+        "NTEE_CD": "N50"
+      },
+      {
+        "NAME": "FLY FISHERS INTERNATIONAL INC",
+        "CITY": "LAKE TAPPS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "TWO RIVERS RIDING CLUB",
+        "CITY": "BURBANK",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "N69"
+      },
+      {
+        "NAME": "WA KOREAN WOMEN REALTORS ASSOCIATION",
+        "CITY": "BELLEVUE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B60"
+      },
+      {
+        "NAME": "HOME FOR HOME INC",
+        "CITY": "LAKE STEVENS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "Q33"
+      },
+      {
+        "NAME": "WIDOWS MIGHT",
+        "CITY": "SPOKANE VLY",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P99"
+      },
+      {
+        "NAME": "FRIENDS OF THE TUMWATER TIMBERLAND LIBRARY",
+        "CITY": "TUMWATER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B70"
+      },
+      {
+        "NAME": "DISABLED AMERICAN VETERANS AUXILIARY INC",
+        "CITY": "YAKIMA",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "KNIGHTS OF COLUMBUS",
+        "CITY": "SPOKANE",
+        "STATE": "WA",
+        "SUBSECTION": "08",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "NATIONAL SOCIETY OF THE DAUGHTERS OF THE AMERICAN REVOLUTION",
+        "CITY": "SNOQUALMIE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "WOODLAND PARK LAWN BOWLING CLUB",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "N31"
+      },
+      {
+        "NAME": "PRAISE A LUJAH DISCIPLESHIP",
+        "CITY": "DES MOINES",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X20"
+      },
+      {
+        "NAME": "PACIFIC NW VINTAGE SNOWMOBILE CLUB",
+        "CITY": "CAMAS",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "N50"
+      },
+      {
+        "NAME": "IGLESIA PENTECOSTAL FUEGO DE DIOS",
+        "CITY": "VANCOUVER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X21"
+      },
+      {
+        "NAME": "LEAGUE OF WOMEN VOTERS OF MASON COUNTY",
+        "CITY": "SHELTON",
+        "STATE": "WA",
+        "SUBSECTION": "04",
+        "STATUS": "01",
+        "NTEE_CD": "R40"
+      },
+      {
+        "NAME": "INLAND NORTHWEST SHEET METAL LABOR MGT COOP TRUST",
+        "CITY": "BOTHELL",
+        "STATE": "WA",
+        "SUBSECTION": "05",
+        "STATUS": "01",
+        "NTEE_CD": "J40"
+      },
+      {
+        "NAME": "INSTITUTE FOR NATURAL MEDICINE",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": ""
+      },
+      {
+        "NAME": "INNER VISIONS PACIFIC NORTHWEST BREAST CANCER ART ASSOCIATION",
+        "CITY": "FRIDAY HARBOR",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "E86"
+      },
+      {
+        "NAME": "ISLAMIC CENTER OF KITSAP COUNTY",
+        "CITY": "BREMERTON",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "X40"
+      },
+      {
+        "NAME": "SMT BOOSTERS",
+        "CITY": "VANCOUVER",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B112"
+      },
+      {
+        "NAME": "OLYMPIA YOUTH SOCCER CLUB",
+        "CITY": "OLYMPIA",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "N64"
+      },
+      {
+        "NAME": "GIFTS FROM THE HEART FOOD BANK",
+        "CITY": "COUPEVILLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "K31"
+      },
+      {
+        "NAME": "MORIAH AFRICA",
+        "CITY": "LEAVENWORTH",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "Q33"
+      },
+      {
+        "NAME": "THE STOREHOUSE",
+        "CITY": "COVINGTON",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "K31"
+      },
+      {
+        "NAME": "SOUND CHILD CARE SOLUTIONS",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "B21"
+      },
+      {
+        "NAME": "EMPOWERING YOUTH & FAMILIES OUTREACH",
+        "CITY": "RENTON",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "O51"
+      },
+      {
+        "NAME": "WASHINGTON INFORMATION NETWORK 2-1-1",
+        "CITY": "EDMONDS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "E99"
+      },
+      {
+        "NAME": "SLOW FOOD USA INC",
+        "CITY": "ARLINGTON",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "K40"
+      },
+      {
+        "NAME": "A CONTEMPORARY THEATRE FOUNDATION",
+        "CITY": "SEATTLE",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A11"
+      },
+      {
+        "NAME": "TUMWATER DOWNTOWN ASSOCIATION",
+        "CITY": "OLYMPIA",
+        "STATE": "WA",
+        "SUBSECTION": "06",
+        "STATUS": "01",
+        "NTEE_CD": "S41"
+      },
+      {
+        "NAME": "RAVEN CANOE SOCIETY",
+        "CITY": "POULSBO",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "A20"
+      },
+      {
+        "NAME": "PORT OF HOPE MINISTRIES INC",
+        "CITY": "SUMAS",
+        "STATE": "WA",
+        "SUBSECTION": "03",
+        "STATUS": "01",
+        "NTEE_CD": "P20"
+      }
+    ]
+  },
+  "cfpb": {
+    "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=100&date_received_min=2025-01-01&date_received_max=2025-12-31",
+    "source_sha256": "e392da86060e583005e96fe7ccdde5e9b10ca9f83299ef027571eb85e7017057",
+    "selection": "100 hits returned by stated query, source order; not representative",
+    "api_total": {
+      "value": 5442951,
+      "relation": "eq"
+    },
+    "rows": [
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-26T05:07:04.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Threatened to contact someone or share information improperly",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-14T16:56:03.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-21T17:59:42.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-08T04:29:24.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-21T23:44:55.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Fees or interest",
+        "company_response": "Closed with explanation",
+        "timely": "No",
+        "date_received": "2025-12-01T16:53:18.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Closing your account",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-23T04:01:03.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Fees or interest",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-12T13:54:12.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Fees or interest",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-11T23:52:48.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Fees or interest",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-06T17:20:36.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Fees or interest",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-05T16:17:18.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-21T21:43:37.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-17T17:14:31.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-09-17T15:42:41.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Struggling to pay mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-09-12T16:44:27.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "False statements or representation",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-09-03T14:29:50.000Z"
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem with the payoff process at the end of the loan",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-08-26T23:46:51.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "False statements or representation",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-08-20T23:13:30.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "No",
+        "date_received": "2025-08-01T16:55:42.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Closing on a mortgage",
+        "company_response": "Closed with monetary relief",
+        "timely": "Yes",
+        "date_received": "2025-07-28T17:54:09.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with monetary relief",
+        "timely": "Yes",
+        "date_received": "2025-07-18T19:22:45.000Z"
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Incorrect exchange rate",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-07-16T19:12:16.000Z"
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Managing the loan or lease",
+        "company_response": "Untimely response",
+        "timely": "No",
+        "date_received": "2025-07-15T12:57:20.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Closing on a mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-02T17:45:30.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-08-17T01:15:29.000Z"
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Charged fees or interest you didn't expect",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-07-01T15:43:58.000Z"
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Didn't provide services promised",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-07-09T14:49:29.000Z"
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Problem with customer service",
+        "company_response": "Untimely response",
+        "timely": "No",
+        "date_received": "2025-08-19T14:41:50.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-07T14:38:31.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-09-25T15:49:13.000Z"
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Charged upfront or unexpected fees",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-07-11T18:12:26.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-09-09T15:20:40.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Closing on a mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-08-09T19:33:43.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-07-05T08:45:32.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-12T18:32:17.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-04T16:46:49.000Z"
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Getting the loan",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-13T18:34:13.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Untimely response",
+        "timely": "No",
+        "date_received": "2025-07-18T22:00:20.000Z"
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Charged fees or interest you didn't expect",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-07-11T03:39:40.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Closing on a mortgage",
+        "company_response": "Closed with non-monetary relief",
+        "timely": "Yes",
+        "date_received": "2025-08-13T17:29:23.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Trouble during payment process",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-05-31T04:29:05.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Getting a credit card",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-09T16:29:57.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Written notification about debt",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-12-02T22:42:42.000Z"
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Trouble using the card",
+        "company_response": "Closed with monetary relief",
+        "timely": "Yes",
+        "date_received": "2025-12-02T05:03:58.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-12-01T20:16:19.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-12-01T19:34:11.000Z"
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Unauthorized transactions or other transaction problem",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-12-01T18:34:09.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Trouble during payment process",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-12-01T16:38:41.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-03T02:37:50.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-09T19:38:48.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-10-21T14:40:56.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-30T21:59:52.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-30T19:12:53.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-30T02:28:44.000Z"
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Unexpected or other fees",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-29T20:17:02.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-29T20:12:08.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-28T05:29:48.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-28T05:07:24.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-27T13:25:32.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-27T15:32:21.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-27T00:48:16.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "False statements or representation",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-25T23:12:53.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-24T07:19:49.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-23T23:02:46.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "No",
+        "date_received": "2025-11-23T18:23:55.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Trouble using your card",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-23T13:26:21.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "False statements or representation",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T23:12:15.000Z"
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Unexpected or other fees",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T23:40:40.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T12:45:07.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Other features, terms, or problems",
+        "company_response": "Closed with non-monetary relief",
+        "timely": "Yes",
+        "date_received": "2025-11-22T20:42:23.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Electronic communications",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T17:44:57.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem when making payments",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T13:43:16.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Written notification about debt",
+        "company_response": "Closed with explanation",
+        "timely": "No",
+        "date_received": "2025-11-22T15:21:31.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T06:04:22.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Advertising and marketing, including promotional offers",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-22T01:03:04.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-21T18:35:33.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-21T03:28:33.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T23:12:18.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T17:21:46.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T10:26:21.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Advertising and marketing, including promotional offers",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T12:48:43.000Z"
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem with a purchase shown on your statement",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T17:01:11.000Z"
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Trouble using the card",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T02:26:35.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "False statements or representation",
+        "company_response": "Closed with non-monetary relief",
+        "timely": "Yes",
+        "date_received": "2025-11-19T23:53:13.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-20T02:08:17.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Written notification about debt",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T22:36:49.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T18:46:17.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-08-05T17:26:08.000Z"
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Trouble during payment process",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T15:58:14.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T15:34:42.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T04:57:02.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T04:42:15.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-19T00:48:52.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-18T21:54:44.000Z"
+      },
+      {
+        "product": "Student loan",
+        "issue": "Dealing with your lender or servicer",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-18T20:00:19.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-18T19:37:28.000Z"
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Problem with a lender or other company charging your account",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-18T06:46:28.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-17T20:34:15.000Z"
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-17T03:51:17.000Z"
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "company_response": "Closed with explanation",
+        "timely": "Yes",
+        "date_received": "2025-11-16T22:33:06.000Z"
+      }
+    ]
+  }
+}
