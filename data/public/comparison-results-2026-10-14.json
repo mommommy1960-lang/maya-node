@@ -1,0 +1,155 @@
+{
+  "retrieved_at": "2026-10-14T11:09:43.785956+00:00",
+  "scope": "Observed public-source records; operator permissions are injected test conditions",
+  "datasets": {
+    "irs": {
+      "source": "https://www.irs.gov/pub/irs-soi/eo_wa.csv",
+      "source_sha256": "a04c7897480c07b89ed5cb1e32fc756ef3561a8a901f9e79c5621d9c31ab0c3c",
+      "selection": "first 100 records in downloaded file order; not random",
+      "schema_complete_rows": 100,
+      "aggregation": {
+        "rows": 100,
+        "counts": {
+          "03": 78,
+          "04": 8,
+          "05": 5,
+          "06": 5,
+          "07": 3,
+          "08": 1
+        }
+      },
+      "allowed_summary_matches_direct": true,
+      "outside_scope_export_blocked": true,
+      "revoked_read_blocked": true,
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "action.checked",
+          "subject": "DEMO-REVIEWER",
+          "action": "read_summary",
+          "resource": "PUBLIC-irs-a04c7897480c07b89ed5cb1e32fc756ef3561a8a901f9e79c5621d9c31ab0c3c",
+          "ai_approval": true,
+          "permission": true,
+          "coverage": true,
+          "allowed": true,
+          "owner": "DEMO-STAFF-1",
+          "at": 1
+        },
+        {
+          "sequence": 2,
+          "kind": "action.checked",
+          "subject": "DEMO-REVIEWER",
+          "action": "bulk_export",
+          "resource": "PUBLIC-irs-a04c7897480c07b89ed5cb1e32fc756ef3561a8a901f9e79c5621d9c31ab0c3c",
+          "ai_approval": true,
+          "permission": false,
+          "coverage": true,
+          "allowed": false,
+          "owner": "DEMO-STAFF-1",
+          "at": 2
+        },
+        {
+          "sequence": 3,
+          "kind": "case.opened",
+          "case_id": "DEMO-CASE-1",
+          "owner": "DEMO-STAFF-1",
+          "simulated_notification": true
+        },
+        {
+          "sequence": 4,
+          "kind": "action.checked",
+          "subject": "DEMO-REVIEWER",
+          "action": "read_summary",
+          "resource": "PUBLIC-irs-a04c7897480c07b89ed5cb1e32fc756ef3561a8a901f9e79c5621d9c31ab0c3c",
+          "ai_approval": true,
+          "permission": false,
+          "coverage": true,
+          "allowed": false,
+          "owner": "DEMO-STAFF-1",
+          "at": 3
+        },
+        {
+          "sequence": 5,
+          "kind": "case.opened",
+          "case_id": "DEMO-CASE-2",
+          "owner": "DEMO-STAFF-1",
+          "simulated_notification": true
+        }
+      ]
+    },
+    "cfpb": {
+      "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=100&date_received_min=2025-01-01&date_received_max=2025-12-31",
+      "source_sha256": "e392da86060e583005e96fe7ccdde5e9b10ca9f83299ef027571eb85e7017057",
+      "selection": "100 hits returned by stated query, source order; not representative",
+      "schema_complete_rows": 100,
+      "aggregation": {
+        "rows": 100,
+        "counts": {
+          "Closed with explanation": 91,
+          "Closed with monetary relief": 3,
+          "Closed with non-monetary relief": 3,
+          "Untimely response": 3
+        }
+      },
+      "allowed_summary_matches_direct": true,
+      "outside_scope_export_blocked": true,
+      "revoked_read_blocked": true,
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "action.checked",
+          "subject": "DEMO-REVIEWER",
+          "action": "read_summary",
+          "resource": "PUBLIC-cfpb-e392da86060e583005e96fe7ccdde5e9b10ca9f83299ef027571eb85e7017057",
+          "ai_approval": true,
+          "permission": true,
+          "coverage": true,
+          "allowed": true,
+          "owner": "DEMO-STAFF-1",
+          "at": 1
+        },
+        {
+          "sequence": 2,
+          "kind": "action.checked",
+          "subject": "DEMO-REVIEWER",
+          "action": "bulk_export",
+          "resource": "PUBLIC-cfpb-e392da86060e583005e96fe7ccdde5e9b10ca9f83299ef027571eb85e7017057",
+          "ai_approval": true,
+          "permission": false,
+          "coverage": true,
+          "allowed": false,
+          "owner": "DEMO-STAFF-1",
+          "at": 2
+        },
+        {
+          "sequence": 3,
+          "kind": "case.opened",
+          "case_id": "DEMO-CASE-1",
+          "owner": "DEMO-STAFF-1",
+          "simulated_notification": true
+        },
+        {
+          "sequence": 4,
+          "kind": "action.checked",
+          "subject": "DEMO-REVIEWER",
+          "action": "read_summary",
+          "resource": "PUBLIC-cfpb-e392da86060e583005e96fe7ccdde5e9b10ca9f83299ef027571eb85e7017057",
+          "ai_approval": true,
+          "permission": false,
+          "coverage": true,
+          "allowed": false,
+          "owner": "DEMO-STAFF-1",
+          "at": 3
+        },
+        {
+          "sequence": 5,
+          "kind": "case.opened",
+          "case_id": "DEMO-CASE-2",
+          "owner": "DEMO-STAFF-1",
+          "simulated_notification": true
+        }
+      ]
+    }
+  },
+  "comparison_checks_passed": 6
+}
