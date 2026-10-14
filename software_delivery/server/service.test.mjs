@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {webcrypto} from 'node:crypto';
+import {createService,signature,PLAN} from './service.mjs';
+if(!globalThis.crypto)globalThis.crypto=webcrypto;
+const env={OPENAI_API_KEY:'test',OPENAI_MODEL:'test-model',STRIPE_SECRET_KEY:'test',STRIPE_WEBHOOK_SECRET:'test-secret',STRIPE_SOFTWARE_PRICE_ID:'price_software',STRIPE_MODE:'test'};
+const origin='https://test.example';
+const req=(path,data,headers={})=>new Request(origin+path,{method:data===undefined?'GET':'POST',headers:{origin,'oai-authenticated-user-id':'alice','oai-authenticated-user-email':'alice@example.org',...headers},...(data===undefined?{}:{body:JSON.stringify(data)})});
+function harness(fetcher){
+ const calls=[];const store={status:async()=>({allowed:true,reason:'trial'}),startTrial:async(...x)=>{calls.push(['trial',...x]);return {allowed:true};},reserve:async()=>true,recordCheckout:async x=>calls.push(['checkout',x]),getCheckout:async()=>({subject:'alice',price:'price_software',created:1000}),grantOrder:async x=>calls.push(['grant',x]),revokePayment:async x=>calls.push(['revoke',x])};
+ return {calls,store,run:createService({store,fetcher,clock:()=>1000})};
+}
+test('anonymous caller cannot start trial',async()=>{const h=harness();assert.equal((await h.run(new Request(origin+'/api/trial',{method:'POST'}),env)).status,401);assert.equal(h.calls.length,0);});
+test('cross-origin mutation rejected',async()=>{const h=harness();assert.equal((await h.run(req('/api/trial',{}, {origin:'https://evil.example'}),env)).status,403);});
+test('missing configuration cannot sell access',async()=>{const h=harness();assert.equal((await h.run(req('/api/checkout',{}),{})).status,503);assert.equal(h.calls.length,0);});
+test('trial takes identity and clock only from server',async()=>{const h=harness();assert.equal((await h.run(req('/api/trial',{subject:'victim',now:0}),env)).status,200);assert.deepEqual(h.calls[0],['trial','alice',1000,3600,10]);});
+test('Maya executes provider request and returns output',async()=>{let sent;const h=harness(async(url,options)=>{assert.equal(url,'https://api.openai.com/v1/responses');sent=JSON.parse(options.body);return Response.json({output:[{content:[{type:'output_text',text:'Assign an accountable workflow owner.'}]}]});});const r=await h.run(req('/api/maya',{message:'Who owns correction?'}),env);assert.equal(r.status,200);assert.equal((await r.json()).reply,'Assign an accountable workflow owner.');assert.equal(sent.store,false);assert.equal(sent.max_output_tokens,600);assert.equal(sent.input,'Who owns correction?');});
+test('exhausted access blocks provider call',async()=>{let called=false;const h=harness(async()=>{called=true;});h.store.reserve=async()=>false;assert.equal((await h.run(req('/api/maya',{message:'hello'}),env)).status,403);assert.equal(called,false);});
+test('oversized prompts rejected',async()=>{const h=harness();assert.equal((await h.run(req('/api/maya',{message:'a'.repeat(4001)}),env)).status,400);});
+test('checkout uses correct software price and no recurring mode',async()=>{let sent;const h=harness(async(url,options)=>{sent=new URLSearchParams(options.body);return Response.json({id:'cs_test_1',url:'https://checkout.stripe.com/c/pay/test'});});const r=await h.run(req('/api/checkout',{}),env);assert.equal(r.status,200);assert.equal(sent.get('mode'),'payment');assert.equal(sent.get('line_items[0][price]'),'price_software');assert.equal(sent.get('client_reference_id'),'alice');assert.equal(h.calls[0][0],'checkout');assert.equal(h.calls.filter(x=>x[0]==='grant').length,0);});
+test('success redirect alone grants nothing',async()=>{const h=harness();await h.run(req('/api/status'),env);assert.equal(h.calls.length,0);});
+test('invalid webhook signatures rejected',async()=>{const h=harness();const r=await h.run(new Request(origin+'/api/stripe/webhook',{method:'POST',body:'{}',headers:{'stripe-signature':'t=1000,v1='+'a'.repeat(64)}}),env);assert.equal(r.status,400);assert.equal(h.calls.length,0);assert.equal(await signature('{}','t=0,v1='+'a'.repeat(64),'test',1000),false);});
+async function webhook(h,event){const raw=JSON.stringify(event);const key=await crypto.subtle.importKey('raw',new TextEncoder().encode('test-secret'),{name:'HMAC',hash:'SHA-256'},false,['sign']);const mac=new Uint8Array(await crypto.subtle.sign('HMAC',key,new TextEncoder().encode('1000.'+raw)));const hex=Array.from(mac,b=>b.toString(16).padStart(2,'0')).join('');return h.run(new Request(origin+'/api/stripe/webhook',{method:'POST',body:raw,headers:{'stripe-signature':'t=1000,v1='+hex}}),env);}
+const paid=()=>({type:'checkout.session.completed',livemode:false,data:{object:{id:'cs_test_1',livemode:false,mode:'payment',payment_status:'paid',amount_total:2500,currency:'usd',client_reference_id:'alice',payment_intent:'pi_test'}}});
+test('verified paid webhook grants bounded software access',async()=>{const h=harness();assert.equal((await webhook(h,paid())).status,200);assert.equal(h.calls[0][1].expires,1000+30*86400);});
+test('wrong amount and legacy price cannot grant access',async()=>{const h=harness();let e=paid();e.data.object.amount_total=100;await webhook(h,e);h.store.getCheckout=async()=>({subject:'alice',price:'price_old_review',created:1000});await webhook(h,paid());assert.equal(h.calls.length,0);});
+test('payment cannot grant another customers access',async()=>{const h=harness();const e=paid();e.data.object.client_reference_id='bob';await webhook(h,e);assert.equal(h.calls.length,0);});
+test('refund routes to persistent revocation',async()=>{const h=harness();await webhook(h,{type:'charge.refunded',livemode:false,data:{object:{payment_intent:'pi_test'}}});assert.deepEqual(h.calls[0],['revoke','pi_test']);});
+test('live events cannot pass test-mode gate',async()=>{const h=harness();const e=paid();e.livemode=true;e.data.object.livemode=true;await webhook(h,e);assert.equal(h.calls.length,0);});
+test('plan is 30 days with fixed reply limits',()=>assert.deepEqual(PLAN,{amount:2500,currency:'usd',days:30,paidReplies:100,trialSeconds:3600,trialReplies:10}));
