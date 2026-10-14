@@ -1,4 +1,13 @@
 # START HERE — Maya Node Public Due Diligence
+## Named review areas — October 14, 2026
+
+| Business advising | Governance review preparation |
+|---|---|
+| [**Juan Antonio Garcia — assignments and business readiness**](JUAN_ANTONIO_GARCIA_BUSINESS_REVIEW.md) | [**Dr. Thomas Ainsworth — human authority and accountability**](HUMAN_AUTHORITY_AI_ALIGNMENT_BRIEF_2026-09-21.md) |
+
+Juan's area records business-advising work. Dr. Ainsworth's area is prepared for potential review; no endorsement, partnership or technical validation is implied. Follow the named areas for their distinct evidence and open goals.
+
+
 
 **Purpose:** give reviewers one concise, evidence-first path through the parts of The Commons Initiative most relevant to human authority, consent, revocation, auditability, and accountable AI action.
 
