@@ -36,3 +36,14 @@ The source register maps FTC ABCmouse billing allegations, FTC Edmodo educationa
 5. What would make the first customer walkthrough useful evidence rather than an endorsement claim?
 
 Private correspondence, private budget, taxpayer identifiers, filing receipts, credentials and customer records are excluded. No new message was sent to Juan as part of this update.
+
+## Professional titles and organizations — verified October 14, 2026
+
+| Name | Professional title | Organization | Official website |
+|---|---|---|---|
+| Juan Antonio Garcia (listed publicly as Juan Garcia) | Certified Business Advisor | Washington Small Business Development Center (Washington SBDC), hosted by Washington State University | [Official adviser profile](https://wsbdc.org/advisors/juan-garcia/) · [Washington SBDC](https://wsbdc.org/) |
+| Dr. Thomas Edward Ainsworth | Founder and Principal Consultant | Human-Centered AI Governance Institute LLC | [Institute](https://hcaigovernance.org/) · [Official leadership profile](https://hcaigovernance.org/about/) |
+
+These are their professional affiliations. Civic Continuum's materials for review do not imply organizational endorsement, partnership or technical approval.
+
+[Current contact and digital business card](https://civic-continuum-contact.freshcoin8.chatgpt.site) · [School and banking demos](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html)
