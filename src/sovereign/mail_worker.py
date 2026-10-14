@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: CERL-1.0
 """Host-run SMTP worker. Never enqueues or approves jobs."""
 import json
 import os
