@@ -6,8 +6,28 @@ Published contact: https://civic-continuum-contact.freshcoin8.chatgpt.site
 Published demo: https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html
 Two fictional-sector presentations show limited summary read, blocked bulk export, revoked permission and separately reviewed simulated correction. Browser-local fixtures only: no live database, identity, notification or AI provider connection; no personal-data collection. Ten browser-model logic checks passed and syntax checked. Browser visual QA unavailable. No production guarantee.
 
-October14 rerun of pinned commit8d954c86ea8b6b2201ccd2d305f9d9f768a5fbcf:28 selected unittest checks passed; separate seeded model evaluation2256 decisions matched injected labels; existing walkthrough completed. Initial partial retrieval lacked src consent/ledger dependencies; exact dependencies recovered and suite rerun without removing tests. HostedCI and field results remain unverified here; PR61 remains unmerged.
+October14 rerun of pinned commit8d954c86ea8b6b2201ccd2d305f9d9f768a5fbcf:28 selected unittest checks passed; separate seeded model evaluation2256 decisions matched injected labels; existing walkthrough completed. Initial partial retrieval lacked src consent/ledger dependencies; exact dependencies recovered and suite rerun without removing tests. HostedCI and field results remain unverified here; PR61 was merged on October 14, 2026.
 
 Real-world sources: FTC ABCmouse billing/cancellation record; FTC Edmodo educational-data purpose/consent order; CFPB1005.10 revocation guidance. Exact mappings are in PUBLIC_RECORD_SCENARIO_REGISTER.md at the pinned commit. Actual public case/regulatory records informed synthetic tests, not company/customer databases or production replays; these records do not establish AI involvement.
 
 Both pitches offer the $25 Maya Node Founding Review, a bounded human design review, not free enterprise software or incident-response subscription. Current scope/intake/terms: https://maya-node-founding-review.myqueen1960.chatgpt.site . Registration, EIN/UBI, city licensing, actual insurance, accepted buyer roles, protected live evidence and delivery/human response measurements remain open. Adviser records and office planning reconciled privately. No new adviser email sent.
+
+## Publication checkpoint — October 14, 2026
+
+PR #61 merged as `14c84be13352fe48e1ff48c5ff7f3ad1400f4f19`. Its hosted integration run passed 1,113 tests on the proposed merge snapshot; this differs from the earlier 28 selected local checks. A separate Cloudflare build failed at the PR head, so code publication is not production deployment. During publication, 24 newly added local model/sandbox/public-record checks passed, and the 2,256-decision sweep matched all expected labels.
+
+- [School and banking browser demo](https://civic-continuum-contact.freshcoin8.chatgpt.site/demo.html)
+- [School and banking customer pitches](https://civic-continuum-contact.freshcoin8.chatgpt.site/pitches.html)
+- [Download browser demo source](../demos/database_browser_demo.html)
+- [Run the Python walkthrough](../demos/accountability_demo.py)
+- [Local sandbox guide](ACCOUNTABILITY_SANDBOX.md)
+
+
+## Professional titles and organizations — verified October 14, 2026
+
+| Name | Professional title | Organization | Official website |
+|---|---|---|---|
+| Juan Antonio Garcia (listed publicly as Juan Garcia) | Certified Business Advisor | Washington Small Business Development Center (Washington SBDC), hosted by Washington State University | [Official adviser profile](https://wsbdc.org/advisors/juan-garcia/) · [Washington SBDC](https://wsbdc.org/) |
+| Dr. Thomas Edward Ainsworth | Founder and Principal Consultant | Human-Centered AI Governance Institute LLC | [Institute](https://hcaigovernance.org/) · [Official leadership profile](https://hcaigovernance.org/about/) |
+
+These are their professional affiliations. Civic Continuum's materials for review do not imply organizational endorsement, partnership or technical approval.
