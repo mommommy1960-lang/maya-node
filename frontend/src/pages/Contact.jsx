@@ -32,10 +32,12 @@ const Contact = () => {
         body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', company: '', message: '' });
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({}));
+        throw new Error(result.error || `Submission failed (${response.status}).`);
       }
+      setSubmitted(true);
+      setFormData({ name: '', email: '', company: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmissionError(error.message || 'Your message could not be submitted. Please try again or email us directly.');
