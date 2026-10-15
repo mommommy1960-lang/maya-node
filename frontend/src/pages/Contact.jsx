@@ -10,6 +10,7 @@ const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -21,6 +22,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    setSubmissionError('');
     try {
       const response = await fetch('/api/consultation/contact', {
         method: 'POST',
@@ -36,7 +38,7 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('There was an error submitting your message. Please try again or email us directly.');
+      setSubmissionError(error.message || 'Your message could not be submitted. Please try again or email us directly.');
     }
   };
 
@@ -95,7 +97,7 @@ const Contact = () => {
                 <div className="success-message card">
                   <div className="success-icon">✅</div>
                   <h3>Thank you for reaching out!</h3>
-                  <p>We've received your message and will get back to you within 24 hours.</p>
+                  <p>Your message was saved. Email follow-up is not yet automatically configured, so please use the email link on this page if you need a reply.</p>
                   <button onClick={() => setSubmitted(false)} className="btn btn-outline">
                     Send Another Message
                   </button>
@@ -103,6 +105,7 @@ const Contact = () => {
               ) : (
                 <form className="contact-form card" onSubmit={handleSubmit}>
                   <h3>Send us a message</h3>
+                  {submissionError && <p role="alert" className="form-error">{submissionError}</p>}
                   
                   <div className="form-group">
                     <label htmlFor="name">Name *</label>
