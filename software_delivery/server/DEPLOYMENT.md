@@ -34,6 +34,7 @@ Apply `schema.sql` as an immutable deployment migration, not request-time table
 creation. This is prepared code, not a confirmed hosted migration.
 
 Required secret/runtime keys:
+- `MAYA_LAUNCH_ENABLED` — must be the literal string `true` to enable any trial, checkout, or AI reply. Keep unset or `false` until end-to-end release checks pass.
 - `OPENAI_API_KEY`, `OPENAI_MODEL`
 - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`
 - `STRIPE_SOFTWARE_PRICE_ID`, `STRIPE_MODE` (`test` first; `live` after validation)
