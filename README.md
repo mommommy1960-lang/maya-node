@@ -10,6 +10,8 @@ Maya Node is a Commons Initiative governance and control architecture focused on
 
 Core design principle: **technical capability does not itself confer authority.**
 
+**[Consumer trust, subscription fairness, and service continuity](docs/CONSUMER_TRUST_SUBSCRIPTION_AND_SERVICE_CONTINUITY.md)** — public commitments on usage limits, upgrade prompts, failed-payment notices, service interruptions, and customer appeal paths.
+
 The architecture separates identity, requested operation, authorization scope, expiration, revocation, execution, post-action evidence, and human challenge/override pathways.
 
 ## October 13, 2026 accountability development update
