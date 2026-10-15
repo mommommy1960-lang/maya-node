@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {webcrypto} from 'node:crypto';
 import {createService,signature,PLAN} from './service.mjs';
 if(!globalThis.crypto)globalThis.crypto=webcrypto;
-const env={OPENAI_API_KEY:'test',OPENAI_MODEL:'test-model',STRIPE_SECRET_KEY:'test',STRIPE_WEBHOOK_SECRET:'test-secret',STRIPE_SOFTWARE_PRICE_ID:'price_software',STRIPE_MODE:'test'};
+const env={OPENAI_API_KEY:'test',OPENAI_MODEL:'test-model',STRIPE_SECRET_KEY:'test',STRIPE_WEBHOOK_SECRET:'test-secret',STRIPE_SOFTWARE_PRICE_ID:'price_software',STRIPE_MODE:'test',MAYA_LAUNCH_ENABLED:'true'};
 const origin='https://test.example';
 const req=(path,data,headers={})=>new Request(origin+path,{method:data===undefined?'GET':'POST',headers:{origin,'oai-authenticated-user-id':'alice','oai-authenticated-user-email':'alice@example.org',...headers},...(data===undefined?{}:{body:JSON.stringify(data)})});
 function harness(fetcher){
@@ -13,6 +13,7 @@ function harness(fetcher){
 test('anonymous caller cannot start trial',async()=>{const h=harness();assert.equal((await h.run(new Request(origin+'/api/trial',{method:'POST'}),env)).status,401);assert.equal(h.calls.length,0);});
 test('cross-origin mutation rejected',async()=>{const h=harness();assert.equal((await h.run(req('/api/trial',{}, {origin:'https://evil.example'}),env)).status,403);});
 test('missing configuration cannot sell access',async()=>{const h=harness();assert.equal((await h.run(req('/api/checkout',{}),{})).status,503);assert.equal(h.calls.length,0);});
+test('disabled launch gate blocks status, trial, checkout and inference',async()=>{const h=harness(async()=>{throw new Error('provider must not be called');});const disabled={...env,MAYA_LAUNCH_ENABLED:'false'};assert.equal((await h.run(req('/api/status'),disabled)).body,undefined);assert.equal((await h.run(req('/api/trial',{}),disabled)).status,503);assert.equal((await h.run(req('/api/checkout',{}),disabled)).status,503);assert.equal((await h.run(req('/api/maya',{message:'hello'}),disabled)).status,503);assert.equal(h.calls.length,0);});
 test('trial takes identity and clock only from server',async()=>{const h=harness();assert.equal((await h.run(req('/api/trial',{subject:'victim',now:0}),env)).status,200);assert.deepEqual(h.calls[0],['trial','alice',1000,3600,10]);});
 test('Maya executes provider request and returns output',async()=>{let sent;const h=harness(async(url,options)=>{assert.equal(url,'https://api.openai.com/v1/responses');sent=JSON.parse(options.body);return Response.json({output:[{content:[{type:'output_text',text:'Assign an accountable workflow owner.'}]}]});});const r=await h.run(req('/api/maya',{message:'Who owns correction?'}),env);assert.equal(r.status,200);assert.equal((await r.json()).reply,'Assign an accountable workflow owner.');assert.equal(sent.store,false);assert.equal(sent.max_output_tokens,600);assert.equal(sent.input,'Who owns correction?');});
 test('exhausted access blocks provider call',async()=>{let called=false;const h=harness(async()=>{called=true;});h.store.reserve=async()=>false;assert.equal((await h.run(req('/api/maya',{message:'hello'}),env)).status,403);assert.equal(called,false);});
