@@ -2,7 +2,7 @@
 // Store must implement atomic reservations and durable webhook reconciliation.
 export const PLAN = Object.freeze({amount:2500,currency:'usd',days:30,paidReplies:100,trialSeconds:3600,trialReplies:10});
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
-const ready=env=>Boolean(env.OPENAI_API_KEY && env.STRIPE_SECRET_KEY && env.STRIPE_WEBHOOK_SECRET && env.STRIPE_SOFTWARE_PRICE_ID && env.OPENAI_MODEL && ['test','live'].includes(env.STRIPE_MODE));
+const ready=env=>env.MAYA_LAUNCH_ENABLED==='true' && Boolean(env.OPENAI_API_KEY && env.STRIPE_SECRET_KEY && env.STRIPE_WEBHOOK_SECRET && env.STRIPE_SOFTWARE_PRICE_ID && env.OPENAI_MODEL && ['test','live'].includes(env.STRIPE_MODE));
 async function body(request,limit=8000){
   const reader=request.body?.getReader(); if(!reader) throw new Error('Body required');
   let bytes=0;const chunks=[];
