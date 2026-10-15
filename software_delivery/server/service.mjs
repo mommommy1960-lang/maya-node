@@ -2,7 +2,8 @@
 // Store must implement atomic reservations and durable webhook reconciliation.
 export const PLAN = Object.freeze({amount:2500,currency:'usd',days:30,paidReplies:100,trialSeconds:3600,trialReplies:10});
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
-const ready=env=>env.MAYA_LAUNCH_ENABLED==='true' && Boolean(env.OPENAI_API_KEY && env.STRIPE_SECRET_KEY && env.STRIPE_WEBHOOK_SECRET && env.STRIPE_SOFTWARE_PRICE_ID && env.OPENAI_MODEL && ['test','live'].includes(env.STRIPE_MODE));
+const configured=env=>Boolean(env.STRIPE_SECRET_KEY && env.STRIPE_WEBHOOK_SECRET && env.STRIPE_SOFTWARE_PRICE_ID && ['test','live'].includes(env.STRIPE_MODE));
+const ready=env=>env.MAYA_LAUNCH_ENABLED==='true' && configured(env) && Boolean(env.OPENAI_API_KEY && env.OPENAI_MODEL);
 async function body(request,limit=8000){
   const reader=request.body?.getReader(); if(!reader) throw new Error('Body required');
   let bytes=0;const chunks=[];
@@ -26,13 +27,14 @@ export function createService({store,fetcher=fetch,clock=()=>Math.floor(Date.now
     try{
       if(url.pathname==='/api/stripe/webhook'){
         if(request.method!=='POST')return json({error:'Method not allowed'},405);
-        if(!ready(env))return json({error:'Service configuration incomplete'},503);
+        if(!configured(env))return json({error:'Webhook configuration incomplete'},503);
         const raw=await body(request,262144);
         if(!await signature(raw,request.headers.get('stripe-signature'),env.STRIPE_WEBHOOK_SECRET,now))return json({error:'Invalid signature'},400);
         const event=JSON.parse(raw),s=event.data?.object;
         const live=env.STRIPE_MODE==='live';
         if(event.livemode!==live || (env.STRIPE_ACCOUNT_ID && event.account && event.account!==env.STRIPE_ACCOUNT_ID))return json({ignored:true});
         if(['checkout.session.completed','checkout.session.async_payment_succeeded'].includes(event.type)){
+          if(env.MAYA_LAUNCH_ENABLED!=='true')return json({ignored:true,reason:'launch_disabled'});
           if(s?.livemode!==live||s.mode!=='payment'||s.payment_status!=='paid'||s.amount_total!==PLAN.amount||s.currency!==PLAN.currency)return json({ignored:true});
           // Server-created order mapping supplies the subject; browser metadata is never authoritative.
           const order=await store.getCheckout(s.id);
