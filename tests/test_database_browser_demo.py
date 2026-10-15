@@ -58,7 +58,7 @@ class DatabaseBrowserDemoContractTests(unittest.TestCase):
         self.assertIn('id="loadPublicData"', self.html)
         self.assertIn("consumerfinance.gov/data-research/consumer-complaints/search/api/v1/", self.js)
         self.assertIn("const publicFields = ['complaint_id','date_received','product','issue','company','state']", self.js)
-        self.assertIn("complaint narratives and personal details are not requested", self.html)
+        self.assertIn("Complaint narratives and personal details are not requested", self.html)
         self.assertNotIn("consumer_complaint_narrative", self.js)
 
 if __name__ == "__main__":
