@@ -27,6 +27,7 @@ const Consultation = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -46,6 +47,7 @@ const Consultation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    setSubmissionError('');
     try {
       const response = await fetch('/api/consultation/submit', {
         method: 'POST',
@@ -58,12 +60,14 @@ const Consultation = () => {
         })
       });
 
-      if (response.ok) {
-        setSubmitted(true);
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({}));
+        throw new Error(result.error || `Submission failed (${response.status}).`);
       }
+      setSubmitted(true);
     } catch (error) {
       console.error('Error submitting consultation request:', error);
-      alert('There was an error submitting your request. Please try again or book directly via Calendly.');
+      setSubmissionError(error.message || 'Your request could not be submitted. Please try again or book directly via Calendly.');
     }
   };
 
@@ -332,6 +336,7 @@ const Consultation = () => {
             </div>
 
             <form className="consultation-form card" onSubmit={handleSubmit}>
+              {submissionError && <p role="alert" className="form-error">{submissionError}</p>}
               {renderStep()}
 
               <div className="form-actions">
