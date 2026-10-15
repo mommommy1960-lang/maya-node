@@ -18,7 +18,7 @@ class DatabaseBrowserDemoContractTests(unittest.TestCase):
     def test_all_four_customer_workflows_are_present(self):
         for sector in ("school", "bank", "nonprofit", "support"):
             with self.subTest(sector=sector):
-                self.assertRegex(self.js, rf"(?m)^\s*{sector}:\s*\{{")
+                self.assertIn(f"{sector}:{{", self.js)
                 self.assertIn(f'id="{sector}"', self.html)
 
     def test_demo_discloses_synthetic_data_and_no_live_integration(self):
