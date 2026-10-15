@@ -1,3 +1,9 @@
+## Latest configuration update — October 14, 2026
+
+The hosted OpenAI provider credential is now installed securely, and the existing version 11 was successfully redeployed with environment revision 3. Earlier statements below that hosted installation was pending are superseded. API billing/account reconciliation and the restricted Stripe runtime credential remain open. Live trial, replies and checkout remain disabled; no real purchase-to-reply delivery is claimed.
+
+---
+
 # Current Maya sandbox resumption — October 14, 2026
 
 The founder explicitly resumed sandbox work. Live sales remain disabled. This section is current; the original 10:20 AM pause record is preserved below for history.
