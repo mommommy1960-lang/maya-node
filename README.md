@@ -1,4 +1,11 @@
-# Maya Node
+# CIVIC CONTINUUM | Maya Node
+
+**Advancing the Commons Initiative · civiccontinuum.org · contact@civiccontinuum.org**
+
+**Accountability people can use.** Building Maya Node to keep automated actions tied to current permission, visible responsibility and a route to correction.
+
+[Current mission, original Maya purpose, four markets and design-partner invitation](docs/CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md). Hosted software remains prelaunch; the portable prototype and 23-check action-receipt update are in [PR69](https://github.com/mommommy1960-lang/maya-node/pull/69).
+
 
 ## START HERE — Public due diligence
 
