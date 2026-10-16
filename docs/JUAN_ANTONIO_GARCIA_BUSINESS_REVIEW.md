@@ -1,3 +1,13 @@
+## New verified execution evidence — October 16, 2026
+
+Maya's local file-action gate now performs an actual create-only file write after exact permission, rejects revoked attempts, and persists allow/block receipts. **36 local checks passed; [hosted CI also executed the real action successfully](https://github.com/mommommy1960-lang/maya-node/actions/runs/38975674957).**
+
+[Reproduce the action and inspect limits](MAYA_REAL_FILE_ACTION_2026-10-16.md) · [Merged implementation PR71](https://github.com/mommommy1960-lang/maya-node/pull/71)
+
+This is a local component milestone, not evidence of a complete paid AI service or third-party endorsement. A server-backed website version is being verified separately; do not infer production readiness from this update. No private correspondence, credentials or taxpayer identifiers are included. Earlier material below is dated historical context.
+
+---
+
 # Juan Antonio Garcia — business advising review
 Updated October 14, 2026. Prepared by Mya P. Brown, Civic Continuum.
 
