@@ -1,3 +1,13 @@
+## Now working on the website — October16,2026
+
+**[Open Maya Accountable Actions](https://maya-working-workflow-lab.myqueen1960.chatgpt.site/).** Prepare your own text, authorize it, create a downloadable output, or revoke and see the server block it. Live verification confirmed exact downloaded bytes, revocation blocking, saved receipts and persistence after reload.
+
+[Hosted verification, scope and next gates](docs/MAYA_HOSTED_ACTIONS_VERIFICATION_2026-10-16.md)
+
+Early access, no payment. This release controls text-file creation in this service; it does not yet generate AI replies or govern external applications. Sign-in may be required. No credentials or private customer data are published here.
+
+---
+
 ## Verified real action — October 16, 2026
 
 **Maya now has a working local file-action gate.** It created an actual file only after an exact permission check, blocked a retry after revocation, and prevented a separately revoked file from being created. Allow/block receipts were saved to disk. This is implemented software, not a fictional case study.
