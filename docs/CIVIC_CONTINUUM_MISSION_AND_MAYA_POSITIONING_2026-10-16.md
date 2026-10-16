@@ -5,6 +5,8 @@
 ### Accountability people can use
 Building Maya Node to keep automated actions tied to current permission, visible responsibility and a route to correction. Our purpose is to help people understand and challenge systems affecting their lives while reducing the burden of receiving essential services.
 
+[Full foundation architecture, original scope and next technical proof](MAYA_FOUNDATION_ARCHITECTURE_AND_NEXT_PROOF_2026-10-16.md) — sector demos are examples of the wider core, not its complete scope.
+
 ## Maya's core, kept intact
 Maya separates technical capability from authority: who authorized a particular action, for which purpose, whether that authority is current, who owns the outcome and how an affected person can challenge it. Housing, distribution, banking and education are application settings for this core, not separate certifications or finished integrations.
 
