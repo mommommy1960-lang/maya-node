@@ -50,3 +50,21 @@ test('queued request is rechecked after permission changes',()=>{
  const x=lab();x.run("reset('accounts');var queuedAction=sectors.accounts.action;state.now=121");
  assert.equal(x.run('request(state,queuedAction).allowed'),false);
 });
+
+test('person-facing receipt excludes case payload and explains blocked review',()=>{
+ const x=lab();x.nodes.get('scope').onclick();const receipt=x.nodes.get('receipt').textContent;
+ assert.match(receipt,/Blocked in this fictional example/);assert.match(receipt,/outside scope/);
+ assert.match(receipt,/Review required; no real notification sent/);assert.doesNotMatch(receipt,/missing-month review/);
+ assert.match(receipt,/External licenses and identity have not been verified/);
+});
+test('receipt separates completed correction from restored permission',()=>{
+ const x=lab();x.nodes.get('revoked').onclick();x.nodes.get('correct').onclick();
+ assert.match(x.nodes.get('receipt').textContent,/Permission now: Revoked/);
+ assert.match(x.nodes.get('receipt').textContent,/permission is not restored/);
+ x.nodes.get('reset').onclick();assert.equal(x.nodes.get('receipt').textContent,'Run an action to see its receipt.');
+});
+test('receipt shows current expiry when a previously permitted request ages',()=>{
+ const x=lab();x.nodes.get('allowed').onclick();x.run('state.now=120;render()');
+ assert.match(x.nodes.get('receipt').textContent,/Outcome: Allowed in this fictional example/);
+ assert.match(x.nodes.get('receipt').textContent,/Permission now: Expired/);
+});
