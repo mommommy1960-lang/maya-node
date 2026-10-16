@@ -8,6 +8,7 @@ was blocked in this implementation; it is not a claim of global security.
 import copy
 import time
 import unittest
+from unittest.mock import patch
 
 from src.sovereign.consent_tokens import ConsentTokenManager, ConsentScope, ConsentStatus
 from src.services.ledger.ledger import ImmutableLedger
@@ -62,9 +63,13 @@ class TestAdaptiveRedTeam100(unittest.TestCase):
     def test_026_negative_expiry(self): self._assert_tamper_rejected(lambda t: setattr(t,'expires_at',-1))
     def test_027_infinite_expiry(self): self._assert_tamper_rejected(lambda t: setattr(t,'expires_at',float('inf')))
     def test_028_expired_token(self):
-        t=self._fresh(ttl_seconds=-1); self.assertFalse(self.m.verify_token(t))
+        t = self._fresh(ttl_seconds=1)
+        with patch('src.sovereign.consent_tokens.time.time', return_value=t.expires_at + 1):
+            self.assertFalse(self.m.verify_token(t))
     def test_029_expiry_boundary(self):
-        t=self._fresh(ttl_seconds=0); time.sleep(0.001); self.assertFalse(self.m.verify_token(t))
+        t = self._fresh(ttl_seconds=1)
+        with patch('src.sovereign.consent_tokens.time.time', return_value=t.expires_at):
+            self.assertFalse(self.m.verify_token(t))
     def test_030_revoked_beats_time(self):
         t=self._fresh(); self.m.revoke_token(t.token_id); self.assertFalse(self.m.verify_token(t))
 
@@ -117,7 +122,9 @@ class TestAdaptiveRedTeam100(unittest.TestCase):
     def test_066_revoked_use(self):
         t=self._fresh(); self.m.revoke_token(t.token_id); self.assertFalse(self.m.use_token(t.token_id))
     def test_067_expired_use(self):
-        t=self._fresh(ttl_seconds=-1); self.assertFalse(self.m.use_token(t.token_id))
+        t = self._fresh(ttl_seconds=1)
+        with patch('src.sovereign.consent_tokens.time.time', return_value=t.expires_at + 1):
+            self.assertFalse(self.m.use_token(t.token_id))
     def test_068_used_verify(self):
         t=self._fresh(); self.m.use_token(t.token_id); self.assertFalse(self.m.verify_token(t))
     def test_069_revoked_verify(self):

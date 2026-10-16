@@ -17,6 +17,7 @@ Key Features:
 - Audit trail integration
 """
 
+import math
 import hashlib
 import hmac
 import json
@@ -116,9 +117,19 @@ class ConsentTokenManager:
         Returns:
             Signed consent token
         """
+        if isinstance(ttl_seconds, bool) or not isinstance(ttl_seconds, (int, float)):
+            raise ValueError("ttl_seconds must be a positive finite number")
+        try:
+            ttl = float(ttl_seconds)
+        except (ValueError, OverflowError):
+            raise ValueError("ttl_seconds must be a positive finite number") from None
+        if not math.isfinite(ttl) or ttl <= 0:
+            raise ValueError("ttl_seconds must be a positive finite number")
         token_id = secrets.token_hex(16)
         timestamp = time.time()
-        expires_at = timestamp + ttl_seconds
+        expires_at = timestamp + ttl
+        if not math.isfinite(expires_at):
+            raise ValueError("Token expiration must be finite")
         
         # Build token data
         token_data = {
@@ -202,12 +213,13 @@ class ConsentTokenManager:
         }
         
         expected_signature = self._sign_token(token_data)
-        if token.signature != expected_signature:
+        if (not isinstance(token.signature, str) or not token.signature.isascii() or
+                not hmac.compare_digest(token.signature, expected_signature)):
             logger.error(f"Token signature mismatch: {token.token_id}")
             return False
         
         # Check expiration
-        if time.time() > token.expires_at:
+        if not math.isfinite(token.expires_at) or time.time() >= token.expires_at:
             logger.warning(f"Token expired: {token.token_id}")
             stored_token.status = ConsentStatus.EXPIRED
             return False
@@ -260,8 +272,12 @@ class ConsentTokenManager:
         token = self.tokens.get(token_id)
         if token is None or token.status != ConsentStatus.FROZEN:
             return False
+        # Restoring status cannot renew an expired grant or reuse a broad grant.
+        if not math.isfinite(token.expires_at) or time.time() >= token.expires_at:
+            return False
         expected_operation = f"restore:{token_id}"
-        if (fresh_authorization.user_id != token.user_id or
+        if (fresh_authorization.scope != ConsentScope.SINGLE_OPERATION or
+                fresh_authorization.user_id != token.user_id or
                 fresh_authorization.operation != expected_operation or
                 not self.verify_token(fresh_authorization)):
             return False
@@ -362,3 +378,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
