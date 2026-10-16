@@ -1,8 +1,8 @@
 # Portable sector workflow lab — October 16, 2026
 
-Open `demos/offline_workflow_lab.html` directly in a browser. No Cloudflare, API key or server is required. Eight fictional scenarios cover housing, food-bank operations, account creation, subscriptions, schools, banking, nonprofit intake and support.
+Open `demos/offline_workflow_lab.html` directly in a browser. No Cloudflare, API key or server is required. Eight fictional scenarios cover housing, essential-goods and hygiene-service operations, account creation, subscriptions, schools, banking, nonprofit intake and support.
 
-Run `node --test tests/test_workflow_lab.mjs`. Twenty functional checks evaluate the actual inline JavaScript in a simulated DOM. Existing checks remain unchanged: thirteen core-model checks and eight browser-demo contract checks pass. These are bounded prototype checks, not a browser accessibility audit or production security assessment.
+Run `node --test tests/test_workflow_lab.mjs`. Twenty-three functional checks evaluate the actual inline JavaScript in a simulated DOM. Existing checks remain unchanged: thirteen core-model checks and eight browser-demo contract checks pass. These are bounded prototype checks, not a browser accessibility audit or production security assessment.
 
 Demonstrated: scope and purpose limits, revocation checked at execution, expiry, named owner coverage, separate correction reviewer, and a simulated USD5 one-time payment cap. All data and actions are fictional. Browser state is editable. No actual account, charge, subscription cancellation or notification occurs.
 
@@ -12,4 +12,9 @@ The hosted AI product remains gated by deployment access, provider billing and p
 Existing business records document an EIN assigned September 26, 2026, to the founder as a sole proprietor. The identifier and tax letter remain private. Washington and Seattle licensing remain unverified. An EIN is not evidence of incorporation, licensing or certification.
 
 ## Customer hypotheses
-Test subscription operations first; validate housing-service and food-bank workflows alongside it. Banking and schools are longer-term validation prospects. Buyer demand, procurement timelines and budgets remain unverified. Keep all pilot discovery fictional until written data-handling requirements and business readiness are established.
+Four mission markets: housing/community services, essential-goods distribution/hygiene services, financial services and education. Start one mission-aligned workflow pilot; subscription/account/payment workflows are a cross-cutting commercial hypothesis. Buyer demand, procurement timelines and budgets remain unverified. Keep all pilot discovery fictional until written data-handling requirements and business readiness are established.
+
+## Person-facing action receipt
+The lab explains the checked action, purpose, result, reason, simulated review owner, current permission and correction status. It explicitly says external licenses and identity are unverified. It does not make the consent-receipt concept novel, prove a real remedy or establish standards conformance.
+
+[Current Civic Continuum mission and prior-work research](https://github.com/mommommy1960-lang/maya-node/blob/main/docs/CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md).
