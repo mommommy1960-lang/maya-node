@@ -1,3 +1,11 @@
+## Live website evidence — October16,2026
+
+**[Maya Accountable Actions is available for early-access review](https://maya-working-workflow-lab.myqueen1960.chatgpt.site/).** Live checks confirmed an authorized saved output, byte-exact download, blocked execution after revocation, persistent requests and downloaded receipts. [Evidence, limits and next gates](MAYA_HOSTED_ACTIONS_VERIFICATION_2026-10-16.md).
+
+This bounded hosted workflow is not the full paid AI product: external AI/tool integration, independent multi-user review and business/payment readiness remain open. No adviser endorsement or review completion is implied.
+
+---
+
 ## New verified execution evidence — October 16, 2026
 
 Maya's local file-action gate now performs an actual create-only file write after exact permission, rejects revoked attempts, and persists allow/block receipts. **36 local checks passed; [hosted CI also executed the real action successfully](https://github.com/mommommy1960-lang/maya-node/actions/runs/38975674957).**
