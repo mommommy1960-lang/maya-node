@@ -1,5 +1,12 @@
 # Maya Node
 
+## October 16, 2026 — portable workflow prototype and business status
+
+[Offline sector workflow lab](demos/offline_workflow_lab.html) · [Evidence and instructions](docs/OFFLINE_SECTOR_WORKFLOW_LAB.md). Download the HTML and open it locally: fictional housing, food-bank, account, subscription, school and banking workflows run without Cloudflare or a paid AI API. Twenty new functional checks pass; this does not establish a live hosted product.
+
+Existing business records document EIN issuance to the founder as a sole proprietor on September 26, 2026. **The identifier stays private.** Washington and Seattle licensing remain unverified.
+
+
 ## START HERE — Public due diligence
 
 Reviewers and collaborators should begin with:
