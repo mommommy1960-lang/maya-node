@@ -107,3 +107,10 @@ Completed the three newly supplied adviser templates and a separate proposed doc
 Existing records document a sole-proprietor EIN assigned September26. This corrects older “EIN unverified” wording; it does not verify Washington UBI, trade-name registration, Seattle licensing, insurance or an accepted LLC filing. Taxpayer numbers and correspondence remain private.
 
 The [50-concept inventory](https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/civic-continuum/portfolio/complete-invention-portfolio-inventory.md), later family map and Blue Book registry remain the broader portfolio sources. The inventory now flags its older human-review checkout instructions as historical. Maya frontend recovery PR68 remains separate from the hosted Site runtime and is not proof of deployment.
+
+
+## October 16 — foundation and next advising review
+
+The opportunity discovery canvas, business model canvas and business plan have been completed and sent. The next advising review is being prepared around business strategy and technical questions, with an AI perspective requested; no meeting date, colleague identity, adviser approval or technical endorsement is confirmed.
+
+[Full Maya foundation and evidence map](MAYA_FOUNDATION_ARCHITECTURE_AND_NEXT_PROOF_2026-10-16.md) restores the wider identity, permission, enforcement, evidence, response, challenge and recovery architecture. Sector examples illustrate that core. [PR70](https://github.com/mommommy1960-lang/maya-node/pull/70) proposes consent expiry/restore repairs with19 runtime and4 integration checks passing locally. It remains separate from the offline lab PR69 and from production deployment.
