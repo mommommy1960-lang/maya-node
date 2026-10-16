@@ -1,3 +1,9 @@
+# CIVIC CONTINUUM
+
+**Advancing the Commons Initiative · civiccontinuum.org · contact@civiccontinuum.org**
+
+[Current mission, Maya purpose, four markets and design-partner invitation](CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md). Maya hosted software remains prelaunch. Older founding-review offers below are historical, not current checkout instructions.
+
 # START HERE — Maya Node Public Due Diligence
 ## Named review areas — October 14, 2026
 
