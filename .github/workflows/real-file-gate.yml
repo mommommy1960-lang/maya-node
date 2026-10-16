@@ -1,0 +1,29 @@
+name: Maya real file action
+on:
+  pull_request:
+    paths:
+      - 'src/adapters/file_write_gate.py'
+      - 'src/sovereign/consent_tokens.py'
+      - 'src/services/ledger/ledger.py'
+      - 'examples/real_file_gate.py'
+      - 'tests/integration/test_real_file_gate.py'
+      - '.github/workflows/real-file-gate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/adapters/file_write_gate.py'
+      - 'src/sovereign/consent_tokens.py'
+      - 'src/services/ledger/ledger.py'
+      - 'examples/real_file_gate.py'
+      - 'tests/integration/test_real_file_gate.py'
+      - '.github/workflows/real-file-gate.yml'
+jobs:
+  real-file-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest tests.integration.test_real_file_gate -q
+      - run: python -m examples.real_file_gate --output "$RUNNER_TEMP/maya-real-file-proof"
