@@ -1,3 +1,5 @@
+> **Historical mixed-status handbook · October16,2026:** This archived text includes proposed hardware, custodianship and licensing claims. It does not establish built devices, validated physical safety, an executed legal trust, live diagnostics or purchasable node access. Use the [current Maya purpose and evidence limits](CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md) for present status. Original text is retained below for provenance.
+
 Okay Sage this is what copy that keeps telling me I'm not sure if it's been committed yet or pushed...
 
 # Commons Aurora Access Device Suite    

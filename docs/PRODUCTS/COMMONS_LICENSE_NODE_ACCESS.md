@@ -1,2 +1,3 @@
-## Live Payment Link
-💳 [Purchase Node Access License](https://buy.stripe.com/00w28r4LN7xXalz6k733W00)
+# Historical node-access product reference
+
+The earlier purchase link is retired from this page to avoid presenting an unverified live offer. This document does not establish active entitlement or delivered API access. See the [current Civic Continuum mission and Maya status](../CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md). Original text remains in Git history.

@@ -1,13 +1,7 @@
-# Commons Governance License – Node Access
-**License:** CERL-1.0 (Commons Ethical Research License)  
-**Serial:** CN-001-MAYA-NODE  
-**Status:** Active  
-**Holder:** Commons Custodianship Trust Charter  
-**Issued To:** Licensed Maya Node Participant  
+# Commons Governance License — historical node-access concept
 
-Full governance rights and API node access under the Maya Node architecture.  
-All node holders operate under CERL-1.0 terms and the Commons ethical oversight framework.  
-Violations of CERL-1.0 void node privileges and access.  
+**Status correction · October16,2026:** The earlier “Active” label and purchase link are historical product descriptions, not proof of a current enforced license, legal trust status or delivered API service. Checkout is not offered from this page. Original wording is preserved in Git history.
 
-💳 Purchase or renew your license:  
-https://buy.stripe.com/00w28r4LN7xXalz6k733W00
+The legacy record associates CERL-1.0 and serial CN-001-MAYA-NODE with a Commons node-access concept. Legal rights, commercial terms, issuer authority and actual entitlement enforcement require separate evidence. Maya's runtime permission checks do not certify every AI or organization as legally legitimate.
+
+[Current Civic Continuum mission, Maya purpose and prototype status](CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md).

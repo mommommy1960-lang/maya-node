@@ -1,3 +1,5 @@
+> **October16 correction:** The $25 human-review offer below is historical and is not the current Maya software offer. Hosted software remains prelaunch. See [current mission, market comparison and evidence boundaries](CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md). No world-first or superiority claim has been established.
+
 # Competitive comparison — evidence and buyer fit
 October 14, 2026. Primary vendor pages reviewed on this date. This is a capability/offer comparison, not a controlled product benchmark. No competitor account or product was tested. Vendor descriptions below are published claims; our results are from the linked code snapshots.
 
