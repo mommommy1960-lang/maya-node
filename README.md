@@ -1,3 +1,15 @@
+## Verified real action — October 16, 2026
+
+**Maya now has a working local file-action gate.** It created an actual file only after an exact permission check, blocked a retry after revocation, and prevented a separately revoked file from being created. Allow/block receipts were saved to disk. This is implemented software, not a fictional case study.
+
+- [Implementation, reproducible command and limits](docs/MAYA_REAL_FILE_ACTION_2026-10-16.md)
+- [Merged code and review — PR71](https://github.com/mommommy1960-lang/maya-node/pull/71)
+- [Independent hosted execution — passing CI](https://github.com/mommommy1960-lang/maya-node/actions/runs/38975674957)
+
+36 local tests passed; the dedicated GitHub workflow also ran the real file-action command successfully. **Scope:** trusted local callers, one process, create-only files. This is not yet a hosted customer service, external AI integration, general OS sandbox or independent security certification. Customer website work is underway; payments are not enabled.
+
+---
+
 # CIVIC CONTINUUM | Maya Node
 
 **Advancing the Commons Initiative · civiccontinuum.org · contact@civiccontinuum.org**
