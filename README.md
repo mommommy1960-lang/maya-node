@@ -1,8 +1,14 @@
-# Maya Node
+# CIVIC CONTINUUM | Maya Node
+
+**Advancing the Commons Initiative · civiccontinuum.org · contact@civiccontinuum.org**
+
+**Accountability people can use.** Building Maya Node to keep automated actions tied to current permission, visible responsibility and a route to correction.
+
+[Mission, original purpose, four markets and design-partner invitation](https://github.com/mommommy1960-lang/maya-node/blob/main/docs/CIVIC_CONTINUUM_MISSION_AND_MAYA_POSITIONING_2026-10-16.md).
 
 ## October 16, 2026 — portable workflow prototype and business status
 
-[Offline sector workflow lab](demos/offline_workflow_lab.html) · [Evidence and instructions](docs/OFFLINE_SECTOR_WORKFLOW_LAB.md). Download the HTML and open it locally: fictional housing, food-bank, account, subscription, school and banking workflows run without Cloudflare or a paid AI API. Twenty new functional checks pass; this does not establish a live hosted product.
+[Offline sector workflow lab](demos/offline_workflow_lab.html) · [Evidence and instructions](docs/OFFLINE_SECTOR_WORKFLOW_LAB.md). Download the HTML and open it locally: fictional housing, food-bank, account, subscription, school and banking workflows run without Cloudflare or a paid AI API. Twenty-three functional checks pass, including plain-language action-receipt checks; this does not establish a live hosted product.
 
 Existing business records document EIN issuance to the founder as a sole proprietor on September 26, 2026. **The identifier stays private.** Washington and Seattle licensing remain unverified.
 
