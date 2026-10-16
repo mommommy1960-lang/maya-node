@@ -1,0 +1,142 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Civic Continuum | Maya Node workflow lab</title><style>body{margin:0;background:#081321;color:#eef5fc;font:17px/1.5 system-ui}main{max-width:850px;margin:auto;padding:28px 20px}a{color:#9ed9ff}h1{font-size:32px;line-height:1.2}h2{font-size:23px}.muted{color:#afc3d5}.controls{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}button{padding:13px 18px;border-radius:10px;border:1px solid #5392bf;background:#17344f;color:white;font:600 16px system-ui;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid white}button[aria-pressed=true]{background:#73c8ff;color:#081321}section{padding:18px 0;border-top:1px solid #315675}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#10243a;padding:16px;border-radius:10px;font-size:14px}#decision{font-size:24px;font-weight:700}li{margin-bottom:8px}</style><main><header><p style="font-size:28px;font-weight:800;margin-bottom:0">CIVIC CONTINUUM</p><p class="muted">Advancing the Commons Initiative · Human authority. Clear permission. A path to correction.</p><p><a href="https://civiccontinuum.org">civiccontinuum.org</a> · <a href="mailto:contact@civiccontinuum.org">contact@civiccontinuum.org</a></p></header><p><a href="https://civic-continuum-contact.freshcoin8.chatgpt.site/real-data.html">Real IRS & CFPB data comparison ↗</a></p><a href="https://civic-continuum-contact.freshcoin8.chatgpt.site/">← Contact and services</a><p><a href="https://civic-continuum-contact.freshcoin8.chatgpt.site/pitches.html">Read our school & banking pitches ↗</a></p><h1>Maya Node workflow lab</h1><p>One permission-and-accountability core, illustrated through eight fictional workflows. Our four mission markets are housing and community services; essential-goods distribution and hygiene services; financial services; and education. Account creation, subscriptions and payments are shared workflows. They run only in your browser with invented records; they do not connect to a real organization, CRM, support platform, database, AI model or alert service.</p><p><strong>Offline prototype.</strong> This deterministic permission demonstration runs without hosting, login, API keys or payments. It is not the paid Maya AI runtime. Use only the invented fixtures provided here.</p><div class="controls"><button id="housing" aria-pressed="false">Housing services</button><button id="foodbank" aria-pressed="false">Essential goods and hygiene</button><button id="accounts" aria-pressed="false">Account creation</button><button id="subscriptions" aria-pressed="false">Subscriptions and payments</button><button id="school" aria-pressed="true">School database</button><button id="bank" aria-pressed="false">Banking database</button><button id="nonprofit" aria-pressed="false">Nonprofit donor/member operations</button><button id="support" aria-pressed="false">Customer support</button></div><section><h2 id="audience"></h2><p id="pitch"></p><p id="workflow"></p><div class="controls"><button id="allowed">1 · Run approved action</button><button id="scope">2 · Block excessive export</button><button id="revoked">3 · Revoke then block read</button><button id="expired">4 · Expire approval then try</button><button id="uncovered">5 · Remove owner coverage</button><button id="budget">6 · Exceed payment limit</button><button id="correct">7 · Verify correction</button><button id="reset">Reset demo</button></div><p id="decision" role="status" aria-live="polite">Choose a demonstration step.</p><p id="explain"></p><pre id="record">No request yet.</pre></section><section><h2>Your action receipt · fictional example</h2><p>A plain-language view of the permission check and the person responsible for review. It is not a legal certification or a receipt for a real service.</p><pre id="receipt" aria-live="polite">Run an action to see its receipt.</pre></section><section><h2>Evidence trail</h2><p id="clock"></p><ol id="events"></ol></section><section><h2>What this proves and what remains</h2><p class="muted">This illustrates a defined permission gate, assigned response owner and separate correction reviewer. Actor labels are fixtures, not verified identity. AI approval never supplies permission. Notifications and acknowledgment are simulated. The controls and clock are editable browser fixtures. A browser record can be edited or deleted; it is not immutable or production evidence. Managed identity, protected transport, real database integration and a consenting organization pilot remain open.</p><a href="https://github.com/mommommy1960-lang/maya-node/blob/main/docs/ACCOUNTABILITY_REVIEW_START_HERE_2026-10-13.md">Review the existing dated technical evidence ↗</a><p>Resetting or reloading clears this local demonstration. No personal information is requested or transmitted.</p></section><section><h2>Maya’s original purpose</h2><p>Maya separates what an AI or system can do from what it is permitted to do. These scenarios apply that same core; they do not turn Maya into an AI licensing authority. Legacy Commons node-access and CERL license records describe a different licensing layer. Legal legitimacy, professional licenses and external certifications require their own evidence.</p></section><section><h2>Business status</h2><p>Civic Continuum records an EIN issued to Mya P. Brown as sole proprietor on September 26, 2026. The identifier stays private. Washington and Seattle licensing remain unverified. EIN issuance does not establish product certification or complete licensing.</p></section></main><script>
+const sectors={
+  "housing": {
+    "label": "Housing services",
+    "audience": "Housing, resident support, rent/utility assistance and community-service operations",
+    "owner": "DEMO-HOUSING-SERVICE-OWNER",
+    "pitch": "Organize a fictional missing-ledger-entry correction request and identify who owns a response. Broader housing and aid workflows need separate program validation. No tenant ranking, eviction action or eligibility decision.",
+    "workflow": "Read a redacted correction-status summary; exporting household case files is outside scope.",
+    "action": "read_summary",
+    "purpose": "resident_correction",
+    "record": {
+      "case_id": "SYNTHETIC-HOUSING-001",
+      "status": "missing-month review",
+      "response_owner": "fixture staff"
+    }
+  },
+  "foodbank": {
+    "label": "Essential goods and hygiene services",
+    "audience": "Food, clothing, toiletries, shower and essential-service coordinators",
+    "owner": "DEMO-FOOD-PANTRY-OWNER",
+    "pitch": "Demonstrate limited access to anonymous pickup totals, a pattern to validate for food, clothing, toiletries and shower services. This lab never decides who receives assistance.",
+    "workflow": "Read anonymous pickup totals; exporting household details is outside scope. TEFAP-specific rules need program review.",
+    "action": "read_summary",
+    "purpose": "pickup_operations",
+    "record": {
+      "distribution_id": "SYNTHETIC-001",
+      "pickup_count": 12
+    }
+  },
+  "accounts": {
+    "label": "Account creation",
+    "audience": "Membership and online account operations",
+    "owner": "DEMO-ACCOUNT-OWNER",
+    "pitch": "Show that permission to create one account does not authorize marketing, a paid subscription or later unrelated use.",
+    "workflow": "Simulate creating one free account for the approved purpose; bulk profile export is outside scope. No actual account is created.",
+    "action": "create_account",
+    "purpose": "free_account",
+    "record": {
+      "account_id": "SYNTHETIC-ACCOUNT-001",
+      "simulated_creation": true,
+      "marketing_opt_in": false,
+      "paid_subscription": false
+    }
+  },
+  "subscriptions": {
+    "label": "Subscriptions and payments",
+    "audience": "Subscription support and billing-workflow owners",
+    "owner": "DEMO-BILLING-OWNER",
+    "pitch": "Recheck an approval at execution, its amount limit and revocation. Keep payment permission separate from the subscription contract.",
+    "workflow": "Simulate one USD 5 payment within a USD 5 cap. Recurring charging, a larger amount and revoked or expired approval are outside scope.",
+    "action": "charge_once",
+    "purpose": "one_time_payment",
+    "record": {
+      "order_id": "SYNTHETIC-ORDER-001",
+      "amount_usd": 5,
+      "simulated_only": true,
+      "automatic_renewal": false
+    }
+  },
+  "school": {
+    "label": "School database",
+    "audience": "School student-information workflow owners",
+    "owner": "DEMO-SCHOOL-DATA-OWNER",
+    "pitch": "Explain which information a task may read and who handles correction. No student eligibility, discipline or pickup decision.",
+    "workflow": "Attendance summary read is in scope; student-record bulk export is outside scope.",
+    "action": "read_summary",
+    "purpose": "attendance_summary",
+    "record": {
+      "student_id": "SYNTHETIC-001",
+      "attendance": "present"
+    }
+  },
+  "bank": {
+    "label": "Banking database",
+    "audience": "Bank data operations and risk teams",
+    "owner": "DEMO-BANK-DATA-OWNER",
+    "pitch": "Demonstrate a purpose-limited transaction summary, authority checks and a correction record. No credit decision, money transfer or bank connection.",
+    "workflow": "Transaction-count summary read is in scope; customer-statement bulk export is outside scope.",
+    "action": "read_summary",
+    "purpose": "transaction_summary",
+    "record": {
+      "account_id": "SYNTHETIC-001",
+      "transaction_count": 3
+    }
+  },
+  "nonprofit": {
+    "label": "Nonprofit donor/member operations",
+    "audience": "Nonprofit operations and CRM owners",
+    "owner": "DEMO-NONPROFIT-CRM-OWNER",
+    "pitch": "Explain donor and member purpose limits without exposing a contact list.",
+    "workflow": "Aggregate contact-preference summary is in scope; donor/member export is outside scope.",
+    "action": "read_summary",
+    "purpose": "contact_summary",
+    "record": {
+      "campaign_id": "SYNTHETIC-001",
+      "opted_in_contact_count": 12
+    }
+  },
+  "support": {
+    "label": "Customer support",
+    "audience": "Customer-support operations and platform owners",
+    "owner": "DEMO-SUPPORT-OPERATIONS-OWNER",
+    "pitch": "Map a small support workflow and its owner before connecting a live platform.",
+    "workflow": "Ticket-count summary is in scope; full customer-record export is outside scope.",
+    "action": "read_summary",
+    "purpose": "queue_summary",
+    "record": {
+      "queue_id": "SYNTHETIC-001",
+      "open_ticket_count": 3
+    }
+  }
+};
+function initial(sector){return {sector,revoked:false,now:0,expires:120,ownerAvailable:true,events:[],case:null};}
+function request(state,action,options={}){
+ const cfg=sectors[state.sector];
+ const purpose=options.purpose??cfg.purpose;
+ const amount=options.amount??5;
+ const scope=action===cfg.action&&purpose===cfg.purpose;
+ const budget=state.sector!=='subscriptions'||(Number.isFinite(amount)&&amount>0&&amount<=5);
+ const validTime=Number.isFinite(state.now)&&state.now>=0&&state.now<state.expires;
+ const allowed=scope&&budget&&!state.revoked&&validTime&&state.ownerAvailable;
+ const reason=!scope?'outside_scope':!budget?'over_budget':state.revoked?'revoked':!validTime?'expired':!state.ownerAvailable?'no_owner_coverage':'permitted';
+ state.events.push({sequence:state.events.length+1,kind:'action.checked',actor:'DEMO-OPERATOR',action,purpose,amount:state.sector==='subscriptions'?amount:undefined,at:state.now,expires:state.expires,ai_approval:true,permission:allowed,allowed,reason,owner:cfg.owner,simulated:true});
+ if(!allowed)state.case={status:'review_required',owner:cfg.owner,reason};
+ return {allowed,reason,record:allowed?cfg.record:null,simulated:true};
+}
+function revoke(state){state.revoked=true;state.events.push({kind:'permission.revoked',actor:'DEMO-AUTHORITY',simulated:true});}
+function correct(state){if(!state.case)return false;state.events.push({kind:'case.acknowledged',actor:state.case.owner,simulated:true},{kind:'correction.started',actor:state.case.owner,evidence:'Synthetic permission settings checked',simulated:true},{kind:'correction.reviewed',actor:'DEMO-SEPARATE-REVIEWER',verified:true,simulated:true});state.case.status='resolved';return true;}
+
+const requestedSector=new URLSearchParams(location.search).get('sector');
+let state=initial(Object.hasOwn(sectors,requestedSector)?requestedSector:'housing');
+const el=id=>document.getElementById(id);
+function authorityReceipt(state){
+ const e=[...state.events].reverse().find(e=>e.kind==='action.checked');
+ if(!e)return null;
+ return {organization:'Civic Continuum',action:e.action,purpose:e.purpose,outcome:e.allowed?'Allowed in this fictional example':'Blocked in this fictional example',reason:e.reason.replaceAll('_',' '),owner:e.owner,permissionNow:state.revoked?'Revoked':state.now>=state.expires?'Expired':!state.ownerAvailable?'No owner coverage':'Current within this fixture',correction:state.case?.status==='resolved'?'Separate reviewer simulated; permission is not restored':state.case?'Review required; no real notification sent':'No review case opened',credential:'External licenses and identity have not been verified',boundary:'Fictional local example; no real account, charge or service decision'};
+}
+function render(){const config=sectors[state.sector];const receipt=authorityReceipt(state);el('receipt').textContent=receipt?Object.entries(receipt).map(([key,value])=>({organization:'Organization',action:'Action checked',purpose:'Purpose',outcome:'Outcome',reason:'Why',owner:'Review owner',permissionNow:'Permission now',correction:'Correction route',credential:'Verification status',boundary:'Important limit'}[key])+': '+value).join('\n'):'Run an action to see its receipt.';for(const sector of Object.keys(sectors))el(sector).setAttribute('aria-pressed',state.sector===sector);el('audience').textContent=config.audience;el('pitch').textContent=config.pitch;el('workflow').textContent='Fixture: '+config.workflow;el('clock').textContent='Demo clock '+state.now+' seconds; approval expires at '+state.expires+' seconds. Revoked: '+state.revoked+'. Owner coverage: '+state.ownerAvailable+'.';el('budget').disabled=state.sector!=='subscriptions';el('events').replaceChildren();for(const e of state.events){const li=document.createElement('li');li.textContent=JSON.stringify(e);el('events').append(li);}}
+function run(action,options={}){const out=request(state,action,options);el('decision').textContent=out.allowed?'ALLOWED · fictional action only':'BLOCKED · '+out.reason.replaceAll('_',' ');el('explain').textContent=out.allowed?'This fixture has current scope, time, amount and owner coverage. No external action occurred.':'The action did not pass the current permission checks. A review case is simulated; no staff notification was sent.';el('record').textContent=JSON.stringify(out,null,2);render();}
+function reset(sector=state.sector){state=initial(sector);el('decision').textContent='Choose a demonstration step.';el('explain').textContent='';el('record').textContent='No request yet.';render();}
+for(const sector of Object.keys(sectors))el(sector).onclick=()=>reset(sector);el('allowed').onclick=()=>run(sectors[state.sector].action);el('scope').onclick=()=>run('bulk_export');el('revoked').onclick=()=>{revoke(state);run(sectors[state.sector].action);};el('correct').onclick=()=>{const ok=correct(state);el('decision').textContent=ok?'CORRECTION VERIFIED · simulated reviewer':'Run a blocked request first.';el('explain').textContent=ok?'The demonstration records separate review. This does not restore revoked permission or prove real staff acknowledgment.':'';render();};el('expired').onclick=()=>{state.now=state.expires;run(sectors[state.sector].action);};el('uncovered').onclick=()=>{state.ownerAvailable=false;run(sectors[state.sector].action);};el('budget').onclick=()=>run(sectors[state.sector].action,{amount:6});el('reset').onclick=()=>reset();render();
+</script></html>

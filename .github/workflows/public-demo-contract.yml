@@ -4,11 +4,15 @@ on:
   push:
     paths:
       - "demos/database_browser_demo.html"
+      - "demos/offline_workflow_lab.html"
+      - "tests/test_workflow_lab.mjs"
       - "tests/test_database_browser_demo.py"
       - ".github/workflows/public-demo-contract.yml"
   pull_request:
     paths:
       - "demos/database_browser_demo.html"
+      - "demos/offline_workflow_lab.html"
+      - "tests/test_workflow_lab.mjs"
       - "tests/test_database_browser_demo.py"
       - ".github/workflows/public-demo-contract.yml"
   workflow_dispatch:
@@ -28,3 +32,10 @@ jobs:
           python-version: "3.12"
       - name: Run public demo contract tests
         run: python -m unittest discover -s tests -p "test_database_browser_demo.py" -v
+
+      - name: Set up Node for the portable workflow lab
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run actual portable lab JavaScript checks
+        run: node --test tests/test_workflow_lab.mjs
