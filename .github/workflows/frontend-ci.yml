@@ -28,8 +28,15 @@ jobs:
         with:
           node-version: 22
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Lint frontend
         run: npm run lint
       - name: Build frontend
         run: npm run build
+      - name: Preserve deployable website output
+        uses: actions/upload-artifact@v4
+        with:
+          name: maya-node-frontend-dist
+          path: frontend/dist/
+          if-no-files-found: error
+          retention-days: 14
