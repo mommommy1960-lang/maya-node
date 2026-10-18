@@ -89,7 +89,7 @@ Project status, dependencies, handoffs, and evidence boundaries are synchronized
 ## Rights
 
 © 2025 Mya P. Brown. All Rights Reserved.  
-Licensed under Commons Ethical Research License (CERL-1.0, Non-Commercial, Non-Derivative).
+See [LICENSE-CERL-1.0](LICENSE-CERL-1.0) for its actual permissions and ethical conditions; that text expressly permits commercial use under its conditions. The earlier README label “Non-Commercial, Non-Derivative” did not accurately summarize that file. The Apache and BUSL files currently contain abbreviated placeholders, and the scope of multiple licensing references needs review. This correction does not relicense material, waive applicable conditions or retroactively narrow prior grants.
 
 ## Publication checkpoint — October 14, 2026
 
@@ -116,3 +116,8 @@ These are their professional affiliations. Civic Continuum's materials for revie
 [**Open Mya's training, badges, achievements and test evidence**](https://github.com/mommommy1960-lang/maya-node/blob/main/docs/FOUNDER_ACHIEVEMENTS_2026-10-14.md) · [**Browse all 13 public repositories**](https://github.com/mommommy1960-lang/maya-node/blob/main/docs/PUBLIC_REPOSITORY_INDEX_2026-10-14.md).
 
 PRs60 and61 are merged. PR60's corrected head passed all111 hosted checks, with1,129 tests passing in its integration job. Course completions, community badges, software tests and research publications are identified separately. Certificate summaries link to inspected source notes; original individual certificate PDFs remain to be recovered. No endorsement or completed registration is implied.
+
+
+## Mutual collaboration boundaries
+
+Before protected exchange or shared work, read our [collaboration boundaries](https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/continuity/PUBLIC_COLLABORATION_BOUNDARIES.md). Both parties retain their existing rights; scope, confidentiality, contributions, access and exit must be agreed for the actual engagement. Existing licenses and lawful reporting rights remain unaffected. This operating notice is not an executed contract.
