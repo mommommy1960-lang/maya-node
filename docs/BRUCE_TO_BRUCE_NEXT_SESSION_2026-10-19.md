@@ -27,3 +27,8 @@ Production maya-node and live billing untouched. Preserve owner authentication, 
 
 ## Continuity receipts
 Detailed checkpoint created in commit e12cf6399cb543cb25233cd8fb7560c4826aa18a; automatic lookup task added in d1d7b843ab7806ed620ad7b19ada8667cd15c14d. No secret values or personal screenshots included in this public record.
+
+
+## October 19 midday continuity addition
+Founder requested preservation of exact six-part Square One preparation. Private vault README now links docs/continuity/BRUCE_TO_BRUCE_SQUARE_ONE_AND_AGENT_REVIEW_2026-10-19.md and the unchanged SQUARE_ONE_EXACT_PREPARATION_2026-10-20.md. Retrieve when she asks to prepare for Zoom. Use the labeled correction: the old manual-review offer is historical; current intended product is software, with paid-launch gates unfinished. Do not publish the meeting link or private preparation.
+Agent review: Aurora's manual heartbeat workflow only validates saved state JSON; it is not continuous runtime or evidence of consciousness. Proposed ambassador integration: Aurora identity/interface, Maya permission/receipts, SAGE later situated interaction. This architecture remains a proposal; no benchmark establishes superiority over other assistants. Preserve staging recovery tasks above; no code deployment or billing change occurred in this addition.
