@@ -59,3 +59,14 @@ Transparency means inspectable authority and aggregate outcomes, not public disc
 - https://www.fiddler.ai/explainable-ai
 
 This is preliminary market/prior-work research, not an exhaustive historical or patent search. Current positioning supersedes older human-review checkout descriptions.
+
+## Civic Continuum's three business pillars and operating commitments
+1. **Flux Drive and Aurora:** research into propulsion physics and accountable AI; Flux has not demonstrated propulsion or FTL.
+2. **Fifteen software inventions:** [current bounded portfolio and review scopes](CIVIC_CONTINUUM_15_PROJECT_REVIEW_INVITATION_2026-10-09.md); these are development directions, not fifteen finished products.
+3. **Trinity:** a distinct business pillar; scope and readiness require reconciliation with authoritative project records.
+
+**Our founding motto:** The standards we demand of power are the standards we must demonstrate ourselves. We oppose intentional premature obsolescence: we will not sabotage products that work simply to force customers to buy replacements. We intend to grow by making useful things better and developing new solutions, with documented safety and security exceptions rather than hidden revenue-driven degradation.
+
+[Read the public accountability covenant](https://github.com/mommommy1960-lang/commons-master-tech-compendium/blob/main/governance/PERMANENT_ACCOUNTABILITY_COVENANT.md) and [three-pillar mission](https://github.com/mommommy1960-lang/commons-master-tech-compendium/blob/main/docs/CIVIC_CONTINUUM_THREE_PILLARS.md).
+
+**Business identity:** Civic Continuum is the current public name, descended from the historical Commons Initiative. Domain: civiccontinuum.org. Contact: contact@civiccontinuum.org. Existing records show a founder-led Washington sole-proprietor venture with LLC formation pending; domain ownership or an EIN does not prove LLC formation. Do not represent the organization as a registered LLC until official records confirm it.
