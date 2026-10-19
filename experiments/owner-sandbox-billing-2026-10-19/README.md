@@ -1,10 +1,22 @@
 # Owner sandbox billing candidate — October 19, 2026
 
-**NOT DEPLOYED. This is an owner-demo billing increment, not customer authentication or a public launch.**
+**Integrated candidate locally tested, NOT DEPLOYED. Owner sandbox billing only; separate customer authentication and a public launch are not implemented.**
 
 The owner supplied the working staging source in chat after tablet editor copying succeeded. That source uses bearer tokens, recovery_sessions, recovery_messages, two-hour owner sessions, the fp8 AI model, and /api/stripe/checkout. The rejected external v2 rewrote these assumptions. This candidate preserves them instead.
 
-## Files
+## Integrated files added
+
+- worker.mjs: integrated candidate based on the owner-supplied active source, retaining bearer owner login, original tables, local storage keys and fp8 model. Reassembled source, not byte-identical.
+- ui.mjs: owner login/chat plus subscription status, explicit ID import, portal and period-end cancellation controls.
+- dist/worker.mjs: dependency-free single-file bundled Worker for future dashboard upload.
+- bundle.py: deterministic bundler; run python bundle.py.
+- test/worker.test.mjs and test/sqlite_bridge.py: tests of the actual bundled Worker against real temporary local SQLite and mocked Stripe.
+
+Changes also preserve history on session expiry, reject malformed session timestamps, implement server-side signout, bound messages and directly verify the configured sandbox price.
+
+Final validation: **32 tests passed, 0 failed** with node --test test/payments.test.mjs test/worker.test.mjs. Bundled Worker syntax check passed. No hosted Cloudflare/Stripe or browser visual test performed.
+
+## Earlier module files
 
 - payments.mjs: isolated billing module; signed webhook, canonical subscription/invoice verification, explicit owner-only import, status, portal, and period-end cancellation.
 - migration.sql: additive owner_sandbox_* tables only.
@@ -29,15 +41,19 @@ Run `node --test test/payments.test.mjs` (no npm dependencies). Initial run befo
 
 Tests cover actual handler behavior for signed/invalid/old signatures, unpaid checkout, ownership linkage, live rejection, expiry, exact price and invoice checks, duplicate delivery, upstream failure/retry, commit failure/retry, out-of-order state, overlapping updates, nested invoice linkage, cancellation behavior and owner authorization. D1 SQL is exercised separately with real local SQLite; it is not a substitute for hosted D1 verification.
 
-No Cloudflare/Stripe runtime test, registered webhook, secret binding, portal configuration, existing subscription import, or deployed candidate has been verified here. The full assembled candidate cannot be claimed syntax-checked until the copied baseline is available as a local source file and the builder has run. This module is not a replacement Worker: uploading it alone would break the service.
+No Cloudflare/Stripe runtime test, registered webhook, secret binding, portal configuration, existing subscription import, or deployed candidate has been verified here. The integrated single-file dist/worker.mjs has now passed syntax checks and request-flow tests. It is based on the supplied source and must be compared with fresh active source before deployment. payments.mjs alone is not a replacement Worker.
 
 ## Remaining integration
 
 1. Assemble candidate from actual active source; inspect the narrow diff and syntax-check both files. Keep current successful deployment available for rollback.
 2. Review/apply additive SQL to the isolated staging D1 only. Add STRIPE_WEBHOOK_SECRET privately; preserve all existing bindings. Register the exact /api/stripe/webhook URL and seven event types in the matching sandbox. This step requires authorized account access.
 3. Configure a sandbox Billing Portal and only the minimum additional restricted-key read/portal permissions reported necessary by actual Stripe errors. Do not broaden live permissions.
-4. Add owner-only controls to the existing UI for status, explicit subscription-ID import, portal and cancellation. The backend candidate has these routes; UI wiring is not yet implemented. The already-paid subscription must be explicitly imported; it has no recorded checkout linkage.
+4. Add owner-only controls to the existing UI for status, explicit subscription-ID import, portal and cancellation. The backend candidate has these routes; UI wiring is now implemented in ui.mjs and bundled in dist/worker.mjs; browser visual verification remains pending. The already-paid subscription must be explicitly imported; it has no recorded checkout linkage.
 5. Deploy only after assembled integration review; verify owner signin/history/chat are unchanged, then exercise actual sandbox event delivery, retry, import, portal, cancellation and expiry.
 6. Separate customer authentication and server-enforced customer entitlements remain a later implementation, with independent identity and isolation tests. Do not gate owner chat or market this as a customer-ready system.
 
 Never place Stripe keys, owner secrets, bearer tokens, or webhook signing secrets in GitHub. Preserve maya-node and live billing.
+
+## Deployment blocker observed
+
+The agent cloud browser is at Cloudflare login. No authenticated deployment is available. No source, D1 data, secret or Stripe configuration was changed in the accounts. Account access, webhook registration/signing secret, matching sandbox portal configuration and actual runtime tests remain necessary. Do not confuse the 32 local tests with hosted verification.
