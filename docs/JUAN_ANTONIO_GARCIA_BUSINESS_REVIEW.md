@@ -1,3 +1,13 @@
+## October 24, 2026 - Sage public demonstration and partnership brief
+
+[**Read the public Sage developer and funder dossier**](https://github.com/mommommy1960-lang/sage-situated-companion/blob/main/docs/SAGE_PUBLIC_PARTNERSHIP_DOSSIER_2026-10-24.md) · [Open the public device demo](https://sage-companion-device-lab.myqueen1960.chatgpt.site/) · [Inspect PR10 and tests](https://github.com/mommommy1960-lang/sage-situated-companion/pull/10).
+
+The briefing explains current capabilities, evidence, separate browser/Python paths, proposed integration and measurable pilot gates. Founder-reported tablet observations cover camera preview, location display and speech-to-text. Audible replies remain unconfirmed. Camera preview is not scene understanding; browser/OS background suspension and runtime integration remain open. Ordinary tab-session and speech diagnostics changes are merged, with automated checks recorded. No production readiness, completed independent review or endorsement is implied.
+
+Prepared for the next business-advising discussion: which initial use case to prioritize, what evidence would justify a pilot, and which engineering contribution to seek first. This updates the existing review link; it does not schedule a meeting or claim adviser approval.
+
+---
+
 ## Live website evidence — October16,2026
 
 **[Maya Accountable Actions is available for early-access review](https://maya-working-workflow-lab.myqueen1960.chatgpt.site/).** Live checks confirmed an authorized saved output, byte-exact download, blocked execution after revocation, persistent requests and downloaded receipts. [Evidence, limits and next gates](MAYA_HOSTED_ACTIONS_VERIFICATION_2026-10-16.md).
