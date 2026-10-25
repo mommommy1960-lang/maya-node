@@ -1,0 +1,4 @@
+CREATE TABLE maya_accounts (subject TEXT PRIMARY KEY, trial_end INTEGER NOT NULL DEFAULT 0, trial_used INTEGER NOT NULL DEFAULT 0, paid_end INTEGER NOT NULL DEFAULT 0, paid_used INTEGER NOT NULL DEFAULT 0, suspended INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE maya_checkouts (session TEXT PRIMARY KEY, subject TEXT NOT NULL, price TEXT NOT NULL, created INTEGER NOT NULL);
+CREATE TABLE maya_orders (session TEXT PRIMARY KEY, subject TEXT NOT NULL, payment_intent TEXT NOT NULL, expires INTEGER NOT NULL, applied INTEGER NOT NULL DEFAULT 0, revoked INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE maya_payment_revocations (payment_intent TEXT PRIMARY KEY);
