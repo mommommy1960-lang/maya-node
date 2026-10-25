@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import worker,{verifyStripeSignature,reviewMessages,fulfillStripeEvent} from './worker.mjs';
 function database(){
   const raw=new DatabaseSync(':memory:');
-  raw.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));
+  raw.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));raw.exec('UPDATE service_guard SET paused=0');
   return {raw,prepare(sql){
     return {bind(...args){
       const s=raw.prepare(sql);
