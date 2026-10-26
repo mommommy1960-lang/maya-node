@@ -15,7 +15,7 @@ Historical evidence from October 16 is linked in prior project documentation, bu
 **Status: PARTIAL / OPEN.** Existing draft protocol is not fully finalized. Retention period, monitored incident contact, and named pilot escalation must be confirmed by the owner. Do not invent operational contacts or retention promises.
 
 ## Gate 4 — Fresh authorization/revocation/duplicate/failure/receipt-completeness tests
-**Status: NOT RUN IN THIS SESSION.** GitHub repository search found existing documented test evidence, including an offline workflow lab and a real-file-action test command. No code-execution environment or authenticated CI run trigger was available through the current tools. Existing test counts and historical pass results are not being relabeled as fresh results. Required fresh run must include:
+**Status: PARTIALLY UPDATED — fresh GitHub Actions run completed successfully after this report was committed.** Run: https://github.com/mommommy1960-lang/maya-node/actions/runs/40255591764 (commit `1f44ecf236d02a27734acd22753c5ff6efea03cb`, 2026-10-26 01:43 UTC). All five jobs succeeded: Core Runtime and Ledger Tests; Adaptive Red-Team 100; Nightwatch Contingency 1000; Security Scanning (Bandit); Ethics Constraint Verification (CERL headers and ethics tests). This is fresh CI evidence for the tests defined in `.github/workflows/security-ethics-checks.yml`; it does **not** cover the hosted customer journey, live customer-controlled deletion, external integrations, or all receipt-completeness scenarios. Those remain open. Required additional test coverage must include:
 - authorization and denied-action cases;
 - revocation before attempted action;
 - duplicate/replay and concurrency where applicable;
@@ -37,7 +37,7 @@ Historical evidence from October 16 is linked in prior project documentation, bu
 
 ## Current tools/access constraints
 - The hosted sites could not be verified using the current browser channel.
-- The available GitHub integration can read and write repository content, but no code runner was available to execute project tests and no authenticated CI workflow dispatch tool was exposed.
+- A local code runner was unavailable in this session; however, a push-triggered GitHub Actions run did execute the repository's configured security/ethics suite and all five jobs passed. No manual workflow-dispatch tool was exposed. The new CI evidence is linked above.
 - The Gmail connector is disabled by the administrator and no authorized email-send tool is available in this session. No messages were sent.
 - No paid subscription, DNS change, credential change, or production deployment was attempted.
 
@@ -45,8 +45,8 @@ Historical evidence from October 16 is linked in prior project documentation, bu
 1. Owner opens the Maya hosted workflow on their device and performs the exact authorized-action, receipt-download, revoke, and blocked-action path; capture a redacted evidence record.
 2. Complete Check 5 and verify deletion of associated outputs and receipts using a test account.
 3. Confirm and publish internally the retention period, monitored incident contact, primary/backup owner, and escalation route.
-4. Run the existing test suite and required receipt-completeness cases in an authorized development/CI environment and preserve the run URL/logs.
+4. Preserve the successful CI run linked above. Separately add/run explicit receipt-completeness and hosted deletion tests in an authorized development/CI environment, then retain that run URL/logs.
 5. Only then obtain written pilot scope and permission from one low-risk business partner; continue synthetic/redacted data until all readiness gates pass.
 6. Record baseline and actual outcomes, including failures and limitations.
 
-**Conclusion:** Work completed in this session is documentation and readiness triage. The live workflow, deletion, fresh tests, business permission, and outcome measurement remain unverified or incomplete. No claim of production readiness is made.
+**Conclusion:** Documentation and readiness triage were completed; a fresh push-triggered CI security/ethics suite also passed all five jobs. The live workflow, hosted deletion, additional receipt-completeness coverage, business permission, and outcome measurement remain unverified or incomplete. No claim of production readiness is made.
