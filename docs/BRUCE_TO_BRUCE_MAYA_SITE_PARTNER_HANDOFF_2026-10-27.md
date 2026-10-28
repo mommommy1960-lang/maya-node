@@ -12,6 +12,12 @@ Founder explicitly accepted the primary human incident-responder role “for now
 
 At founder request, a fresh connected operator cleanup completed successfully. Run ID `bd8b8f2b-7d73-4942-a8fa-81f9decf02e8` matched persisted `last_run.id` on fresh read. Removed requests/outputs/events/notices: 0/0/0/0; pending expired requests 0; legacy records preserved; backups not inspected. This verifies another immediate run, not the future scheduled trigger. Daily automation remains enabled. Hosting Support answers/recovery evidence and backup staffing remain open.
 
+## Urgent incident email alerts enabled — October 27, 2026
+
+At founder request, created and read back enabled event-triggered automation “Urgent Maya incident alerts” (task reference `6ae17d10daac81918f374ffdc345873f`). Connected Gmail message-added events wake the task; it reads current mail, filters for actual Maya customer incident reports and privately alerts the founder with “🚨 MAYA NEEDS YOUR ATTENTION”, sanitized impact, message link and next human action. Unrelated mail, expected sign-ins, routine support and normal permission denials are excluded. No replies, production changes or destructive actions are authorized.
+
+This is incident-email detection, not direct outage telemetry. No delivery latency, full-screen takeover, DND bypass or end-to-end tablet push delivery was verified. Tablet/ChatGPT notification permissions still require user-side confirmation and a test. Daily cleanup remains separate and enabled. No Support reply to tonight's backup request found during this check.
+
 ## Continue here
 
 - Original Site: https://maya-working-workflow-lab.myqueen1960.chatgpt.site/
