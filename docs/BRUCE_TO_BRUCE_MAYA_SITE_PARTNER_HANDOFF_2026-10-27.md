@@ -2,6 +2,10 @@
 
 **v17 remains active on the original Site. The connected maintenance actions now work: a cleanup completed and its persisted run reference was verified. The daily cleanup/incident task is enabled again. Hosting backup recovery and human backup coverage remain open; the whole pilot is not marked ready.**
 
+## Support request submitted — October 27, 2026, 9:32 PM Pacific
+
+Founder explicitly approved sending the prepared backup request from the connected Gmail to verified OpenAI Support, with replies directed to contact@civiccontinuum.org. The draft was sent in existing case 17489131, and a fresh read confirmed SENT status, the intended Support recipient and business Reply-To. This supersedes all earlier “unsent / sender blocked” notes below. No restore, deletion, migration, billing, DNS or access change was requested. Next: await Support's configuration answers and approved isolated recovery procedure; backup verification remains open. Human backup coverage remains unfilled.
+
 ## Continue here
 
 - Original Site: https://maya-working-workflow-lab.myqueen1960.chatgpt.site/
