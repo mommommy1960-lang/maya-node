@@ -2,6 +2,14 @@
 
 ****v18 is active on the original Site. Scheduled cleanup is verified. Hosting recovery, human backup/coverage and physical alert delivery remain open; the customer pilot is not marked ready.** on the original Site. The connected maintenance actions now work: a cleanup completed and its persisted run reference was verified. The daily cleanup/incident task is enabled again. Hosting backup recovery and human backup coverage remain open; the whole pilot is not marked ready.**
 
+## Founder coverage acceptance — October 28, 2026
+
+Founder explicitly stated that she accepts responsibility for incident response and coverage herself. Record **single-person coverage by the founder**, not an independently staffed backup. No additional human, permissions or contact access was appointed. Exact monitoring days/hours have not yet been supplied. Do not demand a second person merely to repeat the basic two-account engineering test; the unresolved operational question is coverage or a safe pause/escalation plan when the sole responder is unavailable.
+
+At founder request, an immediate labelled tablet-notification rehearsal was requested through the existing scheduled maintenance task, with token `Q28-A`. Its daily schedule was preserved. The test is not a real incident and must not be called delivered until the founder confirms an actual device notification. It exercises the task-notification path, not the full inbound-email incident classifier. Restore the original task prompt after the rehearsal result is collected; ignore its date-scoped test prefix on later days.
+
+A fresh Support search found no configuration answer to case 17489131. Hosting backup/log expiry and isolated hosted recovery remain unverified. No new outbound message, backup restore, billing change or production change occurred in this confirmation step. Peer communications and proposed meeting replies remain private and unsent.
+
 ## October 28 continuation — v18 hardening deployed
 
 **Current live version is v18**, source `e6831dd5012fe6ce0e0ec8c81677631cc174e033`, successful deployment `appgdep_6ae25787a8f081919864b7eae59f3c15`; same original project/URL/public audience and runtime secret revision 1. Read [the complete fresh execution report](MAYA_READINESS_EXECUTION_2026-10-28.md) before using older v17/checkpoint notes below.
