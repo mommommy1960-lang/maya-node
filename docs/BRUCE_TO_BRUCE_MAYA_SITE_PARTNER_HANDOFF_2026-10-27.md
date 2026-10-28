@@ -1,6 +1,21 @@
 # Current Maya continuation — updated October 28, 2026 (Pacific)
 
-**v17 remains active on the original Site. The connected maintenance actions now work: a cleanup completed and its persisted run reference was verified. The daily cleanup/incident task is enabled again. Hosting backup recovery and human backup coverage remain open; the whole pilot is not marked ready.**
+****v18 is active on the original Site. Scheduled cleanup is verified. Hosting recovery, human backup/coverage and physical alert delivery remain open; the customer pilot is not marked ready.** on the original Site. The connected maintenance actions now work: a cleanup completed and its persisted run reference was verified. The daily cleanup/incident task is enabled again. Hosting backup recovery and human backup coverage remain open; the whole pilot is not marked ready.**
+
+## October 28 continuation — v18 hardening deployed
+
+**Current live version is v18**, source `e6831dd5012fe6ce0e0ec8c81677631cc174e033`, successful deployment `appgdep_6ae25787a8f081919864b7eae59f3c15`; same original project/URL/public audience and runtime secret revision 1. Read [the complete fresh execution report](MAYA_READINESS_EXECUTION_2026-10-28.md) before using older v17/checkpoint notes below.
+
+- Recovered/opened the existing managed-Git checkout and original Work editing context. No replacement Site or separate Maya implementation.
+- Added transactional per-account request throttling shared by website and MCP: 60 ordinary writes/minute, 240 reads/minute, separate 120 revoke/delete budget. Throttled attempts return 429/Retry-After without business effects or receipt growth. Additive migration creates only counter storage/index; old counter windows are cleaned on service traffic/operator maintenance.
+- Fresh validation: **87 automated tests**, existing local workerd/D1 integration, seven targeted local D1 acceptance scenarios (eight Node records including parent), TypeScript and production build passed. Covers exact bytes/grant reference, revoke-before-dispatch on both routes, substitution, replay/concurrency, alternate paths, isolation, expiry/deletion re-query and shared throttling. Isolated synthetic principals are not new real ChatGPT accounts or independent peer validation.
+- Responsive signed-out browser checks at phone/tablet widths had no horizontal document overflow. This does not verify physical Android behavior or push delivery.
+- Post-release native D1 overview confirms counter migration. Fresh live receipt export preserves original 10 requests/28 action events, existing one service notice and five completed-output references; receipt events contain no payload/email fields. No production fault injection, authorizations or original-record deletion.
+- Morning maintenance run remains persisted with matching reference and zero pending expired requests. No extra cleanup was invoked during this continuation.
+- Recent error-only Worker-log query returned no events. This does not establish an SLA.
+- Latest reviewed public repository Security & Ethics run 40757849954 passed on an earlier documentation commit; it is not the deployed Site's source test run.
+
+**Remaining external gates:** actual hosting backup/log expiry and isolated hosted recovery still await Support; no backup person has consented; coverage hours and actual tablet alert delivery are unverified; formal external pilot permission/source availability and independent outcomes remain open. No billing/customer-data migration or consequential customer launch occurred. Do not turn the routine hardening deployment into a production-readiness claim. Private peer messages and proposed reply/pilot material stay out of this public handoff.
 
 ## October 28, 2026 — scheduled execution verified
 
