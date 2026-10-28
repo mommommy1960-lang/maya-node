@@ -1,6 +1,16 @@
-# Current Maya continuation — updated October 27, 2026 (Pacific)
+# Current Maya continuation — updated October 28, 2026 (Pacific)
 
 **v17 remains active on the original Site. The connected maintenance actions now work: a cleanup completed and its persisted run reference was verified. The daily cleanup/incident task is enabled again. Hosting backup recovery and human backup coverage remain open; the whole pilot is not marked ready.**
+
+## October 28, 2026 — scheduled execution verified
+
+The daily maintenance run executed successfully this morning. `outcome=completed`; returned `run_id` and persisted `last_run.id` both equal `5c4451cc-e7c4-44ee-a9d5-3af85b03e6f8`. Removed requests/outputs/events/notices: **0/0/0/0**; pending expired requests: **0**; legacy and unexpired records preserved. A fresh read-only status check during this continuation confirmed that same persisted run. This establishes one scheduled execution, not a future uptime or deletion guarantee.
+
+Fresh Sites read confirmed the original project active, current user role owner, version 17, same live URL and existing daily task enabled. The existing source checkout is clean at `89b4adb67544d41938217e4fb12873d1169a6093`; source maintenance instructions were read. No republish, customer-payload inspection, additional cleanup or fault injection was needed.
+
+The morning incident search found no new matching reports since the previous check. A later targeted Support search found no newer reply to case 17489131; hosting backup configuration and isolated hosted recovery remain unverified. Founder acceptance as primary responder and the sent Support request above supersede the older unsent/unconfirmed notes below. A consenting backup person and verified alert delivery remain open.
+
+Issues #76 and #78 have been reviewed against this continuation. Their historical source-access blockers are resolved; they must not trigger another editor search or repetition of completed tests. Keep the overall pilot gates open for actual unresolved evidence. LinkedIn message contents and peer proposals are private and are not reproduced in this public engineering handoff.
 
 ## Support request submitted — October 27, 2026, 9:32 PM Pacific
 
@@ -70,9 +80,9 @@ Human backup remains unavailable by founder report. Automated checks and a writt
 
 ## Remaining open
 
-1. Cleanup connection and first verified live run are complete; daily task is enabled. Verify the first scheduled run actually executes and preserves the completed-outcome/persisted-reference checks. Do not confuse enabled state with proven future execution.
+1. Cleanup connection, immediate live runs and the October 28 scheduled run are verified; daily task is enabled. Continue requiring completed outcome and matching persisted run reference on each run. Future execution remains subject to availability.
 2. Verify actual hosting backup retention/expiry, log expiry and an approved isolated hosted recovery procedure with the hosting provider. No hosted restore has been performed. Source rollback and local D1 tests are not database backup proof.
-3. Confirm incident-contact human coverage and an explicitly consenting backup person. Incoming email delivery is established; staffing is not.
+3. Founder has accepted primary incident response; a consenting backup person, defined coverage and end-to-end tablet alert delivery remain unverified. Incoming email delivery and enabled checks alone do not establish those.
 4. Establish written scope/permission when a real business pilot begins.
 
 No payment, DNS change or outbound email has occurred in this continuation. Do not call the whole pilot ready, claim hosting backup verification or revive resolved editor/account-switching blockers.
