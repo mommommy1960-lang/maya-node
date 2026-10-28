@@ -6,6 +6,12 @@
 
 Founder explicitly approved sending the prepared backup request from the connected Gmail to verified OpenAI Support, with replies directed to contact@civiccontinuum.org. The draft was sent in existing case 17489131, and a fresh read confirmed SENT status, the intended Support recipient and business Reply-To. This supersedes all earlier “unsent / sender blocked” notes below. No restore, deletion, migration, billing, DNS or access change was requested. Next: await Support's configuration answers and approved isolated recovery procedure; backup verification remains open. Human backup coverage remains unfilled.
 
+## Founder decision and fresh cleanup — October 27, 2026
+
+Founder explicitly accepted the primary human incident-responder role “for now.” Record her acceptance without inventing duty hours, acknowledgement targets or 24/7 availability. The backup role remains unfilled. This supersedes earlier statements that primary human acceptance is unconfirmed. Automated scheduled checks assist and alert her; they are not a human substitute.
+
+At founder request, a fresh connected operator cleanup completed successfully. Run ID `bd8b8f2b-7d73-4942-a8fa-81f9decf02e8` matched persisted `last_run.id` on fresh read. Removed requests/outputs/events/notices: 0/0/0/0; pending expired requests 0; legacy records preserved; backups not inspected. This verifies another immediate run, not the future scheduled trigger. Daily automation remains enabled. Hosting Support answers/recovery evidence and backup staffing remain open.
+
 ## Continue here
 
 - Original Site: https://maya-working-workflow-lab.myqueen1960.chatgpt.site/
