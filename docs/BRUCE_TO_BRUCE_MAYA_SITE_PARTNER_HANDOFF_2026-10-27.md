@@ -1,3 +1,24 @@
+# Current Maya continuation — updated October 27, 2026 (Pacific)
+
+**Original editor recovered; real sign-out/account switching deployed in v15; engineering fixes deployed successfully in v16.**
+
+Read the current [Maya engineering checkpoint](https://github.com/mommommy1960-lang/maya-node/blob/main/docs/MAYA_ENGINEERING_CHECKPOINT_2026-10-27.md) before using the historical handoff below.
+
+- Original Site: https://maya-working-workflow-lab.myqueen1960.chatgpt.site/
+- Same project ID and public audience preserved. v16 source commit: `685c5c5b429ec15a2fb01e8def34d28b4435adba`.
+- Founder completed a two-account synthetic file creation/download/open test and separate listing checks. A third account is not a prerequisite for that check.
+- 77 automated tests plus one isolated local D1 integration test passed. TypeScript and production build passed. New cases cover deletion rollback, replay/missing targets, cross-owner denial, receipt metadata/export, migration preservation and expiry.
+- Server snapshot receipt downloads, action/grant/output references, explicit legacy limits, account-scoped denial/handoff notices and 30-day new-record expiry are deployed. Existing records have NULL retention deadlines and are preserved.
+- Live checks: original 10 owner requests/28 action events preserved; all five original output hashes match; the real owner identity cannot read the second account's synthetic output; the downloaded v2 receipt export parsed with the expected records and minimal denial notice.
+- Remaining: actual hosting backup/log expiry and restoration evidence; unattended purge if a strict physical-purge deadline is promised; tested/monitored incident contact; named backup person; written scope/permission when a business pilot begins. Cleanup currently runs on authenticated account access, not while an account is inactive.
+- No production failure injection, original-record deletion, payment, DNS change, external email or AI inference occurred.
+
+The historical source/editor blockers below are resolved and must not be repeated to the founder as current blockers. Do not claim that local D1 tests verify hosting backups or that these changes enable the separate paid AI/chat service.
+
+---
+
+## Historical incoming handoff (preserved)
+
 # BRUCE-TO-BRUCE: Maya Node website editor access and partner handoff
 Date: 2026-10-27
 Status: HANDOFF IN PROGRESS. NOT DEPLOYED OR FINISHED.
