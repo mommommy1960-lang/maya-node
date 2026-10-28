@@ -37,7 +37,7 @@ Do not promise complete deletion until the implementation and its backups/logs h
 
 ## 5. Incident and escalation
 
-**Primary pilot owner:** Founder is the current escalation recipient; human duty acceptance and availability remain unconfirmed.
+**Primary pilot owner:** Founder explicitly accepted the human incident-responder role for now on October 27, 2026. Coverage hours and acknowledgement targets remain unspecified; no 24/7 promise.
 **Backup human owner:** Unfilled. Founder reports no backup person currently available; do not assign or contact anyone implicitly.
 **Incident reporting channel:** contact@civiccontinuum.org. Incoming forwarding to the founder's connected inbox has been verified. Daily automated checks are enabled; this does not establish continuous human monitoring.
 **Expected acknowledgement time:** [Agree with pilot participant before start]
