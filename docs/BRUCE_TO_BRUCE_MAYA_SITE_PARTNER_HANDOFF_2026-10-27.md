@@ -42,6 +42,16 @@ Maintenance boundaries remain: no supplied cutoff, file authorization, customer-
 - No email was sent, labels changed, response promised or backup person appointed. Founder said no backup person is available yet.
 - Keep business email separate from personal addresses. An unsent hosting-support draft has no recipients because the requested business sender was not honored by Gmail; it is not ready to send from a personal address.
 
+## Backup and incident procedure follow-through
+
+Updated the existing [pilot data and incident protocol draft](MAYA_PILOT_DATA_AND_INCIDENT_PROTOCOL_DRAFT_2026-10-25.md) to reflect v17 retention and the verified cleanup, confirmed reporting address, unfilled human coverage, bounded triage steps and isolated hosted recovery acceptance evidence. This is a draft procedure, not founder acceptance of duty hours or a staffed service.
+
+Official Sites administration documentation explicitly directs retention/deletion questions to OpenAI Support: https://learn.chatgpt.com/docs/enterprise/sites (checked October 27). Available Sites operations do not provide a backup retention/restore control. No hosted restore was attempted.
+
+Read back the existing unsent hosting-support draft: its five questions cover D1 backup/PITR availability and expiry, logs/derived copies, deleted-data resurrection, isolated synthetic restore and evidence/cost/approval. It remains recipientless and unsent because its sender is personal rather than the requested business sender. Do not silently send it or repeat the unsupported sender attempt. A supported business sending route or another explicitly approved Support submission route is required.
+
+Human backup remains unavailable by founder report. Automated checks and a written protocol cannot fill this role. No person was appointed, contacted or promised a response time.
+
 ## Remaining open
 
 1. Cleanup connection and first verified live run are complete; daily task is enabled. Verify the first scheduled run actually executes and preserves the completed-outcome/persisted-reference checks. Do not confuse enabled state with proven future execution.
