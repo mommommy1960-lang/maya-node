@@ -23,6 +23,14 @@ This section supersedes the earlier pending-send and pending-deletion statements
 - Rehearsal NOT completed: no actual test checkout, payment, webhook delivery, refund or entitlement acceptance. Checkout remains closed. Recovery, human coverage, business requirements, live liveness verification and external acceptance remain separate gates.
 - Reapplied saved version 20 successfully with runtime revision 3: deployment appgdep_6ae37310a8f881918d52f14c0315015d, existing URL and MCP preserved. Hosted page still displays disabled checkout. No source or data schema change.
 
+## Stripe Dashboard access recovered — October 29, 2026
+- Google one-time security-code path repeatedly returned invalid code. At founder request, opened alternative methods; founder selected device approval through secure browserAuth.
+- Google sign-in then proceeded, followed by Stripe's own SMS verification. Fresh browser state confirms signed-in Stripe Dashboard.
+- Dashboard initially showed live mode; no live key revealed or changed. Switched the same account to Test mode; visible sandbox banner confirms no real transactions.
+- Prepared, but did NOT submit, new restricted test key form named "Maya hosted payment rehearsal — test only". Selected only Checkout Sessions Write; Charges and Refunds Read; Payment Intents Read; Products Read; Prices Read. All other permissions None. No new key exists from this form yet.
+- Original Sites editor link routes to a new edit composer; opening the historical editing conversation reports no access in this browser. This is a browser UI limit, not loss of native Sites owner/source access. No secret-entry screen has been staged.
+- Server API key provisioning and provider checkout/webhook rehearsal remain incomplete. No passwords, verification codes or API secrets retained in this record. Checkout remains disabled.
+
 ## Decision
 Customer launch is not complete. Synthetic-only boundary and closed checkout remain in place. This checkpoint records fresh hosted evidence and concrete external dependencies; no real customer data, charge, restore, production code change, DNS change or access expansion occurred.
 
