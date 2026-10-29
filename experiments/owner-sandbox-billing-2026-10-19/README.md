@@ -57,3 +57,7 @@ Never place Stripe keys, owner secrets, bearer tokens, or webhook signing secret
 ## Deployment blocker observed
 
 The agent cloud browser is at Cloudflare login. No authenticated deployment is available. No source, D1 data, secret or Stripe configuration was changed in the accounts. Account access, webhook registration/signing secret, matching sandbox portal configuration and actual runtime tests remain necessary. Do not confuse the 32 local tests with hosted verification.
+
+## Continuous integration
+
+The `Owner Sandbox Billing Integration Tests` workflow checks that `dist/worker.mjs` matches the deterministic bundle, validates JavaScript syntax, and runs both Stripe payment and Worker integration suites on pull requests touching this candidate. These tests do not deploy to Cloudflare or contact live Stripe.
