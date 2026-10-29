@@ -1,0 +1,32 @@
+name: Owner Sandbox Billing Integration Tests
+on:
+  push:
+    paths:
+      - 'experiments/owner-sandbox-billing-2026-10-19/**'
+      - '.github/workflows/owner-sandbox-billing-tests.yml'
+  pull_request:
+    paths:
+      - 'experiments/owner-sandbox-billing-2026-10-19/**'
+      - '.github/workflows/owner-sandbox-billing-tests.yml'
+  workflow_dispatch:
+jobs:
+  owner-sandbox-billing:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: experiments/owner-sandbox-billing-2026-10-19
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify bundled Worker matches sources
+        run: |
+          python bundle.py
+          git diff --exit-code -- dist/worker.mjs
+      - name: Check Worker syntax
+        run: node --check dist/worker.mjs
+      - name: Execute Stripe and Worker integration tests
+        run: node --test test/payments.test.mjs test/worker.test.mjs
