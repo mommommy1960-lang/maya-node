@@ -12,6 +12,17 @@ This section supersedes the earlier pending-send and pending-deletion statements
 - Site remains active and public at version 20. No checkout activation, source deployment, restore, real customer processing or charge occurred.
 - Next payment step needs selection between the connected Mya Brown test account and New business sandbox, followed by provider setup permissions and secret-only provisioning. Live identity liveness verification, hosting recovery, incident backup/coverage, business terms and external acceptance remain open.
 
+## Stripe test setup — October 29, 2026
+- Founder selected the connected Mya Brown test account. All Stripe setup calls use livemode=false and the selected test context; no live charge or live product created.
+- Confirmed no existing price for offer lookup key maya-pilot-2026-10-28-v1 and no existing standard webhook endpoints in that test account.
+- Created test one-time USD price price_1UVw4NJYOy8NtnKHDYMfH9jR (2500 cents), product prod_VX040oaZNIBtAz; offer marked TEST ONLY with access_days=30.
+- Created test webhook we_1UVw4jJYOy8NtnKHFRzIbNoL at the existing Site /api/billing/webhook route. Enabled only checkout.session.completed, checkout.session.async_payment_succeeded, checkout.session.async_payment_failed, checkout.session.expired, charge.refunded and charge.dispute.created. Direct account only.
+- Stored webhook signing secret in Sites as a secret, never in this file, source, chat or logs. Stored matching test offer configuration with MAYA_BILLING_ENABLED=false. Existing operator secret preserved. Runtime configuration revision 3.
+- STRIPE_SECRET_KEY is still absent. Stripe connector can create test objects but cannot supply the hosted application's server API key. Official Stripe restricted-key guidance reviewed; use server-only restricted test key with price read, checkout session write/read and payment intent/charge read for this implementation; verify provider-required dependencies during rehearsal.
+- Opened Stripe Dashboard API-key page. It requires login. Secure browserAuth prompt returned declined; no sign-in, key creation or credential extraction was attempted after that result. Do not retry without the user's renewed request.
+- Rehearsal NOT completed: no actual test checkout, payment, webhook delivery, refund or entitlement acceptance. Checkout remains closed. Recovery, human coverage, business requirements, live liveness verification and external acceptance remain separate gates.
+- Reapplied saved version 20 successfully with runtime revision 3: deployment appgdep_6ae37310a8f881918d52f14c0315015d, existing URL and MCP preserved. Hosted page still displays disabled checkout. No source or data schema change.
+
 ## Decision
 Customer launch is not complete. Synthetic-only boundary and closed checkout remain in place. This checkpoint records fresh hosted evidence and concrete external dependencies; no real customer data, charge, restore, production code change, DNS change or access expansion occurred.
 
