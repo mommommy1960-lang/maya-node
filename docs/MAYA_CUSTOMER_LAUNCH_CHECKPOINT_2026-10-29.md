@@ -1,5 +1,17 @@
 # Maya customer-launch execution checkpoint — October 29, 2026 (Pacific)
 
+## Approved continuation — October 29, 2026
+This section supersedes the earlier pending-send and pending-deletion statements below.
+- Founder explicitly approved sending the prepared support reply and permanently deleting only the two named synthetic test fixtures.
+- Sent the existing support draft in case 17489131 successfully. Sent message 1a188741e57b99df, existing thread 1a147f26fa2b85dc, provider returned SENT. No duplicate case created. Hosting facts and isolated recovery remain awaiting provider guidance.
+- Deleted completed synthetic request 440f5436-35db-402e-a129-65a5bd07b2d4 and revoked synthetic request 40ebb0a6-ba91-4957-902a-2837f219caf4 through the authenticated hosted UI. Both confirmations accepted under the explicit approval.
+- Refreshed hosted records: both fixture articles absent; original peer sample remains.
+- Read all live rows in maya_action_requests (11), maya_action_outputs (6) and maya_action_events (31), using bounded pages through Sites. Neither target request ID appears in the request, output or linked event tables. All ten original founder-workspace filenames remain present. These global counts include other preserved account data and are not the founder-only UI totals.
+- Connected Maya read_output for the deleted completed request returns File not found, reference d21fd411-532e-4095-aa1b-b66a88c9b5a4. This is expected denial evidence, not an outage.
+- This establishes fresh hosted deletion of the completed and revoked synthetic fixtures and linked active rows. It does not establish hosting backup/log expiry, isolated recovery, every session/endpoint case, device-local copy deletion or external customer acceptance.
+- Site remains active and public at version 20. No checkout activation, source deployment, restore, real customer processing or charge occurred.
+- Next payment step needs selection between the connected Mya Brown test account and New business sandbox, followed by provider setup permissions and secret-only provisioning. Live identity liveness verification, hosting recovery, incident backup/coverage, business terms and external acceptance remain open.
+
 ## Decision
 Customer launch is not complete. Synthetic-only boundary and closed checkout remain in place. This checkpoint records fresh hosted evidence and concrete external dependencies; no real customer data, charge, restore, production code change, DNS change or access expansion occurred.
 
