@@ -184,6 +184,7 @@ async function ownerBilling(request, env, session, send = fetch) {
   }
 }
 
+
 // Source: ui.mjs
 const HTML = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -222,7 +223,7 @@ function logout(){localStorage.removeItem('maya_owner_token');localStorage.remov
 async function api(path,body){const r=await fetch(path,{method:body===undefined?'GET':'POST',headers:{'Authorization':'Bearer '+sessionToken,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});const d=await r.json();if(r.status===401){logout();throw Error('Owner session expired. Please sign in again.')}if(!r.ok)throw Error(d.error||'Request failed');return d;}
 function addMessage(role,content){const div=document.createElement('div');div.className='msg '+(role==='user'?'user':role==='assistant'?'assistant':'error');div.textContent=content;el('chat-box').appendChild(div);el('chat-box').scrollTop=el('chat-box').scrollHeight;}
 async function loadHistory(){const d=await api('/api/messages');el('chat-box').replaceChildren();for(const m of d.messages||[])addMessage(m.role,m.content);}
-async function testStripeAuth(){el('stripe-status').textContent='Checking Stripe sandbox connection…';try{const d=await api('/api/stripe/test');el('stripe-status').textContent=d.success?'✓ Stripe sandbox authentication verified.':'Stripe test failed: '+d.error;el('checkout').hidden=!(d.success&&d.checkout_ready);}catch(e){el('stripe-status').textContent=e.message;}}
+async function testStripeAuth(){const status=el('stripe-status');status.textContent='Checking Stripe sandbox connection…';el('checkout').hidden=true;try{const d=await Promise.race([api('/api/stripe/test'),new Promise((_,reject)=>setTimeout(()=>reject(Error('Stripe connectivity check timed out. Please report this to the owner.')),15000))]);status.textContent=d.success?(d.checkout_ready?'✓ Sandbox connection and $10/month checkout price verified.':'✓ Sandbox authenticated, but checkout price is not ready. '+(d.error||'Check STRIPE_PRICE_ID configuration.')):'Stripe test failed: '+(d.error||'Unknown error');el('checkout').hidden=!(d.success&&d.checkout_ready);}catch(e){status.textContent='Stripe connectivity check failed: '+e.message;}}
 async function checkAccess(){try{const d=await api('/api/stripe/access-status');const s=d.subscription||{};el('billing-status').textContent=!s.subscription?'No practice subscription linked yet.':(d.billing_access?'✓ Paid sandbox access current. ':'Sandbox billing access is not current. ')+(s.cancel_at_period_end?'Renewal cancellation scheduled. ':'')+(s.period_end?'Paid period ends '+new Date(s.period_end*1000).toLocaleString()+'.':'');el('portal').hidden=!s.subscription;el('cancel').hidden=!s.subscription||s.cancel_at_period_end||s.status!=='active';}catch(e){el('billing-status').textContent=e.message;}}
 async function showApp(){el('auth-section').style.display='none';el('app-section').style.display='block';el('user-email').textContent=userEmail;await Promise.allSettled([loadHistory(),testStripeAuth(),checkAccess()]);const q=new URLSearchParams(location.search);if(q.get('checkout')==='success')el('action-status').textContent='Returned from Stripe. Subscription status is confirmed separately by verified billing events.';}
 function action(id,fn){el(id).addEventListener('click',async()=>{el(id).disabled=true;try{await fn();}catch(e){el('action-status').textContent=e.message;}finally{el(id).disabled=false;}});}
@@ -236,6 +237,7 @@ action('portal',async()=>{const d=await api('/api/stripe/portal',{});if(!d.url.s
 action('cancel',async()=>{if(!confirm('Cancel renewal of this sandbox practice subscription at its paid period end?'))return;const d=await api('/api/stripe/cancel',{});el('action-status').textContent=d.message;await checkAccess();});
 if(sessionToken)showApp();
 </script></body></html>`;
+
 
 // Source: worker.mjs
 // Integrated review candidate based on the owner-supplied active Worker.
@@ -318,3 +320,4 @@ export default {
     }catch(error){return response({error:error.status?error.message:'Service temporarily unavailable. Check staging configuration.'},error.status||503);}
   }
 };
+
