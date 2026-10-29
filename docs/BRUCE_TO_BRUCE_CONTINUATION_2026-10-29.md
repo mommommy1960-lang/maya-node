@@ -40,3 +40,8 @@ Separate frontend Pages configuration documented in `docs/FRONTEND_RECOVERY_AND_
 
 ## Safety and change boundary
 No production setting, deployment, secret, DNS, D1 data, payment configuration, or checkout was changed as part of this October 29 continuation. The Cloudflare root-directory explanation remains a hypothesis until the authenticated build logs/settings confirm it.
+
+
+## Follow-up note — October 29, 2026
+
+The repository record was re-read during this continuation. The two Cloudflare preview build failures remain the concrete active deployment blocker; authenticated build logs are still unavailable in this session. The root-directory correction is a hypothesis, not a confirmed fix. Keep the customer-facing demo synthetic-only, preserve the protected Worker and `SEND_ENABLED=false`, and do not report the Cloudflare issue resolved until a verified preview build succeeds. No production configuration or customer data was changed during this follow-up.
