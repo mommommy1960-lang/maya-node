@@ -186,3 +186,16 @@ Obtain the actual Cloudflare failed Preview/build log (with authorized human pre
 
 ### Safety and access boundaries
 Never request or transmit passwords, passkeys/security keys, one-time codes, API tokens, refresh tokens, controller tokens or recovery codes in chat/email. If a technician needs access, founder should initiate the official account-sharing/delegated access route and remain present; use least privilege and revoke access afterward. No production deployment or config change was made in this continuation.
+
+## October 29, 2026 — branch comparison follow-up
+
+A fresh GitHub comparison was performed without changing any branch or Cloudflare setting.
+
+- Cloudflare-selected branch `dispatch-queue-2026-10-01` is at `53b2ded5722dc749d96f78dd904a64d66bd0920f`.
+- Current `main` is 205 commits ahead of that branch (0 behind). This does not mean all 205 commits affect the Worker.
+- `deploy/cloudflare/wrangler.jsonc` is byte-for-byte identical on both branches (same blob SHA `6069ddf67ef27f76fa07d079b4fedb4bbf2e699c`).
+- `deploy/cloudflare/worker.mjs` differs (old blob `1bb8ecc3beddc661899845065e98b20ab61e0eb5`; main blob `57fa0556f415f88ab4866b27370ab87a5f3b4d9e`). The substantive difference is the newer main version adds `boundedRequestText(request, limit)`, which streams request bodies, enforces byte limits, validates content length/UTF-8, cancels oversized/invalid streams, and uses it for Stripe webhook (262144-byte limit) and controller POST (24000-byte limit) requests. The older branch uses `request.text()` with post-read size checks. The main version therefore has a request-body handling hardening change; nothing in the available evidence proves this change caused or fixes the Cloudflare Preview build failure.
+- The README explicitly labels this as an opt-in Cloudflare staging port that is not deployed. Local tests use Node SQLite, not hosted Cloudflare D1.
+- GitHub history shows the request-body hardening was committed as `5c81a67e9fcbe493a81c24590a7c193002f4a4b9` (“Bound webhook and controller request bodies while streaming”). This is source history, not a Cloudflare build log.
+
+**Diagnosis status: unresolved.** The exact Cloudflare Preview failure text and authenticated build logs are not accessible from the current session. The known branch difference is documented above, but it is not a confirmed cause. Next required evidence: retrieve both failed Preview build logs from Cloudflare (including build/deploy phase, full error text, timestamp, and associated commit SHA), then map the error to the branch-specific source/config. Do not switch branches, change root/build/deploy settings, alter secrets/D1, or deploy to production until that evidence is reviewed with the owner/authorized technician. Keep `SEND_ENABLED=false`.
