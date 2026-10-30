@@ -153,3 +153,36 @@ The repository file ui/web-dashboard/src/auth.ts is a bootstrap stub that accept
 
 ## User experience
 User uses Samsung Android tablet, wants second-grade-level steps, one at a time, with links immediately. They have several ChatGPT accounts. Incognito Chrome was opened to test a separate account, but they noticed no visible sign-out on the site and prioritized fixing it. Avoid unnecessary repeated deletion tests and do not promise all security gates can be completed without backend/staging access.
+
+
+## October 29, 2026 — Cloudflare Worker build investigation and Juan support request
+
+Founder reports the TinyFish Cloudflare sign-in handoff is unusable on her Android tablet: it opens the TinyFish page, but she cannot interact with/tap the screen. Do not repeat this handoff or ask her to fight the frozen screen again. No Cloudflare login was completed through TinyFish; no Cloudflare dashboard access was obtained in this continuation.
+
+### User request and communications
+- Founder asked for a detailed explanation to Juan and help finding a qualified person who can sit with her (in person or supervised remote session), inspect the computer/account setup and fix the Cloudflare deployment.
+- A detailed email draft was prepared in ChatGPT, subject: 'Request for hands-on technical help with Maya Node / Cloudflare deployment.' It is UNSENT. Do not send without founder approval. Recipient email address not established.
+- Desired assistance: Cloudflare Workers/Wrangler and D1 deployment experience; inspect actual build log, dashboard settings, repository branch/root, and deployment command; identify cause; make minimal correction; verify Preview/staging; preserve existing site/data/security; no credentials in chat.
+
+### Verified repository comparison
+Repository: https://github.com/mommommy1960-lang/maya-node
+Cloudflare Worker source/config paths: deploy/cloudflare/wrangler.jsonc; deploy/cloudflare/worker.mjs; deploy/cloudflare/README.md.
+
+Previously reported Cloudflare dashboard settings: production branch 'dispatch-queue-2026-10-01', root directory 'deploy/cloudflare', deploy command 'npx wrangler deploy', no build command, Worker 'maya-node', D1 binding 'DB' to 'maya-mail-staging'; SEND_ENABLED=false.
+
+Fresh GitHub comparison on October 29:
+- deploy/cloudflare/wrangler.jsonc exists on both main and dispatch-queue-2026-10-01 and is identical. It names Worker maya-node, sets main to worker.mjs, compatibility date 2026-10-01, cron */5 * * * *, D1 binding DB to maya-mail-staging (database ID is in repo config), SEND_ENABLED=false, MAIL_FROM=mommommy1960@gmail.com, and observability enabled.
+- deploy/cloudflare/worker.mjs exists on both branches but differs in length/content: main 16,252 characters, configured production branch 15,114 characters. Thus the Cloudflare dashboard's reported production branch points to a distinct, older code snapshot than current main. Do not assume this is the build failure; compare exact deployed branch/commit and Cloudflare build log first.
+- deploy/cloudflare/README.md explicitly labels this an opt-in staging port, not deployed. It says D1 setup/schema/secrets and hosted tests are required, and sending defaults disabled. Local tests use Node SQLite, not hosted Cloudflare D1.
+- Root directory deploy/cloudflare exists. No repository evidence currently justifies changing the root directory.
+
+### CI evidence distinction
+- Latest GitHub Actions run observed at time of review: Security & Ethics Checks run 40926892001 on main, commit 8344705219d36f700095d6cdc7828eb8659e2a8f, completed successfully. This is a documentation/handoff commit, not a Cloudflare deployment or Cloudflare build.
+- Older GitHub CI failure 40831997463, job 123308097387, failed at 'Verify bundled Worker matches sources'; later follow-up commit 772be90215560bb398b1c75234c81cec372a33cd normalized deterministic bundle spacing and passed. This is a GitHub Actions candidate-bundle check, not the Cloudflare dashboard build failure.
+- Actual Cloudflare private build log/error remains unavailable. Do not conflate GitHub CI with Cloudflare build history.
+
+### Next technical action
+Obtain the actual Cloudflare failed Preview/build log (with authorized human present or a qualified technician) and compare: selected repository, selected branch and exact commit SHA, root directory deploy/cloudflare, build command (none), deploy command npx wrangler deploy, Wrangler config and D1 binding. Confirm whether the dashboard is building the expected branch and whether the error is path/config/dependency/runtime related. Do not edit root, deploy, alter D1, change secrets, change DNS, enable email, or delete resources until the log identifies a specific cause and the founder approves the proposed minimal change. Prefer Preview/staging verification first.
+
+### Safety and access boundaries
+Never request or transmit passwords, passkeys/security keys, one-time codes, API tokens, refresh tokens, controller tokens or recovery codes in chat/email. If a technician needs access, founder should initiate the official account-sharing/delegated access route and remain present; use least privilege and revoke access afterward. No production deployment or config change was made in this continuation.
