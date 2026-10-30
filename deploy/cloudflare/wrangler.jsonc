@@ -19,6 +19,18 @@
     "SEND_ENABLED": "false",
     "MAIL_FROM": "mommommy1960@gmail.com"
   },
+  "previews": {
+    "vars": {
+      "SEND_ENABLED": "false",
+      "MAIL_FROM": "maya-preview@example.invalid"
+    },
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_id": "843c390a-64a6-426e-bbbd-7cfecc109a6f"
+      }
+    ]
+  },
   "observability": {
     "enabled": true
   }
