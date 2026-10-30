@@ -1,6 +1,8 @@
 # Civic Continuum — Maya Node customer discovery launch kit
-Date: 2026-10-29
-Status: OUTREACH-READY DRAFT; no prospect contacted by creating this file; synthetic demonstration only.
+Date: 2026-10-30
+Status: REVIEW-BRANCH DRAFT; discovery conversation only; no paid offer, live customer deployment, or customer-data processing. No prospect was contacted by creating this file.
+
+> Current public-positioning rule: describe Maya Node as a bounded permission-and-action-record prototype. The current browser/managed-Sites demonstration and the Cloudflare Worker Preview are separate environments. Never imply that local tests, one hosted founder-account session, or browser-only simulations prove a production customer workflow, account isolation across all endpoints, immutable receipts, or independent validation.
 
 ## What we offer now
 **Maya Node: Permission & Action Receipt demonstration**
@@ -9,10 +11,11 @@ For a small service business handling repetitive low-risk administration, demons
 **Plain-language positioning:** See what was requested, who authorized it, what happened, and when a person must review the result.
 
 ## What prospects can do today
-- Ask for a discovery call about one narrow administrative workflow.
-- Review a founder-guided demo using invented data only.
-- Discuss possible pilot scope, evaluation measures, limitations, expected workload and eventual pricing.
-- Join an interest list only through an already verified contact channel; do not collect sensitive information in the Maya demo.
+- Ask for an exploratory discovery conversation about one narrow, low-risk administrative workflow.
+- Review a founder-guided demonstration using invented information only.
+- Discuss possible future evaluation scope, measures, limitations and readiness requirements.
+- Use the verified Civic Continuum organizational contact route; do not collect sensitive information in the Maya demo.
+- No payment, customer data, production access, live automation or external integration is requested or offered at this stage.
 
 ## Business value hypothesis, to validate
 Fewer unaudited administrative actions; more consistent records; easier review of errors and denied actions. No savings, compliance or security guarantees are claimed without measurements.
@@ -39,21 +42,23 @@ Thank you for your interest in Civic Continuum and Maya Node. At present, we can
 6. What would make the outcome valuable enough to pay for once the service meets launch requirements?
 
 ## Launch gates: tracked separately, do not claim passed
-- Hosting backup/log retention, deletion non-resurrection, isolated restore drill (Support 17489131)
-- Hosted real-session and record-deletion verification; account isolation coverage
-- Consenting human backup, handoff, coverage window, monitored incidents
+- Hosting backup/log retention, deletion non-resurrection, and isolated restore drill (Support case 17489131; provider has not confirmed site-specific backup/restore facts)
+- Full hosted real-session and record-deletion endpoint coverage; independent account-isolation matrix
+- Consenting human backup, handoff, coverage window, and verified incident-alert delivery
 - Written external participant permission and measured feedback
-- Business registration/license and verified lawful billing workflow
-- Production authentication, entitlements and end-to-end payment rehearsal
+- Business registration/license and finalized lawful commercial terms
+- Production authentication, entitlements, and complete end-to-end payment/webhook/refund rehearsal; checkout remains disabled
 
 ## Safety boundaries
 No customer PII, real files, charge initiation, live Stripe keys, production deployment, DNS/site changes, or public claims of launch readiness. Never promise savings or certifications absent external validation.
 
 ## Existing evidence
-- GitHub issue #80: synthetic-only go, real-customer go/no-go unchanged
-- GitHub issue #76: v18 87 tests and outstanding operational gates
+- `docs/MAYA_CUSTOMER_LAUNCH_CHECKPOINT_2026-10-29.md`: Site version 20 active; founder-account hosted synthetic creation/read and revocation-block scenarios; two named synthetic fixtures subsequently deleted with linked active rows checked absent; no customer acceptance or all-endpoint isolation proof.
+- `docs/MAYA_READINESS_EXECUTION_2026-10-28.md`: 87 automated tests and local integration evidence for the v18 hardening work. Do not present that count as a fresh v20 test run or as independent security certification.
+- Stripe test product/price and test webhook objects were created on October 29, but `MAYA_BILLING_ENABLED=false`, the server API key is absent, and checkout/webhook/refund/entitlement rehearsal is incomplete. No live charge occurred.
+- Hosting backup/PITR, log expiry and isolated restore remain unanswered by provider; local tests do not establish hosting recovery.
 - docs/MAYA_FIRST_BUSINESS_PILOT_PLAN_2026-10-25.md
-- docs/MAYA_READINESS_EXECUTION_2026-10-28.md
+- docs/MAYA_PILOT_DATA_AND_INCIDENT_PROTOCOL_DRAFT_2026-10-25.md
 
 ## Owner follow-up
 Confirm preferred first recipient and outreach channel. After the owner approves recipient/message, send the draft; then record consent, reply, date and proposed synthetic test. Do not send to contacts under an existing outreach hold.

@@ -1,4 +1,14 @@
-## Now working on the website — October16,2026
+## Current public status — October 30, 2026
+
+**Maya Node is a bounded permission-and-action-record prototype.** Current safe scope is exploratory partner conversations and founder-guided demonstrations using invented information only. No paid checkout, live customer data, production customer deployment, autonomous external-app control, or live email dispatch is offered.
+
+[Current public evidence and limitations](docs/MAYA_PUBLIC_EVIDENCE_AND_LIMITATIONS_2026-10-30.md) · [Customer discovery launch kit](docs/MAYA_CUSTOMER_DISCOVERY_LAUNCH_2026-10-29.md)
+
+The October 28 v18 engineering test results and October 29 managed-Sites version 20 founder-session observations are separate dated evidence. Neither is independent security certification or proof of full customer readiness. See the evidence summary before relying on older README sections below.
+
+---
+
+## Historical website and local demonstrations — October 16, 2026
 
 **[Open Maya Accountable Actions](https://maya-working-workflow-lab.myqueen1960.chatgpt.site/).** Prepare your own text, authorize it, create a downloadable output, or revoke and see the server block it. Live verification confirmed exact downloaded bytes, revocation blocking, saved receipts and persistence after reload.
 
