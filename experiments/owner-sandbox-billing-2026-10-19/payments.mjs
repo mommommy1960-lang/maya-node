@@ -174,10 +174,11 @@ export async function discoverOwnerSubscription(env, send = fetch) {
     startingAfter = last.id;
   }
 
-  const matches = subscriptions.filter(s => s && s.livemode === false &&
+  const matches = subscriptions.filter(s => s &&
     Array.isArray(s.items?.data) && s.items.data.some(item => item?.price?.id === env.STRIPE_PRICE_ID));
   if (!matches.length) return { found: false, message: 'No subscription matched the configured sandbox practice price.' };
   if (matches.length > 1) fail('Multiple subscriptions match the configured practice price; manual review required', 409);
+  if (matches[0].livemode !== false) fail('Matching subscription is not a sandbox object', 403);
 
   const verified = await currentSnapshot(env, matches[0].id, send);
   if (verified.customer !== customer.id) fail('Subscription customer does not match the owner account', 403);
