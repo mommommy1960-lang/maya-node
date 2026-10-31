@@ -223,7 +223,6 @@ async function ownerBilling(request, env, session, send = fetch) {
   }
 }
 
-
 // Source: ui.mjs
 const HTML = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -298,7 +297,6 @@ action('portal',async()=>{const d=await api('/api/stripe/portal',{});if(!d.url.s
 action('cancel',async()=>{if(!confirm('Cancel renewal of this sandbox practice subscription at its paid period end?'))return;const d=await api('/api/stripe/cancel',{});el('action-status').textContent=d.message;await checkAccess();});
 if(sessionToken)showApp();
 </script></body></html>`;
-
 
 // Source: worker.mjs
 // Integrated review candidate based on the owner-supplied active Worker.
@@ -381,4 +379,3 @@ export default {
     }catch(error){return response({error:error.status?error.message:'Service temporarily unavailable. Check staging configuration.'},error.status||503);}
   }
 };
-
