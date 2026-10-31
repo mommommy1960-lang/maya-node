@@ -55,6 +55,20 @@ test('subscription discovery requires an authenticated owner session',async t=>{
   const r=await worker.fetch(request('/api/stripe/discover'),env);
   assert.equal(r.status,401);
 });
+test('authenticated discovery performs only session SELECTs in D1 and read-only Stripe GETs',async t=>{
+  const {env,DB,token,request}=await setup(t);
+  const statements=[];
+  env.DB={prepare(sql){statements.push(sql);return DB.prepare(sql);},batch(...args){throw Error('Discovery must not batch-write D1');}};
+  const prior=globalThis.fetch,calls=[];t.after(()=>globalThis.fetch=prior);
+  globalThis.fetch=async(url,options={})=>{
+    calls.push({url,method:options.method||'GET'});
+    return Response.json({data:[],has_more:false});
+  };
+  const r=await worker.fetch(request('/api/stripe/discover',undefined,token),env);
+  assert.equal(r.status,200);assert.equal((await r.json()).found,false);
+  assert.ok(statements.length>0);assert.ok(statements.every(sql=>/^SELECT\\b/i.test(sql.trim())));
+  assert.ok(calls.length===1&&calls.every(c=>c.method==='GET'));
+});
 test('success query alone grants no billing status',async t=>{
   const {env,DB,token,request}=await setup(t);await migrate(DB);
   assert.equal((await worker.fetch(request('/?checkout=success'),env)).status,200);
