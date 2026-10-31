@@ -150,12 +150,51 @@ async function webhook(request, env, store = new D1Store(env.DB), send) {
     return Response.json({ error: error.status ? error.message : 'Billing temporarily unavailable' }, { status: error.status || 503 });
   }
 }
+async function discoverOwnerSubscription(env, send = fetch) {
+  testKey(env);
+  const customersResult = await stripe(env, '/v1/customers?email=' + encodeURIComponent(OWNER_EMAIL) + '&limit=100', {}, send);
+  if (!Array.isArray(customersResult.data)) fail('Stripe customer lookup returned an invalid response');
+  if (customersResult.has_more) fail('Customer lookup is incomplete; no subscription was selected', 409);
+  const customers = customersResult.data.filter(c => c && c.email === OWNER_EMAIL && /^cus_[A-Za-z0-9]+$/.test(c.id || ''));
+  if (customers.length > 1) fail('Multiple matching Stripe customers found; manual review required', 409);
+  if (!customers.length) return { found: false, message: 'No matching sandbox customer was found.' };
+
+  const customer = customers[0];
+  const subscriptions = [];
+  let startingAfter = '';
+  for (let page = 0; page < 5; page++) {
+    const query = new URLSearchParams({ customer: customer.id, status: 'all', limit: '100' });
+    if (startingAfter) query.set('starting_after', startingAfter);
+    const result = await stripe(env, '/v1/subscriptions?' + query.toString(), {}, send);
+    if (!Array.isArray(result.data)) fail('Stripe subscription lookup returned an invalid response');
+    subscriptions.push(...result.data);
+    if (!result.has_more) break;
+    if (page === 4) fail('Subscription lookup exceeded the safe page limit; no subscription was selected', 409);
+    const last = result.data[result.data.length - 1];
+    if (!last?.id) fail('Stripe pagination was incomplete; no subscription was selected', 409);
+    startingAfter = last.id;
+  }
+
+  const matches = subscriptions.filter(s => s &&
+    Array.isArray(s.items?.data) && s.items.data.some(item => item?.price?.id === env.STRIPE_PRICE_ID));
+  if (!matches.length) return { found: false, message: 'No subscription matched the configured sandbox practice price.' };
+  if (matches.length > 1) fail('Multiple subscriptions match the configured practice price; manual review required', 409);
+  if (matches[0].livemode !== false) fail('Matching subscription is not a sandbox object', 403);
+
+  const verified = await currentSnapshot(env, matches[0].id, send);
+  if (verified.customer !== customer.id) fail('Subscription customer does not match the owner account', 403);
+  if (!hasAccess(verified)) fail('A matching subscription exists, but it is not currently paid and active; no link was made', 409);
+  return { found: true, subscription_id: verified.subscription, status: verified.status,
+    paid: verified.paid, period_end: verified.period_end, billing_access: true };
+}
+
 async function ownerBilling(request, env, session, send = fetch) {
   if (session?.email !== OWNER_EMAIL) return Response.json({ error: 'Owner session required' }, { status: 403 });
   const path = new URL(request.url).pathname;
-  if (!['/api/stripe/access-status','/api/stripe/portal','/api/stripe/cancel','/api/stripe/import'].includes(path)) return null;
-  if (request.method !== (path.endsWith('access-status') ? 'GET' : 'POST')) return new Response('Method not allowed', { status: 405 });
+  if (!['/api/stripe/access-status','/api/stripe/portal','/api/stripe/cancel','/api/stripe/import','/api/stripe/discover'].includes(path)) return null;
+  if (request.method !== (path.endsWith('access-status') || path.endsWith('discover') ? 'GET' : 'POST')) return new Response('Method not allowed', { status: 405 });
   try {
+    if (path.endsWith('discover')) return Response.json(await discoverOwnerSubscription(env, send), { headers: { 'Cache-Control': 'no-store' } });
     const s = await new D1Store(env.DB).read();
     if (path.endsWith('import')) {
       if (!s) fail('Apply additive billing migration first');
@@ -209,12 +248,17 @@ button{background:#3b82f6;border:none;font-weight:bold;cursor:pointer}button:hov
 <div class="stripe-box"><h4>Stripe Sandbox Integration Status</h4><p id="stripe-status" class="muted" role="status"></p>
 <button id="test-stripe" style="background:#6366f1">Test Stripe Connectivity (Prices Read)</button><div id="checkout-section"><button id="checkout" hidden style="background:#059669">Start Sandbox Test Checkout</button></div>
 <h4>Owner Practice Subscription</h4><p class="muted">Sandbox billing status only. Your owner chat remains available. No real charges.</p>
-<p id="billing-status" role="status"></p><button id="billing-refresh">Refresh Subscription Status</button>
+<p id="billing-status" role="status"></p>
+<button id="discover-subscription" style="background:#0f766e">Find Existing Paid Sandbox Subscription</button>
+<p id="discovery-status" class="muted" role="status"></p>
+<button id="link-discovered" hidden style="background:#059669">Link Verified Subscription to Owner Demo</button>
+<button id="billing-refresh">Refresh Subscription Status</button>
 <details><summary>Link the existing paid practice subscription</summary><p class="muted">Copy the subscription ID beginning sub_ from your Stripe Sandbox subscription. This links it to this owner demo only.</p>
 <input id="subscription-id" aria-label="Existing sandbox subscription ID" placeholder="sub_…"><button id="import">Link Existing Practice Subscription</button></details>
 <button id="portal" hidden>Manage Subscription in Stripe</button><button id="cancel" hidden style="background:#b45309">Cancel Renewal at Period End</button>
 <p id="action-status" role="status"></p></div></div></div>
 <script>
+let discoveredSubscriptionId='';
 let sessionToken=localStorage.getItem('maya_owner_token')||'';
 let userEmail=localStorage.getItem('maya_owner_email')||'';
 const el=id=>document.getElementById(id);
@@ -229,6 +273,23 @@ function action(id,fn){el(id).addEventListener('click',async()=>{el(id).disabled
 action('signin',async()=>{try{const d=await api('/api/signin',{email:el('email-input').value,accessSecret:el('secret-input').value});sessionToken=d.token;userEmail=el('email-input').value;localStorage.setItem('maya_owner_token',sessionToken);localStorage.setItem('maya_owner_email',userEmail);el('secret-input').value='';await showApp();}catch(e){el('login-error').textContent=e.message;}});
 el('logout').addEventListener('click',async()=>{try{await api('/api/signout',{});}finally{logout();}});
 action('send',async()=>{const content=el('prompt-input').value.trim();if(!content)return;el('prompt-input').value='';addMessage('user',content);try{const d=await api('/api/chat',{content});addMessage('assistant',d.reply);}catch(e){addMessage('error',e.message);}});
+async function discoverSubscription(){
+  const status=el('discovery-status');status.textContent='Searching the configured Stripe sandbox for the existing owner subscription…';
+  el('link-discovered').hidden=true;discoveredSubscriptionId='';
+  const d=await api('/api/stripe/discover');
+  if(!d.found){status.textContent=d.message||'No matching subscription found.';return;}
+  discoveredSubscriptionId=d.subscription_id;
+  status.textContent='Verified one paid, active sandbox subscription. Paid period ends '+new Date(d.period_end*1000).toLocaleString()+'. No billing or database changes have been made.';
+  el('link-discovered').hidden=false;
+}
+action('discover-subscription',discoverSubscription);
+action('link-discovered',async()=>{
+  if(!discoveredSubscriptionId)throw Error('Run the read-only discovery again before linking.');
+  if(!confirm('Link the verified sandbox subscription to this owner demo? This writes the owner billing record in the connected staging database.'))return;
+  await api('/api/stripe/import',{subscriptionId:discoveredSubscriptionId,confirmOwnerImport:true});
+  el('discovery-status').textContent='Subscription linked to the owner demo after your confirmation.';
+  discoveredSubscriptionId='';el('link-discovered').hidden=true;await checkAccess();
+});
 action('test-stripe',testStripeAuth);action('billing-refresh',checkAccess);
 action('checkout',async()=>{const d=await api('/api/stripe/checkout',{});if(d.livemode!==false||!d.url.startsWith('https://checkout.stripe.com/'))throw Error('Invalid sandbox checkout response');location.href=d.url;});
 action('import',async()=>{const subscriptionId=el('subscription-id').value.trim();if(!/^sub_[a-zA-Z0-9]+$/.test(subscriptionId))throw Error('Enter the Stripe Sandbox subscription ID beginning sub_.');if(!confirm('Link this subscription to your owner sandbox demo?'))return;await api('/api/stripe/import',{subscriptionId,confirmOwnerImport:true});el('action-status').textContent='Practice subscription linked and verified.';await checkAccess();});
@@ -256,8 +317,12 @@ export default {
     if(path==='/api/stripe/webhook')return webhook(request,env);
     if(!env.STAGING_ACCESS_SECRET||!env.DB)return response({error:'Owner staging is not configured'},503);
     try {
-      await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_sessions (token TEXT PRIMARY KEY, email TEXT, created_at TEXT)').run();
-      await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_messages (id TEXT PRIMARY KEY, session_token TEXT, email TEXT, role TEXT, content TEXT, created_at TEXT)').run();
+      // Discovery is read-only: an authenticated session already implies these tables exist.
+      // Avoid even idempotent DDL on this route; all other legacy routes retain their existing setup behavior.
+      if (path !== '/api/stripe/discover') {
+        await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_sessions (token TEXT PRIMARY KEY, email TEXT, created_at TEXT)').run();
+        await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_messages (id TEXT PRIMARY KEY, session_token TEXT, email TEXT, role TEXT, content TEXT, created_at TEXT)').run();
+      }
       if(path==='/'||path==='/index.html')return new Response(HTML,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
       if(path==='/api/signin'&&request.method==='POST'){
         const d=await body(request);
