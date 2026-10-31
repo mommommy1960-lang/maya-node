@@ -21,7 +21,7 @@ async function setup(t){const dir=mkdtempSync(join(tmpdir(),'maya-test-'));t.aft
 }
 test('HTML and embedded browser script parse; billing controls and original local-storage keys exist',()=>{
   const script=HTML.match(/<script>([\s\S]*?)<\/script>/)[1];new vm.Script(script);
-  for(const id of ['billing-refresh','subscription-id','portal','cancel','signin','send'])assert.ok(HTML.includes('id="'+id+'"'));
+  for(const id of ['billing-refresh','subscription-id','portal','cancel','signin','send','discover-subscription','discovery-status','link-discovered'])assert.ok(HTML.includes('id="'+id+'"'));
   assert.ok(HTML.includes('maya_owner_token'));assert.ok(!script.includes('.innerHTML'));
 });
 test('original bearer login and owner chat persist in real SQLite without a paid subscription',async t=>{
@@ -49,6 +49,11 @@ test('malformed session timestamp fails closed',async t=>{
 test('webhook route precedes bearer middleware and rejects missing signature',async t=>{
   const {env,request}=await setup(t);env.STRIPE_WEBHOOK_SECRET='whsec_example';
   assert.equal((await worker.fetch(request('/api/stripe/webhook',{}),env)).status,400);
+});
+test('subscription discovery requires an authenticated owner session',async t=>{
+  const {env,request}=await setup(t);
+  const r=await worker.fetch(request('/api/stripe/discover'),env);
+  assert.equal(r.status,401);
 });
 test('success query alone grants no billing status',async t=>{
   const {env,DB,token,request}=await setup(t);await migrate(DB);
