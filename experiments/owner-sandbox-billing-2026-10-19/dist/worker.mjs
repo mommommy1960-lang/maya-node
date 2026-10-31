@@ -317,8 +317,12 @@ export default {
     if(path==='/api/stripe/webhook')return webhook(request,env);
     if(!env.STAGING_ACCESS_SECRET||!env.DB)return response({error:'Owner staging is not configured'},503);
     try {
-      await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_sessions (token TEXT PRIMARY KEY, email TEXT, created_at TEXT)').run();
-      await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_messages (id TEXT PRIMARY KEY, session_token TEXT, email TEXT, role TEXT, content TEXT, created_at TEXT)').run();
+      // Discovery is read-only: an authenticated session already implies these tables exist.
+      // Avoid even idempotent DDL on this route; all other legacy routes retain their existing setup behavior.
+      if (path !== '/api/stripe/discover') {
+        await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_sessions (token TEXT PRIMARY KEY, email TEXT, created_at TEXT)').run();
+        await env.DB.prepare('CREATE TABLE IF NOT EXISTS recovery_messages (id TEXT PRIMARY KEY, session_token TEXT, email TEXT, role TEXT, content TEXT, created_at TEXT)').run();
+      }
       if(path==='/'||path==='/index.html')return new Response(HTML,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
       if(path==='/api/signin'&&request.method==='POST'){
         const d=await body(request);
