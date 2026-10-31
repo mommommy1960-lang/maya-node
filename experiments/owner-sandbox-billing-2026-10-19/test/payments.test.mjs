@@ -96,6 +96,46 @@ test('owner route rejects a different authenticated identity',async()=>{
   const r=await ownerBilling(new Request('https://example/api/stripe/cancel',{method:'POST'}),env,{email:'other@example.com'});
   assert.equal(r.status,403);
 });
+test('read-only owner discovery verifies one exact-price paid sandbox subscription with GET requests only',async()=>{
+  const calls=[];
+  const send=async(url,options={})=>{
+    calls.push({url,method:options.method||'GET'});
+    if(url.includes('/v1/customers?'))return Response.json({data:[{id:'cus_example',email:OWNER_EMAIL}],has_more:false});
+    if(url.includes('/v1/subscriptions?'))return Response.json({data:[sub()],has_more:false});
+    if(url.includes('/v1/subscriptions/sub_example?expand'))return Response.json(sub());
+    throw Error('Unexpected Stripe request '+url);
+  };
+  const r=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},send);
+  const d=await r.json();
+  assert.equal(r.status,200);assert.equal(d.found,true);assert.equal(d.subscription_id,'sub_example');
+  assert.equal(d.billing_access,true);assert.equal(d.paid,true);
+  assert.equal(calls.length,3);assert.ok(calls.every(c=>c.method==='GET'));
+  assert.ok(calls[0].url.includes(encodeURIComponent(OWNER_EMAIL)));
+});
+test('read-only discovery returns no match without importing or writing',async()=>{
+  const calls=[];
+  const send=async(url,options={})=>{calls.push([url,options.method||'GET']);return Response.json({data:url.includes('/customers?')?[{id:'cus_example',email:OWNER_EMAIL}]:[],has_more:false});};
+  const r=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},send);
+  assert.equal(r.status,200);assert.equal((await r.json()).found,false);
+  assert.ok(calls.every(([,method])=>method==='GET'));
+});
+test('read-only discovery refuses ambiguous customer or subscription matches',async()=>{
+  const customerSend=async()=>Response.json({data:[{id:'cus_one',email:OWNER_EMAIL},{id:'cus_two',email:OWNER_EMAIL}],has_more:false});
+  const a=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},customerSend);
+  assert.equal(a.status,409);
+  const subSend=async(url)=>url.includes('/customers?')
+    ?Response.json({data:[{id:'cus_example',email:OWNER_EMAIL}],has_more:false})
+    :Response.json({data:[sub(),sub({id:'sub_second',latest_invoice:{...sub().latest_invoice,parent:{subscription_details:{subscription:'sub_second'}}})],has_more:false});
+  const b=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},subSend);
+  assert.equal(b.status,409);
+});
+test('read-only discovery fails closed on incomplete customer pagination and live API keys',async()=>{
+  const incomplete=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},async()=>Response.json({data:[],has_more:true}));
+  assert.equal(incomplete.status,409);
+  let called=false;
+  const live=await ownerBilling(new Request('https://example/api/stripe/discover'),{...env,STRIPE_SECRET_KEY:'sk_live_example'},{email:OWNER_EMAIL},async()=>{called=true;});
+  assert.equal(live.status,403);assert.equal(called,false);
+});
 test('actual owner cancellation uses POST period-end, never DELETE',async()=>{
   const value=snapshot(sub(),env);const db={prepare(){return{bind(){return this},async first(){return{revision:1,snapshot:JSON.stringify(value)}}}}};
   const calls=[];const send=async(url,opts)=>{calls.push([url,opts]);return Response.json(opts.method==='POST'?sub({cancel_at_period_end:true}):sub())};
