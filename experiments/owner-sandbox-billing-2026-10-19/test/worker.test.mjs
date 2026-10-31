@@ -66,7 +66,7 @@ test('authenticated discovery performs only session SELECTs in D1 and read-only 
   };
   const r=await worker.fetch(request('/api/stripe/discover',undefined,token),env);
   assert.equal(r.status,200);assert.equal((await r.json()).found,false);
-  assert.ok(statements.length>0);assert.ok(statements.every(sql=>/^SELECT\\b/i.test(sql.trim())));
+  assert.ok(statements.length>0);assert.ok(statements.every(sql=>/^SELECT\b/i.test(sql.trim())));
   assert.ok(calls.length===1&&calls.every(c=>c.method==='GET'));
 });
 test('success query alone grants no billing status',async t=>{
