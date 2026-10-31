@@ -149,12 +149,50 @@ export async function webhook(request, env, store = new D1Store(env.DB), send) {
     return Response.json({ error: error.status ? error.message : 'Billing temporarily unavailable' }, { status: error.status || 503 });
   }
 }
+export async function discoverOwnerSubscription(env, send = fetch) {
+  testKey(env);
+  const customersResult = await stripe(env, '/v1/customers?email=' + encodeURIComponent(OWNER_EMAIL) + '&limit=100', {}, send);
+  if (!Array.isArray(customersResult.data)) fail('Stripe customer lookup returned an invalid response');
+  if (customersResult.has_more) fail('Customer lookup is incomplete; no subscription was selected', 409);
+  const customers = customersResult.data.filter(c => c && c.email === OWNER_EMAIL && /^cus_[A-Za-z0-9]+$/.test(c.id || ''));
+  if (customers.length > 1) fail('Multiple matching Stripe customers found; manual review required', 409);
+  if (!customers.length) return { found: false, message: 'No matching sandbox customer was found.' };
+
+  const customer = customers[0];
+  const subscriptions = [];
+  let startingAfter = '';
+  for (let page = 0; page < 5; page++) {
+    const query = new URLSearchParams({ customer: customer.id, status: 'all', limit: '100' });
+    if (startingAfter) query.set('starting_after', startingAfter);
+    const result = await stripe(env, '/v1/subscriptions?' + query.toString(), {}, send);
+    if (!Array.isArray(result.data)) fail('Stripe subscription lookup returned an invalid response');
+    subscriptions.push(...result.data);
+    if (!result.has_more) break;
+    if (page === 4) fail('Subscription lookup exceeded the safe page limit; no subscription was selected', 409);
+    const last = result.data[result.data.length - 1];
+    if (!last?.id) fail('Stripe pagination was incomplete; no subscription was selected', 409);
+    startingAfter = last.id;
+  }
+
+  const matches = subscriptions.filter(s => s && s.livemode === false &&
+    Array.isArray(s.items?.data) && s.items.data.some(item => item?.price?.id === env.STRIPE_PRICE_ID));
+  if (!matches.length) return { found: false, message: 'No subscription matched the configured sandbox practice price.' };
+  if (matches.length > 1) fail('Multiple subscriptions match the configured practice price; manual review required', 409);
+
+  const verified = await currentSnapshot(env, matches[0].id, send);
+  if (verified.customer !== customer.id) fail('Subscription customer does not match the owner account', 403);
+  if (!hasAccess(verified)) fail('A matching subscription exists, but it is not currently paid and active; no link was made', 409);
+  return { found: true, subscription_id: verified.subscription, status: verified.status,
+    paid: verified.paid, period_end: verified.period_end, billing_access: true };
+}
+
 export async function ownerBilling(request, env, session, send = fetch) {
   if (session?.email !== OWNER_EMAIL) return Response.json({ error: 'Owner session required' }, { status: 403 });
   const path = new URL(request.url).pathname;
-  if (!['/api/stripe/access-status','/api/stripe/portal','/api/stripe/cancel','/api/stripe/import'].includes(path)) return null;
-  if (request.method !== (path.endsWith('access-status') ? 'GET' : 'POST')) return new Response('Method not allowed', { status: 405 });
+  if (!['/api/stripe/access-status','/api/stripe/portal','/api/stripe/cancel','/api/stripe/import','/api/stripe/discover'].includes(path)) return null;
+  if (request.method !== (path.endsWith('access-status') || path.endsWith('discover') ? 'GET' : 'POST')) return new Response('Method not allowed', { status: 405 });
   try {
+    if (path.endsWith('discover')) return Response.json(await discoverOwnerSubscription(env, send), { headers: { 'Cache-Control': 'no-store' } });
     const s = await new D1Store(env.DB).read();
     if (path.endsWith('import')) {
       if (!s) fail('Apply additive billing migration first');
