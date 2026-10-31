@@ -14,7 +14,7 @@ The owner supplied the working staging source in chat after tablet editor copyin
 
 Changes also preserve history on session expiry, reject malformed session timestamps, implement server-side signout, bound messages and directly verify the configured sandbox price.
 
-Final validation on the subscription-discovery branch: **37 tests passed, 0 failed** with node --test test/payments.test.mjs test/worker.test.mjs in GitHub Actions. Deterministic bundle verification and bundled Worker syntax check passed. No hosted Cloudflare/Stripe or browser visual test performed.
+Final validation on the subscription-discovery branch: **38 tests passed, 0 failed** with node --test test/payments.test.mjs test/worker.test.mjs in GitHub Actions. Deterministic bundle verification and bundled Worker syntax check passed. No hosted Cloudflare/Stripe or browser visual test performed.
 
 ## Earlier module files
 
