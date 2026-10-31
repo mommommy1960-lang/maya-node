@@ -123,9 +123,13 @@ test('read-only discovery refuses ambiguous customer or subscription matches',as
   const customerSend=async()=>Response.json({data:[{id:'cus_one',email:OWNER_EMAIL},{id:'cus_two',email:OWNER_EMAIL}],has_more:false});
   const a=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},customerSend);
   assert.equal(a.status,409);
-  const subSend=async(url)=>url.includes('/customers?')
-    ?Response.json({data:[{id:'cus_example',email:OWNER_EMAIL}],has_more:false})
-    :Response.json({data:[sub(),sub({id:'sub_second',latest_invoice:{...sub().latest_invoice,parent:{subscription_details:{subscription:'sub_second'}}})],has_more:false});
+  const second=sub();
+  second.id='sub_second';
+  second.latest_invoice.parent.subscription_details.subscription='sub_second';
+  const subSend=async(url)=>{
+    if(url.includes('/customers?'))return Response.json({data:[{id:'cus_example',email:OWNER_EMAIL}],has_more:false});
+    return Response.json({data:[sub(),second],has_more:false});
+  };
   const b=await ownerBilling(new Request('https://example/api/stripe/discover'),env,{email:OWNER_EMAIL},subSend);
   assert.equal(b.status,409);
 });
