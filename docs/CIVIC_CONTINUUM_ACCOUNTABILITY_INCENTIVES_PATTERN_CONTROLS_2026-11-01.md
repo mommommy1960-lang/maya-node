@@ -1,7 +1,7 @@
 # Civic Continuum — Accountability Incentives, Pattern Detection & Anti-Gaming Controls
 
 **Founder-approved direction recorded November 1, 2026**  
-**Status: Proposed operating standard; requires review, legal/privacy assessment, and implementation planning before operational use.**
+**Status: Founder-adopted internal operating standard, effective immediately.**
 
 ## Purpose
 
@@ -24,7 +24,7 @@ We will also prevent the opposite failure: an organization must not be able to r
 
 ## Pattern detection and evidence integrity
 
-Civic Continuum should maintain a proportionate, access-controlled incident and hazard record sufficient to identify repeat risks and verify whether corrective actions work. Data collection must have a defined safety purpose, documented retention period, role-based access, audit logs, and applicable privacy, labor, and legal review.
+Civic Continuum adopts pattern-aware accountability as an operating requirement. We will maintain proportionate, access-controlled incident and hazard records sufficient to identify repeat risks and verify whether corrective actions work. Any collection must have a defined safety purpose, documented retention period, role-based access, audit logs, and comply with applicable privacy, labor, and legal requirements. These safeguards govern how we implement our own boundary; they do not give an outside party authority to decide our values.
 
 Where lawful and appropriate, review patterns such as:
 
@@ -51,7 +51,7 @@ A responsible incentive program may recognize:
 - Transparent admission of mistakes and cooperation with legitimate oversight.
 - Evidence that repeat hazards and exposure have been reduced without suppressing reports.
 
-Do not base rewards on raw incident counts, public-relations activity, speed of closing an investigation, or management self-certification alone. Do not reward a company simply for responding to an emergency it could reasonably have prevented. Any financial or performance incentive must be reviewed for perverse effects and gaming risk before launch.
+Do not base rewards on raw incident counts, public-relations activity, speed of closing an investigation, or management self-certification alone. Do not reward a company simply for responding to an emergency it could reasonably have prevented. Any financial or performance incentive must be tested for perverse effects and gaming risk before launch.
 
 ## Incident response is necessary but not exculpatory
 
@@ -73,7 +73,7 @@ Those actions matter. They do not erase prior warnings, repeated failures, unsaf
 
 ## Governance and implementation gates
 
-This document is a founder-approved direction, not a claim that a monitoring system or incentive program is already deployed. Before operational use, Civic Continuum must complete:
+The commitments in this document are effective immediately as internal policy. This does not falsely claim that a technical monitoring system or compensation program is already deployed. Before collecting operational data or launching a financial incentive mechanism, Civic Continuum will complete the following implementation safeguards:
 
 1. A risk and impact assessment with worker participation.
 2. Legal review covering employment, occupational safety, privacy, data protection, reporting, and applicable jurisdictions.
@@ -83,7 +83,7 @@ This document is a founder-approved direction, not a claim that a monitoring sys
 6. An evaluation for false positives, missed signals, disparate impact, reporting suppression, and gaming.
 7. A public-facing explanation of what is measured, why, who can access it, and how people can challenge errors.
 
-No production system, employee-monitoring tool, customer data integration, or automated decision process is authorized by this document. Implementation requires separate review and explicit approval.
+This policy itself authorizes no intrusive employee surveillance, customer-data integration, or automated consequential decision-making. Any such technical deployment requires a separate, purpose-limited implementation decision and must comply with law, privacy protections, worker rights, and the safeguards above. Analytics will support human investigation; they will not declare guilt or automatically impose discipline.
 
 ## Standard of success
 
