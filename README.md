@@ -2,6 +2,8 @@
 
 **Maya Node is a bounded permission-and-action-record prototype.** Current safe scope is exploratory partner conversations and founder-guided demonstrations using invented information only. No paid checkout, live customer data, production customer deployment, autonomous external-app control, or live email dispatch is offered.
 
+**Civic Continuum's company-wide human-first operating policy is adopted and effective November 1, 2026.** It applies across leadership, workforce, incentives, customers, vendors, incidents, data governance, and product development. Adoption establishes company boundaries; it does not mean every technical control or staffed process is already deployed. [Read the adopted Company-Wide Operating Standards](docs/CIVIC_CONTINUUM_COMPANY_WIDE_OPERATING_STANDARDS_2026-11-01.md) · [Accountability incentives and anti-gaming policy](docs/CIVIC_CONTINUUM_ACCOUNTABILITY_INCENTIVES_PATTERN_CONTROLS_2026-11-01.md)
+
 [Current public evidence and limitations](docs/MAYA_PUBLIC_EVIDENCE_AND_LIMITATIONS_2026-10-30.md) · [Customer discovery launch kit](docs/MAYA_CUSTOMER_DISCOVERY_LAUNCH_2026-10-29.md)
 
 The October 28 v18 engineering test results and October 29 managed-Sites version 20 founder-session observations are separate dated evidence. Neither is independent security certification or proof of full customer readiness. See the evidence summary before relying on older README sections below.
