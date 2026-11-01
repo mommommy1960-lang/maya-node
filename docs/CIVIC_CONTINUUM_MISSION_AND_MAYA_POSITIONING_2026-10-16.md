@@ -70,3 +70,56 @@ This is preliminary market/prior-work research, not an exhaustive historical or 
 [Read the public accountability covenant](https://github.com/mommommy1960-lang/commons-master-tech-compendium/blob/main/governance/PERMANENT_ACCOUNTABILITY_COVENANT.md) and [three-pillar mission](https://github.com/mommommy1960-lang/commons-master-tech-compendium/blob/main/docs/CIVIC_CONTINUUM_THREE_PILLARS.md).
 
 **Business identity:** Civic Continuum is the current public name, descended from the historical Commons Initiative. Domain: civiccontinuum.org. Contact: contact@civiccontinuum.org. Existing records show a founder-led Washington sole-proprietor venture with LLC formation pending; domain ownership or an EIN does not prove LLC formation. Do not represent the organization as a registered LLC until official records confirm it.
+
+---
+
+## Founder Accountability Covenant — Life on Genre
+**Founder-approved direction recorded November 1, 2026**
+
+### Our purpose: change the paradigm
+
+Civic Continuum exists to change the paradigm of how technology, institutions, and human systems serve humanity. Our purpose is to remain transparent, continuously changing, and editable toward what is best for the human experience.
+
+We are not building technology merely to participate in the existing paradigm. We are working toward systems that help people and communities flourish.
+
+### The human standard
+
+Every person deserves the opportunity to live with dignity and to access the foundations of a healthy life: healthcare, education, nutritious food, clean water, safe shelter, and protection from violence and exploitation. Access to these foundations should not depend on wealth, race, nationality, social position, or a person's ability to generate profit.
+
+We reject caste-like hierarchies and the idea that one person's humanity is worth more than another's. We want technology and institutions to help reduce preventable disease and suffering, expand knowledge, protect the living world, and give people more time and opportunity to learn, create, care for one another, and live meaningful lives.
+
+Our ambition is not smaller. It is redirected: from extracting more from people toward solving more of the problems that harm them.
+
+### Our commitments
+
+- **People over profit. Humanity over hierarchy. Progress over power.**
+- We will not hide mistakes to preserve appearances.
+- We will not conceal problems because we are embarrassed, behind schedule, losing money, or afraid of criticism.
+- We will not pretend to know what we do not know. We will ask for help, seek outside expertise, welcome independent review, and make room for correction.
+- We will disclose limitations and distinguish verified facts from assumptions, proposals, and aspirations.
+- We will not allow quotas, financial targets, deadlines, or executive reputation to outrank human safety and dignity.
+- We will listen to people affected by our systems and give them meaningful ways to question decisions, correct records, and seek review.
+- We will protect people from violence, exploitation, discrimination, and abuse. Harmful conduct must be addressed through fair, evidence-based, proportionate processes that preserve human rights and dignity.
+- We will challenge and change harmful systems, incentives, and practices without dehumanizing people.
+- We will measure progress by whether human life becomes safer, healthier, freer, and more meaningful—not only by revenue, growth, or technical capability.
+
+### Leadership and organizational accountability
+
+These commitments apply to founders, executives, employees, contractors, partners, products, and operating decisions. No role makes a person infallible or places a decision beyond review.
+
+Leaders must make it safe to raise concerns in good faith, admit mistakes, request help, and report risks. A person who identifies a problem should not be punished for making the problem visible. When something goes wrong, our response is to disclose what is known, protect affected people, investigate responsibly, correct the problem, and document what changes.
+
+Civic Continuum will apply these standards to its own work. If we cannot verify a claim, we will say so. If a test fails, we will report the failure. If we need expertise, we will seek it. If a product or process causes harm, we will prioritize people and remediation over preserving the appearance of success.
+
+### Foundational principles
+
+> **Technical capability does not confer authority.**
+
+> **We will not hide a problem to preserve the appearance of success.**
+
+> **Accountability people can use.**
+
+> **Humanity should not have to destroy itself to sustain the systems it has created. We should create systems that allow humanity to flourish.**
+
+This covenant is a living commitment. It may be reviewed and improved as we learn, but changes must be transparent, documented, and consistent with human dignity and accountability. Adaptability is not permission to quietly abandon the mission.
+
