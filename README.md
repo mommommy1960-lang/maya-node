@@ -133,3 +133,5 @@ PRs60 and61 are merged. PR60's corrected head passed all111 hosted checks, with1
 ## Mutual collaboration boundaries
 
 Before protected exchange or shared work, read our [collaboration boundaries](https://github.com/mommommy1960-lang/commons-sentience-sandbox/blob/main/docs/continuity/PUBLIC_COLLABORATION_BOUNDARIES.md). Both parties retain their existing rights; scope, confidentiality, contributions, access and exit must be agreed for the actual engagement. Existing licenses and lawful reporting rights remain unaffected. This operating notice is not an executed contract.
+
+**Public website content:** Founder-directed homepage copy covering our mission, values, work, Maya Node's verified boundaries, and invitation to collaborate: [Civic Continuum Public Website Homepage Copy](docs/CIVIC_CONTINUUM_PUBLIC_WEBSITE_HOMEPAGE_COPY_2026-11-01.md). This is the approved content source; the live ChatGPT Site still requires owner-side editing and publication.
