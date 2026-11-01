@@ -1,6 +1,8 @@
 # Consumer Trust, Subscription Fairness, and Service Continuity
 
-**Public principles note — October 15, 2026**
+**Public principles note — October 15, 2026; aligned with company-wide policy adopted November 1, 2026.**
+
+The [Civic Continuum Company-Wide Human-First Operating Standards](CIVIC_CONTINUUM_COMPANY_WIDE_OPERATING_STANDARDS_2026-11-01.md) make these customer dignity, clear notice, fair appeal, and service-continuity principles company-wide requirements. Actual enforcement remains subject to implementation evidence and available human support.
 
 Maya Node is being developed around a simple promise: systems should not use their control over access, money, or essential workflows to make people feel powerless. Consent and accountability must apply to the organization providing a service, not only to the customer using it.
 

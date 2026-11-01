@@ -2,7 +2,7 @@
 
 **Public policy summary for contractors, engineering partners, manufacturers, and reviewers.**
 
-This document is a policy statement, not a substitute for a signed development or manufacturing agreement and not legal advice.
+This document operates alongside the adopted [Civic Continuum Company-Wide Human-First Operating Standards](CIVIC_CONTINUUM_COMPANY_WIDE_OPERATING_STANDARDS_2026-11-01.md), including its requirements for worker dignity, safety, truthful incident reporting, vendor accountability, data minimization, and correction of repeated failures. It is a policy statement, not a substitute for a signed development or manufacturing agreement and not legal advice.
 
 ## 1. Background IP remains with its owner
 

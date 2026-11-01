@@ -1,6 +1,8 @@
 # Maya Node Early-Access Pilot Data and Incident Protocol — Draft
 
-**Status: draft requiring founder completion and approval. Do not treat this document as a complete privacy policy or permission to accept live customer data.**
+**Governing company policy:** [Civic Continuum Company-Wide Human-First Operating Standards](CIVIC_CONTINUUM_COMPANY_WIDE_OPERATING_STANDARDS_2026-11-01.md), adopted November 1, 2026. The company-wide safety, dignity, truthful reporting, anti-retaliation, and anti-gaming rules apply now.
+
+**Status of this pilot runbook: operational draft requiring completion of pilot-specific retention, contact, coverage, participant, and technical verification fields. Do not treat this document as a complete privacy policy or permission to accept live customer data.**
 
 ## 1. Scope and data minimization
 
