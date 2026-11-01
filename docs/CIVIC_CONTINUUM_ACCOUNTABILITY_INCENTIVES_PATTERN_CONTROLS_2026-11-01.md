@@ -1,7 +1,7 @@
 # Civic Continuum — Accountability Incentives, Pattern Detection & Anti-Gaming Controls
 
 **Founder-approved direction recorded November 1, 2026**  
-**Status: Proposed operating standard; requires review, legal/privacy assessment, and implementation planning before operational use.**
+**Status: Adopted founder policy effective November 1, 2026. The company’s ethical boundaries are in force. Technical data systems and regulated operational processes must still be implemented lawfully and safely.**
 
 ## Purpose
 
@@ -73,7 +73,7 @@ Those actions matter. They do not erase prior warnings, repeated failures, unsaf
 
 ## Governance and implementation gates
 
-This document is a founder-approved direction, not a claim that a monitoring system or incentive program is already deployed. Before operational use, Civic Continuum must complete:
+The policy and ethical boundaries in this document are adopted and effective now. This does not claim that a monitoring system or incentive program is already deployed. Before building or using operational data systems, Civic Continuum must complete:
 
 1. A risk and impact assessment with worker participation.
 2. Legal review covering employment, occupational safety, privacy, data protection, reporting, and applicable jurisdictions.
