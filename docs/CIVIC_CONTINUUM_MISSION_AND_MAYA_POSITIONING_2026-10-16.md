@@ -5,6 +5,8 @@
 ### Accountability people can use
 Building Maya Node to keep automated actions tied to current permission, visible responsibility and a route to correction. Our purpose is to help people understand and challenge systems affecting their lives while reducing the burden of receiving essential services.
 
+**Company-wide operating policy adopted November 1, 2026:** these commitments govern leadership, workforce, incentives, customer treatment, vendors, incidents, data use, environmental responsibility, financial stewardship, and product development. [Read the adopted Company-Wide Operating Standards](CIVIC_CONTINUUM_COMPANY_WIDE_OPERATING_STANDARDS_2026-11-01.md) and [Accountability Incentives, Pattern Detection & Anti-Gaming Controls](CIVIC_CONTINUUM_ACCOUNTABILITY_INCENTIVES_PATTERN_CONTROLS_2026-11-01.md). Technical systems and staffed processes must be separately verified before claimed as operational.
+
 [Full foundation architecture, original scope and next technical proof](MAYA_FOUNDATION_ARCHITECTURE_AND_NEXT_PROOF_2026-10-16.md) — sector demos are examples of the wider core, not its complete scope.
 
 ## Maya's core, kept intact
