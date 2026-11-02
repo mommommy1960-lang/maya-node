@@ -39,14 +39,26 @@ Do not promise complete deletion until the implementation and its backups/logs h
 
 ## 5. Incident and escalation
 
-**Primary pilot owner:** Founder explicitly accepted the human incident-responder role for now on October 27, 2026. Coverage hours and acknowledgement targets remain unspecified; no 24/7 promise.
+**Primary pilot owner:** Founder accepted the human incident-responder role on October 27, 2026. The November 2 alert policy below establishes notification at any time and founder review when available; it does not promise continuous human coverage or an immediate response.
 **Backup human owner:** Unfilled. Founder reports no backup person currently available; do not assign or contact anyone implicitly.
 **Incident reporting channel:** contact@civiccontinuum.org. Incoming forwarding to the founder's connected inbox has been verified. Daily automated checks are enabled; this does not establish continuous human monitoring.
-**Expected acknowledgement time:** [Agree with pilot participant before start]
-**Out-of-hours coverage:** [State whether available; do not imply 24/7 support]
+**Expected acknowledgement time:** No immediate acknowledgement is required from the founder. Participant-facing response expectations must be agreed before a live pilot; no response deadline is promised here.
+**Out-of-hours coverage:** Alerts are required at any time, day or night. Human review occurs when the founder is available; this is not staffed 24/7 support.
+
+### Founder-adopted alert and availability policy — November 2, 2026
+
+This subsection is adopted company work policy for Maya incident alerts. The remaining pilot runbook stays an operational draft.
+
+- Send private incident alerts to the founder whenever attention is needed, day or night, without an application quiet-hours restriction. Delivery remains subject to the configured provider, network and device settings; do not promise that notifications override those settings.
+- Keep each alert available for later review through the agreed private channel, under the applicable retention policy. The founder reviews and responds when available, as with ordinary phone notifications. No immediate acknowledgement, continuous human monitoring or 24/7 response-time commitment is implied.
+- An unread or unanswered alert alone must not pause Maya, revoke permission, cancel work or trigger a consequential action. Continue otherwise authorized work under existing controls.
+- Independent authorization, privacy, integrity and safe-failure controls still apply. Missing/revoked/expired permission must still block execution; uncertain mutating actions must not be blindly retried. An actual incident may require containment under the governing company policy regardless of whether the founder has read the alert.
+- Do not appoint or contact a backup person without that person's consent and the founder's authorization. The current single-person coverage gap remains disclosed.
+
+**Verification boundary:** On November 2, the labeled standalone ChatGPT task test MAYA TEST M02 produced a Gmail tablet notification timestamped 7:14 AM Pacific; founder-supplied screenshots confirmed notification visibility and the opened test email. This verifies that task-email-to-tablet path only. It does not verify direct ChatGPT push, an immediate pop-up banner, continuous incident detection or the real Maya incident-to-alert connection. Actual Maya routing remains to be implemented or verified after supported access is restored. Adoption of this policy does not deploy it.
 
 When an authorization, privacy, integrity, or availability concern is reported:
-1. Pause the affected workflow and prevent further actions where possible.
+1. Assess and contain the actual concern; pause the affected workflow where required by the governing safety/authorization policy. Do not pause solely because an alert has not been read or acknowledged.
 2. Preserve minimal relevant evidence without copying unnecessary customer content.
 3. Privately alert the founder with a concise summary and message link. Escalate to an explicitly consenting backup only after one exists; until then record the coverage gap. Outbound messages require explicit authorization.
 4. Notify the pilot participant through the agreed channel and timeframe.
