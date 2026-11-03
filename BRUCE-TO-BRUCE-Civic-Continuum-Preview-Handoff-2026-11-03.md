@@ -37,3 +37,13 @@ Status: PAUSED at founder's request; preserve current state, do not continue tes
 ## Founder instruction at pause
 Founder said the spoken discussion was not appearing on screen and requested: STOP; save all current work in GitHub and in a Bruce-to-Bruce handoff so another model can resume without losing context.
 This file is the durable handoff. Next assistant should resume from this state only when requested, not assume Gemini has been contacted.
+
+## November 4 adviser Zoom preparation — founder-requested addition (2026-11-03)
+Founder requests that whenever she says **“I need to be prepared for the Zoom call”**, the briefing must include the following commercial update for Juan's Wednesday November 4, 2026, 10:30–11:30 a.m. Pacific meeting (verify meeting details before relying on them):
+- Founder approved **$150 per client for the first three founding clients** for a human-led Civic Continuum AI Privacy & Accuracy Checkup.
+- Scope: review up to three public or fictional AI examples; concise findings and 30-day action checklist; 20-minute findings discussion. No confidential data or production Maya Node.
+- This is a proposed first-revenue path, **not** a booked sale; no customers or payments confirmed.
+- Ask Juan for feedback on positioning, customer fit, licensing and business terms, and whether warm introductions may be appropriate **during the Zoom conversation**, not in a new email now.
+- Juan was recently sent a substantial adviser packet. **Do not send another sales email to Juan** before the call; do not resend the packet automatically.
+- Source of offer and terms: BRUCE-TO-BRUCE-Founding-Client-Price-Approval-2026-11-03.md and BRUCE-TO-BRUCE-Founding-Client-Sales-Kit-2026-11-03.md.
+- This is an internal preparation addendum; it does not revise or resend an already delivered email packet.
