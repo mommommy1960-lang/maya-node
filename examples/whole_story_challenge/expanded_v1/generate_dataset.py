@@ -79,7 +79,7 @@ def build(i):
         f[2:6] = ["REFUND","40.00",timestamp(day,17),"Customer complaint adjustment"]
         label, finding, severity, financial = "indeterminate", "Insufficient evidence to determine delivery outcome or cause", "unknown", "indeterminate"
         note = "WMS delivered status, absent carrier record, complaint, and refund do not establish what physically happened or why."
-    truth = [order, category, label, finding, severity, financial, note]
+    if s[2] == "OPEN":\n        s[5] = "Synthetic support case; issue type recorded"\n    if f[2] != "NONE" and category != "associated_goodwill_credit":\n        f[6] = "Transaction associated by order ID only; causation not established"\n    truth = [order, category, label, finding, severity, financial, note]
     return {"wms_events.csv":w, "carrier_events.csv":c, "customer_support.csv":s, "finance_transactions.csv":f, "ground_truth.csv":truth}
 
 def main():
