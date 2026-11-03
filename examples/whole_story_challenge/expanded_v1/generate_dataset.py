@@ -32,8 +32,8 @@ def build(i):
     label, finding, severity, financial = "control", "No material exception under the benchmark rules", "none", "none"
     note = "Control case; no material exception is expected."
     if category == "missing_carrier_scan":
-        c[4], c[5], c[6], c[9] = "IN_TRANSIT", timestamp(day,11), timestamp(day,11,2), "No delivery scan in supplied carrier record"
-        s[2:4] = ["OPEN","MISSING_PACKAGE"]; s[5] = "Customer reports missing package"
+        c[4], c[5], c[6] = "IN_TRANSIT", timestamp(day,11), timestamp(day,11,2)
+        s[2:4] = ["OPEN","MISSING_PACKAGE"]
         f[2:6] = ["REFUND","80.00",timestamp(day,17),"Missing package complaint"]
         label, finding, severity, financial = "confirmed_exception", "WMS reports delivered but carrier delivery scan is absent and support reports missing package", "high", "associated_only"
         note = "Conflicting evidence supports investigation, not a conclusion that delivery did not occur. Refund is associated, not proven caused."
@@ -42,15 +42,15 @@ def build(i):
         label, finding, severity = "confirmed_exception", "Carrier delivery event arrived six hours after its event timestamp", "low"
         note = "Delivery itself is recorded; the material finding is event-data latency, not failed delivery."
     elif category == "status_contradiction":
-        c[4], c[9] = "DELIVERY_EXCEPTION", "Carrier exception conflicts with WMS delivered status"
-        s[2:4] = ["OPEN","NOT_RECEIVED"]; s[5] = "Customer reports non-receipt"
+        c[4] = "DELIVERY_EXCEPTION"
+        s[2:4] = ["OPEN","NOT_RECEIVED"]
         f[2:6] = ["CREDIT","25.00",timestamp(day,17),"Service credit"]
         label, finding, severity, financial = "confirmed_exception", "WMS delivered status conflicts with carrier delivery exception and customer non-receipt report", "high", "associated_only"
         note = "Evidence establishes a status contradiction; it does not independently establish final physical disposition or credit causation."
     elif category == "inventory_shortage":
         w[3], w[7], w[8] = "SHORT_PICK", 0, "Order allocated but no units fulfilled; synthetic shortage marker"
         c[4:7] = ["NOT_TENDERED","",""]
-        s[2:4] = ["OPEN","ORDER_DELAY"]; s[5] = "Customer reports order delay"
+        s[2:4] = ["OPEN","ORDER_DELAY"]
         f[2:6] = ["CREDIT","20.00",timestamp(day,17),"Delay courtesy credit"]
         label, finding, severity, financial = "confirmed_exception", "WMS records zero fulfilled quantity and carrier has no tender event", "medium", "associated_only"
         note = "Records support an unfulfilled order exception; credit causation is not established."
@@ -63,8 +63,8 @@ def build(i):
         note = "Naive timestamp comparison would create a false alert; known offset resolves the discrepancy."
     elif category == "split_shipment":
         w[3], w[6], w[7] = "PARTIALLY_FULFILLED", 2, 1
-        c[4], c[9] = "PARTIAL_DELIVERY", "Carrier reports partial delivery"
-        s[2:4] = ["OPEN","MISSING_ITEM"]; s[5] = "Customer reports missing item"
+        c[4] = "PARTIAL_DELIVERY"
+        s[2:4] = ["OPEN","MISSING_ITEM"]
         f[2:6] = ["CREDIT","15.00",timestamp(day,17),"Partial shipment credit"]
         label, finding, severity, financial = "confirmed_exception", "Two-unit order has only one fulfilled unit and carrier reports partial delivery", "medium", "associated_only"
         note = "Partial fulfillment is supported; credit is associated but not proven avoidable or caused by a specific failure."
@@ -75,7 +75,7 @@ def build(i):
         note = "Do not classify a finance transaction as an operational failure solely because it references the order."
     elif category == "indeterminate_delivery":
         c[4:7] = ["","",""]; c[9] = "No carrier event supplied in this case"
-        s[2:4] = ["OPEN","MISSING_PACKAGE"]; s[5] = "Customer reports missing package; delivery outcome unresolved"
+        s[2:4] = ["OPEN","MISSING_PACKAGE"]
         f[2:6] = ["REFUND","40.00",timestamp(day,17),"Customer complaint adjustment"]
         label, finding, severity, financial = "indeterminate", "Insufficient evidence to determine delivery outcome or cause", "unknown", "indeterminate"
         note = "WMS delivered status, absent carrier record, complaint, and refund do not establish what physically happened or why."
