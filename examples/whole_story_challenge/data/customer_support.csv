@@ -1,0 +1,4 @@
+order_id,complaint_at,complaint_type,resolution_note,support_record_id
+ORD-100,2026-10-15T14:30:00,late_delivery,customer reported late arrival,SUP-100
+ORD-101,2026-10-15T12:45:00,delivery_delay,customer reported delivery later than expected,SUP-101
+ORD-102,2026-10-15T10:30:00,missing_package,customer reported package not received,SUP-102
