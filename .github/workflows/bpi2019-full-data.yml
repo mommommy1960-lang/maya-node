@@ -1,0 +1,40 @@
+name: BPI 2019 full-dataset execution
+on:
+  pull_request:
+    paths:
+      - 'benchmarks/bpi2019/**'
+      - '.github/workflows/bpi2019-full-data.yml'
+  workflow_dispatch:
+jobs:
+  full-dataset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run fixture tests
+        working-directory: benchmarks/bpi2019
+        run: python -m unittest -v
+      - name: Download original BPI Challenge 2019 XES
+        run: |
+          curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 \
+            --output BPI_Challenge_2019.xes \
+            'https://data.4tu.nl/file/35ed7122-966a-484e-a0e1-749b64e3366d/864493d1-3a58-47f6-ad6f-27f95f995828'
+          stat --printf='bytes=%s\n' BPI_Challenge_2019.xes > source_manifest.txt
+          sha256sum BPI_Challenge_2019.xes >> source_manifest.txt
+          md5sum BPI_Challenge_2019.xes >> source_manifest.txt
+      - name: Execute standalone analytics against the original source
+        run: |
+          python benchmarks/bpi2019/analyze_xes.py BPI_Challenge_2019.xes \
+            --output bpi2019_analysis.json
+      - name: Preserve reproducible execution report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bpi2019-full-dataset-analysis
+          path: |
+            bpi2019_analysis.json
+            source_manifest.txt
+          if-no-files-found: error
+          retention-days: 30
