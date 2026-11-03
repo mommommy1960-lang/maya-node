@@ -199,10 +199,12 @@
 
     let currentView = "whole";
     function render() {
-      const filter = document.getElementById("filter").value;
+      const filterControl = document.getElementById("filter");
+      const filter = filterControl.value;
+      filterControl.disabled = currentView === "warehouse";
       const list = document.getElementById("orders");
       const viewCopy = document.getElementById("view-copy");
-      const visible = records.filter(order => filter === "all" || (filter === "flagged" ? findings(order).length : !findings(order).length));
+      const visible = currentView === "warehouse" || filter === "all" ? records : records.filter(order => filter === "flagged" ? findings(order).length : !findings(order).length);
       viewCopy.textContent = currentView === "warehouse"
         ? "Warehouse-only view: all five records show a delivered status. This view does not include the carrier, customer-support, or finance records needed to test the wider sequence."
         : "Whole Story view: compare warehouse timestamps with carrier events and check related customer complaints and finance transactions. Findings show source IDs and preserve uncertainty.";
