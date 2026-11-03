@@ -22,6 +22,27 @@ jobs:
       - name: Run fixture tests
         working-directory: benchmarks/bpi2019
         run: python -m unittest -v
+      - name: Diagnose 4TU connectivity without downloading dataset
+        run: |
+          {
+            echo "DNS resolution for data.4tu.nl"
+            getent ahosts data.4tu.nl || true
+            echo "DNS resolution for doi.org"
+            getent ahosts doi.org || true
+            echo "HTTPS connection timing for official 4TU endpoint"
+            curl --silent --show-error --location --head --connect-timeout 10 --max-time 25 --retry 0 \
+              --output /dev/null \
+              --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} dns=%{time_namelookup} connect=%{time_connect} tls=%{time_appconnect} first_byte=%{time_starttransfer} total=%{time_total}\\n' \
+              'https://data.4tu.nl/file/35ed7122-966a-484e-a0e1-749b64e3366d/864493d1-3a58-47f6-ad6f-27f95f995828' || true
+          } > connectivity_diagnostics.txt 2>&1
+      - name: Preserve connectivity diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bpi2019-connectivity-diagnostics
+          path: connectivity_diagnostics.txt
+          if-no-files-found: warn
+          retention-days: 30
       - name: Download original BPI Challenge 2019 XES
         run: |
           set +e
@@ -49,6 +70,7 @@ jobs:
             download_headers.txt
             download_error.txt
             download_status.txt
+            connectivity_diagnostics.txt
           if-no-files-found: warn
           retention-days: 30
       - name: Execute standalone analytics against the original source
