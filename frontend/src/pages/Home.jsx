@@ -8,7 +8,7 @@ const Home = () => (
       <div className="container">
         <h1 className="hero-title">Use AI with confidence. <span className="highlight">Keep people accountable.</span></h1>
         <p className="hero-description">Civic Continuum helps small organizations examine how they protect sensitive information and check important AI-generated answers. Technology should serve humanity, not the other way around.</p>
-        <p className="hero-footnote"><strong>In development:</strong> Our AI Privacy &amp; Accuracy Checkup is a research prototype, not yet a paid or certified service. Please do not submit confidential information.</p>
+        <p className="hero-footnote"><strong>In development:</strong> Founding-client rate: $150 for the first three human-led checkups. General inquiries welcome; no payment or booking is active. Please do not submit confidential information.</p>
         <div className="hero-actions">
           <a href="#checkup" className="btn btn-primary">Explore the Checkup</a>
           <Link to="/contact" className="btn btn-outline">Contact Civic Continuum</Link>
@@ -24,7 +24,7 @@ const Home = () => (
           <div className="card"><h3>Verify AI answers</h3><p>Clarify when a person must check facts against trusted sources before acting on an AI-generated result.</p></div>
           <div className="card"><h3>Correct problems</h3><p>Assign responsible people, document issues, and create a prioritized improvement plan.</p></div>
         </div>
-        <p><strong>Current status:</strong> Prototype assessment and fictional sample reports only. No production customer assessment, live billing, or claims of NIST endorsement.</p>
+        <p><strong>Current status:</strong> Fictional sample reports and no-payment inquiries only. No production Maya Node processing, live billing, or claims of NIST endorsement.</p>
       </div>
     </section>
     <section className="cta section">
