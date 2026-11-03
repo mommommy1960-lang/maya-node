@@ -24,12 +24,33 @@ jobs:
         run: python -m unittest -v
       - name: Download original BPI Challenge 2019 XES
         run: |
-          curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 \
+          set +e
+          curl --fail --location --retry 3 --retry-all-errors --connect-timeout 15 --max-time 900 \
+            --dump-header download_headers.txt --show-error \
             --output BPI_Challenge_2019.xes \
-            'https://data.4tu.nl/file/35ed7122-966a-484e-a0e1-749b64e3366d/864493d1-3a58-47f6-ad6f-27f95f995828'
+            'https://data.4tu.nl/file/35ed7122-966a-484e-a0e1-749b64e3366d/864493d1-3a58-47f6-ad6f-27f95f995828' \
+            2> download_error.txt
+          result=$?
+          set -e
+          printf 'curl_exit_code=%s\n' "$result" > download_status.txt
+          if [ "$result" -ne 0 ]; then
+            echo 'Authentic dataset download failed; analysis must not run.'
+            exit "$result"
+          fi
           stat --printf='bytes=%s\n' BPI_Challenge_2019.xes > source_manifest.txt
           sha256sum BPI_Challenge_2019.xes >> source_manifest.txt
           md5sum BPI_Challenge_2019.xes >> source_manifest.txt
+      - name: Preserve download diagnostics even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bpi2019-download-diagnostics
+          path: |
+            download_headers.txt
+            download_error.txt
+            download_status.txt
+          if-no-files-found: warn
+          retention-days: 30
       - name: Execute standalone analytics against the original source
         run: |
           python benchmarks/bpi2019/analyze_xes.py BPI_Challenge_2019.xes \
