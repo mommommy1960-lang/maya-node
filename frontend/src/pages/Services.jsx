@@ -4,15 +4,15 @@ import './Services.css';
 const Services = () => (
   <div className="services"><section className="section"><div className="container">
     <h1 className="text-center">AI Privacy &amp; Accuracy Checkup</h1>
-    <p className="services-intro text-center">Civic Continuum is developing one focused offering for small organizations using generative AI. This is a prototype, not yet a purchasable service.</p>
+    <p className="services-intro text-center">A bounded, founder-led review for small organizations using AI in public-facing content. Founding-client rate: $150 for the first three engagements. Inquiries only until written terms and business readiness are confirmed.</p>
     <div className="services-grid grid grid-2">
-      <div className="service-card card"><h2>Privacy safeguards</h2><p>Review approved AI tools, sensitive-information rules, and staff awareness. Do not send us customer records or other confidential materials.</p></div>
-      <div className="service-card card"><h2>Accuracy safeguards</h2><p>Review human approval, independent fact-checking, and procedures for correcting AI-generated errors.</p></div>
-      <div className="service-card card"><h2>Human-reviewed findings</h2><p>Our proposed service would examine evidence of safeguards and distinguish unknowns from verified gaps.</p></div>
-      <div className="service-card card"><h2>30-day action plan</h2><p>Prioritize practical improvements, owners, and follow-up checks. The current demonstration uses fictional information only.</p></div>
+      <div className="service-card card"><h2>Three public or fictional examples</h2><p>Review up to three AI-generated drafts without collecting confidential records or private logins.</p></div>
+      <div className="service-card card"><h2>Accuracy and privacy risks</h2><p>Identify unsupported claims, potentially revealing wording, and missing human fact checks.</p></div>
+      <div className="service-card card"><h2>Human-reviewed findings</h2><p>Receive concise findings and prioritized practical recommendations.</p></div>
+      <div className="service-card card"><h2>30-day plan and discussion</h2><p>Receive a 30-day action checklist and a 20-minute findings call.</p></div>
     </div>
-    <p><strong>Status:</strong> Research and development. No certification, legal compliance determination, hosted customer-data intake, or payment processing is offered through this page.</p>
-    <Link to="/contact" className="btn btn-primary">Contact us with general questions</Link>
+    <p><strong>Status:</strong> Research inquiries welcome. No payments, certified audits, legal compliance determination, or production Maya Node processing are available through this page.</p>
+    <Link to="/contact" className="btn btn-primary">Ask about fit (no payment)</Link>
   </div></section></div>
 );
 export default Services;
