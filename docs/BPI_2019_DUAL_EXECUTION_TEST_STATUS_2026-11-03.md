@@ -1,7 +1,7 @@
 # BPI Challenge 2019 — Dual Execution Test Status
 
 **Date:** 2026-11-03  
-**Status:** Execution initiated; full-dataset analytics and authenticated Maya execution remain blocked  
+**Status:** Analyzer scaffold and fixture tests completed; full-dataset analytics and authenticated Maya execution remain pending  
 **Owner:** Civic Continuum / Maya Node
 
 ## Decision
@@ -108,4 +108,4 @@ A baseline manual or established process-mining implementation must be run on th
 
 ## Current conclusion
 
-The dual-test work has begun. The live staging Worker is reachable and protected, but the inspected implementation does not yet contain the required analytics capability. The original full BPI dataset has not yet been processed in this execution environment. No superiority, ROI, recovery, or customer-readiness claim is established.
+The dual-test work has begun and is tracked in PR #98: https://github.com/mommommy1960-lang/maya-node/pull/98. The streaming analyzer and fixture tests are committed on the branch; the original full BPI dataset has not yet been processed. The live staging Worker is reachable and protected, but the inspected implementation does not yet contain the required analytics capability. No superiority, ROI, recovery, or customer-readiness claim is established.
