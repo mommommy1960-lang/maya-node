@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a fictional warehouse operations case. Compare a warehouse-only view with a transparent cross-system evidence review.">
+  <title>Whole Story Challenge | Civic Continuum</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17212b;
+      --muted: #5b6875;
+      --line: #dce3e8;
+      --paper: #ffffff;
+      --canvas: #f4f7f8;
+      --blue: #175b78;
+      --blue-soft: #e9f3f7;
+      --amber: #8a4b08;
+      --amber-soft: #fff4df;
+      --green: #236044;
+      --green-soft: #eaf5ee;
+      --radius: 16px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--canvas); line-height: 1.5; }
+    a { color: var(--blue); }
+    button, select { font: inherit; }
+    .shell { max-width: 1120px; margin: 0 auto; padding: 28px 20px 56px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 34px; }
+    .brand { font-size: .88rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .brand span { color: var(--blue); }
+    .tag { border: 1px solid #d7e0e5; border-radius: 999px; padding: 6px 11px; color: var(--muted); background: white; font-size: .78rem; }
+    .eyebrow { color: var(--blue); font-size: .78rem; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; }
+    h1 { max-width: 780px; font-size: clamp(2.2rem, 5vw, 4.1rem); line-height: 1.04; letter-spacing: -.045em; margin: 12px 0 18px; }
+    .intro { max-width: 760px; color: var(--muted); font-size: 1.12rem; }
+    .notice { margin: 26px 0; padding: 14px 17px; border: 1px solid #e7d7b9; border-left: 4px solid #c17b21; border-radius: 12px; background: var(--amber-soft); color: #633b0e; font-size: .93rem; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 38px 0 14px; }
+    h2 { font-size: 1.35rem; letter-spacing: -.02em; margin: 0; }
+    .sub { color: var(--muted); margin: 5px 0 0; font-size: .92rem; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .metric, .panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+    .metric { padding: 19px; }
+    .metric .value { font-size: clamp(1.8rem, 4vw, 2.45rem); font-weight: 800; letter-spacing: -.04em; }
+    .metric .label { color: var(--muted); font-size: .86rem; }
+    .metric .foot { color: var(--muted); font-size: .75rem; margin-top: 7px; }
+    .compare { padding: 20px; }
+    .switcher { display: inline-flex; gap: 5px; padding: 4px; background: #edf1f3; border-radius: 12px; margin: 15px 0 18px; }
+    .switcher button { border: 0; background: transparent; color: var(--muted); padding: 9px 13px; border-radius: 9px; cursor: pointer; font-weight: 700; }
+    .switcher button[aria-pressed="true"] { background: white; color: var(--ink); box-shadow: 0 1px 4px #1020301c; }
+    .view-copy { min-height: 44px; color: var(--muted); }
+    .order-list { display: grid; gap: 10px; margin-top: 18px; }
+    .order { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: white; }
+    .order summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1.1fr 1fr auto; align-items: center; gap: 12px; padding: 15px 16px; }
+    .order summary::-webkit-details-marker { display: none; }
+    .order summary:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid #6aa8c2; outline-offset: 2px; }
+    .order-id { font-weight: 800; }
+    .order-status { color: var(--muted); font-size: .9rem; }
+    .pill { display: inline-block; border-radius: 999px; padding: 4px 9px; font-size: .75rem; font-weight: 800; white-space: nowrap; }
+    .pill.flag { background: var(--amber-soft); color: var(--amber); }
+    .pill.clear { background: var(--green-soft); color: var(--green); }
+    .detail { padding: 0 16px 17px; border-top: 1px solid var(--line); }
+    .detail h3 { font-size: .95rem; margin: 14px 0 8px; }
+    .detail ul { margin: 0; padding-left: 20px; color: #394754; font-size: .9rem; }
+    .evidence { color: var(--muted); font-size: .8rem; margin-top: 12px; }
+    .empty { padding: 20px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
+    .filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .filters label { color: var(--muted); font-size: .85rem; font-weight: 700; }
+    select { border: 1px solid var(--line); border-radius: 9px; padding: 8px 30px 8px 10px; background: white; color: var(--ink); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .panel { padding: 19px; }
+    .panel p { color: var(--muted); font-size: .9rem; margin: 8px 0 0; }
+    .source-list { display: grid; gap: 9px; margin-top: 14px; }
+    .source { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid #edf0f2; padding-bottom: 8px; font-size: .87rem; }
+    .source span:last-child { color: var(--muted); text-align: right; }
+    .method { display: grid; gap: 10px; margin-top: 14px; }
+    .method div { display: flex; gap: 10px; align-items: start; color: #43515c; font-size: .88rem; }
+    .num { flex: 0 0 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); font-weight: 800; font-size: .75rem; }
+    .money-note { border-top: 1px solid var(--line); margin-top: 15px; padding-top: 13px; color: var(--muted); font-size: .82rem; }
+    footer { border-top: 1px solid var(--line); margin-top: 42px; padding-top: 20px; color: var(--muted); font-size: .82rem; }
+    footer strong { color: var(--ink); }
+    @media (max-width: 700px) {
+      .shell { padding: 20px 14px 42px; }
+      header { align-items: start; flex-direction: column; margin-bottom: 28px; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+      .metric .foot { display: none; }
+      .two-col { grid-template-columns: 1fr; }
+      .order summary { grid-template-columns: 1fr auto; }
+      .order-status { grid-column: 1 / -1; grid-row: 2; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="brand">Civic <span>Continuum</span></div>
+      <div class="tag">Interactive synthetic case · v1</div>
+    </header>
+
+    <section aria-labelledby="page-title">
+      <div class="eyebrow">The Whole Story Challenge</div>
+      <h1>One operation. Four record systems. A clearer picture.</h1>
+      <p class="intro">A warehouse dashboard says every order was delivered. What changes when the warehouse record is checked against carrier events, customer support, and finance?</p>
+      <div class="notice"><strong>Read this first:</strong> This is a fictional, synthetic demonstration. It illustrates a transparent reconciliation method; it is not a real customer investigation, a live Maya Node capability claim, or a comparison against Amazon, Celonis, SAP, or another commercial product.</div>
+    </section>
+
+    <section aria-labelledby="snapshot-title">
+      <div class="section-head">
+        <div><h2 id="snapshot-title">What the combined records show</h2><p class="sub">Five fictional orders · October 15, 2026</p></div>
+      </div>
+      <div class="metrics" aria-live="polite">
+        <div class="metric"><div><div class="value" id="orders-count">5</div><div class="label">Orders examined</div></div><div class="foot">Warehouse records</div></div>
+        <div class="metric"><div><div class="value" id="flagged-count">3</div><div class="label">Orders needing review</div></div><div class="foot">Rule-triggered findings</div></div>
+        <div class="metric"><div><div class="value" id="credit-total">$137.00</div><div class="label">Recorded refunds / credits</div></div><div class="foot">Associated transactions only</div></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="compare-title">
+      <div class="section-head">
+        <div><h2 id="compare-title">Compare the two views</h2><p class="sub">Switch views to see what each evidence boundary contains.</p></div>
+        <div class="filters"><label for="filter">Show</label><select id="filter"><option value="all">All orders</option><option value="flagged">Needs review</option><option value="clear">No material finding</option></select></div>
+      </div>
+      <div class="panel compare">
+        <div class="switcher" role="group" aria-label="Evidence view">
+          <button type="button" data-view="warehouse" aria-pressed="false">Warehouse-only view</button>
+          <button type="button" data-view="whole" aria-pressed="true">Whole Story view</button>
+        </div>
+        <p class="view-copy" id="view-copy">The joined view compares warehouse timestamps with carrier events and checks for related customer complaints and finance transactions. Each finding includes its source record IDs.</p>
+        <div class="order-list" id="orders" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="method-title">
+      <div class="section-head"><div><h2 id="method-title">How the review works</h2><p class="sub">A small, visible rule set—not a black-box score.</p></div></div>
+      <div class="two-col">
+        <article class="panel">
+          <h2>Evidence included</h2>
+          <div class="source-list">
+            <div class="source"><span>Warehouse management (WMS)</span><span>5 order records</span></div>
+            <div class="source"><span>Carrier events</span><span>4 scan records</span></div>
+            <div class="source"><span>Customer support</span><span>3 complaint records</span></div>
+            <div class="source"><span>Finance</span><span>3 refund / credit records</span></div>
+            <div class="source"><span>Independent reference</span><span>5-order ground truth</span></div>
+          </div>
+          <p>Records are joined by fictional order ID. Source references are shown with each order so a reviewer can trace the result back to the supplied evidence.</p>
+        </article>
+        <article class="panel">
+          <h2>Rules used in this example</h2>
+          <div class="method">
+            <div><span class="num">1</span><span>Flag carrier pickup later than the WMS promised-ship-by time.</span></div>
+            <div><span class="num">2</span><span>Flag WMS and carrier dispatch or delivery timestamps that differ by more than five minutes.</span></div>
+            <div><span class="num">3</span><span>Show complaints and finance transactions as associated records, not proof of cause.</span></div>
+            <div><span class="num">4</span><span>Show a missing carrier row as a dataset gap—not proof that physical delivery did not happen.</span></div>
+          </div>
+          <div class="money-note"><strong>Financial caution:</strong> $137.00 is the sum of recorded refunds and credits linked to the three flagged order IDs. This dataset proves $0.00 of that amount was caused by the discrepancies. No recovered savings or ROI is claimed.</div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <strong>Civic Continuum · Independent Operational Evidence &amp; Value Recovery</strong>
+      <p>This prototype is a standalone, synthetic customer-exploration page. It does not connect to customer systems, send data, make operational changes, or perform automated decisions. A real pilot would require written authorization, data minimization, source validation, an independent ground-truth reviewer, and human review of every material finding.</p>
+    </footer>
+  </main>
+
+  <script>
+    const records = [
+      { id:"ORD-100", wms:"WMS-100", status:"delivered", promised:"09:30", dispatched:"09:15", delivered:"13:50", carrier:{id:"CAR-100",pickup:"09:52",delivered:"14:20"}, support:{id:"SUP-100",type:"late_delivery"}, finance:{id:"FIN-100",type:"customer_refund",amount:45} },
+      { id:"ORD-101", wms:"WMS-101", status:"delivered", promised:"12:00", dispatched:"11:40", delivered:"12:00", carrier:{id:"CAR-101",pickup:"11:42",delivered:"12:40"}, support:{id:"SUP-101",type:"delivery_delay"}, finance:{id:"FIN-101",type:"service_credit",amount:12} },
+      { id:"ORD-102", wms:"WMS-102", status:"delivered", promised:"10:15", dispatched:"09:55", delivered:"10:00", carrier:null, support:{id:"SUP-102",type:"missing_package"}, finance:{id:"FIN-102",type:"customer_refund",amount:80} },
+      { id:"ORD-103", wms:"WMS-103", status:"delivered", promised:"10:30", dispatched:"10:05", delivered:"13:00", carrier:{id:"CAR-103",pickup:"10:08",delivered:"13:02"}, support:null, finance:null },
+      { id:"ORD-104", wms:"WMS-104", status:"delivered", promised:"14:30", dispatched:"14:05", delivered:"15:00", carrier:{id:"CAR-104",pickup:"14:07",delivered:"15:02"}, support:null, finance:null }
+    ];
+
+    const minute = value => { const [h,m] = value.split(":").map(Number); return h * 60 + m; };
+    function findings(order) {
+      const notes = [];
+      if (!order.carrier) {
+        notes.push("No matching carrier scan row exists in this dataset; physical delivery is not disproved.");
+      } else {
+        const pickupDelay = minute(order.carrier.pickup) - minute(order.promised);
+        if (pickupDelay > 0) notes.push("Carrier pickup was " + pickupDelay + " minutes after the WMS promised-ship-by time.");
+        const dispatchGap = Math.abs(minute(order.carrier.pickup) - minute(order.dispatched));
+        if (dispatchGap > 5) notes.push("Carrier pickup and WMS dispatch timestamps differ by " + dispatchGap + " minutes.");
+        const deliveryGap = Math.abs(minute(order.carrier.delivered) - minute(order.delivered));
+        if (deliveryGap > 5) notes.push("Carrier and WMS delivery timestamps differ by " + deliveryGap + " minutes.");
+      }
+      if (order.support) notes.push("Customer support recorded a " + order.support.type.replaceAll("_"," ") + " complaint.");
+      if (order.finance) notes.push("Finance recorded a " + order.finance.type.replaceAll("_"," ") + " of $" + order.finance.amount.toFixed(2) + "; causation is not established.");
+      return notes;
+    }
+    const flagged = records.filter(order => findings(order).length > 0);
+    const total = records.reduce((sum, order) => sum + (order.finance ? order.finance.amount : 0), 0);
+    document.getElementById("orders-count").textContent = records.length;
+    document.getElementById("flagged-count").textContent = flagged.length;
+    document.getElementById("credit-total").textContent = "$" + total.toFixed(2);
+
+    let currentView = "whole";
+    function render() {
+      const filterControl = document.getElementById("filter");
+      const filter = filterControl.value;
+      filterControl.disabled = currentView === "warehouse";
+      const list = document.getElementById("orders");
+      const viewCopy = document.getElementById("view-copy");
+      const visible = currentView === "warehouse" || filter === "all" ? records : records.filter(order => filter === "flagged" ? findings(order).length : !findings(order).length);
+      viewCopy.textContent = currentView === "warehouse"
+        ? "Warehouse-only view: all five records show a delivered status. This view does not include the carrier, customer-support, or finance records needed to test the wider sequence."
+        : "Whole Story view: compare warehouse timestamps with carrier events and check related customer complaints and finance transactions. Findings show source IDs and preserve uncertainty.";
+      list.replaceChildren();
+      if (!visible.length) {
+        const empty = document.createElement("div"); empty.className = "empty"; empty.textContent = "No orders match this filter."; list.append(empty); return;
+      }
+      visible.forEach(order => {
+        const notes = findings(order);
+        const isFlagged = notes.length > 0;
+        const detail = document.createElement("details"); detail.className = "order";
+        const summary = document.createElement("summary");
+        const id = document.createElement("span"); id.className = "order-id"; id.textContent = order.id;
+        const status = document.createElement("span"); status.className = "order-status";
+        status.textContent = "Warehouse status: " + order.status;
+        const pill = document.createElement("span"); pill.className = "pill " + (isFlagged ? "flag" : "clear");
+        pill.textContent = currentView === "warehouse" ? "No cross-check shown" : (isFlagged ? "Needs review" : "No material finding");
+        summary.append(id,status,pill); detail.append(summary);
+        const body = document.createElement("div"); body.className = "detail";
+        const facts = document.createElement("ul");
+        const base = [
+          "WMS record " + order.wms + " · promised ship by " + order.promised + " · marked dispatched " + order.dispatched + " · marked delivered " + order.delivered
+        ];
+        if (currentView === "warehouse") {
+          base.push("This view stops at the warehouse record; it cannot confirm what the other systems recorded.");
+          base.forEach(t => { const li=document.createElement("li"); li.textContent=t; facts.append(li); });
+          const h=document.createElement("h3"); h.textContent="Warehouse record only"; body.append(h,facts);
+        } else {
+          if (order.carrier) base.push("Carrier record " + order.carrier.id + " · pickup " + order.carrier.pickup + " · delivered " + order.carrier.delivered);
+          else base.push("Carrier record: no matching row in the supplied dataset.");
+          if (order.support) base.push("Support record " + order.support.id + " · " + order.support.type.replaceAll("_"," "));
+          if (order.finance) base.push("Finance record " + order.finance.id + " · " + order.finance.type.replaceAll("_"," ") + " · $" + order.finance.amount.toFixed(2));
+          base.forEach(t => { const li=document.createElement("li"); li.textContent=t; facts.append(li); });
+          const h=document.createElement("h3"); h.textContent=isFlagged ? "Why this order was flagged for human review" : "Cross-system check";
+          body.append(h);
+          if (notes.length) {
+            const ul=document.createElement("ul");
+            notes.forEach(note => { const li=document.createElement("li"); li.textContent=note; ul.append(li); });
+            body.append(ul);
+          } else {
+            const p=document.createElement("p"); p.textContent="No material discrepancy was identified under the example's five-minute timestamp tolerance, and no support or finance exception row is present."; body.append(p);
+          }
+          const evidence=document.createElement("div"); evidence.className="evidence";
+          evidence.textContent="Source references: " + [order.wms,order.carrier?.id,order.support?.id,order.finance?.id].filter(Boolean).join(" · ");
+          body.append(evidence);
+        }
+        body.prepend(facts); detail.append(body); list.append(detail);
+      });
+    }
+    document.querySelectorAll("[data-view]").forEach(button => {
+      button.addEventListener("click", () => {
+        currentView = button.dataset.view;
+        document.querySelectorAll("[data-view]").forEach(other => other.setAttribute("aria-pressed", String(other === button)));
+        render();
+      });
+    });
+    document.getElementById("filter").addEventListener("change", render);
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+order_id,carrier_pickup_at,carrier_delivered_at,carrier_status,carrier_record_id
+ORD-100,2026-10-15T09:52:00,2026-10-15T14:20:00,delivered,CAR-100
+ORD-101,2026-10-15T11:42:00,2026-10-15T12:40:00,delivered,CAR-101
+ORD-103,2026-10-15T10:08:00,2026-10-15T13:02:00,delivered,CAR-103
+ORD-104,2026-10-15T14:07:00,2026-10-15T15:02:00,delivered,CAR-104
