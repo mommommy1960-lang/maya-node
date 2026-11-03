@@ -17,6 +17,10 @@ Open [customer_demo.html](./customer_demo.html) in a browser. The standalone pag
 
 The page uses embedded fictional records and runs locally in the browser. It does not connect to customer systems, send data, or invoke Maya Node. It is a concept prototype, not a hosted customer service.
 
+## Competitive comparison discipline
+
+See the [competitive benchmark protocol](../../docs/WHOLE_STORY_CHALLENGE_COMPETITIVE_BENCHMARK_PROTOCOL_2026-11-03.md) for the documented alternative landscape, public vendor capability claims, blind-test design, scorecard, and rules for what Civic Continuum may claim. The protocol explicitly distinguishes public vendor descriptions from tested performance.
+
 ## Run the reproducible reconciliation
 
 Requires Python 3.10+ and only the Python standard library.
