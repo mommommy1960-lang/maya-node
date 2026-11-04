@@ -1,0 +1,6 @@
+# Maya Node Android demonstration
+A native Android app (Java Activity), not a home-screen installation prompt. Native payment/delivery teaching screens and human-approved text export work offline. The account workspace opens separately in the system browser so authentication remains with the provider. No WebView credential capture, background data access, analytics SDK, broad storage permissions or billing.
+
+Build: JDK17, Gradle8.11.1, Android SDK35/build-tools35.0.0. Run `gradle -p maya-android :app:assembleDebug :app:lintDebug` from the repository root. The workflow publishes `app-debug.apk` as a seven-day development artifact when the build passes. Debug signing is for testing; production signing, Play Store listing, device testing and complete native account workflows remain unfinished.
+
+Android application ID: org.civiccontinuum.maya. Minimum Android8.0. No real data in the embedded sample. No claim of verified financial savings, external remediation, independent approver verification, universal integrations or 30-day paid subscription enforcement. Do not request a payment for this demonstration. A future 30-day trial is a product proposal; price, terms, cancellation and verified billing must be implemented before activation.
