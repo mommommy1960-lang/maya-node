@@ -1,16 +1,20 @@
 {
   "format": "maya-public-status-v1",
-  "updated_at": "2026-11-04T17:55:00Z",
+  "updated_at": "2026-11-04T17:59:23.032Z",
   "live_website": "https://maya-working-workflow-lab.myqueen1960.chatgpt.site/",
-  "website_version": 25,
-  "release_note": "Version25 currently deployed. Payment-allocation review and simpler landing page are being prepared; this entry will be updated after successful publication.",
+  "website_version": 26,
+  "release_note": "Version26 deployed successfully: payment-allocation review, delivery gaps, structured instruction comparisons, exact-report approval and a simpler home page. Native Android development APK download is available.",
   "available": [
     "Browser-local invoice CSV checks",
     "Account-scoped fictional pantry journeys and exports",
     "Exact-file human approval with five-minute permission, revocation and receipts",
     "Signed note backup/restore and isolated hosted application recovery drill",
     "Fictional browser-local repair walkthrough",
-    "Native Android demonstration APK build/lint passed; development artifact available on GitHub"
+    "Native Android demonstration APK build/lint passed; development artifact available on GitHub",
+    "Explicit payment-to-charge JSON reconciliation, unallocated/overallocated funds, delivery receipt gaps and structured instruction mismatches",
+    "Exact report draft, human Yes/No approval, five-minute file-creation grant, revocation and receipts",
+    "Canonical GitHub directory/status fetched by the user-guide tool when reachable",
+    "Native Android development APK download from the website; no device runtime certification"
   ],
   "unfinished": [
     "Organization accounting/inventory/AI connectors",
@@ -23,9 +27,20 @@
   ],
   "evidence": {
     "policy_merge": "6fcfe96754f7aacd563d818791ca35b1d6737d98",
-    "android_build": "https://github.com/mommommy1960-lang/maya-node/actions/runs/41881053250"
+    "android_build": "https://github.com/mommommy1960-lang/maya-node/actions/runs/41881053250",
+    "android_artifact_build": "https://github.com/mommommy1960-lang/maya-node/actions/runs/41880888902",
+    "android_merge": "ef72e12d726e01c69b1c7eebd329031a482fa3dd"
   },
   "human_approval": "Approval of a report file is not approval to send it or apply a business-system fix.",
   "commercial": "Early-access demo remains free. Proposed 30-day trial not activated; price and final terms not chosen.",
-  "limits": "No verified customer savings, universal superiority, automatic misconduct finding or all-system replacement is claimed."
+  "limits": "No verified customer savings, universal superiority, automatic misconduct finding or all-system replacement is claimed.",
+  "site_source_commit": "c996a603e3ac543f293af3469b7fc7cd02288c43",
+  "android_download": "https://maya-working-workflow-lab.myqueen1960.chatgpt.site/maya-node-android-demo.apk",
+  "android_sha256": "b6d90f781f9ff7ff98ea6cc3b0fed8ca109fa18e2c8b36c4a3ff4a18bb543e57",
+  "verification": {
+    "focused_automated_checks": 56,
+    "production_build": "passed",
+    "android_build_lint": "passed",
+    "android_device_runtime": "unverified"
+  }
 }
