@@ -1,0 +1,72 @@
+{
+  "payments": [
+    {
+      "id": "P-100",
+      "amountCents": 10000,
+      "currency": "USD",
+      "sourceRef": "DEMO bank statement BANK-1",
+      "receivedAt": "2026-11-01T12:00:00Z"
+    }
+  ],
+  "charges": [
+    {
+      "id": "C-RENT",
+      "amountCents": 7000,
+      "currency": "USD",
+      "purpose": "Rent",
+      "sourceRef": "DEMO charge C-RENT"
+    },
+    {
+      "id": "C-WATER",
+      "amountCents": 2000,
+      "currency": "USD",
+      "purpose": "Water",
+      "sourceRef": "DEMO charge C-WATER"
+    }
+  ],
+  "allocations": [
+    {
+      "id": "A-1",
+      "paymentId": "P-100",
+      "chargeId": "C-RENT",
+      "amountCents": 7000,
+      "currency": "USD",
+      "sourceRef": "DEMO allocation ALLOC-1",
+      "authorizedBy": "Demo finance lead",
+      "approvalRef": "DEMO approval AP-1"
+    },
+    {
+      "id": "A-2",
+      "paymentId": "P-100",
+      "chargeId": "C-WATER",
+      "amountCents": 2000,
+      "currency": "USD",
+      "sourceRef": "DEMO allocation ALLOC-2",
+      "authorizedBy": "Demo finance lead",
+      "approvalRef": "DEMO approval AP-2"
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "D-1",
+      "unit": "bags",
+      "planned": 100,
+      "dispatched": 80,
+      "received": 60,
+      "dispatchRef": "DEMO dispatch SHIP-1",
+      "receiptRef": "DEMO receiving REC-1",
+      "destination": "Demo Pantry A",
+      "responsibleRole": "Demo logistics lead"
+    }
+  ],
+  "instructions": [
+    {
+      "id": "I-1",
+      "field": "product category",
+      "expected": "apples",
+      "observed": "oranges",
+      "requestRef": "DEMO purchase request REQ-1",
+      "responseRef": "DEMO purchase row BUY-1"
+    }
+  ]
+}
