@@ -1,0 +1,31 @@
+{
+  "format": "maya-public-status-v1",
+  "updated_at": "2026-11-04T17:55:00Z",
+  "live_website": "https://maya-working-workflow-lab.myqueen1960.chatgpt.site/",
+  "website_version": 25,
+  "release_note": "Version25 currently deployed. Payment-allocation review and simpler landing page are being prepared; this entry will be updated after successful publication.",
+  "available": [
+    "Browser-local invoice CSV checks",
+    "Account-scoped fictional pantry journeys and exports",
+    "Exact-file human approval with five-minute permission, revocation and receipts",
+    "Signed note backup/restore and isolated hosted application recovery drill",
+    "Fictional browser-local repair walkthrough",
+    "Native Android demonstration APK build/lint passed; development artifact available on GitHub"
+  ],
+  "unfinished": [
+    "Organization accounting/inventory/AI connectors",
+    "Verified external approver identities and retained source documents",
+    "External remediation and preventive controls",
+    "Delivery scheduling, meeting scheduling and transcription",
+    "Provider-total-disaster recovery and provider backup/log expiry",
+    "Android device runtime, production signing and Play Store publication",
+    "Priced paid trial and billing verification"
+  ],
+  "evidence": {
+    "policy_merge": "6fcfe96754f7aacd563d818791ca35b1d6737d98",
+    "android_build": "https://github.com/mommommy1960-lang/maya-node/actions/runs/41881053250"
+  },
+  "human_approval": "Approval of a report file is not approval to send it or apply a business-system fix.",
+  "commercial": "Early-access demo remains free. Proposed 30-day trial not activated; price and final terms not chosen.",
+  "limits": "No verified customer savings, universal superiority, automatic misconduct finding or all-system replacement is claimed."
+}
