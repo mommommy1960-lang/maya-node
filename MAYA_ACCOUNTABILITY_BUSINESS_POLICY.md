@@ -42,3 +42,15 @@ Live purpose and policy: https://maya-working-workflow-lab.myqueen1960.chatgpt.s
 - https://www.whitecenterfoodbank.org/volunteer-portal?console_type=check
 - https://www.cervistech.info/faqs-volunteer-management-software
 - https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/apexcode/intro_oauth_and_connected_apps.htm
+
+
+## November 4 implemented report and Android update
+The explicit allocation review follows supplied payments to supplied charges, flags unexplained or overallocated amounts, compares dispatched versus received quantities and reports structured instruction mismatches. It does not infer missing allocations or determine intent, competence or misconduct. Source references remain claims until verified against retained original evidence.
+
+A human reviews the exact saved report and chooses Yes or No before file creation; a five-minute grant is rechecked by the server and can be withdrawn. That grant covers the report file only. Sending a report and applying a business-system correction each require separate, specific authority and a verified connector. Neither external action is currently performed.
+
+Native Android demonstration source is merged on main. Its debug APK build/lint passed; native offline fictional report and approved export are implemented. Android device runtime, production signing and Play Store release are not verified. The online account workspace opens in the system browser.
+
+The founder proposes a 30-day free trial followed by an explicitly selected paid plan. Price, final terms, cancellation, billing verification and trial enforcement are unfinished; no recurring billing is activated. Note-retention deadlines are separate from a commercial trial.
+
+Use [the public directory](MAYA_PUBLIC_DIRECTORY.md) and [dated status](MAYA_PUBLIC_STATUS.json) for current capabilities and evidence. Older checkpoints are historical.
