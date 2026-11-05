@@ -1,0 +1,88 @@
+name: BPI 2019 full-dataset execution
+on:
+  pull_request:
+    paths:
+      - 'benchmarks/bpi2019/**'
+      - '.github/workflows/bpi2019-full-data.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'benchmarks/bpi2019/**'
+      - '.github/workflows/bpi2019-full-data.yml'
+  workflow_dispatch:
+jobs:
+  full-dataset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run fixture tests
+        working-directory: benchmarks/bpi2019
+        run: python -m unittest -v
+      - name: Diagnose 4TU connectivity without downloading dataset
+        run: |
+          {
+            echo "DNS resolution for data.4tu.nl"
+            getent ahosts data.4tu.nl || true
+            echo "DNS resolution for doi.org"
+            getent ahosts doi.org || true
+            echo "HTTPS connection timing for official 4TU endpoint"
+            curl --silent --show-error --location --head --connect-timeout 10 --max-time 25 --retry 0 \
+              --output /dev/null \
+              --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} dns=%{time_namelookup} connect=%{time_connect} tls=%{time_appconnect} first_byte=%{time_starttransfer} total=%{time_total}\\n' \
+              'https://data.4tu.nl/file/35ed7122-966a-484e-a0e1-749b64e3366d/864493d1-3a58-47f6-ad6f-27f95f995828' || true
+          } > connectivity_diagnostics.txt 2>&1
+      - name: Preserve connectivity diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bpi2019-connectivity-diagnostics
+          path: connectivity_diagnostics.txt
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Download original BPI Challenge 2019 XES
+        run: |
+          set +e
+          curl --fail --location --retry 3 --retry-all-errors --connect-timeout 15 --max-time 900 \
+            --dump-header download_headers.txt --show-error \
+            --output BPI_Challenge_2019.xes \
+            'https://data.4tu.nl/file/35ed7122-966a-484e-a0e1-749b64e3366d/864493d1-3a58-47f6-ad6f-27f95f995828' \
+            2> download_error.txt
+          result=$?
+          set -e
+          printf 'curl_exit_code=%s\n' "$result" > download_status.txt
+          if [ "$result" -ne 0 ]; then
+            echo 'Authentic dataset download failed; analysis must not run.'
+            exit "$result"
+          fi
+          stat --printf='bytes=%s\n' BPI_Challenge_2019.xes > source_manifest.txt
+          sha256sum BPI_Challenge_2019.xes >> source_manifest.txt
+          md5sum BPI_Challenge_2019.xes >> source_manifest.txt
+      - name: Preserve download diagnostics even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bpi2019-download-diagnostics
+          path: |
+            download_headers.txt
+            download_error.txt
+            download_status.txt
+            connectivity_diagnostics.txt
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Execute standalone analytics against the original source
+        run: |
+          python benchmarks/bpi2019/analyze_xes.py BPI_Challenge_2019.xes \
+            --output bpi2019_analysis.json
+      - name: Preserve reproducible execution report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bpi2019-full-dataset-analysis
+          path: |
+            bpi2019_analysis.json
+            source_manifest.txt
+          if-no-files-found: error
+          retention-days: 30
