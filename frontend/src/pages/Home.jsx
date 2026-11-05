@@ -1,86 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
-const Home = () => {
-  return (
-    <div className="home">
-      <section className="hero section">
-        <div className="container">
-          <h1 className="hero-title fade-in">
-            Turn chaotic ideas into <span className="highlight">audit-ready, fundable engineering.</span>
-          </h1>
-          
-          <p className="hero-description fade-in">
-            MayaNode is your <strong>Commons Verified Engineering & Knowledge Service</strong>: 
-            high-clarity frameworks, safety docs, and technical blueprints ready for investors, 
-            regulators, and partners.
-          </p>
-
-          <div className="hero-actions fade-in">
-            <a href="https://calendly.com/mayanode1" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              Request a Consult
-            </a>
-            <a href="#pricing" className="btn btn-outline">
-              View Pricing & Offers
-            </a>
-          </div>
-
-          <div className="hero-stripe fade-in">
-            <p className="hero-stripe-label">Or start instantly with Snapshot Lite:</p>
-            
-            <div className="stripe-button-container">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1SUE64FFZvHRvAyGNWQFxtzJ"
-                publishable-key="pk_live_51SSi1lFFZvHRvAyGArN5osMN9hKFjmNhd10RtIUFav2ZbBTMCKBV6TUj6hWxY9N78GpORe0q5KCzt7zzd2gZkzIp00G4tF1y7G">
-              </stripe-buy-button>
-            </div>
-
-            <p className="quote-tagline">
-              First Commons Initiative deployment to integrate Stripe + Calendly across a verified engineering workflow.
-            </p>
-          </div>
-
-          <p className="hero-footnote fade-in">
-            Built for <span className="text-accent" style={{fontWeight: 600}}>founders, researchers, & organizations</span> tired of messy pitches and vague decks.
-          </p>
+const Home = () => (
+  <div className="home">
+    <section className="hero section">
+      <div className="container">
+        <h1 className="hero-title">Use AI with confidence. <span className="highlight">Keep people accountable.</span></h1>
+        <p className="hero-description">Civic Continuum helps small organizations check public AI-generated content for accuracy, privacy concerns and clear human oversight.</p>
+        <p className="hero-footnote"><strong>FREE for the first three participating businesses:</strong> One public or fictional AI-generated example reviewed, with three practical suggestions. No payment or confidential information required. Availability is confirmed individually.</p>
+        <div className="hero-actions">
+          <Link to="/contact" className="btn btn-primary">Ask for a free mini-checkup</Link>
+          <a href="#checkup" className="btn btn-outline">How it works</a>
         </div>
-      </section>
-
-      <section className="features section">
-        <div className="container">
-          <h2 className="text-center">Why MayaNode?</h2>
-          <div className="grid grid-3">
-            <div className="card">
-              <h3>🎯 Clarity First</h3>
-              <p>Transform messy ideas into clear, structured documentation that stakeholders trust.</p>
-            </div>
-            <div className="card">
-              <h3>✅ Commons Verified</h3>
-              <p>Ethical, transparent engineering backed by CERL-1.0 governance framework.</p>
-            </div>
-            <div className="card">
-              <h3>🚀 Investor Ready</h3>
-              <p>Technical blueprints designed for due diligence, audits, and funding rounds.</p>
-            </div>
-          </div>
+      </div>
+    </section>
+    <section id="checkup" className="features section">
+      <div className="container">
+        <h2 className="text-center">AI Privacy &amp; Accuracy Mini-Checkup</h2>
+        <p className="text-center">A small human-led introductory review, not an automated or certified audit.</p>
+        <div className="grid grid-3">
+          <div className="card"><h3>One safe example</h3><p>Choose one publicly available or fictional AI-written business message. Never share customer records or passwords.</p></div>
+          <div className="card"><h3>Three practical suggestions</h3><p>Identify potential unsupported claims, privacy risks and missing human review.</p></div>
+          <div className="card"><h3>Human oversight</h3><p>Learn simple ways to verify facts and correct mistakes before publishing.</p></div>
         </div>
-      </section>
-
-      <section id="pricing" className="cta section">
-        <div className="container">
-          <div className="cta-content text-center">
-            <h2>Ready to get clarity?</h2>
-            <p className="text-muted">
-              Book a dedicated 1:1 clarity session to align your project, documentation, or technical roadmap.
-            </p>
-            <a href="https://calendly.com/mayanode1" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              Schedule a Clarity Session
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
+        <p><strong>Limit:</strong> Three free introductory participants. No checkout or sensitive-data intake. Full-scope services are separate and not included in this offer.</p>
+      </div>
+    </section>
+    <section className="cta section"><div className="container"><div className="cta-content text-center">
+      <h2>People over profit. Truth over appearances.</h2>
+      <p>Maya Node, SAGE, Aurora and Flux remain research and development initiatives, not products offered through this mini-checkup.</p>
+      <Link to="/contact" className="btn btn-primary">Contact Civic Continuum</Link>
+    </div></div></section>
+  </div>
+);
 export default Home;
