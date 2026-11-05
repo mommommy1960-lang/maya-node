@@ -1,0 +1,501 @@
+order_id,support_record_id,case_status,issue_type,created_at_utc,notes
+ORD-0001,SUP-1,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0002,SUP-2,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0003,SUP-3,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0004,SUP-4,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0005,SUP-5,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0006,SUP-6,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0007,SUP-7,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0008,SUP-8,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0009,SUP-9,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0010,SUP-10,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0011,SUP-11,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0012,SUP-12,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0013,SUP-13,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0014,SUP-14,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0015,SUP-15,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0016,SUP-16,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0017,SUP-17,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0018,SUP-18,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0019,SUP-19,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0020,SUP-20,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0021,SUP-21,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0022,SUP-22,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0023,SUP-23,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0024,SUP-24,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0025,SUP-25,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0026,SUP-26,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0027,SUP-27,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0028,SUP-28,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0029,SUP-29,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0030,SUP-30,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0031,SUP-31,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0032,SUP-32,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0033,SUP-33,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0034,SUP-34,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0035,SUP-35,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0036,SUP-36,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0037,SUP-37,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0038,SUP-38,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0039,SUP-39,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0040,SUP-40,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0041,SUP-41,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0042,SUP-42,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0043,SUP-43,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0044,SUP-44,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0045,SUP-45,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0046,SUP-46,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0047,SUP-47,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0048,SUP-48,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0049,SUP-49,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0050,SUP-50,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0051,SUP-51,OPEN,MISSING_PACKAGE,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0052,SUP-52,OPEN,MISSING_PACKAGE,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0053,SUP-53,OPEN,MISSING_PACKAGE,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0054,SUP-54,OPEN,MISSING_PACKAGE,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0055,SUP-55,OPEN,MISSING_PACKAGE,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0056,SUP-56,OPEN,MISSING_PACKAGE,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0057,SUP-57,OPEN,MISSING_PACKAGE,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0058,SUP-58,OPEN,MISSING_PACKAGE,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0059,SUP-59,OPEN,MISSING_PACKAGE,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0060,SUP-60,OPEN,MISSING_PACKAGE,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0061,SUP-61,OPEN,MISSING_PACKAGE,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0062,SUP-62,OPEN,MISSING_PACKAGE,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0063,SUP-63,OPEN,MISSING_PACKAGE,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0064,SUP-64,OPEN,MISSING_PACKAGE,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0065,SUP-65,OPEN,MISSING_PACKAGE,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0066,SUP-66,OPEN,MISSING_PACKAGE,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0067,SUP-67,OPEN,MISSING_PACKAGE,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0068,SUP-68,OPEN,MISSING_PACKAGE,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0069,SUP-69,OPEN,MISSING_PACKAGE,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0070,SUP-70,OPEN,MISSING_PACKAGE,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0071,SUP-71,OPEN,MISSING_PACKAGE,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0072,SUP-72,OPEN,MISSING_PACKAGE,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0073,SUP-73,OPEN,MISSING_PACKAGE,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0074,SUP-74,OPEN,MISSING_PACKAGE,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0075,SUP-75,OPEN,MISSING_PACKAGE,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0076,SUP-76,OPEN,MISSING_PACKAGE,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0077,SUP-77,OPEN,MISSING_PACKAGE,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0078,SUP-78,OPEN,MISSING_PACKAGE,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0079,SUP-79,OPEN,MISSING_PACKAGE,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0080,SUP-80,OPEN,MISSING_PACKAGE,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0081,SUP-81,OPEN,MISSING_PACKAGE,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0082,SUP-82,OPEN,MISSING_PACKAGE,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0083,SUP-83,OPEN,MISSING_PACKAGE,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0084,SUP-84,OPEN,MISSING_PACKAGE,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0085,SUP-85,OPEN,MISSING_PACKAGE,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0086,SUP-86,OPEN,MISSING_PACKAGE,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0087,SUP-87,OPEN,MISSING_PACKAGE,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0088,SUP-88,OPEN,MISSING_PACKAGE,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0089,SUP-89,OPEN,MISSING_PACKAGE,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0090,SUP-90,OPEN,MISSING_PACKAGE,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0091,SUP-91,OPEN,MISSING_PACKAGE,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0092,SUP-92,OPEN,MISSING_PACKAGE,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0093,SUP-93,OPEN,MISSING_PACKAGE,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0094,SUP-94,OPEN,MISSING_PACKAGE,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0095,SUP-95,OPEN,MISSING_PACKAGE,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0096,SUP-96,OPEN,MISSING_PACKAGE,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0097,SUP-97,OPEN,MISSING_PACKAGE,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0098,SUP-98,OPEN,MISSING_PACKAGE,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0099,SUP-99,OPEN,MISSING_PACKAGE,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0100,SUP-100,OPEN,MISSING_PACKAGE,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0101,SUP-101,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0102,SUP-102,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0103,SUP-103,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0104,SUP-104,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0105,SUP-105,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0106,SUP-106,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0107,SUP-107,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0108,SUP-108,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0109,SUP-109,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0110,SUP-110,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0111,SUP-111,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0112,SUP-112,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0113,SUP-113,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0114,SUP-114,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0115,SUP-115,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0116,SUP-116,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0117,SUP-117,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0118,SUP-118,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0119,SUP-119,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0120,SUP-120,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0121,SUP-121,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0122,SUP-122,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0123,SUP-123,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0124,SUP-124,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0125,SUP-125,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0126,SUP-126,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0127,SUP-127,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0128,SUP-128,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0129,SUP-129,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0130,SUP-130,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0131,SUP-131,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0132,SUP-132,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0133,SUP-133,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0134,SUP-134,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0135,SUP-135,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0136,SUP-136,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0137,SUP-137,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0138,SUP-138,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0139,SUP-139,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0140,SUP-140,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0141,SUP-141,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0142,SUP-142,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0143,SUP-143,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0144,SUP-144,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0145,SUP-145,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0146,SUP-146,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0147,SUP-147,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0148,SUP-148,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0149,SUP-149,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0150,SUP-150,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0151,SUP-151,OPEN,NOT_RECEIVED,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0152,SUP-152,OPEN,NOT_RECEIVED,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0153,SUP-153,OPEN,NOT_RECEIVED,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0154,SUP-154,OPEN,NOT_RECEIVED,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0155,SUP-155,OPEN,NOT_RECEIVED,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0156,SUP-156,OPEN,NOT_RECEIVED,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0157,SUP-157,OPEN,NOT_RECEIVED,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0158,SUP-158,OPEN,NOT_RECEIVED,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0159,SUP-159,OPEN,NOT_RECEIVED,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0160,SUP-160,OPEN,NOT_RECEIVED,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0161,SUP-161,OPEN,NOT_RECEIVED,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0162,SUP-162,OPEN,NOT_RECEIVED,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0163,SUP-163,OPEN,NOT_RECEIVED,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0164,SUP-164,OPEN,NOT_RECEIVED,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0165,SUP-165,OPEN,NOT_RECEIVED,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0166,SUP-166,OPEN,NOT_RECEIVED,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0167,SUP-167,OPEN,NOT_RECEIVED,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0168,SUP-168,OPEN,NOT_RECEIVED,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0169,SUP-169,OPEN,NOT_RECEIVED,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0170,SUP-170,OPEN,NOT_RECEIVED,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0171,SUP-171,OPEN,NOT_RECEIVED,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0172,SUP-172,OPEN,NOT_RECEIVED,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0173,SUP-173,OPEN,NOT_RECEIVED,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0174,SUP-174,OPEN,NOT_RECEIVED,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0175,SUP-175,OPEN,NOT_RECEIVED,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0176,SUP-176,OPEN,NOT_RECEIVED,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0177,SUP-177,OPEN,NOT_RECEIVED,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0178,SUP-178,OPEN,NOT_RECEIVED,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0179,SUP-179,OPEN,NOT_RECEIVED,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0180,SUP-180,OPEN,NOT_RECEIVED,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0181,SUP-181,OPEN,NOT_RECEIVED,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0182,SUP-182,OPEN,NOT_RECEIVED,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0183,SUP-183,OPEN,NOT_RECEIVED,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0184,SUP-184,OPEN,NOT_RECEIVED,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0185,SUP-185,OPEN,NOT_RECEIVED,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0186,SUP-186,OPEN,NOT_RECEIVED,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0187,SUP-187,OPEN,NOT_RECEIVED,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0188,SUP-188,OPEN,NOT_RECEIVED,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0189,SUP-189,OPEN,NOT_RECEIVED,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0190,SUP-190,OPEN,NOT_RECEIVED,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0191,SUP-191,OPEN,NOT_RECEIVED,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0192,SUP-192,OPEN,NOT_RECEIVED,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0193,SUP-193,OPEN,NOT_RECEIVED,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0194,SUP-194,OPEN,NOT_RECEIVED,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0195,SUP-195,OPEN,NOT_RECEIVED,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0196,SUP-196,OPEN,NOT_RECEIVED,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0197,SUP-197,OPEN,NOT_RECEIVED,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0198,SUP-198,OPEN,NOT_RECEIVED,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0199,SUP-199,OPEN,NOT_RECEIVED,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0200,SUP-200,OPEN,NOT_RECEIVED,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0201,SUP-201,OPEN,ORDER_DELAY,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0202,SUP-202,OPEN,ORDER_DELAY,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0203,SUP-203,OPEN,ORDER_DELAY,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0204,SUP-204,OPEN,ORDER_DELAY,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0205,SUP-205,OPEN,ORDER_DELAY,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0206,SUP-206,OPEN,ORDER_DELAY,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0207,SUP-207,OPEN,ORDER_DELAY,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0208,SUP-208,OPEN,ORDER_DELAY,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0209,SUP-209,OPEN,ORDER_DELAY,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0210,SUP-210,OPEN,ORDER_DELAY,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0211,SUP-211,OPEN,ORDER_DELAY,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0212,SUP-212,OPEN,ORDER_DELAY,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0213,SUP-213,OPEN,ORDER_DELAY,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0214,SUP-214,OPEN,ORDER_DELAY,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0215,SUP-215,OPEN,ORDER_DELAY,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0216,SUP-216,OPEN,ORDER_DELAY,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0217,SUP-217,OPEN,ORDER_DELAY,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0218,SUP-218,OPEN,ORDER_DELAY,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0219,SUP-219,OPEN,ORDER_DELAY,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0220,SUP-220,OPEN,ORDER_DELAY,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0221,SUP-221,OPEN,ORDER_DELAY,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0222,SUP-222,OPEN,ORDER_DELAY,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0223,SUP-223,OPEN,ORDER_DELAY,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0224,SUP-224,OPEN,ORDER_DELAY,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0225,SUP-225,OPEN,ORDER_DELAY,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0226,SUP-226,OPEN,ORDER_DELAY,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0227,SUP-227,OPEN,ORDER_DELAY,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0228,SUP-228,OPEN,ORDER_DELAY,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0229,SUP-229,OPEN,ORDER_DELAY,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0230,SUP-230,OPEN,ORDER_DELAY,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0231,SUP-231,OPEN,ORDER_DELAY,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0232,SUP-232,OPEN,ORDER_DELAY,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0233,SUP-233,OPEN,ORDER_DELAY,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0234,SUP-234,OPEN,ORDER_DELAY,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0235,SUP-235,OPEN,ORDER_DELAY,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0236,SUP-236,OPEN,ORDER_DELAY,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0237,SUP-237,OPEN,ORDER_DELAY,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0238,SUP-238,OPEN,ORDER_DELAY,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0239,SUP-239,OPEN,ORDER_DELAY,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0240,SUP-240,OPEN,ORDER_DELAY,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0241,SUP-241,OPEN,ORDER_DELAY,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0242,SUP-242,OPEN,ORDER_DELAY,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0243,SUP-243,OPEN,ORDER_DELAY,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0244,SUP-244,OPEN,ORDER_DELAY,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0245,SUP-245,OPEN,ORDER_DELAY,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0246,SUP-246,OPEN,ORDER_DELAY,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0247,SUP-247,OPEN,ORDER_DELAY,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0248,SUP-248,OPEN,ORDER_DELAY,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0249,SUP-249,OPEN,ORDER_DELAY,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0250,SUP-250,OPEN,ORDER_DELAY,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0251,SUP-251,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0252,SUP-252,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0253,SUP-253,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0254,SUP-254,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0255,SUP-255,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0256,SUP-256,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0257,SUP-257,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0258,SUP-258,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0259,SUP-259,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0260,SUP-260,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0261,SUP-261,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0262,SUP-262,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0263,SUP-263,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0264,SUP-264,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0265,SUP-265,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0266,SUP-266,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0267,SUP-267,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0268,SUP-268,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0269,SUP-269,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0270,SUP-270,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0271,SUP-271,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0272,SUP-272,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0273,SUP-273,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0274,SUP-274,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0275,SUP-275,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0276,SUP-276,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0277,SUP-277,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0278,SUP-278,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0279,SUP-279,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0280,SUP-280,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0281,SUP-281,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0282,SUP-282,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0283,SUP-283,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0284,SUP-284,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0285,SUP-285,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0286,SUP-286,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0287,SUP-287,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0288,SUP-288,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0289,SUP-289,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0290,SUP-290,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0291,SUP-291,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0292,SUP-292,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0293,SUP-293,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0294,SUP-294,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0295,SUP-295,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0296,SUP-296,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0297,SUP-297,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0298,SUP-298,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0299,SUP-299,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0300,SUP-300,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0301,SUP-301,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0302,SUP-302,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0303,SUP-303,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0304,SUP-304,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0305,SUP-305,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0306,SUP-306,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0307,SUP-307,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0308,SUP-308,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0309,SUP-309,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0310,SUP-310,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0311,SUP-311,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0312,SUP-312,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0313,SUP-313,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0314,SUP-314,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0315,SUP-315,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0316,SUP-316,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0317,SUP-317,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0318,SUP-318,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0319,SUP-319,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0320,SUP-320,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0321,SUP-321,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0322,SUP-322,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0323,SUP-323,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0324,SUP-324,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0325,SUP-325,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0326,SUP-326,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0327,SUP-327,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0328,SUP-328,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0329,SUP-329,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0330,SUP-330,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0331,SUP-331,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0332,SUP-332,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0333,SUP-333,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0334,SUP-334,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0335,SUP-335,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0336,SUP-336,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0337,SUP-337,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0338,SUP-338,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0339,SUP-339,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0340,SUP-340,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0341,SUP-341,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0342,SUP-342,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0343,SUP-343,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0344,SUP-344,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0345,SUP-345,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0346,SUP-346,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0347,SUP-347,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0348,SUP-348,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0349,SUP-349,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0350,SUP-350,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0351,SUP-351,OPEN,MISSING_ITEM,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0352,SUP-352,OPEN,MISSING_ITEM,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0353,SUP-353,OPEN,MISSING_ITEM,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0354,SUP-354,OPEN,MISSING_ITEM,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0355,SUP-355,OPEN,MISSING_ITEM,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0356,SUP-356,OPEN,MISSING_ITEM,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0357,SUP-357,OPEN,MISSING_ITEM,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0358,SUP-358,OPEN,MISSING_ITEM,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0359,SUP-359,OPEN,MISSING_ITEM,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0360,SUP-360,OPEN,MISSING_ITEM,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0361,SUP-361,OPEN,MISSING_ITEM,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0362,SUP-362,OPEN,MISSING_ITEM,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0363,SUP-363,OPEN,MISSING_ITEM,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0364,SUP-364,OPEN,MISSING_ITEM,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0365,SUP-365,OPEN,MISSING_ITEM,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0366,SUP-366,OPEN,MISSING_ITEM,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0367,SUP-367,OPEN,MISSING_ITEM,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0368,SUP-368,OPEN,MISSING_ITEM,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0369,SUP-369,OPEN,MISSING_ITEM,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0370,SUP-370,OPEN,MISSING_ITEM,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0371,SUP-371,OPEN,MISSING_ITEM,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0372,SUP-372,OPEN,MISSING_ITEM,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0373,SUP-373,OPEN,MISSING_ITEM,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0374,SUP-374,OPEN,MISSING_ITEM,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0375,SUP-375,OPEN,MISSING_ITEM,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0376,SUP-376,OPEN,MISSING_ITEM,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0377,SUP-377,OPEN,MISSING_ITEM,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0378,SUP-378,OPEN,MISSING_ITEM,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0379,SUP-379,OPEN,MISSING_ITEM,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0380,SUP-380,OPEN,MISSING_ITEM,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0381,SUP-381,OPEN,MISSING_ITEM,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0382,SUP-382,OPEN,MISSING_ITEM,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0383,SUP-383,OPEN,MISSING_ITEM,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0384,SUP-384,OPEN,MISSING_ITEM,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0385,SUP-385,OPEN,MISSING_ITEM,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0386,SUP-386,OPEN,MISSING_ITEM,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0387,SUP-387,OPEN,MISSING_ITEM,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0388,SUP-388,OPEN,MISSING_ITEM,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0389,SUP-389,OPEN,MISSING_ITEM,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0390,SUP-390,OPEN,MISSING_ITEM,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0391,SUP-391,OPEN,MISSING_ITEM,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0392,SUP-392,OPEN,MISSING_ITEM,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0393,SUP-393,OPEN,MISSING_ITEM,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0394,SUP-394,OPEN,MISSING_ITEM,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0395,SUP-395,OPEN,MISSING_ITEM,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0396,SUP-396,OPEN,MISSING_ITEM,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0397,SUP-397,OPEN,MISSING_ITEM,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0398,SUP-398,OPEN,MISSING_ITEM,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0399,SUP-399,OPEN,MISSING_ITEM,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0400,SUP-400,OPEN,MISSING_ITEM,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0401,SUP-401,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0402,SUP-402,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0403,SUP-403,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0404,SUP-404,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0405,SUP-405,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0406,SUP-406,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0407,SUP-407,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0408,SUP-408,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0409,SUP-409,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0410,SUP-410,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0411,SUP-411,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0412,SUP-412,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0413,SUP-413,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0414,SUP-414,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0415,SUP-415,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0416,SUP-416,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0417,SUP-417,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0418,SUP-418,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0419,SUP-419,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0420,SUP-420,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0421,SUP-421,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0422,SUP-422,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0423,SUP-423,NONE,NONE,2026-10-03T16:00:00Z,No support exception recorded
+ORD-0424,SUP-424,NONE,NONE,2026-10-04T16:00:00Z,No support exception recorded
+ORD-0425,SUP-425,NONE,NONE,2026-10-05T16:00:00Z,No support exception recorded
+ORD-0426,SUP-426,NONE,NONE,2026-10-06T16:00:00Z,No support exception recorded
+ORD-0427,SUP-427,NONE,NONE,2026-10-07T16:00:00Z,No support exception recorded
+ORD-0428,SUP-428,NONE,NONE,2026-10-08T16:00:00Z,No support exception recorded
+ORD-0429,SUP-429,NONE,NONE,2026-10-09T16:00:00Z,No support exception recorded
+ORD-0430,SUP-430,NONE,NONE,2026-10-10T16:00:00Z,No support exception recorded
+ORD-0431,SUP-431,NONE,NONE,2026-10-11T16:00:00Z,No support exception recorded
+ORD-0432,SUP-432,NONE,NONE,2026-10-12T16:00:00Z,No support exception recorded
+ORD-0433,SUP-433,NONE,NONE,2026-10-13T16:00:00Z,No support exception recorded
+ORD-0434,SUP-434,NONE,NONE,2026-10-14T16:00:00Z,No support exception recorded
+ORD-0435,SUP-435,NONE,NONE,2026-10-15T16:00:00Z,No support exception recorded
+ORD-0436,SUP-436,NONE,NONE,2026-10-16T16:00:00Z,No support exception recorded
+ORD-0437,SUP-437,NONE,NONE,2026-10-17T16:00:00Z,No support exception recorded
+ORD-0438,SUP-438,NONE,NONE,2026-10-18T16:00:00Z,No support exception recorded
+ORD-0439,SUP-439,NONE,NONE,2026-10-19T16:00:00Z,No support exception recorded
+ORD-0440,SUP-440,NONE,NONE,2026-10-20T16:00:00Z,No support exception recorded
+ORD-0441,SUP-441,NONE,NONE,2026-10-21T16:00:00Z,No support exception recorded
+ORD-0442,SUP-442,NONE,NONE,2026-10-22T16:00:00Z,No support exception recorded
+ORD-0443,SUP-443,NONE,NONE,2026-10-23T16:00:00Z,No support exception recorded
+ORD-0444,SUP-444,NONE,NONE,2026-10-24T16:00:00Z,No support exception recorded
+ORD-0445,SUP-445,NONE,NONE,2026-10-25T16:00:00Z,No support exception recorded
+ORD-0446,SUP-446,NONE,NONE,2026-10-26T16:00:00Z,No support exception recorded
+ORD-0447,SUP-447,NONE,NONE,2026-10-27T16:00:00Z,No support exception recorded
+ORD-0448,SUP-448,NONE,NONE,2026-10-28T16:00:00Z,No support exception recorded
+ORD-0449,SUP-449,NONE,NONE,2026-10-01T16:00:00Z,No support exception recorded
+ORD-0450,SUP-450,NONE,NONE,2026-10-02T16:00:00Z,No support exception recorded
+ORD-0451,SUP-451,OPEN,MISSING_PACKAGE,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0452,SUP-452,OPEN,MISSING_PACKAGE,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0453,SUP-453,OPEN,MISSING_PACKAGE,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0454,SUP-454,OPEN,MISSING_PACKAGE,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0455,SUP-455,OPEN,MISSING_PACKAGE,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0456,SUP-456,OPEN,MISSING_PACKAGE,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0457,SUP-457,OPEN,MISSING_PACKAGE,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0458,SUP-458,OPEN,MISSING_PACKAGE,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0459,SUP-459,OPEN,MISSING_PACKAGE,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0460,SUP-460,OPEN,MISSING_PACKAGE,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0461,SUP-461,OPEN,MISSING_PACKAGE,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0462,SUP-462,OPEN,MISSING_PACKAGE,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0463,SUP-463,OPEN,MISSING_PACKAGE,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0464,SUP-464,OPEN,MISSING_PACKAGE,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0465,SUP-465,OPEN,MISSING_PACKAGE,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0466,SUP-466,OPEN,MISSING_PACKAGE,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0467,SUP-467,OPEN,MISSING_PACKAGE,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0468,SUP-468,OPEN,MISSING_PACKAGE,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0469,SUP-469,OPEN,MISSING_PACKAGE,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0470,SUP-470,OPEN,MISSING_PACKAGE,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0471,SUP-471,OPEN,MISSING_PACKAGE,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0472,SUP-472,OPEN,MISSING_PACKAGE,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0473,SUP-473,OPEN,MISSING_PACKAGE,2026-10-25T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0474,SUP-474,OPEN,MISSING_PACKAGE,2026-10-26T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0475,SUP-475,OPEN,MISSING_PACKAGE,2026-10-27T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0476,SUP-476,OPEN,MISSING_PACKAGE,2026-10-28T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0477,SUP-477,OPEN,MISSING_PACKAGE,2026-10-01T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0478,SUP-478,OPEN,MISSING_PACKAGE,2026-10-02T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0479,SUP-479,OPEN,MISSING_PACKAGE,2026-10-03T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0480,SUP-480,OPEN,MISSING_PACKAGE,2026-10-04T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0481,SUP-481,OPEN,MISSING_PACKAGE,2026-10-05T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0482,SUP-482,OPEN,MISSING_PACKAGE,2026-10-06T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0483,SUP-483,OPEN,MISSING_PACKAGE,2026-10-07T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0484,SUP-484,OPEN,MISSING_PACKAGE,2026-10-08T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0485,SUP-485,OPEN,MISSING_PACKAGE,2026-10-09T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0486,SUP-486,OPEN,MISSING_PACKAGE,2026-10-10T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0487,SUP-487,OPEN,MISSING_PACKAGE,2026-10-11T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0488,SUP-488,OPEN,MISSING_PACKAGE,2026-10-12T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0489,SUP-489,OPEN,MISSING_PACKAGE,2026-10-13T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0490,SUP-490,OPEN,MISSING_PACKAGE,2026-10-14T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0491,SUP-491,OPEN,MISSING_PACKAGE,2026-10-15T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0492,SUP-492,OPEN,MISSING_PACKAGE,2026-10-16T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0493,SUP-493,OPEN,MISSING_PACKAGE,2026-10-17T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0494,SUP-494,OPEN,MISSING_PACKAGE,2026-10-18T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0495,SUP-495,OPEN,MISSING_PACKAGE,2026-10-19T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0496,SUP-496,OPEN,MISSING_PACKAGE,2026-10-20T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0497,SUP-497,OPEN,MISSING_PACKAGE,2026-10-21T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0498,SUP-498,OPEN,MISSING_PACKAGE,2026-10-22T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0499,SUP-499,OPEN,MISSING_PACKAGE,2026-10-23T16:00:00Z,Synthetic support case; issue type recorded
+ORD-0500,SUP-500,OPEN,MISSING_PACKAGE,2026-10-24T16:00:00Z,Synthetic support case; issue type recorded

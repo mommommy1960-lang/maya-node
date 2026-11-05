@@ -1,0 +1,501 @@
+order_id,finance_record_id,transaction_type,amount_usd,posted_at_utc,reason,causation_evidence
+ORD-0001,FIN-1,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0002,FIN-2,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0003,FIN-3,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0004,FIN-4,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0005,FIN-5,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0006,FIN-6,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0007,FIN-7,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0008,FIN-8,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0009,FIN-9,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0010,FIN-10,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0011,FIN-11,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0012,FIN-12,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0013,FIN-13,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0014,FIN-14,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0015,FIN-15,NONE,0.00,2026-10-15T17:00:00Z,NONE,No financial transaction
+ORD-0016,FIN-16,NONE,0.00,2026-10-16T17:00:00Z,NONE,No financial transaction
+ORD-0017,FIN-17,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0018,FIN-18,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0019,FIN-19,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0020,FIN-20,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0021,FIN-21,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0022,FIN-22,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0023,FIN-23,NONE,0.00,2026-10-23T17:00:00Z,NONE,No financial transaction
+ORD-0024,FIN-24,NONE,0.00,2026-10-24T17:00:00Z,NONE,No financial transaction
+ORD-0025,FIN-25,NONE,0.00,2026-10-25T17:00:00Z,NONE,No financial transaction
+ORD-0026,FIN-26,NONE,0.00,2026-10-26T17:00:00Z,NONE,No financial transaction
+ORD-0027,FIN-27,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0028,FIN-28,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0029,FIN-29,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0030,FIN-30,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0031,FIN-31,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0032,FIN-32,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0033,FIN-33,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0034,FIN-34,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0035,FIN-35,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0036,FIN-36,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0037,FIN-37,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0038,FIN-38,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0039,FIN-39,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0040,FIN-40,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0041,FIN-41,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0042,FIN-42,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0043,FIN-43,NONE,0.00,2026-10-15T17:00:00Z,NONE,No financial transaction
+ORD-0044,FIN-44,NONE,0.00,2026-10-16T17:00:00Z,NONE,No financial transaction
+ORD-0045,FIN-45,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0046,FIN-46,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0047,FIN-47,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0048,FIN-48,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0049,FIN-49,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0050,FIN-50,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0051,FIN-51,REFUND,80.00,2026-10-23T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0052,FIN-52,REFUND,80.00,2026-10-24T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0053,FIN-53,REFUND,80.00,2026-10-25T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0054,FIN-54,REFUND,80.00,2026-10-26T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0055,FIN-55,REFUND,80.00,2026-10-27T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0056,FIN-56,REFUND,80.00,2026-10-28T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0057,FIN-57,REFUND,80.00,2026-10-01T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0058,FIN-58,REFUND,80.00,2026-10-02T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0059,FIN-59,REFUND,80.00,2026-10-03T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0060,FIN-60,REFUND,80.00,2026-10-04T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0061,FIN-61,REFUND,80.00,2026-10-05T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0062,FIN-62,REFUND,80.00,2026-10-06T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0063,FIN-63,REFUND,80.00,2026-10-07T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0064,FIN-64,REFUND,80.00,2026-10-08T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0065,FIN-65,REFUND,80.00,2026-10-09T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0066,FIN-66,REFUND,80.00,2026-10-10T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0067,FIN-67,REFUND,80.00,2026-10-11T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0068,FIN-68,REFUND,80.00,2026-10-12T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0069,FIN-69,REFUND,80.00,2026-10-13T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0070,FIN-70,REFUND,80.00,2026-10-14T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0071,FIN-71,REFUND,80.00,2026-10-15T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0072,FIN-72,REFUND,80.00,2026-10-16T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0073,FIN-73,REFUND,80.00,2026-10-17T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0074,FIN-74,REFUND,80.00,2026-10-18T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0075,FIN-75,REFUND,80.00,2026-10-19T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0076,FIN-76,REFUND,80.00,2026-10-20T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0077,FIN-77,REFUND,80.00,2026-10-21T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0078,FIN-78,REFUND,80.00,2026-10-22T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0079,FIN-79,REFUND,80.00,2026-10-23T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0080,FIN-80,REFUND,80.00,2026-10-24T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0081,FIN-81,REFUND,80.00,2026-10-25T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0082,FIN-82,REFUND,80.00,2026-10-26T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0083,FIN-83,REFUND,80.00,2026-10-27T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0084,FIN-84,REFUND,80.00,2026-10-28T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0085,FIN-85,REFUND,80.00,2026-10-01T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0086,FIN-86,REFUND,80.00,2026-10-02T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0087,FIN-87,REFUND,80.00,2026-10-03T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0088,FIN-88,REFUND,80.00,2026-10-04T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0089,FIN-89,REFUND,80.00,2026-10-05T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0090,FIN-90,REFUND,80.00,2026-10-06T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0091,FIN-91,REFUND,80.00,2026-10-07T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0092,FIN-92,REFUND,80.00,2026-10-08T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0093,FIN-93,REFUND,80.00,2026-10-09T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0094,FIN-94,REFUND,80.00,2026-10-10T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0095,FIN-95,REFUND,80.00,2026-10-11T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0096,FIN-96,REFUND,80.00,2026-10-12T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0097,FIN-97,REFUND,80.00,2026-10-13T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0098,FIN-98,REFUND,80.00,2026-10-14T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0099,FIN-99,REFUND,80.00,2026-10-15T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0100,FIN-100,REFUND,80.00,2026-10-16T17:00:00Z,Missing package complaint,Transaction associated by order ID only; causation not established
+ORD-0101,FIN-101,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0102,FIN-102,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0103,FIN-103,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0104,FIN-104,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0105,FIN-105,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0106,FIN-106,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0107,FIN-107,NONE,0.00,2026-10-23T17:00:00Z,NONE,No financial transaction
+ORD-0108,FIN-108,NONE,0.00,2026-10-24T17:00:00Z,NONE,No financial transaction
+ORD-0109,FIN-109,NONE,0.00,2026-10-25T17:00:00Z,NONE,No financial transaction
+ORD-0110,FIN-110,NONE,0.00,2026-10-26T17:00:00Z,NONE,No financial transaction
+ORD-0111,FIN-111,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0112,FIN-112,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0113,FIN-113,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0114,FIN-114,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0115,FIN-115,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0116,FIN-116,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0117,FIN-117,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0118,FIN-118,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0119,FIN-119,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0120,FIN-120,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0121,FIN-121,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0122,FIN-122,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0123,FIN-123,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0124,FIN-124,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0125,FIN-125,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0126,FIN-126,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0127,FIN-127,NONE,0.00,2026-10-15T17:00:00Z,NONE,No financial transaction
+ORD-0128,FIN-128,NONE,0.00,2026-10-16T17:00:00Z,NONE,No financial transaction
+ORD-0129,FIN-129,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0130,FIN-130,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0131,FIN-131,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0132,FIN-132,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0133,FIN-133,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0134,FIN-134,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0135,FIN-135,NONE,0.00,2026-10-23T17:00:00Z,NONE,No financial transaction
+ORD-0136,FIN-136,NONE,0.00,2026-10-24T17:00:00Z,NONE,No financial transaction
+ORD-0137,FIN-137,NONE,0.00,2026-10-25T17:00:00Z,NONE,No financial transaction
+ORD-0138,FIN-138,NONE,0.00,2026-10-26T17:00:00Z,NONE,No financial transaction
+ORD-0139,FIN-139,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0140,FIN-140,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0141,FIN-141,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0142,FIN-142,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0143,FIN-143,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0144,FIN-144,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0145,FIN-145,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0146,FIN-146,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0147,FIN-147,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0148,FIN-148,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0149,FIN-149,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0150,FIN-150,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0151,FIN-151,CREDIT,25.00,2026-10-11T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0152,FIN-152,CREDIT,25.00,2026-10-12T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0153,FIN-153,CREDIT,25.00,2026-10-13T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0154,FIN-154,CREDIT,25.00,2026-10-14T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0155,FIN-155,CREDIT,25.00,2026-10-15T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0156,FIN-156,CREDIT,25.00,2026-10-16T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0157,FIN-157,CREDIT,25.00,2026-10-17T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0158,FIN-158,CREDIT,25.00,2026-10-18T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0159,FIN-159,CREDIT,25.00,2026-10-19T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0160,FIN-160,CREDIT,25.00,2026-10-20T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0161,FIN-161,CREDIT,25.00,2026-10-21T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0162,FIN-162,CREDIT,25.00,2026-10-22T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0163,FIN-163,CREDIT,25.00,2026-10-23T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0164,FIN-164,CREDIT,25.00,2026-10-24T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0165,FIN-165,CREDIT,25.00,2026-10-25T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0166,FIN-166,CREDIT,25.00,2026-10-26T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0167,FIN-167,CREDIT,25.00,2026-10-27T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0168,FIN-168,CREDIT,25.00,2026-10-28T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0169,FIN-169,CREDIT,25.00,2026-10-01T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0170,FIN-170,CREDIT,25.00,2026-10-02T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0171,FIN-171,CREDIT,25.00,2026-10-03T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0172,FIN-172,CREDIT,25.00,2026-10-04T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0173,FIN-173,CREDIT,25.00,2026-10-05T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0174,FIN-174,CREDIT,25.00,2026-10-06T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0175,FIN-175,CREDIT,25.00,2026-10-07T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0176,FIN-176,CREDIT,25.00,2026-10-08T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0177,FIN-177,CREDIT,25.00,2026-10-09T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0178,FIN-178,CREDIT,25.00,2026-10-10T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0179,FIN-179,CREDIT,25.00,2026-10-11T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0180,FIN-180,CREDIT,25.00,2026-10-12T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0181,FIN-181,CREDIT,25.00,2026-10-13T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0182,FIN-182,CREDIT,25.00,2026-10-14T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0183,FIN-183,CREDIT,25.00,2026-10-15T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0184,FIN-184,CREDIT,25.00,2026-10-16T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0185,FIN-185,CREDIT,25.00,2026-10-17T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0186,FIN-186,CREDIT,25.00,2026-10-18T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0187,FIN-187,CREDIT,25.00,2026-10-19T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0188,FIN-188,CREDIT,25.00,2026-10-20T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0189,FIN-189,CREDIT,25.00,2026-10-21T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0190,FIN-190,CREDIT,25.00,2026-10-22T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0191,FIN-191,CREDIT,25.00,2026-10-23T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0192,FIN-192,CREDIT,25.00,2026-10-24T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0193,FIN-193,CREDIT,25.00,2026-10-25T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0194,FIN-194,CREDIT,25.00,2026-10-26T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0195,FIN-195,CREDIT,25.00,2026-10-27T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0196,FIN-196,CREDIT,25.00,2026-10-28T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0197,FIN-197,CREDIT,25.00,2026-10-01T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0198,FIN-198,CREDIT,25.00,2026-10-02T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0199,FIN-199,CREDIT,25.00,2026-10-03T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0200,FIN-200,CREDIT,25.00,2026-10-04T17:00:00Z,Service credit,Transaction associated by order ID only; causation not established
+ORD-0201,FIN-201,CREDIT,20.00,2026-10-05T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0202,FIN-202,CREDIT,20.00,2026-10-06T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0203,FIN-203,CREDIT,20.00,2026-10-07T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0204,FIN-204,CREDIT,20.00,2026-10-08T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0205,FIN-205,CREDIT,20.00,2026-10-09T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0206,FIN-206,CREDIT,20.00,2026-10-10T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0207,FIN-207,CREDIT,20.00,2026-10-11T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0208,FIN-208,CREDIT,20.00,2026-10-12T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0209,FIN-209,CREDIT,20.00,2026-10-13T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0210,FIN-210,CREDIT,20.00,2026-10-14T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0211,FIN-211,CREDIT,20.00,2026-10-15T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0212,FIN-212,CREDIT,20.00,2026-10-16T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0213,FIN-213,CREDIT,20.00,2026-10-17T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0214,FIN-214,CREDIT,20.00,2026-10-18T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0215,FIN-215,CREDIT,20.00,2026-10-19T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0216,FIN-216,CREDIT,20.00,2026-10-20T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0217,FIN-217,CREDIT,20.00,2026-10-21T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0218,FIN-218,CREDIT,20.00,2026-10-22T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0219,FIN-219,CREDIT,20.00,2026-10-23T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0220,FIN-220,CREDIT,20.00,2026-10-24T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0221,FIN-221,CREDIT,20.00,2026-10-25T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0222,FIN-222,CREDIT,20.00,2026-10-26T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0223,FIN-223,CREDIT,20.00,2026-10-27T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0224,FIN-224,CREDIT,20.00,2026-10-28T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0225,FIN-225,CREDIT,20.00,2026-10-01T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0226,FIN-226,CREDIT,20.00,2026-10-02T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0227,FIN-227,CREDIT,20.00,2026-10-03T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0228,FIN-228,CREDIT,20.00,2026-10-04T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0229,FIN-229,CREDIT,20.00,2026-10-05T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0230,FIN-230,CREDIT,20.00,2026-10-06T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0231,FIN-231,CREDIT,20.00,2026-10-07T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0232,FIN-232,CREDIT,20.00,2026-10-08T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0233,FIN-233,CREDIT,20.00,2026-10-09T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0234,FIN-234,CREDIT,20.00,2026-10-10T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0235,FIN-235,CREDIT,20.00,2026-10-11T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0236,FIN-236,CREDIT,20.00,2026-10-12T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0237,FIN-237,CREDIT,20.00,2026-10-13T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0238,FIN-238,CREDIT,20.00,2026-10-14T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0239,FIN-239,CREDIT,20.00,2026-10-15T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0240,FIN-240,CREDIT,20.00,2026-10-16T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0241,FIN-241,CREDIT,20.00,2026-10-17T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0242,FIN-242,CREDIT,20.00,2026-10-18T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0243,FIN-243,CREDIT,20.00,2026-10-19T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0244,FIN-244,CREDIT,20.00,2026-10-20T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0245,FIN-245,CREDIT,20.00,2026-10-21T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0246,FIN-246,CREDIT,20.00,2026-10-22T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0247,FIN-247,CREDIT,20.00,2026-10-23T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0248,FIN-248,CREDIT,20.00,2026-10-24T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0249,FIN-249,CREDIT,20.00,2026-10-25T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0250,FIN-250,CREDIT,20.00,2026-10-26T17:00:00Z,Delay courtesy credit,Transaction associated by order ID only; causation not established
+ORD-0251,FIN-251,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0252,FIN-252,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0253,FIN-253,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0254,FIN-254,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0255,FIN-255,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0256,FIN-256,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0257,FIN-257,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0258,FIN-258,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0259,FIN-259,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0260,FIN-260,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0261,FIN-261,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0262,FIN-262,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0263,FIN-263,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0264,FIN-264,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0265,FIN-265,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0266,FIN-266,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0267,FIN-267,NONE,0.00,2026-10-15T17:00:00Z,NONE,No financial transaction
+ORD-0268,FIN-268,NONE,0.00,2026-10-16T17:00:00Z,NONE,No financial transaction
+ORD-0269,FIN-269,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0270,FIN-270,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0271,FIN-271,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0272,FIN-272,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0273,FIN-273,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0274,FIN-274,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0275,FIN-275,NONE,0.00,2026-10-23T17:00:00Z,NONE,No financial transaction
+ORD-0276,FIN-276,NONE,0.00,2026-10-24T17:00:00Z,NONE,No financial transaction
+ORD-0277,FIN-277,NONE,0.00,2026-10-25T17:00:00Z,NONE,No financial transaction
+ORD-0278,FIN-278,NONE,0.00,2026-10-26T17:00:00Z,NONE,No financial transaction
+ORD-0279,FIN-279,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0280,FIN-280,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0281,FIN-281,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0282,FIN-282,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0283,FIN-283,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0284,FIN-284,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0285,FIN-285,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0286,FIN-286,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0287,FIN-287,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0288,FIN-288,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0289,FIN-289,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0290,FIN-290,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0291,FIN-291,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0292,FIN-292,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0293,FIN-293,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0294,FIN-294,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0295,FIN-295,NONE,0.00,2026-10-15T17:00:00Z,NONE,No financial transaction
+ORD-0296,FIN-296,NONE,0.00,2026-10-16T17:00:00Z,NONE,No financial transaction
+ORD-0297,FIN-297,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0298,FIN-298,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0299,FIN-299,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0300,FIN-300,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0301,FIN-301,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0302,FIN-302,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0303,FIN-303,NONE,0.00,2026-10-23T17:00:00Z,NONE,No financial transaction
+ORD-0304,FIN-304,NONE,0.00,2026-10-24T17:00:00Z,NONE,No financial transaction
+ORD-0305,FIN-305,NONE,0.00,2026-10-25T17:00:00Z,NONE,No financial transaction
+ORD-0306,FIN-306,NONE,0.00,2026-10-26T17:00:00Z,NONE,No financial transaction
+ORD-0307,FIN-307,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0308,FIN-308,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0309,FIN-309,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0310,FIN-310,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0311,FIN-311,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0312,FIN-312,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0313,FIN-313,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0314,FIN-314,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0315,FIN-315,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0316,FIN-316,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0317,FIN-317,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0318,FIN-318,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0319,FIN-319,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0320,FIN-320,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0321,FIN-321,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0322,FIN-322,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0323,FIN-323,NONE,0.00,2026-10-15T17:00:00Z,NONE,No financial transaction
+ORD-0324,FIN-324,NONE,0.00,2026-10-16T17:00:00Z,NONE,No financial transaction
+ORD-0325,FIN-325,NONE,0.00,2026-10-17T17:00:00Z,NONE,No financial transaction
+ORD-0326,FIN-326,NONE,0.00,2026-10-18T17:00:00Z,NONE,No financial transaction
+ORD-0327,FIN-327,NONE,0.00,2026-10-19T17:00:00Z,NONE,No financial transaction
+ORD-0328,FIN-328,NONE,0.00,2026-10-20T17:00:00Z,NONE,No financial transaction
+ORD-0329,FIN-329,NONE,0.00,2026-10-21T17:00:00Z,NONE,No financial transaction
+ORD-0330,FIN-330,NONE,0.00,2026-10-22T17:00:00Z,NONE,No financial transaction
+ORD-0331,FIN-331,NONE,0.00,2026-10-23T17:00:00Z,NONE,No financial transaction
+ORD-0332,FIN-332,NONE,0.00,2026-10-24T17:00:00Z,NONE,No financial transaction
+ORD-0333,FIN-333,NONE,0.00,2026-10-25T17:00:00Z,NONE,No financial transaction
+ORD-0334,FIN-334,NONE,0.00,2026-10-26T17:00:00Z,NONE,No financial transaction
+ORD-0335,FIN-335,NONE,0.00,2026-10-27T17:00:00Z,NONE,No financial transaction
+ORD-0336,FIN-336,NONE,0.00,2026-10-28T17:00:00Z,NONE,No financial transaction
+ORD-0337,FIN-337,NONE,0.00,2026-10-01T17:00:00Z,NONE,No financial transaction
+ORD-0338,FIN-338,NONE,0.00,2026-10-02T17:00:00Z,NONE,No financial transaction
+ORD-0339,FIN-339,NONE,0.00,2026-10-03T17:00:00Z,NONE,No financial transaction
+ORD-0340,FIN-340,NONE,0.00,2026-10-04T17:00:00Z,NONE,No financial transaction
+ORD-0341,FIN-341,NONE,0.00,2026-10-05T17:00:00Z,NONE,No financial transaction
+ORD-0342,FIN-342,NONE,0.00,2026-10-06T17:00:00Z,NONE,No financial transaction
+ORD-0343,FIN-343,NONE,0.00,2026-10-07T17:00:00Z,NONE,No financial transaction
+ORD-0344,FIN-344,NONE,0.00,2026-10-08T17:00:00Z,NONE,No financial transaction
+ORD-0345,FIN-345,NONE,0.00,2026-10-09T17:00:00Z,NONE,No financial transaction
+ORD-0346,FIN-346,NONE,0.00,2026-10-10T17:00:00Z,NONE,No financial transaction
+ORD-0347,FIN-347,NONE,0.00,2026-10-11T17:00:00Z,NONE,No financial transaction
+ORD-0348,FIN-348,NONE,0.00,2026-10-12T17:00:00Z,NONE,No financial transaction
+ORD-0349,FIN-349,NONE,0.00,2026-10-13T17:00:00Z,NONE,No financial transaction
+ORD-0350,FIN-350,NONE,0.00,2026-10-14T17:00:00Z,NONE,No financial transaction
+ORD-0351,FIN-351,CREDIT,15.00,2026-10-15T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0352,FIN-352,CREDIT,15.00,2026-10-16T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0353,FIN-353,CREDIT,15.00,2026-10-17T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0354,FIN-354,CREDIT,15.00,2026-10-18T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0355,FIN-355,CREDIT,15.00,2026-10-19T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0356,FIN-356,CREDIT,15.00,2026-10-20T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0357,FIN-357,CREDIT,15.00,2026-10-21T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0358,FIN-358,CREDIT,15.00,2026-10-22T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0359,FIN-359,CREDIT,15.00,2026-10-23T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0360,FIN-360,CREDIT,15.00,2026-10-24T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0361,FIN-361,CREDIT,15.00,2026-10-25T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0362,FIN-362,CREDIT,15.00,2026-10-26T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0363,FIN-363,CREDIT,15.00,2026-10-27T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0364,FIN-364,CREDIT,15.00,2026-10-28T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0365,FIN-365,CREDIT,15.00,2026-10-01T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0366,FIN-366,CREDIT,15.00,2026-10-02T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0367,FIN-367,CREDIT,15.00,2026-10-03T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0368,FIN-368,CREDIT,15.00,2026-10-04T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0369,FIN-369,CREDIT,15.00,2026-10-05T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0370,FIN-370,CREDIT,15.00,2026-10-06T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0371,FIN-371,CREDIT,15.00,2026-10-07T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0372,FIN-372,CREDIT,15.00,2026-10-08T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0373,FIN-373,CREDIT,15.00,2026-10-09T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0374,FIN-374,CREDIT,15.00,2026-10-10T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0375,FIN-375,CREDIT,15.00,2026-10-11T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0376,FIN-376,CREDIT,15.00,2026-10-12T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0377,FIN-377,CREDIT,15.00,2026-10-13T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0378,FIN-378,CREDIT,15.00,2026-10-14T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0379,FIN-379,CREDIT,15.00,2026-10-15T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0380,FIN-380,CREDIT,15.00,2026-10-16T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0381,FIN-381,CREDIT,15.00,2026-10-17T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0382,FIN-382,CREDIT,15.00,2026-10-18T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0383,FIN-383,CREDIT,15.00,2026-10-19T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0384,FIN-384,CREDIT,15.00,2026-10-20T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0385,FIN-385,CREDIT,15.00,2026-10-21T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0386,FIN-386,CREDIT,15.00,2026-10-22T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0387,FIN-387,CREDIT,15.00,2026-10-23T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0388,FIN-388,CREDIT,15.00,2026-10-24T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0389,FIN-389,CREDIT,15.00,2026-10-25T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0390,FIN-390,CREDIT,15.00,2026-10-26T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0391,FIN-391,CREDIT,15.00,2026-10-27T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0392,FIN-392,CREDIT,15.00,2026-10-28T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0393,FIN-393,CREDIT,15.00,2026-10-01T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0394,FIN-394,CREDIT,15.00,2026-10-02T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0395,FIN-395,CREDIT,15.00,2026-10-03T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0396,FIN-396,CREDIT,15.00,2026-10-04T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0397,FIN-397,CREDIT,15.00,2026-10-05T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0398,FIN-398,CREDIT,15.00,2026-10-06T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0399,FIN-399,CREDIT,15.00,2026-10-07T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0400,FIN-400,CREDIT,15.00,2026-10-08T17:00:00Z,Partial shipment credit,Transaction associated by order ID only; causation not established
+ORD-0401,FIN-401,REFUND,12.00,2026-10-09T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0402,FIN-402,REFUND,12.00,2026-10-10T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0403,FIN-403,REFUND,12.00,2026-10-11T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0404,FIN-404,REFUND,12.00,2026-10-12T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0405,FIN-405,REFUND,12.00,2026-10-13T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0406,FIN-406,REFUND,12.00,2026-10-14T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0407,FIN-407,REFUND,12.00,2026-10-15T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0408,FIN-408,REFUND,12.00,2026-10-16T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0409,FIN-409,REFUND,12.00,2026-10-17T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0410,FIN-410,REFUND,12.00,2026-10-18T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0411,FIN-411,REFUND,12.00,2026-10-19T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0412,FIN-412,REFUND,12.00,2026-10-20T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0413,FIN-413,REFUND,12.00,2026-10-21T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0414,FIN-414,REFUND,12.00,2026-10-22T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0415,FIN-415,REFUND,12.00,2026-10-23T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0416,FIN-416,REFUND,12.00,2026-10-24T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0417,FIN-417,REFUND,12.00,2026-10-25T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0418,FIN-418,REFUND,12.00,2026-10-26T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0419,FIN-419,REFUND,12.00,2026-10-27T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0420,FIN-420,REFUND,12.00,2026-10-28T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0421,FIN-421,REFUND,12.00,2026-10-01T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0422,FIN-422,REFUND,12.00,2026-10-02T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0423,FIN-423,REFUND,12.00,2026-10-03T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0424,FIN-424,REFUND,12.00,2026-10-04T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0425,FIN-425,REFUND,12.00,2026-10-05T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0426,FIN-426,REFUND,12.00,2026-10-06T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0427,FIN-427,REFUND,12.00,2026-10-07T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0428,FIN-428,REFUND,12.00,2026-10-08T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0429,FIN-429,REFUND,12.00,2026-10-09T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0430,FIN-430,REFUND,12.00,2026-10-10T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0431,FIN-431,REFUND,12.00,2026-10-11T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0432,FIN-432,REFUND,12.00,2026-10-12T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0433,FIN-433,REFUND,12.00,2026-10-13T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0434,FIN-434,REFUND,12.00,2026-10-14T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0435,FIN-435,REFUND,12.00,2026-10-15T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0436,FIN-436,REFUND,12.00,2026-10-16T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0437,FIN-437,REFUND,12.00,2026-10-17T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0438,FIN-438,REFUND,12.00,2026-10-18T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0439,FIN-439,REFUND,12.00,2026-10-19T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0440,FIN-440,REFUND,12.00,2026-10-20T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0441,FIN-441,REFUND,12.00,2026-10-21T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0442,FIN-442,REFUND,12.00,2026-10-22T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0443,FIN-443,REFUND,12.00,2026-10-23T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0444,FIN-444,REFUND,12.00,2026-10-24T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0445,FIN-445,REFUND,12.00,2026-10-25T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0446,FIN-446,REFUND,12.00,2026-10-26T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0447,FIN-447,REFUND,12.00,2026-10-27T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0448,FIN-448,REFUND,12.00,2026-10-28T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0449,FIN-449,REFUND,12.00,2026-10-01T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0450,FIN-450,REFUND,12.00,2026-10-02T17:00:00Z,Goodwill courtesy adjustment,Explicit goodwill reason; no operational exception evidence
+ORD-0451,FIN-451,REFUND,40.00,2026-10-03T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0452,FIN-452,REFUND,40.00,2026-10-04T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0453,FIN-453,REFUND,40.00,2026-10-05T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0454,FIN-454,REFUND,40.00,2026-10-06T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0455,FIN-455,REFUND,40.00,2026-10-07T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0456,FIN-456,REFUND,40.00,2026-10-08T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0457,FIN-457,REFUND,40.00,2026-10-09T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0458,FIN-458,REFUND,40.00,2026-10-10T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0459,FIN-459,REFUND,40.00,2026-10-11T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0460,FIN-460,REFUND,40.00,2026-10-12T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0461,FIN-461,REFUND,40.00,2026-10-13T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0462,FIN-462,REFUND,40.00,2026-10-14T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0463,FIN-463,REFUND,40.00,2026-10-15T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0464,FIN-464,REFUND,40.00,2026-10-16T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0465,FIN-465,REFUND,40.00,2026-10-17T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0466,FIN-466,REFUND,40.00,2026-10-18T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0467,FIN-467,REFUND,40.00,2026-10-19T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0468,FIN-468,REFUND,40.00,2026-10-20T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0469,FIN-469,REFUND,40.00,2026-10-21T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0470,FIN-470,REFUND,40.00,2026-10-22T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0471,FIN-471,REFUND,40.00,2026-10-23T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0472,FIN-472,REFUND,40.00,2026-10-24T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0473,FIN-473,REFUND,40.00,2026-10-25T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0474,FIN-474,REFUND,40.00,2026-10-26T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0475,FIN-475,REFUND,40.00,2026-10-27T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0476,FIN-476,REFUND,40.00,2026-10-28T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0477,FIN-477,REFUND,40.00,2026-10-01T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0478,FIN-478,REFUND,40.00,2026-10-02T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0479,FIN-479,REFUND,40.00,2026-10-03T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0480,FIN-480,REFUND,40.00,2026-10-04T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0481,FIN-481,REFUND,40.00,2026-10-05T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0482,FIN-482,REFUND,40.00,2026-10-06T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0483,FIN-483,REFUND,40.00,2026-10-07T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0484,FIN-484,REFUND,40.00,2026-10-08T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0485,FIN-485,REFUND,40.00,2026-10-09T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0486,FIN-486,REFUND,40.00,2026-10-10T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0487,FIN-487,REFUND,40.00,2026-10-11T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0488,FIN-488,REFUND,40.00,2026-10-12T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0489,FIN-489,REFUND,40.00,2026-10-13T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0490,FIN-490,REFUND,40.00,2026-10-14T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0491,FIN-491,REFUND,40.00,2026-10-15T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0492,FIN-492,REFUND,40.00,2026-10-16T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0493,FIN-493,REFUND,40.00,2026-10-17T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0494,FIN-494,REFUND,40.00,2026-10-18T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0495,FIN-495,REFUND,40.00,2026-10-19T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0496,FIN-496,REFUND,40.00,2026-10-20T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0497,FIN-497,REFUND,40.00,2026-10-21T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0498,FIN-498,REFUND,40.00,2026-10-22T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0499,FIN-499,REFUND,40.00,2026-10-23T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
+ORD-0500,FIN-500,REFUND,40.00,2026-10-24T17:00:00Z,Customer complaint adjustment,Transaction associated by order ID only; causation not established
