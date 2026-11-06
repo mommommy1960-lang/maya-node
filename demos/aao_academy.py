@@ -57,7 +57,9 @@ def complete():
 @app.get("/api/training/records")
 def records():
  if not authorized():return jsonify(error="Unauthorized"),401
- with connect() as c:return jsonify(records=[dict(x) for x in c.execute("SELECT * FROM completions ORDER BY at DESC LIMIT 100")])
+ learner=staff_identity()
+ if learner is None:return jsonify(error="Verified training identity required"),403
+ with connect() as c:return jsonify(records=[dict(x) for x in c.execute("SELECT * FROM completions WHERE learner_id=? ORDER BY at DESC LIMIT 100",(learner,))])
 if __name__=="__main__":
  if not OPERATOR_TOKEN or len(OPERATOR_TOKEN)<24:raise SystemExit("Set MAYA_ACADEMY_TOKEN")
  app.run(host="127.0.0.1",port=8766,debug=False)
