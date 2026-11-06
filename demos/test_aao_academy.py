@@ -9,6 +9,7 @@ class AcademyTests(unittest.TestCase):
   academy.DB=str(Path(self.temp.name)/"academy.sqlite")
   academy.OPERATOR_TOKEN="operator-token-long-for-training"
   academy.INSTRUCTOR_TOKEN="separate-instructor-secret-long"
+  academy.INSTRUCTOR_ID="demo-instructor-01"
   self.client=academy.app.test_client()
   self.auth={"Authorization":"Bearer operator-token-long-for-training"}
  def tearDown(self): self.temp.cleanup()
@@ -26,5 +27,8 @@ class AcademyTests(unittest.TestCase):
   approved=self.client.post("/api/training/complete",headers={**self.auth,"X-Maya-Instructor-Token":"separate-instructor-secret-long"},json={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True})
   self.assertEqual(approved.status_code,201)
   self.assertTrue(approved.json["passed"])
+  records=self.client.get("/api/training/records",headers=self.auth).json["records"]
+  self.assertEqual(records[0]["instructor_id"],"demo-instructor-01")
+  self.assertIsNone(records[1]["instructor_id"])
   self.assertEqual(self.client.get("/api/training/records",headers=self.auth).json["records"][0]["learner_id"],"demo-01")
 if __name__=="__main__":unittest.main()
