@@ -70,6 +70,22 @@ def survey():
         record(c,"survey","submission",{"receipt":receipt})
     return jsonify(receipt=receipt,status="received"),201
 
+@app.post("/api/synthetic-survey")
+def synthetic_survey():
+    if not auth(): return fail("Operator authorization required",401)
+    if not SYNTHETIC_ONLY: return fail("Synthetic survey unavailable outside demo mode",403)
+    if request.mimetype != "application/json": return fail("JSON required",415)
+    data=request.get_json(silent=True) or {}
+    if data.get("consent") is not True: return fail("Consent required",400)
+    role,problem=(data.get("role"),data.get("problem"))
+    if role not in ("pantry","coordinator","volunteer","receiver") or not isinstance(problem,str) or not problem.startswith("demo-") or len(problem)>160:
+        return fail("Only synthetic survey fixtures accepted",400)
+    receipt=secrets.token_hex(12)
+    with conn() as c:
+        c.execute("INSERT INTO survey VALUES(?,?,?,?,?,?)",(receipt,now(),role,problem,"demo-only","disabled"))
+        record(c,"synthetic-survey","submission",{"receipt":receipt,"synthetic":True})
+    return jsonify(receipt=receipt,status="received",synthetic_only=True),201
+
 @app.post("/api/cases")
 def create_case():
     if not auth(): return fail("Operator authorization required",401)
