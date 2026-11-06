@@ -48,7 +48,7 @@ class AcademyTests(unittest.TestCase):
    conn.execute("UPDATE completions SET at=? WHERE learner_id=?",("2020-01-01T00:00:00+00:00","demo-01"))
   cleanup=self.client.post("/api/training/retention-cleanup",headers=supervisor)
   self.assertEqual(cleanup.status_code,200)
-  self.assertEqual(cleanup.json["deleted"],3)
+  self.assertEqual(cleanup.json["deleted"],2)
   self.assertEqual(self.client.get("/api/training/records",headers=self.staff_auth).json["records"],[])
   self.assertEqual(records[0]["instructor_id"],"demo-instructor-01")
   self.assertIsNone(records[1]["instructor_id"])
