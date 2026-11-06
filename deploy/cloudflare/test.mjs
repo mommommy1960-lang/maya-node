@@ -4,7 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {readFileSync} from 'node:fs';
 import worker,{dispatch,payloadText} from './worker.mjs';
 function database() {
- const raw=new DatabaseSync(':memory:');raw.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));
+ const raw=new DatabaseSync(':memory:');raw.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));raw.exec('UPDATE service_guard SET paused=0');
  return {raw,prepare(sql){return {bind(...args){const s=raw.prepare(sql);return {async first(){return s.get(...args)||null},async run(){const r=s.run(...args);return {meta:{changes:r.changes}}},async all(){return {results:s.all(...args)}}}},async all(){return {results:raw.prepare(sql).all()}}}}};
 }
 const p={recipient:'test@example.invalid',subject:'test',body:'test'};

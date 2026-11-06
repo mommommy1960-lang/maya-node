@@ -3,7 +3,7 @@ import worker, {safeFailure,reportHealth} from './worker.mjs';
 assert.deepEqual(safeFailure(new Error('Mail authentication failed: invalid_client (HTTP 401)')), {code:'invalid_client',http_status:401});
 assert.deepEqual(safeFailure(new Error('secret-token-private')), {code:'runtime_failure'});
 let saved, posted, failStorage=false;
-const db={prepare(sql){return {bind(value){saved=value;return this;},async run(){if(failStorage)throw Error('DB unavailable');return {};},async first(){return {report:saved};}};}};
+const db={prepare(sql){return {bind(value){if(sql.includes('runtime_health')) saved=value;return this;},async run(){if(failStorage)throw Error('DB unavailable');return {};},async first(){return sql.includes('service_guard') ? {paused:0} : sql.includes('FROM jobs') ? null : {report:saved};}};}};
 const originalFetch=globalThis.fetch;
 globalThis.fetch=async(url,options)=>{posted=JSON.parse(options.body);return {ok:true};};
 await reportHealth({DB:db,ALERT_WEBHOOK_URL:'https://alerts.example.test'},'error',{code:'invalid_client'});

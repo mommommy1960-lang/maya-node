@@ -7,7 +7,9 @@ export function payloadText(p) {
 }
 export async function dispatch(db, id, sender) {
   const attempt = crypto.randomUUID();
-  const row = await db.prepare("UPDATE jobs SET state='dispatch_committed',attempt=? WHERE id=? AND state='queued' RETURNING payload").bind(attempt,id).first();
+  // The pause check and dispatch commitment share one SQL statement.
+  // Missing guard schema/state fails closed. A prior committed action cannot be recalled.
+  const row = await db.prepare("UPDATE jobs SET state='dispatch_committed',attempt=? WHERE id=? AND state='queued' AND (SELECT paused FROM service_guard WHERE id=1)=0 AND NOT EXISTS (SELECT 1 FROM jobs WHERE state IN ('unknown','dispatch_committed')) RETURNING payload").bind(attempt,id).first();
   if (!row) return 'blocked';
   try {
     const receipt = await sender(JSON.parse(row.payload));
@@ -17,8 +19,14 @@ export async function dispatch(db, id, sender) {
   } catch (error) {
     await db.prepare("UPDATE jobs SET state='unknown' WHERE id=? AND attempt=? AND state='dispatch_committed'").bind(id,attempt).run();
     console.error(JSON.stringify({job_id:id,state:'unknown'}));
+    await tripGuard(db,'dispatch_uncertain');
     throw error;
   }
+}
+export async function tripGuard(db, reason) {
+  const allowed = new Set(['manual_pause','runtime_error','dispatch_uncertain','unresolved_job']);
+  if (!allowed.has(reason)) throw new Error('Invalid guard reason');
+  await db.prepare('UPDATE service_guard SET paused=1,reason=? WHERE id=1').bind(reason).run();
 }
 async function gmailSender(env) {
   for (const k of ['GMAIL_CLIENT_ID','GMAIL_CLIENT_SECRET','GMAIL_REFRESH_TOKEN','MAIL_FROM']) if (!env[k]) throw new Error('Missing mail configuration');
@@ -171,6 +179,7 @@ export async function stripeWebhook(request,env) {
     const result=await fulfillStripeEvent(event,env);
     return Response.json(result,{headers:{'Cache-Control':'no-store'}});
   } catch(error) {
+    try { await tripGuard(env.DB,'runtime_error'); } catch {}
     await reportHealth(env,'error',{...safeFailure(error),source:'stripe_payment_handoff'});
     return new Response('Payment handoff requires retry or review',{status:503});
   }
@@ -182,6 +191,15 @@ export default {
     if (!env.CONTROLLER_TOKEN || request.headers.get('Authorization') !== `Bearer ${env.CONTROLLER_TOKEN}`) return new Response('Unauthorized',{status:401});
     try {
       const url=new URL(request.url);
+      if (request.method==='GET' && url.pathname==='/guard') {
+        const row=await env.DB.prepare('SELECT paused,reason FROM service_guard WHERE id=1').first();
+        return Response.json({paused:row?.paused!==0,reason:row?.reason||'state_unavailable'},{headers:{'Cache-Control':'no-store'}});
+      }
+      if (request.method==='POST' && url.pathname==='/guard/pause') {
+        await tripGuard(env.DB,'manual_pause');
+        return Response.json({paused:true});
+      }
+      // No automatic resume endpoint: recovery requires reviewed state and a separate deployment procedure.
       if (request.method==='GET' && url.pathname==='/health') {
         await env.DB.prepare("CREATE TABLE IF NOT EXISTS runtime_health (id INTEGER PRIMARY KEY CHECK(id=1), report TEXT NOT NULL)").run();
         const row=await env.DB.prepare("SELECT report FROM runtime_health WHERE id=1").first();
@@ -227,6 +245,10 @@ export default {
   async scheduled(event,env) {
     if(env.SEND_ENABLED!=='true') {await reportHealth(env,'disabled'); return;}
     try {
+    const guard=await env.DB.prepare('SELECT paused FROM service_guard WHERE id=1').first();
+    if (guard?.paused!==0) {await reportHealth(env,'error',{code:'service_paused'});return;}
+    const unresolved=await env.DB.prepare("SELECT id FROM jobs WHERE state IN ('unknown','dispatch_committed') LIMIT 1").first();
+    if(unresolved) {await tripGuard(env.DB,'unresolved_job');await reportHealth(env,'error',{code:'dispatch_requires_review'});return;}
     const sender=await gmailSender(env); // authenticate before claiming jobs
     const rows=await env.DB.prepare("SELECT id FROM jobs WHERE state='queued' LIMIT 3").all();
     for(const row of rows.results) await dispatch(env.DB,row.id,sender);
@@ -234,6 +256,7 @@ export default {
     if(alerts.results.length) await reportHealth(env,'error',{code:'dispatch_requires_review',affected_jobs:alerts.results.length});
     else await reportHealth(env,'ok');
     } catch(error) {
+      try {await tripGuard(env.DB,'runtime_error');} catch {}
       await reportHealth(env,'error',safeFailure(error));
       throw error;
     }
