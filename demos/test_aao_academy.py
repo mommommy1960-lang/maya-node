@@ -23,6 +23,15 @@ class AcademyTests(unittest.TestCase):
   response=self.client.get("/academy")
   self.assertEqual(response.status_code,200)
   self.assertIn(b"Operational Competence Academy",response.data)
+ def test_completion_persists_after_reopening_database(self):
+  payload={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True}
+  response=self.client.post("/api/training/complete",headers=self.staff_auth,json=payload)
+  self.assertEqual(response.status_code,201)
+  with academy.connect() as conn:
+   persisted=conn.execute("SELECT id,learner_id,passed FROM completions WHERE id=?",(response.json["id"],)).fetchone()
+  self.assertIsNotNone(persisted)
+  self.assertEqual(persisted["learner_id"],"demo-01")
+  self.assertEqual(persisted["passed"],0)
  def test_reject_forged_and_expired_staff_identity(self):
   data={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True}
   forged={**self.staff_auth,"X-Maya-Staff-Identity":self.staff_auth["X-Maya-Staff-Identity"][:-1]+"x"}
