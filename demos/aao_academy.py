@@ -1,7 +1,8 @@
 """Synthetic training records only. Not for real staff or public deployment."""
 import os,sqlite3,secrets
 from datetime import datetime,timezone
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,send_from_directory
+from pathlib import Path
 app=Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"]=4096
 DB=os.environ.get("MAYA_ACADEMY_DB","maya_academy_demo.sqlite")
@@ -17,6 +18,9 @@ def authorized():
 @app.after_request
 def headers(r):
  r.headers["Cache-Control"]="no-store";r.headers["X-Content-Type-Options"]="nosniff";return r
+@app.get("/academy")
+def academy_page():
+ return send_from_directory(Path(__file__).with_name("academy"),"index.html")
 @app.post("/api/training/complete")
 def complete():
  if not authorized():return jsonify(error="Unauthorized"),401
