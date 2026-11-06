@@ -7,11 +7,15 @@ app=Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"]=4096
 DB=os.environ.get("MAYA_ACADEMY_DB","maya_academy_demo.sqlite")
 OPERATOR_TOKEN=os.environ.get("MAYA_ACADEMY_TOKEN")
+INSTRUCTOR_TOKEN=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_TOKEN")
 EXPECTED=["no","no","escalate","no","no"]
 def connect():
  c=sqlite3.connect(DB);c.row_factory=sqlite3.Row
  c.execute("CREATE TABLE IF NOT EXISTS completions(id TEXT PRIMARY KEY,learner_id TEXT,role TEXT,score INTEGER,passed INTEGER,at TEXT)")
  return c
+def instructor_authorized():
+ v=request.headers.get("X-Maya-Instructor-Token","")
+ return bool(INSTRUCTOR_TOKEN and len(INSTRUCTOR_TOKEN)>=24 and INSTRUCTOR_TOKEN!=OPERATOR_TOKEN and secrets.compare_digest(v,INSTRUCTOR_TOKEN))
 def authorized():
  v=request.headers.get("Authorization","").removeprefix("Bearer ")
  return bool(OPERATOR_TOKEN and len(OPERATOR_TOKEN)>=24 and secrets.compare_digest(v,OPERATOR_TOKEN))
@@ -29,7 +33,7 @@ def complete():
  if not isinstance(learner,str) or not learner.startswith("demo-") or len(learner)>64 or role not in ("pantry","coordinator","approver","receiver","administrator") or not isinstance(answers,list) or len(answers)!=5 or any(not isinstance(x,str) for x in answers):
   return jsonify(error="Synthetic learner and valid answers required"),400
  score=sum(x==y for x,y in zip(answers,EXPECTED))
- passed=score==5 and data.get("practical_passed") is True
+ passed=score==5 and data.get("practical_passed") is True and instructor_authorized()
  rid=secrets.token_hex(12)
  with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat()))
  return jsonify(id=rid,score=score,passed=passed,synthetic_only=True),201
