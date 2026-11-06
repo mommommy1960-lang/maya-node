@@ -1,5 +1,5 @@
 """Synthetic training records only. Not for real staff or public deployment."""
-import os,sqlite3,secrets
+import os,sqlite3,secrets,hmac,hashlib,base64,json,time
 from datetime import datetime,timezone
 from flask import Flask,request,jsonify,send_from_directory
 from pathlib import Path
@@ -9,6 +9,7 @@ DB=os.environ.get("MAYA_ACADEMY_DB","maya_academy_demo.sqlite")
 OPERATOR_TOKEN=os.environ.get("MAYA_ACADEMY_TOKEN")
 INSTRUCTOR_TOKEN=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_TOKEN")
 INSTRUCTOR_ID=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_ID","").strip()
+STAFF_SIGNING_KEY=os.environ.get("MAYA_ACADEMY_STAFF_SIGNING_KEY")
 EXPECTED=["no","no","escalate","no","no"]
 def connect():
  c=sqlite3.connect(DB);c.row_factory=sqlite3.Row
@@ -17,6 +18,19 @@ def connect():
 def instructor_authorized():
  v=request.headers.get("X-Maya-Instructor-Token","")
  return bool(INSTRUCTOR_TOKEN and len(INSTRUCTOR_TOKEN)>=24 and INSTRUCTOR_TOKEN!=OPERATOR_TOKEN and INSTRUCTOR_ID.startswith("demo-") and len(INSTRUCTOR_ID)<=64 and secrets.compare_digest(v,INSTRUCTOR_TOKEN))
+def staff_identity():
+ token=request.headers.get("X-Maya-Staff-Identity","")
+ if not STAFF_SIGNING_KEY or len(STAFF_SIGNING_KEY)<32 or len(token)>1024:return None
+ try:
+  payload,sig=token.split(".",1)
+  expected=hmac.new(STAFF_SIGNING_KEY.encode(),payload.encode(),hashlib.sha256).hexdigest()
+  if not secrets.compare_digest(sig,expected):return None
+  claims=json.loads(base64.urlsafe_b64decode(payload+"="*(-len(payload)%4)))
+  if not isinstance(claims,dict) or not isinstance(claims.get("sub"),str) or not claims["sub"].startswith("demo-") or len(claims["sub"])>64:return None
+  if type(claims.get("exp")) is not int or not time.time()<claims["exp"]<=time.time()+3600:return None
+  return claims["sub"]
+ except (ValueError,TypeError,UnicodeError,KeyError):return None
+
 def authorized():
  v=request.headers.get("Authorization","").removeprefix("Bearer ")
  return bool(OPERATOR_TOKEN and len(OPERATOR_TOKEN)>=24 and secrets.compare_digest(v,OPERATOR_TOKEN))
@@ -31,6 +45,7 @@ def complete():
  if not authorized():return jsonify(error="Unauthorized"),401
  data=request.get_json(silent=True) or {}
  learner=data.get("learner_id");role=data.get("role");answers=data.get("answers")
+ if staff_identity()!=learner:return jsonify(error="Verified training identity required"),403
  if not isinstance(learner,str) or not learner.startswith("demo-") or len(learner)>64 or role not in ("pantry","coordinator","approver","receiver","administrator") or not isinstance(answers,list) or len(answers)!=5 or any(not isinstance(x,str) for x in answers):
   return jsonify(error="Synthetic learner and valid answers required"),400
  score=sum(x==y for x,y in zip(answers,EXPECTED))
