@@ -37,7 +37,7 @@ def complete():
  passed=score==5 and data.get("practical_passed") is True and instructor_authorized()
  rid=secrets.token_hex(12)
  instructor_id=INSTRUCTOR_ID if passed else None
- with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat(),instructor_id))
+ with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat(),instructor_id))
  return jsonify(id=rid,score=score,passed=passed,synthetic_only=True),201
 @app.get("/api/training/records")
 def records():
