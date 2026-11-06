@@ -8,14 +8,15 @@ app.config["MAX_CONTENT_LENGTH"]=4096
 DB=os.environ.get("MAYA_ACADEMY_DB","maya_academy_demo.sqlite")
 OPERATOR_TOKEN=os.environ.get("MAYA_ACADEMY_TOKEN")
 INSTRUCTOR_TOKEN=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_TOKEN")
+INSTRUCTOR_ID=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_ID","").strip()
 EXPECTED=["no","no","escalate","no","no"]
 def connect():
  c=sqlite3.connect(DB);c.row_factory=sqlite3.Row
- c.execute("CREATE TABLE IF NOT EXISTS completions(id TEXT PRIMARY KEY,learner_id TEXT,role TEXT,score INTEGER,passed INTEGER,at TEXT)")
+ c.execute("CREATE TABLE IF NOT EXISTS completions(id TEXT PRIMARY KEY,learner_id TEXT,role TEXT,score INTEGER,passed INTEGER,at TEXT,instructor_id TEXT)")
  return c
 def instructor_authorized():
  v=request.headers.get("X-Maya-Instructor-Token","")
- return bool(INSTRUCTOR_TOKEN and len(INSTRUCTOR_TOKEN)>=24 and INSTRUCTOR_TOKEN!=OPERATOR_TOKEN and secrets.compare_digest(v,INSTRUCTOR_TOKEN))
+ return bool(INSTRUCTOR_TOKEN and len(INSTRUCTOR_TOKEN)>=24 and INSTRUCTOR_TOKEN!=OPERATOR_TOKEN and INSTRUCTOR_ID.startswith("demo-") and len(INSTRUCTOR_ID)<=64 and secrets.compare_digest(v,INSTRUCTOR_TOKEN))
 def authorized():
  v=request.headers.get("Authorization","").removeprefix("Bearer ")
  return bool(OPERATOR_TOKEN and len(OPERATOR_TOKEN)>=24 and secrets.compare_digest(v,OPERATOR_TOKEN))
@@ -35,7 +36,8 @@ def complete():
  score=sum(x==y for x,y in zip(answers,EXPECTED))
  passed=score==5 and data.get("practical_passed") is True and instructor_authorized()
  rid=secrets.token_hex(12)
- with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat()))
+ instructor_id=INSTRUCTOR_ID if passed else None
+ with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat(),instructor_id))
  return jsonify(id=rid,score=score,passed=passed,synthetic_only=True),201
 @app.get("/api/training/records")
 def records():
