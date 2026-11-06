@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'demos/aao_service.py'
+      - 'demos/aao_reconciliation.py'
+      - 'demos/test_aao_reconciliation.py'
       - 'demos/test_aao_service.py'
       - 'demos/aao_academy.py'
       - 'demos/test_aao_academy.py'
