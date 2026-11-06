@@ -105,11 +105,15 @@ def transition(case_id):
         if action in ("approve","dispatch","confirm_delivery"):
             if data.get("human_approved") is not True or not approver_auth():
                 return fail("Independent authenticated approver required",403)
+        if action=="confirm_delivery":
+            evidence=data.get("delivery_evidence")
+            if not isinstance(evidence,dict) or evidence.get("synthetic") is not True or evidence.get("type") not in ("receiver_attestation","simulated_receipt") or not isinstance(evidence.get("reference"),str) or not evidence["reference"].startswith("demo-") or len(evidence["reference"])>100:
+                return fail("Synthetic delivery evidence required before confirmation",400)
         recipient=str(data.get("recipient") or row["recipient"] or "")[:160]
         transport=str(data.get("transport") or row["transport"] or "")[:160]
         if action=="dispatch" and (not recipient or not transport): return fail("Recipient and transport required",400)
         c.execute("UPDATE cases SET status=?,recipient=?,transport=? WHERE id=?",(nxt,recipient,transport,case_id))
-        record(c,"authorized-operator",action,{"case_id":case_id,"from":row["status"],"to":nxt,"human_approved":bool(data.get("human_approved")),"approver_id":APPROVER_ID if action in ("approve","dispatch","confirm_delivery") else None})
+        record(c,"authorized-operator",action,{"case_id":case_id,"from":row["status"],"to":nxt,"human_approved":bool(data.get("human_approved")),"approver_id":APPROVER_ID if action in ("approve","dispatch","confirm_delivery") else None,"delivery_evidence":data.get("delivery_evidence") if action=="confirm_delivery" else None})
     return jsonify(id=case_id,status=nxt)
 
 @app.get("/api/events")
