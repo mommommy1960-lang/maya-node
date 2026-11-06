@@ -49,4 +49,6 @@ class SyntheticJourney(unittest.TestCase):
   self.assertTrue(any("demo-proof-001" in e["payload"] for e in self.o.get("/api/events",headers=op).json["events"]))
   self.assertEqual(self.o.post("/api/notify",headers=op).status_code,503)
   self.assertFalse(self.t.get("/api/training/readiness").json["customer_ready"])
+  self.assertEqual(self.o.post("/api/survey",json={"consent":True,"problem":"Synthetic pantry issue"}).status_code,503)
+  self.assertEqual(self.o.get("/health").json["mode"],"synthetic")
 if __name__=="__main__":unittest.main()
