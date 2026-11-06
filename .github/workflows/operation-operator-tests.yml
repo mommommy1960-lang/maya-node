@@ -1,0 +1,26 @@
+name: Operation Operator synthetic tests
+on:
+  pull_request:
+    paths:
+      - 'operation-operator/**'
+      - '.github/workflows/operation-operator-tests.yml'
+  push:
+    branches:
+      - 'proposal/operation-operator-2026-11-06'
+    paths:
+      - 'operation-operator/**'
+      - '.github/workflows/operation-operator-tests.yml'
+jobs:
+  synthetic-adapter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile adapter
+        run: python -m py_compile operation-operator/synthetic_adapter.py operation-operator/test_synthetic_adapter.py
+      - name: Test adapter
+        run: python -m unittest discover -s operation-operator -p 'test_*.py' -v
