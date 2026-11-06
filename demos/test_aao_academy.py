@@ -19,6 +19,14 @@ class AcademyTests(unittest.TestCase):
   sig=hmac.new(academy.STAFF_SIGNING_KEY.encode(),payload.encode(),hashlib.sha256).hexdigest()
   self.staff_auth={**self.auth,"X-Maya-Staff-Identity":payload+"."+sig}
  def tearDown(self): self.temp.cleanup()
+ def test_readiness_fails_closed_for_real_customers(self):
+  result=self.client.get("/api/training/readiness")
+  self.assertEqual(result.status_code,200)
+  self.assertEqual(result.json["mode"],"synthetic_only")
+  self.assertIs(result.json["customer_ready"],False)
+  self.assertIs(result.json["live_billing"],False)
+  self.assertIs(result.json["checks"]["production_staff_identity"],False)
+  self.assertIs(result.json["checks"]["end_to_end_staging_verified"],False)
  def test_academy_page(self):
   response=self.client.get("/academy")
   self.assertEqual(response.status_code,200)
