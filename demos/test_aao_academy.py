@@ -32,7 +32,8 @@ class AcademyTests(unittest.TestCase):
   approved=self.client.post("/api/training/complete",headers={**self.staff_auth,"X-Maya-Instructor-Token":"separate-instructor-secret-long"},json={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True})
   self.assertEqual(approved.status_code,201)
   self.assertTrue(approved.json["passed"])
-  records=self.client.get("/api/training/records",headers=self.auth).json["records"]
+  records=self.client.get("/api/training/records",headers=self.staff_auth).json["records"]
+  self.assertEqual(self.client.get("/api/training/records",headers=self.auth).status_code,403)
   self.assertEqual(records[0]["instructor_id"],"demo-instructor-01")
   self.assertIsNone(records[1]["instructor_id"])
   self.assertEqual(self.client.get("/api/training/records",headers=self.auth).json["records"][0]["learner_id"],"demo-01")
