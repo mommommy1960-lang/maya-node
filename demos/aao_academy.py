@@ -11,10 +11,12 @@ INSTRUCTOR_TOKEN=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_TOKEN")
 INSTRUCTOR_ID=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_ID","").strip()
 STAFF_SIGNING_KEY=os.environ.get("MAYA_ACADEMY_STAFF_SIGNING_KEY")
 SUPERVISOR_TOKEN=os.environ.get("MAYA_ACADEMY_SUPERVISOR_TOKEN")
+SUPERVISOR_ID=os.environ.get("MAYA_ACADEMY_SUPERVISOR_ID","").strip()
 EXPECTED=["no","no","escalate","no","no"]
 def connect():
  c=sqlite3.connect(DB);c.row_factory=sqlite3.Row
  c.execute("CREATE TABLE IF NOT EXISTS completions(id TEXT PRIMARY KEY,learner_id TEXT,role TEXT,score INTEGER,passed INTEGER,at TEXT,instructor_id TEXT)")
+ c.execute("CREATE TABLE IF NOT EXISTS access_audit(id TEXT PRIMARY KEY,actor_id TEXT,action TEXT,at TEXT)")
  return c
 def instructor_authorized():
  v=request.headers.get("X-Maya-Instructor-Token","")
@@ -34,7 +36,7 @@ def staff_identity():
 
 def supervisor_authorized():
  v=request.headers.get("X-Maya-Supervisor-Token","")
- return bool(SUPERVISOR_TOKEN and len(SUPERVISOR_TOKEN)>=24 and SUPERVISOR_TOKEN not in (OPERATOR_TOKEN,INSTRUCTOR_TOKEN) and secrets.compare_digest(v,SUPERVISOR_TOKEN))
+ return bool(SUPERVISOR_TOKEN and len(SUPERVISOR_TOKEN)>=24 and SUPERVISOR_ID.startswith("demo-") and len(SUPERVISOR_ID)<=64 and SUPERVISOR_TOKEN not in (OPERATOR_TOKEN,INSTRUCTOR_TOKEN) and secrets.compare_digest(v,SUPERVISOR_TOKEN))
 def authorized():
  v=request.headers.get("Authorization","").removeprefix("Bearer ")
  return bool(OPERATOR_TOKEN and len(OPERATOR_TOKEN)>=24 and secrets.compare_digest(v,OPERATOR_TOKEN))
@@ -61,7 +63,10 @@ def complete():
 @app.get("/api/training/supervisor-records")
 def supervisor_records():
  if not authorized() or not supervisor_authorized():return jsonify(error="Supervisor authorization required"),403
- with connect() as c:return jsonify(records=[dict(x) for x in c.execute("SELECT * FROM completions ORDER BY at DESC LIMIT 100")],synthetic_only=True)
+ with connect() as c:
+  c.execute("INSERT INTO access_audit VALUES(?,?,?,?)",(secrets.token_hex(12),SUPERVISOR_ID,"supervisor_records_read",datetime.now(timezone.utc).isoformat()))
+  records=[dict(x) for x in c.execute("SELECT * FROM completions ORDER BY at DESC LIMIT 100")]
+ return jsonify(records=records,synthetic_only=True)
 @app.get("/api/training/records")
 def records():
  if not authorized():return jsonify(error="Unauthorized"),401
