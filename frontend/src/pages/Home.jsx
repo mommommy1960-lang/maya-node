@@ -26,17 +26,10 @@ const Home = () => {
           </div>
 
           <div className="hero-stripe fade-in">
-            <p className="hero-stripe-label">Or start instantly with Snapshot Lite:</p>
-            
-            <div className="stripe-button-container">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1SUE64FFZvHRvAyGNWQFxtzJ"
-                publishable-key="pk_live_51SSi1lFFZvHRvAyGArN5osMN9hKFjmNhd10RtIUFav2ZbBTMCKBV6TUj6hWxY9N78GpORe0q5KCzt7zzd2gZkzIp00G4tF1y7G">
-              </stripe-buy-button>
-            </div>
-
+            <p className="hero-stripe-label">Synthetic demonstration mode</p>
             <p className="quote-tagline">
-              First Commons Initiative deployment to integrate Stripe + Calendly across a verified engineering workflow.
+              This demonstration does not accept payments or initiate checkout.
+              Commercial transactions are disabled in this environment.
             </p>
           </div>
 

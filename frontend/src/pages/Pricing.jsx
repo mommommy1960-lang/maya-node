@@ -16,8 +16,8 @@ const Pricing = () => {
               <div className="pricing-badge">Quick Start</div>
               <h3>Snapshot Lite</h3>
               <div className="pricing-price">
-                <span className="price-amount">$297</span>
-                <span className="price-period">one-time</span>
+                <span className="price-amount">Demo only</span>
+                <span className="price-period">not purchasable</span>
               </div>
               <p className="pricing-description">
                 Perfect for early-stage projects needing immediate clarity on documentation needs.
@@ -30,10 +30,10 @@ const Pricing = () => {
                 <li>Email support for 1 week</li>
               </ul>
               <div className="pricing-action">
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1SUE64FFZvHRvAyGNWQFxtzJ"
-                  publishable-key="pk_live_51SSi1lFFZvHRvAyGArN5osMN9hKFjmNhd10RtIUFav2ZbBTMCKBV6TUj6hWxY9N78GpORe0q5KCzt7zzd2gZkzIp00G4tF1y7G">
-                </stripe-buy-button>
+                <p className="text-muted" role="status">
+                  Checkout is disabled in this synthetic environment.
+                  No payment will be collected.
+                </p>
               </div>
             </div>
 
