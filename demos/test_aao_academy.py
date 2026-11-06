@@ -11,6 +11,7 @@ class AcademyTests(unittest.TestCase):
   academy.INSTRUCTOR_TOKEN="separate-instructor-secret-long"
   academy.INSTRUCTOR_ID="demo-instructor-01"
   academy.STAFF_SIGNING_KEY="synthetic-staff-signing-secret-at-least-32"
+  academy.SUPERVISOR_TOKEN="synthetic-supervisor-secret-long"
   self.client=academy.app.test_client()
   self.auth={"Authorization":"Bearer operator-token-long-for-training"}
   payload=base64.urlsafe_b64encode(json.dumps({"sub":"demo-01","exp":int(time.time())+600}).encode()).decode().rstrip("=")
@@ -34,6 +35,9 @@ class AcademyTests(unittest.TestCase):
   self.assertTrue(approved.json["passed"])
   records=self.client.get("/api/training/records",headers=self.staff_auth).json["records"]
   self.assertEqual(self.client.get("/api/training/records",headers=self.auth).status_code,403)
+  self.assertEqual(self.client.get("/api/training/supervisor-records",headers=self.auth).status_code,403)
+  supervisor={**self.auth,"X-Maya-Supervisor-Token":"synthetic-supervisor-secret-long"}
+  self.assertEqual(self.client.get("/api/training/supervisor-records",headers=supervisor).status_code,200)
   self.assertEqual(records[0]["instructor_id"],"demo-instructor-01")
   self.assertIsNone(records[1]["instructor_id"])
   self.assertEqual(self.client.get("/api/training/records",headers=self.auth).json["records"][0]["learner_id"],"demo-01")
