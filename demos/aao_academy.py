@@ -1,6 +1,6 @@
 """Synthetic training records only. Not for real staff or public deployment."""
 import os,sqlite3,secrets,hmac,hashlib,base64,json,time
-from datetime import datetime,timezone
+from datetime import datetime,timezone,timedelta
 from flask import Flask,request,jsonify,send_from_directory
 from pathlib import Path
 app=Flask(__name__)
@@ -12,6 +12,7 @@ INSTRUCTOR_ID=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_ID","").strip()
 STAFF_SIGNING_KEY=os.environ.get("MAYA_ACADEMY_STAFF_SIGNING_KEY")
 SUPERVISOR_TOKEN=os.environ.get("MAYA_ACADEMY_SUPERVISOR_TOKEN")
 SUPERVISOR_ID=os.environ.get("MAYA_ACADEMY_SUPERVISOR_ID","").strip()
+RETENTION_DAYS=30  # Synthetic demonstration default; real policy requires approval
 EXPECTED=["no","no","escalate","no","no"]
 def connect():
  c=sqlite3.connect(DB);c.row_factory=sqlite3.Row
@@ -60,6 +61,14 @@ def complete():
  instructor_id=INSTRUCTOR_ID if passed else None
  with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat(),instructor_id))
  return jsonify(id=rid,score=score,passed=passed,synthetic_only=True),201
+@app.post("/api/training/retention-cleanup")
+def retention_cleanup():
+ if not authorized() or not supervisor_authorized():return jsonify(error="Supervisor authorization required"),403
+ cutoff=(datetime.now(timezone.utc)-timedelta(days=RETENTION_DAYS)).isoformat()
+ with connect() as c:
+  deleted=c.execute("DELETE FROM completions WHERE at < ?",(cutoff,)).rowcount
+  c.execute("INSERT INTO access_audit VALUES(?,?,?,?)",(secrets.token_hex(12),SUPERVISOR_ID,"retention_cleanup_deleted_"+str(deleted),datetime.now(timezone.utc).isoformat()))
+ return jsonify(deleted=deleted,synthetic_only=True),200
 @app.get("/api/training/supervisor-records")
 def supervisor_records():
  if not authorized() or not supervisor_authorized():return jsonify(error="Supervisor authorization required"),403
