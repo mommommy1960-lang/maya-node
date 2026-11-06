@@ -52,5 +52,9 @@ class AcademyTests(unittest.TestCase):
   self.assertEqual(self.client.get("/api/training/records",headers=self.staff_auth).json["records"],[])
   self.assertEqual(records[0]["instructor_id"],"demo-instructor-01")
   self.assertIsNone(records[1]["instructor_id"])
-  self.assertEqual(self.client.get("/api/training/records",headers=self.auth).json["records"][0]["learner_id"],"demo-01")
+  self.assertEqual(self.client.get("/api/training/records",headers=self.auth).status_code,403)
+  with academy.connect() as conn:
+   cleanup_audit=conn.execute("SELECT action FROM access_audit WHERE action LIKE ?",("retention_cleanup_deleted_%",)).fetchall()
+  self.assertEqual(len(cleanup_audit),1)
+  self.assertEqual(cleanup_audit[0]["action"],"retention_cleanup_deleted_2")
 if __name__=="__main__":unittest.main()
