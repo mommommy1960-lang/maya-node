@@ -1,5 +1,5 @@
 """Synthetic-only staff training assessment API tests. No real learner identities."""
-import importlib.util, tempfile, unittest, base64, json, hmac, hashlib, time
+import importlib.util, tempfile, unittest, base64, json, hmac, hashlib, time, sqlite3
 from pathlib import Path
 spec=importlib.util.spec_from_file_location("academy",Path(__file__).with_name("aao_academy.py"))
 academy=importlib.util.module_from_spec(spec); spec.loader.exec_module(academy)
@@ -32,6 +32,24 @@ class AcademyTests(unittest.TestCase):
   self.assertIsNotNone(persisted)
   self.assertEqual(persisted["learner_id"],"demo-01")
   self.assertEqual(persisted["passed"],0)
+ def test_sqlite_backup_restore_recovers_completion_and_audit(self):
+  data={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True}
+  response=self.client.post("/api/training/complete",headers={**self.staff_auth,"X-Maya-Instructor-Token":"separate-instructor-secret-long"},json=data)
+  self.assertEqual(response.status_code,201)
+  supervisor={**self.auth,"X-Maya-Supervisor-Token":"synthetic-supervisor-secret-long"}
+  self.assertEqual(self.client.get("/api/training/supervisor-records",headers=supervisor).status_code,200)
+  backup=str(Path(self.temp.name)/"backup.sqlite")
+  with sqlite3.connect(academy.DB) as source,sqlite3.connect(backup) as dest:
+   source.backup(dest)
+  with sqlite3.connect(academy.DB) as original:
+   original.execute("DELETE FROM completions")
+   original.execute("DELETE FROM access_audit")
+  with sqlite3.connect(backup) as source,sqlite3.connect(academy.DB) as dest:
+   source.backup(dest)
+  with sqlite3.connect(academy.DB) as restored:
+   self.assertEqual(restored.execute("SELECT count(*) FROM completions").fetchone()[0],1)
+   self.assertEqual(restored.execute("SELECT count(*) FROM access_audit").fetchone()[0],1)
+  self.assertEqual(self.client.get("/api/training/records",headers=self.staff_auth).json["records"][0]["id"],response.json["id"])
  def test_reject_forged_and_expired_staff_identity(self):
   data={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True}
   forged={**self.staff_auth,"X-Maya-Staff-Identity":self.staff_auth["X-Maya-Staff-Identity"][:-1]+"x"}
