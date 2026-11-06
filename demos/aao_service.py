@@ -10,6 +10,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 DB = os.environ.get("MAYA_AAO_DB", "maya_aao.sqlite3")
 TOKEN = os.environ.get("MAYA_AAO_OPERATOR_TOKEN")
+APPROVER_TOKEN = os.environ.get("MAYA_AAO_APPROVER_TOKEN")
+APPROVER_ID = os.environ.get("MAYA_AAO_APPROVER_ID", "").strip()
 SYNTHETIC_ONLY = os.environ.get("MAYA_AAO_SYNTHETIC_ONLY", "true").lower() != "false"
 MAX_BYTES = 8192
 app.config["MAX_CONTENT_LENGTH"] = MAX_BYTES
@@ -33,6 +35,10 @@ def record(c, actor, kind, payload):
 def auth():
     supplied = request.headers.get("Authorization","").removeprefix("Bearer ")
     return bool(TOKEN and len(TOKEN)>=24 and secrets.compare_digest(supplied,TOKEN))
+
+def approver_auth():
+    supplied = request.headers.get("X-Maya-Approver-Token", "")
+    return bool(APPROVER_TOKEN and len(APPROVER_TOKEN) >= 24 and APPROVER_ID and APPROVER_TOKEN != TOKEN and secrets.compare_digest(supplied, APPROVER_TOKEN))
 
 def fail(message,code):
     return jsonify(error=message),code
@@ -96,13 +102,14 @@ def transition(case_id):
         if row is None: return fail("Unknown case",404)
         nxt=steps.get(row["status"],{}).get(action)
         if not nxt: return fail("Transition not allowed",409)
-        if action in ("approve","dispatch","confirm_delivery") and data.get("human_approved") is not True:
-            return fail("Explicit human attestation required",403)
+        if action in ("approve","dispatch","confirm_delivery"):
+            if data.get("human_approved") is not True or not approver_auth():
+                return fail("Independent authenticated approver required",403)
         recipient=str(data.get("recipient") or row["recipient"] or "")[:160]
         transport=str(data.get("transport") or row["transport"] or "")[:160]
         if action=="dispatch" and (not recipient or not transport): return fail("Recipient and transport required",400)
         c.execute("UPDATE cases SET status=?,recipient=?,transport=? WHERE id=?",(nxt,recipient,transport,case_id))
-        record(c,"authorized-operator",action,{"case_id":case_id,"from":row["status"],"to":nxt,"human_approved":bool(data.get("human_approved"))})
+        record(c,"authorized-operator",action,{"case_id":case_id,"from":row["status"],"to":nxt,"human_approved":bool(data.get("human_approved")),"approver_id":APPROVER_ID if action in ("approve","dispatch","confirm_delivery") else None})
     return jsonify(id=case_id,status=nxt)
 
 @app.get("/api/events")
