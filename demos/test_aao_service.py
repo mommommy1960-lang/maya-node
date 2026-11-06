@@ -11,9 +11,12 @@ class TestAAO(unittest.TestCase):
         self.tmp=tempfile.TemporaryDirectory()
         module.DB=str(Path(self.tmp.name)/"test.sqlite")
         module.TOKEN="synthetic-test-token-long-enough"
+        module.APPROVER_TOKEN="separate-approver-test-secret-long"
+        module.APPROVER_ID="synthetic-reviewer-01"
         module.SYNTHETIC_ONLY=True
         self.client=module.app.test_client()
         self.headers={"Authorization":"Bearer synthetic-test-token-long-enough"}
+        self.approval_headers={**self.headers,"X-Maya-Approver-Token":"separate-approver-test-secret-long"}
     def tearDown(self): self.tmp.cleanup()
     def test_permissions_and_transitions(self):
         self.assertEqual(self.client.get("/api/cases").status_code,401)
@@ -24,10 +27,13 @@ class TestAAO(unittest.TestCase):
         self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"dispatch"}).status_code,409)
         self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"propose","recipient":"Demo B"}).json["status"],"proposed")
         self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"approve"}).status_code,403)
-        self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"approve","human_approved":True}).json["status"],"approved")
-        self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"dispatch","human_approved":True,"recipient":"Demo B","transport":"Demo Driver"}).json["status"],"dispatched")
-        self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"confirm_delivery","human_approved":True}).json["status"],"delivered")
-        self.assertGreaterEqual(len(self.client.get("/api/events",headers=self.headers).json["events"]),5)
+        self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"approve","human_approved":True}).status_code,403)
+        self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"approve","human_approved":True}).json["status"],"approved")
+        self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"dispatch","human_approved":True,"recipient":"Demo B","transport":"Demo Driver"}).json["status"],"dispatched")
+        self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"confirm_delivery","human_approved":True}).json["status"],"delivered")
+        events=self.client.get("/api/events",headers=self.headers).json["events"]
+        self.assertGreaterEqual(len(events),5)
+        self.assertTrue(any("synthetic-reviewer-01" in event["payload"] for event in events))
     def test_no_live_notifications_or_public_collection(self):
         self.assertEqual(self.client.post("/api/notify",headers=self.headers).status_code,503)
         self.assertEqual(self.client.post("/api/survey",json={"consent":True,"problem":"Need better transport"}).status_code,503)
