@@ -11,6 +11,10 @@ class AcademyTests(unittest.TestCase):
   self.client=academy.app.test_client()
   self.auth={"Authorization":"Bearer operator-token-long-for-training"}
  def tearDown(self): self.temp.cleanup()
+ def test_academy_page(self):
+  response=self.client.get("/academy")
+  self.assertEqual(response.status_code,200)
+  self.assertIn(b"Operational Competence Academy",response.data)
  def test_training_completion(self):
   self.assertEqual(self.client.post("/api/training/complete",json={}).status_code,401)
   bad=self.client.post("/api/training/complete",headers=self.auth,json={"learner_id":"demo-01","role":"coordinator","answers":[0,0,0,0,0]})
