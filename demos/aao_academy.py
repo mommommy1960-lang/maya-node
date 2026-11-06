@@ -44,6 +44,9 @@ def authorized():
 @app.after_request
 def headers(r):
  r.headers["Cache-Control"]="no-store";r.headers["X-Content-Type-Options"]="nosniff";return r
+@app.get("/api/training/readiness")
+def readiness():
+ return jsonify(mode="synthetic_only",customer_ready=False,live_billing=False,checks={"academy_page":True,"synthetic_completion_storage":True,"production_staff_identity":False,"hosted_backup_restore_verified":False,"secure_public_survey":False,"end_to_end_staging_verified":False}),200
 @app.get("/academy")
 def academy_page():
  return send_from_directory(Path(__file__).with_name("academy"),"index.html")
