@@ -14,7 +14,7 @@ The owner supplied the working staging source in chat after tablet editor copyin
 
 Changes also preserve history on session expiry, reject malformed session timestamps, implement server-side signout, bound messages and directly verify the configured sandbox price.
 
-Final validation: **32 tests passed, 0 failed** with node --test test/payments.test.mjs test/worker.test.mjs. Bundled Worker syntax check passed. No hosted Cloudflare/Stripe or browser visual test performed.
+Final validation on the subscription-discovery branch: **38 tests passed, 0 failed** with node --test test/payments.test.mjs test/worker.test.mjs in GitHub Actions. Deterministic bundle verification and bundled Worker syntax check passed. No hosted Cloudflare/Stripe or browser visual test performed.
 
 ## Earlier module files
 
@@ -48,11 +48,15 @@ No Cloudflare/Stripe runtime test, registered webhook, secret binding, portal co
 1. Assemble candidate from actual active source; inspect the narrow diff and syntax-check both files. Keep current successful deployment available for rollback.
 2. Review/apply additive SQL to the isolated staging D1 only. Add STRIPE_WEBHOOK_SECRET privately; preserve all existing bindings. Register the exact /api/stripe/webhook URL and seven event types in the matching sandbox. This step requires authorized account access.
 3. Configure a sandbox Billing Portal and only the minimum additional restricted-key read/portal permissions reported necessary by actual Stripe errors. Do not broaden live permissions.
-4. Add owner-only controls to the existing UI for status, explicit subscription-ID import, portal and cancellation. The backend candidate has these routes; UI wiring is now implemented in ui.mjs and bundled in dist/worker.mjs; browser visual verification remains pending. The already-paid subscription must be explicitly imported; it has no recorded checkout linkage.
+4. Add owner-only controls to the existing UI for status, read-only subscription discovery, explicit confirmed import, portal and cancellation. `GET /api/stripe/discover` looks up the exact configured owner email in the Stripe test account, lists that customer's subscriptions, selects only one exact configured practice-price match, then re-fetches the canonical subscription and paid invoice. It rejects multiple customer/subscription matches, incomplete pagination, non-sandbox objects, customer mismatches and subscriptions that are not currently paid and active. It performs GET requests only and does not write D1 or create billing objects. The UI exposes a separate Link action that requires an explicit confirmation and then calls the existing owner import route; that route is the only step that writes the owner billing record. UI wiring is in `ui.mjs` and bundled in `dist/worker.mjs`; browser visual verification remains pending. The already-paid subscription must be explicitly imported; it has no recorded checkout linkage.
 5. Deploy only after assembled integration review; verify owner signin/history/chat are unchanged, then exercise actual sandbox event delivery, retry, import, portal, cancellation and expiry.
 6. Separate customer authentication and server-enforced customer entitlements remain a later implementation, with independent identity and isolation tests. Do not gate owner chat or market this as a customer-ready system.
 
 Never place Stripe keys, owner secrets, bearer tokens, or webhook signing secrets in GitHub. Preserve maya-node and live billing.
+
+## Read-only subscription discovery review
+
+The owner-authenticated `GET /api/stripe/discover` endpoint is intentionally separate from the state-changing import endpoint. It uses the configured owner email only to locate exact-email Stripe test-mode customer records, then reads that customer's subscriptions and canonical subscription/invoice. It does not use a bearer token as a Stripe identifier, create a customer/subscription/checkout, or write D1. Multiple matches and incomplete pagination fail closed. The UI keeps the discovered subscription ID in page memory only and exposes a separate confirmation dialog before calling the existing explicit import route. Automated tests mock Stripe and use temporary local SQLite; they do not contact a real Stripe account or hosted D1.
 
 ## Deployment blocker observed
 

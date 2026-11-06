@@ -22,12 +22,17 @@ button{background:#3b82f6;border:none;font-weight:bold;cursor:pointer}button:hov
 <div class="stripe-box"><h4>Stripe Sandbox Integration Status</h4><p id="stripe-status" class="muted" role="status"></p>
 <button id="test-stripe" style="background:#6366f1">Test Stripe Connectivity (Prices Read)</button><div id="checkout-section"><button id="checkout" hidden style="background:#059669">Start Sandbox Test Checkout</button></div>
 <h4>Owner Practice Subscription</h4><p class="muted">Sandbox billing status only. Your owner chat remains available. No real charges.</p>
-<p id="billing-status" role="status"></p><button id="billing-refresh">Refresh Subscription Status</button>
+<p id="billing-status" role="status"></p>
+<button id="discover-subscription" style="background:#0f766e">Find Existing Paid Sandbox Subscription</button>
+<p id="discovery-status" class="muted" role="status"></p>
+<button id="link-discovered" hidden style="background:#059669">Link Verified Subscription to Owner Demo</button>
+<button id="billing-refresh">Refresh Subscription Status</button>
 <details><summary>Link the existing paid practice subscription</summary><p class="muted">Copy the subscription ID beginning sub_ from your Stripe Sandbox subscription. This links it to this owner demo only.</p>
 <input id="subscription-id" aria-label="Existing sandbox subscription ID" placeholder="sub_…"><button id="import">Link Existing Practice Subscription</button></details>
 <button id="portal" hidden>Manage Subscription in Stripe</button><button id="cancel" hidden style="background:#b45309">Cancel Renewal at Period End</button>
 <p id="action-status" role="status"></p></div></div></div>
 <script>
+let discoveredSubscriptionId='';
 let sessionToken=localStorage.getItem('maya_owner_token')||'';
 let userEmail=localStorage.getItem('maya_owner_email')||'';
 const el=id=>document.getElementById(id);
@@ -42,6 +47,23 @@ function action(id,fn){el(id).addEventListener('click',async()=>{el(id).disabled
 action('signin',async()=>{try{const d=await api('/api/signin',{email:el('email-input').value,accessSecret:el('secret-input').value});sessionToken=d.token;userEmail=el('email-input').value;localStorage.setItem('maya_owner_token',sessionToken);localStorage.setItem('maya_owner_email',userEmail);el('secret-input').value='';await showApp();}catch(e){el('login-error').textContent=e.message;}});
 el('logout').addEventListener('click',async()=>{try{await api('/api/signout',{});}finally{logout();}});
 action('send',async()=>{const content=el('prompt-input').value.trim();if(!content)return;el('prompt-input').value='';addMessage('user',content);try{const d=await api('/api/chat',{content});addMessage('assistant',d.reply);}catch(e){addMessage('error',e.message);}});
+async function discoverSubscription(){
+  const status=el('discovery-status');status.textContent='Searching the configured Stripe sandbox for the existing owner subscription…';
+  el('link-discovered').hidden=true;discoveredSubscriptionId='';
+  const d=await api('/api/stripe/discover');
+  if(!d.found){status.textContent=d.message||'No matching subscription found.';return;}
+  discoveredSubscriptionId=d.subscription_id;
+  status.textContent='Verified one paid, active sandbox subscription. Paid period ends '+new Date(d.period_end*1000).toLocaleString()+'. No billing or database changes have been made.';
+  el('link-discovered').hidden=false;
+}
+action('discover-subscription',discoverSubscription);
+action('link-discovered',async()=>{
+  if(!discoveredSubscriptionId)throw Error('Run the read-only discovery again before linking.');
+  if(!confirm('Link the verified sandbox subscription to this owner demo? This writes the owner billing record in the connected staging database.'))return;
+  await api('/api/stripe/import',{subscriptionId:discoveredSubscriptionId,confirmOwnerImport:true});
+  el('discovery-status').textContent='Subscription linked to the owner demo after your confirmation.';
+  discoveredSubscriptionId='';el('link-discovered').hidden=true;await checkAccess();
+});
 action('test-stripe',testStripeAuth);action('billing-refresh',checkAccess);
 action('checkout',async()=>{const d=await api('/api/stripe/checkout',{});if(d.livemode!==false||!d.url.startsWith('https://checkout.stripe.com/'))throw Error('Invalid sandbox checkout response');location.href=d.url;});
 action('import',async()=>{const subscriptionId=el('subscription-id').value.trim();if(!/^sub_[a-zA-Z0-9]+$/.test(subscriptionId))throw Error('Enter the Stripe Sandbox subscription ID beginning sub_.');if(!confirm('Link this subscription to your owner sandbox demo?'))return;await api('/api/stripe/import',{subscriptionId,confirmOwnerImport:true});el('action-status').textContent='Practice subscription linked and verified.';await checkAccess();});
