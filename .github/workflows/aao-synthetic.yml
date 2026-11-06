@@ -6,6 +6,7 @@ on:
       - 'demos/test_aao_service.py'
       - 'demos/aao_academy.py'
       - 'demos/test_aao_academy.py'
+      - 'demos/test_aao_journey.py'
       - '.github/workflows/aao-synthetic.yml'
   workflow_dispatch:
 jobs:
