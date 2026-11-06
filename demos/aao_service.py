@@ -86,6 +86,23 @@ def synthetic_survey():
         record(c,"synthetic-survey","submission",{"receipt":receipt,"synthetic":True})
     return jsonify(receipt=receipt,status="received",synthetic_only=True),201
 
+@app.post("/api/reconcile")
+def reconcile():
+    """Operator-only synthetic reconciliation; produces review-only findings."""
+    if not auth(): return fail("Operator authorization required",401)
+    if not SYNTHETIC_ONLY: return fail("Synthetic reconciliation unavailable outside demo mode",403)
+    if request.mimetype != "application/json": return fail("JSON required",415)
+    data=request.get_json(silent=True)
+    if not isinstance(data,dict): return fail("JSON object required",400)
+    try:
+        from demos.aao_reconciliation import analyze
+        result=analyze(data.get("records"))
+    except ValueError as exc:
+        return fail(str(exc),400)
+    with conn() as c:
+        record(c,"operator","synthetic_reconciliation",{"orders_reviewed":result["orders_reviewed"],"finding_count":len(result["findings"]),"synthetic":True})
+    return jsonify(result),200
+
 @app.post("/api/cases")
 def create_case():
     if not auth(): return fail("Operator authorization required",401)
