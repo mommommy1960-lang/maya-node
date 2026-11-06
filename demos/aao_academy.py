@@ -10,6 +10,7 @@ OPERATOR_TOKEN=os.environ.get("MAYA_ACADEMY_TOKEN")
 INSTRUCTOR_TOKEN=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_TOKEN")
 INSTRUCTOR_ID=os.environ.get("MAYA_ACADEMY_INSTRUCTOR_ID","").strip()
 STAFF_SIGNING_KEY=os.environ.get("MAYA_ACADEMY_STAFF_SIGNING_KEY")
+SUPERVISOR_TOKEN=os.environ.get("MAYA_ACADEMY_SUPERVISOR_TOKEN")
 EXPECTED=["no","no","escalate","no","no"]
 def connect():
  c=sqlite3.connect(DB);c.row_factory=sqlite3.Row
@@ -31,6 +32,9 @@ def staff_identity():
   return claims["sub"]
  except (ValueError,TypeError,UnicodeError,KeyError):return None
 
+def supervisor_authorized():
+ v=request.headers.get("X-Maya-Supervisor-Token","")
+ return bool(SUPERVISOR_TOKEN and len(SUPERVISOR_TOKEN)>=24 and SUPERVISOR_TOKEN not in (OPERATOR_TOKEN,INSTRUCTOR_TOKEN) and secrets.compare_digest(v,SUPERVISOR_TOKEN))
 def authorized():
  v=request.headers.get("Authorization","").removeprefix("Bearer ")
  return bool(OPERATOR_TOKEN and len(OPERATOR_TOKEN)>=24 and secrets.compare_digest(v,OPERATOR_TOKEN))
@@ -54,6 +58,10 @@ def complete():
  instructor_id=INSTRUCTOR_ID if passed else None
  with connect() as c:c.execute("INSERT INTO completions VALUES(?,?,?,?,?,?,?)",(rid,learner,role,score,int(passed),datetime.now(timezone.utc).isoformat(),instructor_id))
  return jsonify(id=rid,score=score,passed=passed,synthetic_only=True),201
+@app.get("/api/training/supervisor-records")
+def supervisor_records():
+ if not authorized() or not supervisor_authorized():return jsonify(error="Supervisor authorization required"),403
+ with connect() as c:return jsonify(records=[dict(x) for x in c.execute("SELECT * FROM completions ORDER BY at DESC LIMIT 100")],synthetic_only=True)
 @app.get("/api/training/records")
 def records():
  if not authorized():return jsonify(error="Unauthorized"),401
