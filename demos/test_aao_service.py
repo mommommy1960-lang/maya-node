@@ -30,7 +30,9 @@ class TestAAO(unittest.TestCase):
         self.assertEqual(self.client.post(url,headers=self.headers,json={"action":"approve","human_approved":True}).status_code,403)
         self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"approve","human_approved":True}).json["status"],"approved")
         self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"dispatch","human_approved":True,"recipient":"Demo B","transport":"Demo Driver"}).json["status"],"dispatched")
-        self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"confirm_delivery","human_approved":True}).json["status"],"delivered")
+        self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"confirm_delivery","human_approved":True}).status_code,400)
+        self.assertEqual(self.client.post(url,headers=self.approval_headers,json={"action":"confirm_delivery","human_approved":True,"delivery_evidence":{"synthetic":True,"type":"simulated_receipt","reference":"demo-receipt-01"}}).json["status"],"delivered")
+        self.assertEqual(self.client.get("/api/cases",headers=self.headers).json["cases"][0]["status"],"delivered")
         events=self.client.get("/api/events",headers=self.headers).json["events"]
         self.assertGreaterEqual(len(events),5)
         self.assertTrue(any("synthetic-reviewer-01" in event["payload"] for event in events))
