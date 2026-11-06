@@ -23,6 +23,16 @@ class AcademyTests(unittest.TestCase):
   response=self.client.get("/academy")
   self.assertEqual(response.status_code,200)
   self.assertIn(b"Operational Competence Academy",response.data)
+ def test_reject_forged_and_expired_staff_identity(self):
+  data={"learner_id":"demo-01","role":"coordinator","answers":["no","no","escalate","no","no"],"practical_passed":True}
+  forged={**self.staff_auth,"X-Maya-Staff-Identity":self.staff_auth["X-Maya-Staff-Identity"][:-1]+"x"}
+  self.assertEqual(self.client.post("/api/training/complete",headers=forged,json=data).status_code,403)
+  payload=base64.urlsafe_b64encode(json.dumps({"sub":"demo-01","exp":int(time.time())-60}).encode()).decode().rstrip("=")
+  sig=hmac.new(academy.STAFF_SIGNING_KEY.encode(),payload.encode(),hashlib.sha256).hexdigest()
+  expired={**self.auth,"X-Maya-Staff-Identity":payload+"."+sig}
+  self.assertEqual(self.client.post("/api/training/complete",headers=expired,json=data).status_code,403)
+  mismatch={**self.staff_auth}
+  self.assertEqual(self.client.post("/api/training/complete",headers=mismatch,json={**data,"learner_id":"demo-02"}).status_code,403)
  def test_training_completion(self):
   self.assertEqual(self.client.post("/api/training/complete",json={}).status_code,401)
   bad=self.client.post("/api/training/complete",headers=self.staff_auth,json={"learner_id":"demo-01","role":"coordinator","answers":[0,0,0,0,0]})
