@@ -1,27 +1,42 @@
-<!doctype html>
-<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Maya Watchtower | Synthetic Demonstration</title>
-<style>
-body{font:16px system-ui,sans-serif;max-width:960px;margin:auto;padding:1.2rem;background:#f5f7fa;color:#142333}h1{margin-bottom:.2rem}header,section{background:white;padding:1rem;margin:1rem 0;border-radius:12px;border:1px solid #d8e0e8}strong{color:#123d63}table{border-collapse:collapse;width:100%}td,th{padding:.6rem;border-bottom:1px solid #ddd;text-align:left}button{padding:.7rem;margin:.3rem;border-radius:8px;cursor:pointer} .warning{background:#fff1d8;padding:.7rem} .muted{color:#48596a} @media(max-width:600px){table{font-size:.85rem}td,th{padding:.35rem}}
-</style>
-<header><h1>Maya · Operation Operator</h1><strong>SIMULATION ONLY · NO LIVE PANTRIES · NO PAYMENTS</strong><p>Great River Watchtower: fictional pantry coordination, with human approval required for any real-world action.</p></header>
-<section><h2>Network snapshot</h2><p id="stamp" aria-live="polite"></p><p>3 fictional pantries · 2 fictional vehicles · 20 fictional offers</p><button id="advance">Simulate next update</button><button id="reset">Reset simulation</button><p class="warning">Numbers are generated locally for demonstration. No external source or customer is connected.</p></section>
-<section><h2>Storage & transport</h2><div id="resources"></div></section>
-<section><h2>Opportunities and exceptions</h2><p id="summary" aria-live="polite"></p><div id="board"></div></section>
-<section><h2>Human approval and service quote</h2><p>Each potential transfer requires confirmed inventory, compatible cold-chain storage, available transport, donor and receiver approvals, and an authorized logistics quote. This demonstration does not send messages, reserve trucks, charge money, or execute transfers.</p></section>
-<script>
-const pantries=["Fictional Cedar Pantry","Fictional River Pantry","Fictional Hill Pantry"];
-const offers=Array.from({length:20},(_,i)=>({id:"SYN-"+String(i+1).padStart(2,"0"),from:pantries[i%3],to:pantries[(i+1)%3],quantity:5+(i%4)*5,kind:i%2?"Frozen meals":"Produce",handling:i%2?"frozen":"chilled"}));
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maya · Great River Watchtower (Synthetic)</title>
+<style>body{font:16px system-ui,sans-serif;max-width:1000px;margin:auto;padding:1rem;background:#f4f7fa;color:#17283a}header,section{background:white;border:1px solid #d5e0e9;border-radius:12px;padding:1rem;margin:1rem 0}h1{margin:.2rem 0}button{padding:.7rem;margin:.3rem;border-radius:7px}table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{padding:.5rem;border-bottom:1px solid #ddd;text-align:left} .scroll{overflow-x:auto}.notice{background:#fff1d7;padding:.7rem}</style>
+<header><h1>Maya · Operation Operator</h1><strong>SIMULATION ONLY · NO LIVE CUSTOMERS · NO PAYMENTS</strong><p>Great River Watchtower, using the same matching and alert modules as the synthetic test suite.</p></header>
+<section><h2>Network snapshot</h2><p id="step" aria-live="polite"></p><button id="advance">Simulate next update</button><button id="reset">Reset</button><p class="notice">Fictional data. No actual pantry, vehicle, inventory, messages, or payment connections.</p></section>
+<section><h2>Storage and transport</h2><div id="resources"></div></section>
+<section><h2>Transfer proposals</h2><p id="summary" aria-live="polite"></p><div class="scroll" id="board"></div></section>
+<section><h2>Shipment reconciliation</h2><p id="reconcile" aria-live="polite"></p><p>Discrepancies require documented human review; they are not allegations of wrongdoing.</p></section>
+<section><h2>Approval boundary</h2><p>Proposals are not commitments. Donor, receiver, and transport confirmations are required. The simulated alert planner does not send notifications.</p></section>
+<script type="module">
+import { buildWatchtower } from "./watchtower.mjs";
+import { reconcileShipment } from "./reconciliation.mjs";
+const pantries=["Fictional Cedar","Fictional River","Fictional Hill"];
 let tick=0;
+function snapshot(){
+ const now=new Date("2026-11-07T22:00:00Z");
+ const observedAt=new Date(now.getTime()-60_000).toISOString();
+ const handling=i=>i%2?"frozen":"chilled";
+ const offers=Array.from({length:20},(_,i)=>({id:"SYN-"+String(i+1).padStart(2,"0"),pantryId:pantries[i%3],foodType:i%2?"meals":"produce",handling:handling(i),quantity:5+(i%4)*5,status:"confirmed",observedAt,expiresAt:new Date(now.getTime()+86_400_000).toISOString()}));
+ const needs=offers.map((o,i)=>({id:"NEED-"+i,pantryId:pantries[(i+1)%3],foodType:o.foodType,quantity:o.quantity,status:"confirmed",observedAt,receivingUntil:new Date(now.getTime()+3_600_000).toISOString()}));
+ const receivers=pantries.map((p,i)=>({pantryId:p,status:"confirmed",observedAt,handling:i%2?"frozen":"chilled",freeCapacity:Math.max(0,30-(tick*(i+1)*5)%35)}));
+ const vehicles=[{id:"fictional-truck-A",handling:"chilled",capacity:30,available:tick%3!==2,status:"confirmed",observedAt},{id:"fictional-truck-B",handling:"frozen",capacity:30,available:tick%4!==3,status:"confirmed",observedAt}];
+ return {now,offers,needs,receivers,vehicles,contacts:[]};
+}
 function render(){
-const freezer=[40,25,15].map((n,i)=>Math.max(0,n-(tick*5*(i+1))%30));
-const vehicles=[{name:"Synthetic Truck A",available:tick%3!==2,handling:"chilled"},{name:"Synthetic Truck B",available:tick%4!==3,handling:"frozen"}];
-document.getElementById("stamp").textContent="Simulation step "+tick+" · not a live timestamp";
-document.getElementById("resources").innerHTML="<p>"+pantries.map((p,i)=>p+": "+freezer[i]+" fictional storage units").join("<br>")+"</p><p>"+vehicles.map(v=>v.name+": "+(v.available?"available":"unavailable")).join("<br>")+"</p>";
-const evaluated=offers.map(o=>{const capacity=freezer[pantries.indexOf(o.to)];const truck=vehicles.find(v=>v.handling===o.handling);const reasons=[];if(capacity<o.quantity)reasons.push("insufficient storage");if(!truck?.available)reasons.push("transport unavailable");return {...o,status:reasons.length?"BLOCKED":"PROPOSAL ONLY",reason:reasons.join(", ")||"human approval required"};});
-document.getElementById("summary").textContent=evaluated.filter(o=>o.status==="PROPOSAL ONLY").length+" potential proposals; "+evaluated.filter(o=>o.status==="BLOCKED").length+" blocked.";
-const rows=evaluated.map(o=>"<tr><td>"+o.id+"</td><td>"+o.from+" → "+o.to+"</td><td>"+o.quantity+" units "+o.kind+"</td><td>"+o.status+"</td><td>"+o.reason+"</td></tr>").join("");
-document.getElementById("board").innerHTML='<table><thead><tr><th>Offer</th><th>Route</th><th>Food</th><th>State</th><th>Reason</th></tr></thead><tbody>'+rows+'</tbody></table>';
+ const data=snapshot(), result=buildWatchtower(data);
+ document.getElementById("step").textContent="Simulation step "+tick+" · fixed fictional clock (not live)";
+ document.getElementById("resources").textContent=data.receivers.map(r=>r.pantryId+": "+r.freeCapacity+" "+r.handling+" capacity units").join(" | ")+"; "+data.vehicles.map(v=>v.id+": "+(v.available?"available":"unavailable")).join(" | ");
+ document.getElementById("summary").textContent=result.proposals.length+" candidate proposals; "+result.blocked.length+" blocked evaluations. No transfers dispatched.";
+ // Render only trusted fixed synthetic identifiers and computed reason strings.
+ const all=[...result.proposals,...result.blocked].slice(0,60);
+ document.getElementById("board").replaceChildren();
+ const table=document.createElement("table");const head=document.createElement("tr");
+ for(const label of ["Offer","Route","Quantity","Status / reason"]){const th=document.createElement("th");th.textContent=label;head.append(th)}
+ table.append(head);
+ for(const x of all){const tr=document.createElement("tr");for(const value of [x.offerId,x.from+" → "+x.to,String(x.quantity),x.eligible?"PROPOSAL ONLY":x.reasons.join(", ")]){const td=document.createElement("td");td.textContent=value;tr.append(td)}table.append(tr)}
+ document.getElementById("board").append(table);
+ const shipment=reconcileShipment({id:"synthetic-shipment-1",loaded:200,receipts:[{id:"receipt-1",confirmedBy:"fictional-receiver",recordedAt:data.now.toISOString(),received:tick%2===0?180:200,rejected:0,damaged:0}]});
+ document.getElementById("reconcile").textContent="Loaded "+shipment.loaded+" boxes; documented "+shipment.received+" received; difference "+shipment.difference+" boxes. "+shipment.status+".";
 }
 document.getElementById("advance").onclick=()=>{tick++;render()};
 document.getElementById("reset").onclick=()=>{tick=0;render()};
