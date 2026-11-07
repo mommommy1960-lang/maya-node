@@ -12,12 +12,17 @@ class HandoffWindow:
     transport_capacity: int
     arrival_minute: int
     deadline_minute: int
+    storage_pool: str | None = None
+    transport_pool: str | None = None
 
     def __post_init__(self):
         values = (self.storage_capacity, self.transport_capacity,
                   self.arrival_minute, self.deadline_minute)
         if any(type(value) is not int or value < 0 for value in values):
             raise ValueError("Handoff capacity and times must be nonnegative integers")
+        for pool in (self.storage_pool, self.transport_pool):
+            if pool is not None and (not isinstance(pool, str) or not pool.startswith("demo-")):
+                raise ValueError("Capacity pools must use fictional identifiers")
 
 
 @dataclass(frozen=True)
@@ -126,11 +131,32 @@ def plan_redistribution(
         if len({record_key(record) for record in records}) != len(records):
             raise ValueError("Duplicate fictional records")
     remaining = {record_key(supply): supply.quantity for supply in supplies}
+    receivers = (*needs, *storage, *buyers)
+    pool_limits = {}
+    receiver_pools = {}
+    for receiver in receivers:
+        window = receiver.handoff
+        if window is None:
+            continue
+        pools = []
+        for kind, name, capacity in (
+            ("storage", window.storage_pool, window.storage_capacity),
+            ("transport", window.transport_pool, window.transport_capacity),
+        ):
+            if name is None:
+                continue
+            pool = (kind, name)
+            limit = (receiver.unit, capacity)
+            if pool_limits.setdefault(pool, limit) != limit:
+                raise ValueError("Conflicting capacity or unit for a shared fictional pool")
+            pools.append(pool)
+        receiver_pools[receiver] = pools
+    pool_remaining = {pool: capacity for pool, (_, capacity) in pool_limits.items()}
     proposals_by_kind = {"need": [], "storage": [], "buyer": []}
     rules = {"need": "higher priority first, then stable source record order",
              "storage": "temporary storage after recipient matches",
              "buyer": "eligible resale after donation and storage"}
-    for need in (*needs, *storage, *buyers):
+    for need in receivers:
         needed = need.quantity
         handoff = need.handoff
         is_buyer = need.kind == "buyer"
@@ -143,6 +169,9 @@ def plan_redistribution(
             if handoff.arrival_minute > handoff.deadline_minute:
                 continue
             needed = min(needed, handoff.storage_capacity, handoff.transport_capacity)
+        pools = receiver_pools.get(need, ())
+        for pool in pools:
+            needed = min(needed, pool_remaining[pool])
         for surplus in supplies:
             if needed == 0:
                 break
@@ -169,6 +198,8 @@ def plan_redistribution(
             proposals_by_kind[need.kind].append(proposal)
             needed -= qty
             remaining[supply_key] -= qty
+            for pool in pools:
+                pool_remaining[pool] -= qty
     unplaced = [
         {"from": supply.site_id, "source_ref": supply.source_record_id, "category": supply.category,
          "quantity": remaining[record_key(supply)], "unit": supply.unit, "needs_human_review": True}
