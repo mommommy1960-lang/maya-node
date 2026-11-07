@@ -5,6 +5,22 @@ from dataclasses import dataclass
 from typing import Protocol
 
 @dataclass(frozen=True)
+class HandoffWindow:
+    """Confirmed fictional capacity reserved for this request, in its unit."""
+
+    storage_capacity: int
+    transport_capacity: int
+    arrival_minute: int
+    deadline_minute: int
+
+    def __post_init__(self):
+        values = (self.storage_capacity, self.transport_capacity,
+                  self.arrival_minute, self.deadline_minute)
+        if any(type(value) is not int or value < 0 for value in values):
+            raise ValueError("Handoff capacity and times must be nonnegative integers")
+
+
+@dataclass(frozen=True)
 class FoodSignal:
     partner_id: str
     site_id: str
@@ -14,6 +30,8 @@ class FoodSignal:
     quantity: int
     unit: str
     synthetic: bool = True
+    priority: int = 0
+    handoff: HandoffWindow | None = None
 
     def __post_init__(self):
         if not self.synthetic or not self.partner_id.startswith("demo-") or not self.site_id.startswith("demo-"):
@@ -22,8 +40,14 @@ class FoodSignal:
             raise ValueError("Invalid fictional record")
         if not isinstance(self.quantity, int) or isinstance(self.quantity, bool) or self.quantity <= 0:
             raise ValueError("Quantity must be positive integer")
-        if not self.category or self.unit not in ("boxes", "kg", "lb"):
+        if not self.category or self.unit not in ("boxes", "kg", "lb", "gallons"):
             raise ValueError("Invalid food category or unit")
+        if type(self.priority) is not int or self.priority < 0:
+            raise ValueError("Priority must be a nonnegative integer")
+        if self.handoff is not None and (
+            self.kind != "need" or not isinstance(self.handoff, HandoffWindow)
+        ):
+            raise ValueError("Handoff capacity must belong to a fictional request")
 
 class ReadOnlyAdapter(Protocol):
     def describe_capabilities(self) -> dict: ...
@@ -49,22 +73,37 @@ def propose_matches(adapter: ReadOnlyAdapter) -> list[dict]:
     caps = adapter.describe_capabilities()
     if caps.get("mode") != "synthetic_only" or not caps.get("read_only") or caps.get("outbound_actions"):
         raise PermissionError("Only read-only synthetic adapters are authorized")
+    def record_key(signal: FoodSignal) -> tuple[str, str, str]:
+        return signal.source_record_id, signal.partner_id, signal.site_id
+
+    supplies = sorted(adapter.fetch_surplus(), key=record_key)
+    needs = sorted(adapter.fetch_needs(), key=lambda need: (-need.priority, record_key(need)))
+    remaining = {record_key(supply): supply.quantity for supply in supplies}
     proposals = []
-    remaining = {s.source_record_id: s.quantity for s in adapter.fetch_surplus()}
-    for need in adapter.fetch_needs():
+    for need in needs:
         needed = need.quantity
-        for surplus in adapter.fetch_surplus():
+        handoff = need.handoff
+        if handoff is None and (need.unit == "gallons" or need.category.casefold() == "milk"):
+            continue
+        if handoff is not None:
+            if handoff.arrival_minute > handoff.deadline_minute:
+                continue
+            needed = min(needed, handoff.storage_capacity, handoff.transport_capacity)
+        for surplus in supplies:
             if needed == 0:
                 break
             if surplus.category != need.category or surplus.unit != need.unit or surplus.site_id == need.site_id:
                 continue
-            qty = min(needed, remaining[surplus.source_record_id])
+            supply_key = record_key(surplus)
+            qty = min(needed, remaining[supply_key])
             if qty <= 0:
                 continue
             proposals.append({"from": surplus.site_id, "to": need.site_id,
                               "category": need.category, "quantity": qty, "unit": need.unit,
                               "source_refs": [surplus.source_record_id, need.source_record_id],
+                              "request_priority": need.priority,
+                              "allocation_rule": "higher priority first, then stable source record order",
                               "human_approval_required": True, "dispatched": False, "synthetic": True})
             needed -= qty
-            remaining[surplus.source_record_id] -= qty
+            remaining[supply_key] -= qty
     return proposals
