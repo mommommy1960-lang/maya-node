@@ -1,0 +1,24 @@
+name: Pantry watchtower synthetic tests
+on:
+  pull_request:
+    paths:
+      - 'prototypes/pantry-watchtower/**'
+      - '.github/workflows/pantry-watchtower-tests.yml'
+  push:
+    branches:
+      - 'feature/pantry-watchtower-synthetic-2026-11-07'
+    paths:
+      - 'prototypes/pantry-watchtower/**'
+      - '.github/workflows/pantry-watchtower-tests.yml'
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run synthetic matching, alerts and integration tests
+        run: node --test prototypes/pantry-watchtower/*.test.mjs
