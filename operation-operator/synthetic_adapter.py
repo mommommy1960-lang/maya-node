@@ -21,6 +21,25 @@ class HandoffWindow:
 
 
 @dataclass(frozen=True)
+class SaleTerms:
+    """Fictional evidence supplied by an authorized operator."""
+
+    seller_authorized: bool
+    resale_eligible: bool
+    donation_options_exhausted: bool
+    unit_price_cents: int
+
+    def __post_init__(self):
+        if type(self.unit_price_cents) is not int or self.unit_price_cents <= 0:
+            raise ValueError("A sale requires a positive unit price in USD cents")
+
+    @property
+    def permits_proposal(self) -> bool:
+        return (self.seller_authorized is True and self.resale_eligible is True
+                and self.donation_options_exhausted is True)
+
+
+@dataclass(frozen=True)
 class FoodSignal:
     partner_id: str
     site_id: str
@@ -32,11 +51,13 @@ class FoodSignal:
     synthetic: bool = True
     priority: int = 0
     handoff: HandoffWindow | None = None
+    sale_terms: SaleTerms | None = None
+    buyer_max_unit_price_cents: int | None = None
 
     def __post_init__(self):
         if not self.synthetic or not self.partner_id.startswith("demo-") or not self.site_id.startswith("demo-"):
             raise ValueError("Operation Operator fixture accepts fictional records only")
-        if not self.source_record_id.startswith("demo-") or self.kind not in ("surplus", "need", "storage"):
+        if not self.source_record_id.startswith("demo-") or self.kind not in ("surplus", "need", "storage", "buyer"):
             raise ValueError("Invalid fictional record")
         if not isinstance(self.quantity, int) or isinstance(self.quantity, bool) or self.quantity <= 0:
             raise ValueError("Quantity must be positive integer")
@@ -45,9 +66,16 @@ class FoodSignal:
         if type(self.priority) is not int or self.priority < 0:
             raise ValueError("Priority must be a nonnegative integer")
         if self.handoff is not None and (
-            self.kind not in ("need", "storage") or not isinstance(self.handoff, HandoffWindow)
+            self.kind not in ("need", "storage", "buyer") or not isinstance(self.handoff, HandoffWindow)
         ):
-            raise ValueError("Handoff capacity must belong to a fictional request")
+            raise ValueError("Handoff capacity must belong to a fictional receiving record")
+        if self.sale_terms is not None and (
+            self.kind != "surplus" or not isinstance(self.sale_terms, SaleTerms)
+        ):
+            raise ValueError("Sale terms must belong to a fictional surplus record")
+        limit = self.buyer_max_unit_price_cents
+        if limit is not None and (self.kind != "buyer" or type(limit) is not int or limit <= 0):
+            raise ValueError("An opted-in fictional buyer must specify a positive price limit")
 
 class ReadOnlyAdapter(Protocol):
     def describe_capabilities(self) -> dict: ...
@@ -74,9 +102,10 @@ def propose_matches(adapter: ReadOnlyAdapter) -> list[dict]:
 
 
 def plan_redistribution(
-    adapter: ReadOnlyAdapter, storage_options: tuple[FoodSignal, ...] = ()
+    adapter: ReadOnlyAdapter, storage_options: tuple[FoodSignal, ...] = (),
+    *, buyer_options: tuple[FoodSignal, ...] = (),
 ) -> dict[str, list[dict]]:
-    """Plan from known fictional participants, with temporary storage as a fallback."""
+    """Draft transfers for known fictional recipients, storage sites, and buyers."""
     caps = adapter.describe_capabilities()
     if caps.get("mode") != "synthetic_only" or not caps.get("read_only") or caps.get("outbound_actions"):
         raise PermissionError("Only read-only synthetic adapters are authorized")
@@ -86,20 +115,29 @@ def plan_redistribution(
     if not all(isinstance(option, FoodSignal) and option.kind == "storage"
                for option in storage_options):
         raise ValueError("Storage options must be fictional storage records")
+    if not all(isinstance(option, FoodSignal) and option.kind == "buyer"
+               for option in buyer_options):
+        raise ValueError("Buyer options must be fictional buyer records")
     supplies = sorted(adapter.fetch_surplus(), key=record_key)
     needs = sorted(adapter.fetch_needs(), key=lambda need: (-need.priority, record_key(need)))
     storage = sorted(storage_options, key=record_key)
-    for records in (supplies, needs, storage):
+    buyers = sorted(buyer_options, key=record_key)
+    for records in (supplies, needs, storage, buyers):
         if len({record_key(record) for record in records}) != len(records):
             raise ValueError("Duplicate fictional records")
     remaining = {record_key(supply): supply.quantity for supply in supplies}
-    recipient_proposals = []
-    storage_proposals = []
-    for need in (*needs, *storage):
+    proposals_by_kind = {"need": [], "storage": [], "buyer": []}
+    rules = {"need": "higher priority first, then stable source record order",
+             "storage": "temporary storage after recipient matches",
+             "buyer": "eligible resale after donation and storage"}
+    for need in (*needs, *storage, *buyers):
         needed = need.quantity
         handoff = need.handoff
-        is_storage = need.kind == "storage"
-        if handoff is None and (is_storage or need.unit == "gallons" or need.category.casefold() == "milk"):
+        is_buyer = need.kind == "buyer"
+        requires_handoff = need.kind != "need" or need.unit == "gallons" or need.category.casefold() == "milk"
+        if handoff is None and requires_handoff:
+            continue
+        if is_buyer and need.buyer_max_unit_price_cents is None:
             continue
         if handoff is not None:
             if handoff.arrival_minute > handoff.deadline_minute:
@@ -110,18 +148,25 @@ def plan_redistribution(
                 break
             if surplus.category != need.category or surplus.unit != need.unit or surplus.site_id == need.site_id:
                 continue
+            terms = surplus.sale_terms
+            if is_buyer and (terms is None or not terms.permits_proposal
+                             or terms.unit_price_cents > need.buyer_max_unit_price_cents):
+                continue
             supply_key = record_key(surplus)
             qty = min(needed, remaining[supply_key])
             if qty <= 0:
                 continue
-            proposals = storage_proposals if is_storage else recipient_proposals
-            proposals.append({"from": surplus.site_id, "to": need.site_id,
+            proposal = {"from": surplus.site_id, "to": need.site_id,
                               "category": need.category, "quantity": qty, "unit": need.unit,
                               "source_refs": [surplus.source_record_id, need.source_record_id],
                               "request_priority": need.priority,
-                              "allocation_rule": ("temporary storage after recipient matches" if is_storage
-                                                  else "higher priority first, then stable source record order"),
-                              "human_approval_required": True, "dispatched": False, "synthetic": True})
+                              "allocation_rule": rules[need.kind],
+                              "human_approval_required": True, "dispatched": False, "synthetic": True}
+            if is_buyer:
+                proposal.update(unit_price_cents=terms.unit_price_cents,
+                                total_price_cents=qty * terms.unit_price_cents,
+                                currency="USD")
+            proposals_by_kind[need.kind].append(proposal)
             needed -= qty
             remaining[supply_key] -= qty
     unplaced = [
@@ -129,5 +174,6 @@ def plan_redistribution(
          "quantity": remaining[record_key(supply)], "unit": supply.unit, "needs_human_review": True}
         for supply in supplies if remaining[record_key(supply)]
     ]
-    return {"recipient_proposals": recipient_proposals, "storage_proposals": storage_proposals,
-            "unplaced": unplaced}
+    return {"recipient_proposals": proposals_by_kind["need"],
+            "storage_proposals": proposals_by_kind["storage"],
+            "commercial_proposals": proposals_by_kind["buyer"], "unplaced": unplaced}
