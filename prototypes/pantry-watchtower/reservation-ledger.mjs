@@ -68,12 +68,18 @@ export class ReservationLedger {
     try {
       const bundle=this.db.prepare("SELECT state FROM bundles WHERE id=?").get(id);
       if(!bundle || bundle.state!=="active"){this.db.exec("COMMIT");return false;}
-      const holds=this.db.prepare("SELECT resource_id,quantity FROM holds WHERE id LIKE ? AND state='active'").all(id+":%");
+      const holds=this.db.prepare("SELECT resource_id,quantity FROM holds WHERE substr(id,1,?)=? AND state='active'").all(id.length+1,id+":");
       for(const h of holds)this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(h.quantity,h.resource_id);
-      this.db.prepare("UPDATE holds SET state='released' WHERE id LIKE ?").run(id+":%");
+      this.db.prepare("UPDATE holds SET state='released' WHERE substr(id,1,?)=? AND state='active'").run(id.length+1,id+":");
       this.db.prepare("UPDATE bundles SET state='released' WHERE id=?").run(id);
       this.db.exec("COMMIT");return true;
     }catch(e){try{this.db.exec("ROLLBACK")}catch{};throw e;}
+  }
+  /** Expire active bundles as a group, avoiding partially released allocations. */
+  expireBundles(now=Date.now()) {
+    const ids=this.db.prepare("SELECT DISTINCT b.id FROM bundles b JOIN holds h ON substr(h.id,1,length(b.id)+1)=b.id||':' WHERE b.state='active' AND h.state='active' AND h.expires_at<=?").all(now).map(r=>r.id);
+    for(const id of ids)this.releaseBundle(id);
+    return ids.length;
   }
   available(id){return this.db.prepare("SELECT available FROM resources WHERE id=?").get(id)?.available??null;}
   close(){this.db.close();}
