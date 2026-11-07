@@ -137,5 +137,24 @@ class OperationOperatorTests(unittest.TestCase):
                 self.assertEqual(plan["commercial_proposals"], [])
                 self.assertEqual(plan["unplaced"][0]["quantity"], 50)
 
+    def test_shared_fridge_and_truck_are_not_double_booked(self):
+        supply = FoodSignal("demo-store", "demo-c", "demo-s", "surplus", "milk", 100,
+                            "gallons", sale_terms=module.SaleTerms(True, True, True, 125))
+        shared = HandoffWindow(40, 50, 840, 900, "demo-fridge", "demo-truck")
+        first = FoodSignal("demo-pantry", "demo-a", "demo-n1", "need", "milk", 30,
+                           "gallons", handoff=shared)
+        second = replace(first, source_record_id="demo-n2")
+        buyer = FoodSignal("demo-grocer", "demo-b", "demo-b1", "buyer", "milk", 100, "gallons",
+                           handoff=replace(shared, storage_pool=None),
+                           buyer_max_unit_price_cents=125)
+        plan = module.plan_redistribution(SyntheticAdapter((supply, second, first)),
+                                          buyer_options=(buyer,))
+        self.assertEqual([item["quantity"] for item in plan["recipient_proposals"]], [30, 10])
+        self.assertEqual(plan["commercial_proposals"][0]["quantity"], 10)
+        self.assertEqual(plan["unplaced"][0]["quantity"], 50)
+        conflict = replace(second, handoff=replace(shared, storage_capacity=41))
+        with self.assertRaisesRegex(ValueError, "Conflicting capacity or unit"):
+            module.plan_redistribution(SyntheticAdapter((supply, first, conflict)))
+
 if __name__ == "__main__":
     unittest.main()
