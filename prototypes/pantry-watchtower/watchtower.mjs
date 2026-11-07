@@ -8,7 +8,7 @@ export function buildWatchtower({ offers, needs, receivers, vehicles, contacts =
   for (const offer of offers) {
     for (const need of needs) {
       const receiver = receivers.find(r => r.pantryId === need.pantryId);
-      const vehicle = vehicles.find(v => v.available && v.handling === offer.handling);
+      const vehicle = vehicles.find(v => v.handling === offer.handling);
       const result = evaluateTransfer(offer, need, receiver, vehicle, now);
       const record = { offerId:offer.id, needId:need.id, from:offer.pantryId, to:need.pantryId, ...result };
       if (result.eligible) {
