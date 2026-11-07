@@ -2,6 +2,7 @@
 No network, credentials, customer data or dispatch capability.
 """
 from dataclasses import dataclass
+from datetime import date, timedelta
 from typing import Protocol
 
 @dataclass(frozen=True)
@@ -86,6 +87,40 @@ class ReadOnlyAdapter(Protocol):
     def describe_capabilities(self) -> dict: ...
     def fetch_surplus(self) -> tuple[FoodSignal, ...]: ...
     def fetch_needs(self) -> tuple[FoodSignal, ...]: ...
+
+def review_weekly_patterns(
+    observations: tuple[tuple[date, FoodSignal], ...], as_of: date
+) -> list[dict]:
+    """Suggest recurring handoffs from fictional history without placing a reservation."""
+    for day, signal in observations:
+        if type(day) is not date or not isinstance(signal, FoodSignal) or signal.kind not in ("need", "surplus"):
+            raise ValueError("Expected dated fictional need and surplus observations")
+    cutoff = as_of - timedelta(days=27)
+    recent = [(day, signal) for day, signal in observations if cutoff <= day <= as_of]
+    offers = [(day, signal) for day, signal in recent if signal.kind == "surplus"]
+    patterns = {}
+    for need_day, need in recent:
+        if need.kind != "need":
+            continue
+        for offer_day, offer in offers:
+            if (offer.site_id == need.site_id or (offer.category, offer.unit) != (need.category, need.unit)
+                    or not 0 <= (need_day - offer_day).days <= 2):
+                continue
+            key = (offer.partner_id, offer.site_id, need.partner_id, need.site_id, need.category,
+                   need.unit, offer_day.weekday(), need_day.weekday())
+            patterns.setdefault(key, set()).add(need_day)
+
+    return [
+        {"from": sender, "to": recipient, "from_partner": sender_partner,
+         "to_partner": recipient_partner, "category": category, "unit": unit,
+         "offer_weekday": offer_weekday, "need_weekday": need_weekday,
+         "observations": len(days), "last_observed": max(days).isoformat(),
+         "status": "review_pattern" if (as_of - max(days)).days >= 7 else "suggest_weekly_handoff",
+         "human_approval_required": True, "requires_current_capacity_check": True,
+         "synthetic": True}
+        for (sender_partner, sender, recipient_partner, recipient, category, unit,
+             offer_weekday, need_weekday), days in sorted(patterns.items()) if len(days) >= 2
+    ]
 
 class SyntheticAdapter:
     def __init__(self, records: tuple[FoodSignal, ...]):
