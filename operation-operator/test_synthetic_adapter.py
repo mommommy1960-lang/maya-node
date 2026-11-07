@@ -69,6 +69,28 @@ class OperationOperatorTests(unittest.TestCase):
             FoodSignal("demo-bank", "demo-b", "demo-n", "need", "produce", 10, "boxes")))
         self.assertEqual(propose_matches(adapter), [])
 
+    def test_small_recipients_then_storage_and_escalation(self):
+        supply = FoodSignal("demo-store", "demo-c", "demo-s", "surplus", "milk", 5000, "gallons")
+        pantry = FoodSignal("demo-pantry", "demo-a", "demo-n1", "need", "milk", 2000, "gallons",
+                            handoff=HandoffWindow(800, 800, 840, 900))
+        school = FoodSignal("demo-school", "demo-b", "demo-n2", "need", "milk", 5, "gallons",
+                            handoff=HandoffWindow(5, 5, 840, 900))
+        cold_room = FoodSignal("demo-warehouse", "demo-d", "demo-h1", "storage", "milk", 1000, "gallons",
+                               handoff=HandoffWindow(1000, 1000, 840, 900))
+        unknown = FoodSignal("demo-warehouse", "demo-e", "demo-h2", "storage", "milk", 5000, "gallons")
+        late = FoodSignal("demo-warehouse", "demo-f", "demo-h3", "storage", "milk", 5000, "gallons",
+                          handoff=HandoffWindow(5000, 5000, 960, 900))
+        plan = module.plan_redistribution(SyntheticAdapter((supply, school, pantry)),
+                                          (unknown, cold_room, late))
+        self.assertEqual([(m["to"], m["quantity"]) for m in plan["recipient_proposals"]],
+                         [("demo-a", 800), ("demo-b", 5)])
+        self.assertEqual([(m["to"], m["quantity"]) for m in plan["storage_proposals"]],
+                         [("demo-d", 1000)])
+        self.assertTrue(plan["storage_proposals"][0]["human_approval_required"])
+        self.assertFalse(plan["storage_proposals"][0]["dispatched"])
+        self.assertEqual(plan["unplaced"][0]["quantity"], 3195)
+        self.assertTrue(plan["unplaced"][0]["needs_human_review"])
+
     def test_fail_closed_on_external_capabilities(self):
         class UnsafeAdapter:
             def describe_capabilities(self):
