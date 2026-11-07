@@ -1,6 +1,7 @@
 """Offline unit tests for Operation Operator's fictional read-only adapter."""
 import unittest
 from dataclasses import replace
+from datetime import date
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 import sys
@@ -155,6 +156,23 @@ class OperationOperatorTests(unittest.TestCase):
         conflict = replace(second, handoff=replace(shared, storage_capacity=41))
         with self.assertRaisesRegex(ValueError, "Conflicting capacity or unit"):
             module.plan_redistribution(SyntheticAdapter((supply, first, conflict)))
+
+    def test_weekly_pattern_requires_two_distinct_weeks_and_reviews_missed_week(self):
+        eggs = FoodSignal("demo-west", "demo-west-site", "demo-offer", "surplus", "eggs", 20, "boxes")
+        need = FoodSignal("demo-white", "demo-white-site", "demo-need", "need", "eggs", 10, "boxes")
+        first_week = ((date(2026, 10, 28), eggs), (date(2026, 10, 29), need))
+        second_week = ((date(2026, 11, 4), eggs), (date(2026, 11, 5), need))
+        review = module.review_weekly_patterns
+        self.assertEqual(review(first_week * 2, date(2026, 11, 5)), [])
+        self.assertEqual(review(first_week + second_week, date(2026, 11, 4)), [])
+        pattern, = review(first_week + second_week * 2, date(2026, 11, 5))
+        self.assertEqual((pattern["observations"], pattern["offer_weekday"], pattern["need_weekday"]),
+                         (2, 2, 3))
+        self.assertEqual(pattern["status"], "suggest_weekly_handoff")
+        self.assertTrue(pattern["human_approval_required"])
+        self.assertTrue(pattern["requires_current_capacity_check"])
+        missed, = review(first_week + second_week, date(2026, 11, 12))
+        self.assertEqual(missed["status"], "review_pattern")
 
 if __name__ == "__main__":
     unittest.main()
