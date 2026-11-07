@@ -39,6 +39,42 @@ export class ReservationLedger {
     for(const id of ids)this.release(id);
     return ids.length;
   }
+  /** All-or-nothing reservation of food, storage and transport under one SQLite write transaction. */
+  reserveBundle({id,items,expiresAt},now=Date.now()) {
+    if (!id || !Array.isArray(items) || items.length===0 || !Number.isFinite(expiresAt) || expiresAt<=now ||
+      items.some(x=>!x?.resourceId || !Number.isSafeInteger(x.quantity) || x.quantity<=0) ||
+      new Set(items.map(x=>x.resourceId)).size!==items.length) throw Error("invalid_bundle");
+    const normalized=[...items].sort((a,b)=>a.resourceId.localeCompare(b.resourceId));
+    const signature=JSON.stringify({items:normalized,expiresAt});
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      this.db.exec("CREATE TABLE IF NOT EXISTS bundles (id TEXT PRIMARY KEY, signature TEXT NOT NULL, state TEXT NOT NULL)");
+      const existing=this.db.prepare("SELECT signature,state FROM bundles WHERE id=?").get(id);
+      if(existing){
+        if(existing.signature!==signature) throw Error("idempotency_conflict");
+        this.db.exec("COMMIT");return existing.state==="active";
+      }
+      for(const item of normalized) {
+        const result=this.db.prepare("UPDATE resources SET available=available-? WHERE id=? AND available>=?").run(item.quantity,item.resourceId,item.quantity);
+        if(result.changes!==1){this.db.exec("ROLLBACK");return false;}
+      }
+      this.db.prepare("INSERT INTO bundles(id,signature,state) VALUES(?,?,'active')").run(id,signature);
+      for(const item of normalized) this.db.prepare("INSERT INTO holds(id,resource_id,quantity,state,expires_at) VALUES(?,?,?,'active',?)").run(id+":"+item.resourceId,item.resourceId,item.quantity,expiresAt);
+      this.db.exec("COMMIT");return true;
+    }catch(e){try{this.db.exec("ROLLBACK")}catch{};throw e;}
+  }
+  releaseBundle(id) {
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      const bundle=this.db.prepare("SELECT state FROM bundles WHERE id=?").get(id);
+      if(!bundle || bundle.state!=="active"){this.db.exec("COMMIT");return false;}
+      const holds=this.db.prepare("SELECT resource_id,quantity FROM holds WHERE id LIKE ? AND state='active'").all(id+":%");
+      for(const h of holds)this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(h.quantity,h.resource_id);
+      this.db.prepare("UPDATE holds SET state='released' WHERE id LIKE ?").run(id+":%");
+      this.db.prepare("UPDATE bundles SET state='released' WHERE id=?").run(id);
+      this.db.exec("COMMIT");return true;
+    }catch(e){try{this.db.exec("ROLLBACK")}catch{};throw e;}
+  }
   available(id){return this.db.prepare("SELECT available FROM resources WHERE id=?").get(id)?.available??null;}
   close(){this.db.close();}
 }
