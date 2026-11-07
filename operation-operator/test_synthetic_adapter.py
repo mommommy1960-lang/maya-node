@@ -1,5 +1,6 @@
 """Offline unit tests for Operation Operator's fictional read-only adapter."""
 import unittest
+from dataclasses import replace
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 import sys
@@ -97,6 +98,44 @@ class OperationOperatorTests(unittest.TestCase):
                 return {"mode": "production", "read_only": False, "outbound_actions": True}
         with self.assertRaises(PermissionError):
             propose_matches(UnsafeAdapter())
+
+    def test_commercial_fallback_only_uses_eligible_unplaced_surplus(self):
+        terms = module.SaleTerms(True, True, True, 125)
+        supply = FoodSignal("demo-store", "demo-c", "demo-s", "surplus", "milk", 100,
+                            "gallons", sale_terms=terms)
+        window = HandoffWindow(100, 100, 840, 900)
+        recipient = FoodSignal("demo-pantry", "demo-a", "demo-n", "need", "milk", 30,
+                               "gallons", handoff=window)
+        storage = FoodSignal("demo-storage", "demo-d", "demo-h", "storage", "milk", 20,
+                             "gallons", handoff=window)
+        buyer = FoodSignal("demo-grocer", "demo-b", "demo-b1", "buyer", "milk", 100,
+                           "gallons", handoff=window, buyer_max_unit_price_cents=125)
+        plan = module.plan_redistribution(SyntheticAdapter((supply, recipient)), (storage,),
+                                          buyer_options=(buyer,))
+        self.assertEqual(plan["recipient_proposals"][0]["quantity"], 30)
+        self.assertEqual(plan["storage_proposals"][0]["quantity"], 20)
+        self.assertEqual(plan["unplaced"], [])
+        offer, = plan["commercial_proposals"]
+        self.assertEqual((offer["quantity"], offer["total_price_cents"], offer["currency"]),
+                         (50, 6250, "USD"))
+        self.assertTrue(offer["human_approval_required"])
+        self.assertFalse(offer["dispatched"])
+
+        for restricted_terms, buyer_option in (
+            (None, buyer),
+            (replace(terms, seller_authorized=False), buyer),
+            (replace(terms, resale_eligible=False), buyer),
+            (replace(terms, donation_options_exhausted=False), buyer),
+            (terms, replace(buyer, buyer_max_unit_price_cents=None)),
+            (terms, replace(buyer, buyer_max_unit_price_cents=124)),
+            (terms, replace(buyer, handoff=None)),
+        ):
+            with self.subTest(terms=restricted_terms, buyer=buyer_option):
+                restricted = replace(supply, sale_terms=restricted_terms)
+                plan = module.plan_redistribution(SyntheticAdapter((restricted, recipient)),
+                                                  (storage,), buyer_options=(buyer_option,))
+                self.assertEqual(plan["commercial_proposals"], [])
+                self.assertEqual(plan["unplaced"][0]["quantity"], 50)
 
 if __name__ == "__main__":
     unittest.main()
