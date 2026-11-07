@@ -36,7 +36,7 @@ class FoodSignal:
     def __post_init__(self):
         if not self.synthetic or not self.partner_id.startswith("demo-") or not self.site_id.startswith("demo-"):
             raise ValueError("Operation Operator fixture accepts fictional records only")
-        if not self.source_record_id.startswith("demo-") or self.kind not in ("surplus", "need"):
+        if not self.source_record_id.startswith("demo-") or self.kind not in ("surplus", "need", "storage"):
             raise ValueError("Invalid fictional record")
         if not isinstance(self.quantity, int) or isinstance(self.quantity, bool) or self.quantity <= 0:
             raise ValueError("Quantity must be positive integer")
@@ -45,7 +45,7 @@ class FoodSignal:
         if type(self.priority) is not int or self.priority < 0:
             raise ValueError("Priority must be a nonnegative integer")
         if self.handoff is not None and (
-            self.kind != "need" or not isinstance(self.handoff, HandoffWindow)
+            self.kind not in ("need", "storage") or not isinstance(self.handoff, HandoffWindow)
         ):
             raise ValueError("Handoff capacity must belong to a fictional request")
 
@@ -70,20 +70,36 @@ class SyntheticAdapter:
         return tuple(x for x in self._records if x.kind == "need")
 
 def propose_matches(adapter: ReadOnlyAdapter) -> list[dict]:
+    return plan_redistribution(adapter)["recipient_proposals"]
+
+
+def plan_redistribution(
+    adapter: ReadOnlyAdapter, storage_options: tuple[FoodSignal, ...] = ()
+) -> dict[str, list[dict]]:
+    """Plan from known fictional participants, with temporary storage as a fallback."""
     caps = adapter.describe_capabilities()
     if caps.get("mode") != "synthetic_only" or not caps.get("read_only") or caps.get("outbound_actions"):
         raise PermissionError("Only read-only synthetic adapters are authorized")
     def record_key(signal: FoodSignal) -> tuple[str, str, str]:
         return signal.source_record_id, signal.partner_id, signal.site_id
 
+    if not all(isinstance(option, FoodSignal) and option.kind == "storage"
+               for option in storage_options):
+        raise ValueError("Storage options must be fictional storage records")
     supplies = sorted(adapter.fetch_surplus(), key=record_key)
     needs = sorted(adapter.fetch_needs(), key=lambda need: (-need.priority, record_key(need)))
+    storage = sorted(storage_options, key=record_key)
+    for records in (supplies, needs, storage):
+        if len({record_key(record) for record in records}) != len(records):
+            raise ValueError("Duplicate fictional records")
     remaining = {record_key(supply): supply.quantity for supply in supplies}
-    proposals = []
-    for need in needs:
+    recipient_proposals = []
+    storage_proposals = []
+    for need in (*needs, *storage):
         needed = need.quantity
         handoff = need.handoff
-        if handoff is None and (need.unit == "gallons" or need.category.casefold() == "milk"):
+        is_storage = need.kind == "storage"
+        if handoff is None and (is_storage or need.unit == "gallons" or need.category.casefold() == "milk"):
             continue
         if handoff is not None:
             if handoff.arrival_minute > handoff.deadline_minute:
@@ -98,12 +114,20 @@ def propose_matches(adapter: ReadOnlyAdapter) -> list[dict]:
             qty = min(needed, remaining[supply_key])
             if qty <= 0:
                 continue
+            proposals = storage_proposals if is_storage else recipient_proposals
             proposals.append({"from": surplus.site_id, "to": need.site_id,
                               "category": need.category, "quantity": qty, "unit": need.unit,
                               "source_refs": [surplus.source_record_id, need.source_record_id],
                               "request_priority": need.priority,
-                              "allocation_rule": "higher priority first, then stable source record order",
+                              "allocation_rule": ("temporary storage after recipient matches" if is_storage
+                                                  else "higher priority first, then stable source record order"),
                               "human_approval_required": True, "dispatched": False, "synthetic": True})
             needed -= qty
             remaining[supply_key] -= qty
-    return proposals
+    unplaced = [
+        {"from": supply.site_id, "source_ref": supply.source_record_id, "category": supply.category,
+         "quantity": remaining[record_key(supply)], "unit": supply.unit, "needs_human_review": True}
+        for supply in supplies if remaining[record_key(supply)]
+    ]
+    return {"recipient_proposals": recipient_proposals, "storage_proposals": storage_proposals,
+            "unplaced": unplaced}
