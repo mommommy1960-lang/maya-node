@@ -47,9 +47,9 @@ export function createSandboxLocalReceiver({
   const server = http.createServer(async (req, res) => {
     try {
       const host = req.headers.host ?? '';
-      if (!/^127\\.0\\.0\\.1:\\d{1,5}$/.test(host)) return respond(res, 403, { error: 'loopback_host_required' });
+      if (!host.startsWith('127.0.0.1:') || !Number.isSafeInteger(Number(host.slice(10))) || Number(host.slice(10)) < 1 || Number(host.slice(10)) > 65535) return respond(res, 403, { error: 'loopback_host_required' });
       if (req.method !== 'POST' || req.url !== ROUTE) return respond(res, 404, { error: 'not_found' });
-      if (!/^application\\/json(?:\\s*;|$)/i.test(req.headers['content-type'] ?? ''))
+      if ((req.headers['content-type'] ?? '').split(';')[0].trim().toLowerCase() !== 'application/json')
         return respond(res, 415, { error: 'json_required' });
       const bytes = await rawBytes(req);
       const observed = inbox.observe({
