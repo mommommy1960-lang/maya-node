@@ -1,0 +1,13 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { planAlerts } from "./alerts.mjs";
+const now=new Date("2026-11-07T22:00:00Z");
+const opportunity={id:"fictional-offer",state:"pending",createdAt:"2026-11-07T21:45:00Z",deadline:"2026-11-07T23:00:00Z"};
+const contacts=[{id:"fictional-primary",consent:true,active:true,role:"authorized",priority:1},{id:"fictional-backup",consent:true,active:true,role:"authorized",priority:2}];
+test("no external dispatch",()=>assert.equal(planAlerts(opportunity,contacts,now)[0].send,false));
+test("acknowledged stops alerts",()=>assert.deepEqual(planAlerts({...opportunity,acknowledged:true},contacts,now),[]));
+test("canceled stops alerts",()=>assert.deepEqual(planAlerts({...opportunity,state:"canceled"},contacts,now),[]));
+test("unconsented contact excluded",()=>assert.equal(planAlerts(opportunity,[{...contacts[0],consent:false}],now)[0].type,"needs_human_configuration"));
+test("escalates to backup",()=>assert.equal(planAlerts({...opportunity,createdAt:"2026-11-07T21:00:00Z"},contacts,now)[0].contactId,"fictional-backup"));
+test("no repeated alert within ten minutes",()=>assert.deepEqual(planAlerts({...opportunity,lastAlertAt:"2026-11-07T21:55:00Z"},contacts,now),[]));
+test("expired does not notify",()=>assert.equal(planAlerts({...opportunity,deadline:"2026-11-07T21:00:00Z"},contacts,now)[0].send,false));

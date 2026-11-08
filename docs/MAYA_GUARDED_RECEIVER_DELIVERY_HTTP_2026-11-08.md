@@ -1,0 +1,18 @@
+# Guarded fictional receiver delivery / exception HTTP checkpoint
+November 8, 2026 ~09:01 PST — existing draft PR #109, NOT deployed.
+
+## What changed (local SQLite prototype only)
+- Expanded the opt-in `tenantGuardedOnly:true` loopback HTTP route `/api/tenant-order` to support `deliver` and `document-exception` under receiver-only tenant/actor authorization. The server-injected principal controls the actor ID; arbitrary browser actor/tenant claims are rejected. Delivery scope is checked **before** receipt existence, pickup state or requested mode so wrong tenants, unverified callers, wrong roles and wrong actors cannot infer delivery state from error differences.
+- Guarded receiver reads now include the synthetic delivery receipt (or `null` before one exists). Other approved roles retain order visibility but do not get the receipt field from this route. A preexisting tenant HTTP test expectation was updated to reflect this limited receiver-specific read.
+- New `synthetic-tenant-receipt-http.test.mjs` provides three real HTTP-to-SQLite cases: pre-pickup denials with no mutation, authorized full receipt with correct capacity conservation and forbidden identity spoofing, and partial receipt plus receiver-only exception disposition persisting across SQLite restart. The old demo browser routes remain closed in guarded mode; default browser smoke remains a separate, intentionally unguarded fictional demo.
+
+## Verified evidence, exact source
+- Code commits: permission assertion `e91029a0d5e4f5bb67ab65e1b7525ef0f78f6d58`; HTTP receiver actions `dd2793e556024c13dd74a7417b52f36b92755370`; new regressions `c2f242b724e6e80495ff5f263c2a0d951bb3d492`; updated existing test contract and **exact tested source** `e83f136079150d5a081201f11ae92c8459f35b76`.
+- [Node CI run 42502823300](https://github.com/mommommy1960-lang/maya-node/actions/runs/42502823300), job `128799046196`: TAP inspected, **176 passed / 0 failed / 0 skipped**; three new tests PASS.
+- [Chromium -> localhost -> SQLite run 42502823356](https://github.com/mommommy1960-lang/maya-node/actions/runs/42502823356), job `128799046475`: full and partial browser flows PASS. **This is still the unguarded local demo; no guarded browser identity session test yet.**
+- [Security & Ethics run 42502823478](https://github.com/mommommy1960-lang/maya-node/actions/runs/42502823478): all five jobs completed successfully.
+- First [Node run 42502736116](https://github.com/mommommy1960-lang/maya-node/actions/runs/42502736116) had 175 pass / 1 fail due to an outdated existing test expectation that authorized receiver reads cannot include a receipt. After updating it to assert `receipt:null` before delivery, the full suite passed; no security check was weakened.
+
+## Limits, gates, and date targets
+**NO-GO** real people/data, payments, live dispatch, notifications, customer onboarding or production. Fake test-header principal is spoofable and is NOT real authentication or signed receipt consent. Remaining high-impact gates: independently verified revocable hosted identity/tenant roles including every customer, commercial, receipt and admin path; hosted full browser test; provider-confirmed signed Stripe TEST webhook into *authorized nonproduction* order state; hosted deletion and isolated restore; incident coverage; written partner approval and legal/food-safety review. Synthetic receipt tests do not establish those.
+Nov 8 verified synthetic engineering milestone met. Nov 10–14 browser target currently only local fictional Chrome evidence, not hosted protected customer journey. Nov 21–Dec 19 is conditional **decision** window, not a promised launch. No merge, publish, real data, dispatch, external message or live billing during this change.

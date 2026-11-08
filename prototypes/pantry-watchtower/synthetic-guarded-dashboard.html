@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Maya Node | TEST-ONLY guarded fictional receiver</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; }
+    body { margin: auto; padding: 1rem; max-width: 44rem; line-height: 1.5; }
+    button { min-height: 44px; margin: .25rem; padding: .55rem .8rem; font: inherit; }
+    button:focus-visible { outline: 3px solid #124c91; outline-offset: 2px; }
+    .warning { border: 2px solid #86570a; padding: .8rem; background: #fff8e5; }
+    .panel { border: 1px solid #777; border-radius: .5rem; padding: .8rem; margin-top: 1rem; }
+    #status { display: block; min-height: 2rem; font-weight: bold; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+  </style>
+  <script type="module" src="/synthetic-guarded-dashboard-client.mjs"></script>
+</head>
+<body>
+  <main>
+    <h1>Maya Node: guarded fictional rehearsal</h1>
+    <p class="warning"><strong>SYNTHETIC ONLY. No customer login.</strong>
+    Test sessions are intentionally spoofable fixtures injected by the local test harness.
+    No real food, dispatch, partners, payments, messages or customer information.</p>
+    <section class="panel" aria-labelledby="order-title">
+      <h2 id="order-title">Order status</h2>
+      <p id="status" role="status" aria-live="polite">Loading fictional order…</p>
+      <p id="order-state">Not available</p>
+      <p id="approvals">Approvals: not available</p>
+      <p id="receipt">Receipt: not available</p>
+      <button type="button" id="refresh">Refresh my permitted view</button>
+    </section>
+    <section class="panel" aria-labelledby="actions-title">
+      <h2 id="actions-title">Human approval and handoff rehearsal</h2>
+      <p>The server must approve every action based on a separately injected fictional test principal.
+      Buttons do not select or certify a role.</p>
+      <div role="group" aria-label="Fictional order actions">
+        <button type="button" data-action="approve">Confirm my fictional approval</button>
+        <button type="button" data-action="pickup">Confirm fictional pickup</button>
+        <button type="button" data-action="deliver" data-mode="full">Receive all eight fictional units</button>
+        <button type="button" data-action="deliver" data-mode="partial">Report partial fictional delivery</button>
+        <button type="button" data-action="document-exception">Document fictional exception</button>
+        <button type="button" data-action="cancel">Cancel fictional pre-pickup order</button>
+      </div>
+    </section>
+    <p>Test-only source. Not connected to ChatGPT Sites, Stripe, real identity providers or live pantry systems.</p>
+  </main>
+</body>
+</html>
