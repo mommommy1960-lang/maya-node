@@ -15,13 +15,13 @@ export class ReservationLedger {
     this.db.prepare("INSERT INTO resources(id,available) VALUES(?,?) ON CONFLICT(id) DO NOTHING").run(id,available);
   }
   reserve({id,resourceId,quantity,expiresAt},now=Date.now()) {
-    if (!id||!resourceId||!Number.isSafeInteger(quantity)||quantity<=0||!Number.isFinite(expiresAt)||expiresAt<=now) throw Error("invalid_hold");
+    if (!id||!resourceId||!Number.isSafeInteger(quantity)||quantity<=0||!Number.isSafeInteger(now)||now<0||!Number.isSafeInteger(expiresAt)||expiresAt<=now) throw Error("invalid_hold");
     this.db.exec("BEGIN IMMEDIATE");
     try {
       const prior=this.db.prepare("SELECT resource_id,quantity,expires_at,state FROM holds WHERE id=?").get(id);
       if(prior) {
         if(prior.resource_id!==resourceId||prior.quantity!==quantity||prior.expires_at!==expiresAt) throw Error("idempotency_conflict");
-        this.db.exec("COMMIT");return prior.state==="active";
+        this.db.exec("COMMIT");return prior.state==="active" && prior.expires_at>now;
       }
       const result=this.db.prepare("UPDATE resources SET available=available-? WHERE id=? AND available>=?").run(quantity,resourceId,quantity);
       if(result.changes!==1){this.db.exec("ROLLBACK");return false;}
@@ -50,7 +50,7 @@ export class ReservationLedger {
   }
   /** All-or-nothing reservation of food, storage and transport under one SQLite write transaction. */
   reserveBundle({id,items,expiresAt},now=Date.now()) {
-    if (!id || !Array.isArray(items) || items.length===0 || !Number.isFinite(expiresAt) || expiresAt<=now ||
+    if (!id || !Array.isArray(items) || items.length===0 || !Number.isSafeInteger(now) || now<0 || !Number.isSafeInteger(expiresAt) || expiresAt<=now ||
       items.some(x=>!x?.resourceId || !Number.isSafeInteger(x.quantity) || x.quantity<=0) ||
       new Set(items.map(x=>x.resourceId)).size!==items.length) throw Error("invalid_bundle");
     const normalized=[...items].sort((a,b)=>a.resourceId.localeCompare(b.resourceId));
@@ -63,8 +63,20 @@ export class ReservationLedger {
       const existing=this.db.prepare("SELECT signature,state FROM bundles WHERE id=?").get(id);
       if(existing){
         if(existing.signature!==signature) throw Error("idempotency_conflict");
-        if(existing.state==="active" && !this.db.prepare("SELECT 1 FROM bundle_holds WHERE bundle_id=? LIMIT 1").get(id)) throw Error("legacy_bundle_requires_migration");
-        this.db.exec("COMMIT");return existing.state==="active";
+        if(existing.state!=="active"){this.db.exec("COMMIT");return false;}
+        const mapped=this.db.prepare("SELECT bh.resource_id AS mapped_id,h.resource_id AS held_id,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(id);
+        if(!mapped.length) throw Error("legacy_bundle_requires_migration");
+        // A same-key retry cannot confirm corrupted or expired durable capacity.
+        if(mapped.length!==normalized.length || normalized.some(item=>!mapped.some(h=>
+          h.mapped_id===item.resourceId && h.held_id===item.resourceId &&
+          h.quantity===item.quantity && h.state==="active" && h.expires_at>=expiresAt)))
+          throw Error("corrupt_bundle_ownership");
+        // A picked-up/canceled/expired order still owns history, never fresh capacity.
+        const owner=this._orderOwnsBundle(id)?
+          this.db.prepare("SELECT state,expires_at FROM synthetic_orders WHERE bundle_id=?").get(id):null;
+        const active=now<expiresAt && (!owner ||
+          (["reserved","approved"].includes(owner.state) && now<owner.expires_at));
+        this.db.exec("COMMIT");return active;
       }
       for(const item of normalized) {
         const result=this.db.prepare("UPDATE resources SET available=available-? WHERE id=? AND available>=?").run(item.quantity,item.resourceId,item.quantity);
