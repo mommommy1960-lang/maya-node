@@ -19,6 +19,9 @@ const HOST = '127.0.0.1';
 const ORDER = 'SYN-DEMO-ORDER';
 const ROLES = Object.freeze({ donor: 'fictional-donor', receiver: 'fictional-receiver', transport: 'fictional-transporter' });
 const RESOURCE = Object.freeze({ food: 'SYN-FOOD', cold: 'SYN-COLD', truck: 'SYN-TRUCK' });
+// These routes deliberately impersonate roles. A guarded test harness must not
+// leave them exposed as an alternate path around its tenant/actor checks.
+const UNTRUSTED_DEMO_PATHS = new Set(['/', '/synthetic-journey-client.mjs', '/api/state', '/api/action']);
 const ACTIONS = new Set(['start', 'approve', 'quote', 'accept-terms', 'mock-decline', 'mock-authorize', 'pickup', 'deliver', 'document-exception', 'mock-capture', 'mock-refund', 'cancel']);
 const FILES = Object.freeze({
   '/': ['synthetic-journey.html', 'text/html; charset=utf-8'],
@@ -49,11 +52,15 @@ function readJson(req) {
   });
 }
 
-export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(), resolveServerPrincipal = null } = {}) {
+export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(),
+  resolveServerPrincipal = null, tenantGuardedOnly = false } = {}) {
   // This resolver is a TEST HARNESS injection, not user authentication.
   // Neither browser-supplied identity fields nor role selectors are credentials.
   if (resolveServerPrincipal !== null && typeof resolveServerPrincipal !== 'function')
     throw Error('invalid_test_principal_resolver');
+  if (typeof tenantGuardedOnly !== 'boolean') throw Error('invalid_tenant_guarded_mode');
+  if (tenantGuardedOnly && !resolveServerPrincipal)
+    throw Error('tenant_guarded_mode_requires_test_resolver');
   const ledger = new ReservationLedger(filename);
   const orders = new SyntheticOrderStore(ledger);
   const delivery = new SyntheticDeliverySettlement(orders);
@@ -158,6 +165,11 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       if (req.headers.origin && req.headers.origin !== 'http://' + host) return json(res, 403, { error: 'cross_origin_denied' });
       if (req.headers['sec-fetch-site'] && !['same-origin', 'none'].includes(req.headers['sec-fetch-site']))
         return json(res, 403, { error: 'cross_site_denied' });
+      // Opt-in secure-boundary test mode: no alternative fake-role HTTP path,
+      // state endpoint or unguarded browser UI can bypass /api/tenant-order.
+      // This is still NOT authentic login or permission to host publicly.
+      if (tenantGuardedOnly && UNTRUSTED_DEMO_PATHS.has(req.url))
+        return json(res, 403, { error: 'untrusted_demo_routes_disabled' });
       if (req.url === '/api/tenant-order' && ['GET','POST'].includes(req.method)) {
         if (req.method === 'POST' && !(req.headers['content-type'] || '').startsWith('application/json'))
           return json(res, 415, { error: 'json_required' });
