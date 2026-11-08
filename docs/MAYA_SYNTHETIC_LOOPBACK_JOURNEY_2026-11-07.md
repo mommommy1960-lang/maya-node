@@ -1,5 +1,11 @@
 # Maya Node — local-only fictional customer journey (2026-11-07, 7 PM PST)
 
+## Verified actual browser-to-SQLite checkpoint, November 7 ~7:10 PM PST
+- Source: `c020eb5316bf9fc58f0984c8ffcc93287aa7c69a`.
+- **Real Chromium on GitHub Actions** completed TWO genuine local HTTP↔SQLite browser end-to-end paths, each using a new in-memory database: full fictional delivery and partial/rejected/missing fictional delivery with discrepancy documentation. The browser clicked buttons in a **390px-wide** viewport, checked keyboard Tab reachability and horizontal overflow, verified all three simulated approvals gate pickup, confirmed receipt/counts, and observed zero uncaught page errors. [Browser workflow run 42441539126](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441539126), [job 128611623666](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441539126/job/128611623666), both PASS lines inspected.
+- On same commit, [Pantry synthetic Node run 42441542860](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441542860), job 128611635097: **86/86 passed, 0 failed/skipped**. [Security & Ethics run 42441542892](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441542892): 5/5 jobs passed.
+- Distinction: earlier isolated local Chromium UI smoke used stubbed API because the local sandbox blocked loopback navigation; it is now **superseded for browser↔SQLite integration by the independent GitHub Actions real-Chromium evidence above**. This is not physical Android device or screen-reader certification, not a hosted/public browser service, and not a real customer transaction.
+
 ## Independently verified checkpoint
 - Source commit: `483e0872e440250bf99a513ba0a08560b2de04ca`
 - Pantry Watchtower CI: [run 42441241879](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441241879), job [128610717633](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441241879/job/128610717633). **86/86 synthetic Node tests passed, 0 failed, 0 skipped**, inspected TAP totals.
@@ -33,7 +39,7 @@ On the **same computer**, open `http://127.0.0.1:8789/`. The server binds only t
 - **Real customer data, onboarding, external dispatch, real communications and live billing: NO-GO.**
 
 ## Next critical path (Nov 10–14 demonstration target)
-1. Reproducible real browser↔SQLite end-to-end demonstration, with keyboard, narrow viewport and Android checks, including negative paths and restart.
+1. Extend already-passing real browser↔SQLite synthetic full/partial happy-path verification with negative-state and restart browser checks, physical Android/tablet and screen-reader accessibility review.
 2. Explicitly fake quote/terms, sandbox-only payment authorization/refund/webhook replay protection, never real keys or charges.
 3. Hosted deletion, backup restore and incident-owner evidence; separate founder/legal/partner decision before any real pilot.
 
