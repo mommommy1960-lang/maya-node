@@ -70,7 +70,7 @@ export class ReservationLedger {
         if(mapped.length!==normalized.length || normalized.some(item=>!mapped.some(h=>
           h.mapped_id===item.resourceId && h.held_id===item.resourceId &&
           h.hold_id===id+":"+item.resourceId && h.quantity===item.quantity &&
-          h.state==="active" && h.expires_at===expiresAt)))
+          h.state==="active" && h.expires_at>=expiresAt)))
           throw Error("corrupt_bundle_ownership");
         // A picked-up/canceled/expired order still owns history, never fresh capacity.
         const owner=this._orderOwnsBundle(id)?
