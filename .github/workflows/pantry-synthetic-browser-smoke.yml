@@ -1,0 +1,30 @@
+name: Pantry fictional order browser integration
+on:
+  pull_request:
+    paths:
+      - 'prototypes/pantry-watchtower/**'
+      - '.github/workflows/pantry-synthetic-browser-smoke.yml'
+  push:
+    branches:
+      - 'feature/pantry-watchtower-synthetic-2026-11-07'
+    paths:
+      - 'prototypes/pantry-watchtower/**'
+      - '.github/workflows/pantry-synthetic-browser-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  browser-to-sqlite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright Python (use preinstalled system Chromium/Chrome)
+        run: python -m pip install --disable-pip-version-check 'playwright==1.56.0'
+      - name: Verify actual loopback-browser-to-SQLite fictional full and partial order flows
+        run: python prototypes/pantry-watchtower/synthetic-browser-smoke.py
