@@ -1,5 +1,14 @@
 # BRUCE-TO-BRUCE — Maya Node status ledger (2026-11-07)
 
+## Latest verified engineering checkpoint — November 7, 2026, 4:04 PM Pacific
+
+- **Synthetic CI: 51 tests passed, 0 failed, 0 skipped** on commit `614a2fa80f1d42694229a20d1e76addad7f8091c`; [GitHub Actions run 42428111068](https://github.com/mommommy1960-lang/maya-node/actions/runs/42428111068), [job 128570712198](https://github.com/mommommy1960-lang/maya-node/actions/runs/42428111068/job/128570712198). Checked actual Node test job log; this supersedes the historic 30/45-test baselines below. Source code preceding the final regression-test-only commit also passed the [Security & Ethics Checks run 42428103904](https://github.com/mommommy1960-lang/maya-node/actions/runs/42428103904).
+- **Critical synthetic integrity fix:** corrected a path that previously allowed `release()` or `expire()` to release one hold inside a multi-resource food/freezer/truck reservation while other holds remained active. Bundle membership now uses an explicit foreign-keyed `bundle_holds` table, not ID-prefix matching. Bundle expiry returns capacity as a group, and stale bundle approval checks fail. For file-backed synthetic SQLite, enabled WAL and foreign-key enforcement.
+- **Six new synthetic regression tests** cover release isolation, atomic expiry, idempotency after expiry, restart reclamation, ordinary single holds, prefix isolation, and unmapped legacy-data fail-closed behavior (six cases, bringing 45 → 51).
+- **Migration limitation:** older test database files with legacy unlinked bundles are deliberately refused rather than silently released or approved. No live database migration or external data changes were attempted. A reviewed migration strategy remains necessary before these patterns could be productionized.
+- **Still unverified:** real browser/Android journey, persisted order state atomically coupled to reservations, verified human permissions and action-digest approvals, hosted deletion and isolated restore, legal/partner permissions, real payment flow and operational coverage. **NO-GO for real customer data, real dispatch, external messages and live billing.**
+- **Next highest-impact task:** persist the synthetic order lifecycle and tie every approval to an active, unexpired bundle with transactional state changes, recovery and denial tests. Continue toward 24-hour readiness snapshot and 3–7 day synthetic demonstration deadlines, not a promised release.
+
 ## Founder instruction
 When founder asks "Bruce, what's the tea? Where are we at?", read this ledger, latest PR #109, issues #76/#94/#105/#108/#110/#111, current GitHub Actions, and subsequent handoffs. Report verified progress, blockers, next action, and go/no-go. Do not confuse a successful CI run with customer readiness. Keep synthetic-only gates until explicit founder approval and verified external controls.
 
