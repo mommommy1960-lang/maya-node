@@ -10,13 +10,14 @@ import { dirname, join } from 'node:path';
 import { ReservationLedger } from './reservation-ledger.mjs';
 import { SyntheticOrderStore } from './synthetic-order-store.mjs';
 import { SyntheticDeliverySettlement } from './synthetic-delivery-settlement.mjs';
+import { SyntheticCommercialRehearsal } from './synthetic-commercial-rehearsal.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const HOST = '127.0.0.1';
 const ORDER = 'SYN-DEMO-ORDER';
 const ROLES = Object.freeze({ donor: 'fictional-donor', receiver: 'fictional-receiver', transport: 'fictional-transporter' });
 const RESOURCE = Object.freeze({ food: 'SYN-FOOD', cold: 'SYN-COLD', truck: 'SYN-TRUCK' });
-const ACTIONS = new Set(['start', 'approve', 'pickup', 'deliver', 'document-exception', 'cancel']);
+const ACTIONS = new Set(['start', 'approve', 'quote', 'accept-terms', 'mock-decline', 'mock-authorize', 'pickup', 'deliver', 'document-exception', 'mock-capture', 'mock-refund', 'cancel']);
 const FILES = Object.freeze({
   '/': ['synthetic-journey.html', 'text/html; charset=utf-8'],
   '/synthetic-journey-client.mjs': ['synthetic-journey-client.mjs', 'text/javascript; charset=utf-8'],
@@ -50,13 +51,15 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
   const ledger = new ReservationLedger(filename);
   const orders = new SyntheticOrderStore(ledger);
   const delivery = new SyntheticDeliverySettlement(orders);
+  const commercial = new SyntheticCommercialRehearsal(orders);
   for (const id of Object.values(RESOURCE)) ledger.seedResource(id, 12);
   const snapshot = () => {
     const order = orders.get(ORDER);
     return { synthetic: true, live: false, dataLabel: 'FICTIONAL ONLY', order,
       receipt: delivery.getReceipt(ORDER),
+      commercial: commercial.get(ORDER),
       capacity: Object.fromEntries(Object.entries(RESOURCE).map(([name, id]) => [name, ledger.available(id)])),
-      permissions: 'Demo buttons impersonate fictional actors. No authentication, real consent, dispatch, or billing.',
+      permissions: 'Demo buttons impersonate fictional actors; payment states are local fake ledger entries, NOT a Stripe sandbox or any real financial transaction.',
     };
   };
   function act(input) {
@@ -73,7 +76,17 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
     } else if (input.action === 'approve') {
       if (!Object.hasOwn(ROLES, input.role)) throw Error('invalid_demo_role');
       orders.approve({ id: ORDER, role: input.role, actorId: ROLES[input.role], evidenceRef: 'SYN-' + input.role + '-approval', at: now });
+     } else if (input.action === 'quote') {
+      commercial.quote({ orderId: ORDER, at: now });
+    } else if (input.action === 'accept-terms') {
+      commercial.accept({ orderId: ORDER, actorId: 'fictional-sponsor', termsVersion: 'SYN-TERMS-2026-11-07-v1', at: now });
+    } else if (input.action === 'mock-decline') {
+      commercial.authorize({ orderId: ORDER, actorId: 'fictional-sponsor', attemptId: 'SYN-AUTH-declined', mode: 'decline', at: now });
+    } else if (input.action === 'mock-authorize') {
+      commercial.authorize({ orderId: ORDER, actorId: 'fictional-sponsor', attemptId: 'SYN-AUTH-success', mode: 'approve', at: now });
     } else if (input.action === 'pickup') {
+      if (orders.get(ORDER)?.state !== 'approved') throw Error('pickup_requires_approvals');
+      if (commercial.get(ORDER)?.state !== 'authorized') throw Error('mock_authorization_required');
       orders.pickup({ id: ORDER, actorId: ROLES.transport, evidenceRef: 'SYN-pickup', at: now });
     } else if (input.action === 'deliver') {
       if (input.mode !== 'full' && input.mode !== 'partial') throw Error('invalid_demo_receipt_mode');
@@ -84,6 +97,10 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
     } else if (input.action === 'document-exception') {
       delivery.recordDisposition({ id: ORDER, actorId: ROLES.receiver, evidenceRef: 'SYN-exception-review',
         resolutionCode: 'exception_documented', explanation: 'Fictional discrepancy reviewed; not evidence of recovered stock.', at: now });
+     } else if (input.action === 'mock-capture') {
+      commercial.capture({ orderId: ORDER, actorId: 'fictional-sponsor', at: now });
+    } else if (input.action === 'mock-refund') {
+      commercial.refund({ orderId: ORDER, actorId: 'fictional-sponsor', at: now });
     } else if (input.action === 'cancel') {
       orders.cancel({ id: ORDER, actorId: ROLES.donor, evidenceRef: 'SYN-cancellation', at: now });
     }
@@ -109,11 +126,11 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       }
       json(res, 404, { error: 'not_found' });
     } catch (err) {
-      const known = new Set(['invalid_json', 'request_too_large', 'unknown_action', 'invalid_demo_role', 'invalid_demo_receipt_mode', 'demo_already_started', 'unknown_order', 'invalid_order_state', 'pickup_requires_approvals', 'delivery_requires_pickup', 'disposition_requires_exception', 'cancellation_requires_pre_pickup', 'reservation_expired', 'unauthorized_party']);
+      const known = new Set(['invalid_json', 'request_too_large', 'unknown_action', 'invalid_demo_role', 'invalid_demo_receipt_mode', 'demo_already_started', 'unknown_order', 'invalid_order_state', 'pickup_requires_approvals', 'delivery_requires_pickup', 'disposition_requires_exception', 'cancellation_requires_pre_pickup', 'reservation_expired', 'unauthorized_party', 'quote_requires_fictional_approvals', 'missing_fictional_quote', 'fictional_agreement_mismatch', 'agreement_requires_approved_order', 'authorization_requires_fictional_agreement', 'authorization_requires_approved_order', 'invalid_commercial_state', 'mock_authorization_required', 'capture_requires_reconciled_delivery', 'capture_requires_mock_authorization', 'refund_requires_mock_capture', 'unauthorized_fictional_sponsor', 'invalid_mock_authorization_mode', 'invalid_mock_attempt', 'out_of_order_commercial_event']);
       json(res, known.has(err?.message) ? 409 : 500, { error: known.has(err?.message) ? err.message : 'synthetic_demo_action_failed' });
     }
   });
-  return { server, ledger, orders, delivery, snapshot, act,
+  return { server, ledger, orders, delivery, commercial, snapshot, act,
     async listen(port = 0) {
       await new Promise((resolve, reject) => { server.once('error', reject); server.listen(port, HOST, resolve); });
       return 'http://' + HOST + ':' + server.address().port;
