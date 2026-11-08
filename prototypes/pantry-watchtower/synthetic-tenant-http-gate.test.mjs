@@ -94,7 +94,7 @@ test('guarded pickup refuses fake payment bypass and wrong actor; no outside sid
   assert.equal((await route(url,'transport','pickup'))[0],409);
   for(const who of ['donor','receiver','transport'])
     assert.equal((await route(url,who,'approve'))[0],200);
-  assert.equal((await route(url,'donor','pickup'))[0],409);
+  assert.equal((await route(url,'donor','pickup'))[0],403); // deny wrong role before inspecting payment state
   assert.equal((await route(url,'transport','pickup'))[0],409);
   for(const action of ['quote','accept-terms','mock-authorize'])
     assert.equal((await demo(url,action))[0],200); // test-only commercial fixture
