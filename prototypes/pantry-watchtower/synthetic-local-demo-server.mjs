@@ -149,6 +149,9 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       if (input.action === 'approve')
         tenantGate.approve({ id: ORDER, role, evidenceRef: 'SYN-HTTP-' + role + '-approval', at: now });
       else if (input.action === 'pickup') {
+        // Authenticate and scope the transporter BEFORE reading a fictional
+        // payment state: otherwise a 403/409 distinction leaks order progress.
+        tenantGate.assertPickupPermission(ORDER);
         if (commercial.get(ORDER)?.state !== 'authorized') throw Error('mock_authorization_required');
         tenantGate.pickup({ id: ORDER, evidenceRef: 'SYN-HTTP-pickup', at: now });
       } else if (input.action === 'cancel')
