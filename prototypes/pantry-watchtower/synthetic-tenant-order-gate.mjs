@@ -66,6 +66,10 @@ export class SyntheticTenantOrderGate {
     this._authorize(orderId, ['operator', 'donor', 'receiver', 'transport']);
     return this.store.get(orderId);
   }
+  /** Authorize before any payment-state lookup to prevent cross-tenant state oracles. */
+  assertPickupPermission(orderId) {
+    this._authorize(orderId, ['transport']);
+  }
   approve({ id, role, evidenceRef, at }) {
     const p = this._authorize(id, [role]);
     if (p.role === 'operator' || !['donor','receiver','transport'].includes(role))
