@@ -81,3 +81,19 @@ test("bundle identifier with colon cannot hijack adjacent bundle releases",()=>{
     assert.equal(l.available("food"),12);
   }finally{l.close();}
 });
+
+test("unmapped pre-migration synthetic bundle fails closed instead of partially releasing",()=>{
+  const l=new ReservationLedger();try{
+    l.seedResource("food",10);
+    const legacyItems=[{resourceId:"food",quantity:2}];
+    const signature=JSON.stringify({items:legacyItems,expiresAt:200});
+    l.db.prepare("INSERT INTO bundles(id,signature,state) VALUES(?,?,'active')").run("legacy",signature);
+    l.db.prepare("INSERT INTO holds(id,resource_id,quantity,state,expires_at) VALUES(?,?,?,'active',?)").run("legacy:food","food",2,200);
+    l.db.prepare("UPDATE resources SET available=available-2 WHERE id='food'").run();
+    assert.equal(l.expire(201),0,"legacy bundle must not be split by ordinary expiry");
+    assert.throws(()=>l.release("legacy:food"),/bundle_hold_requires_group_release/);
+    assert.throws(()=>l.reserveBundle({id:"legacy",items:legacyItems,expiresAt:200},100),/legacy_bundle_requires_migration/);
+    assert.throws(()=>l.releaseBundle("legacy"),/corrupt_bundle_ownership/);
+    assert.equal(l.available("food"),8,"do not guess how to recover legacy durable holds");
+  }finally{l.close();}
+});
