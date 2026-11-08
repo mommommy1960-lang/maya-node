@@ -140,6 +140,12 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
         return json(res, 200, { synthetic: true, identityMode: 'SERVER_INJECTED_TEST_DOUBLE_NOT_REAL_AUTH',
           order, receipt });
       }
+      // Fail closed on the server-injected tenant/actor scope before inspecting
+      // request content type or parsing untrusted bytes. Invalid anonymous
+      // payloads must not be allowed to probe guarded route validation.
+      tenantGate.read(ORDER);
+      if (!(req.headers['content-type'] || '').startsWith('application/json'))
+        return json(res, 415, { error: 'json_required' });
       const input = await readJson(req);
       if (['actorId', 'tenantId', 'role', 'authenticated'].some(k => Object.hasOwn(input, k)))
         throw Error('client_identity_claim_denied');
@@ -192,8 +198,6 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       if (tenantGuardedOnly && UNTRUSTED_DEMO_PATHS.has(req.url))
         return json(res, 403, { error: 'untrusted_demo_routes_disabled' });
       if (req.url === '/api/tenant-order' && ['GET','POST'].includes(req.method)) {
-        if (req.method === 'POST' && !(req.headers['content-type'] || '').startsWith('application/json'))
-          return json(res, 415, { error: 'json_required' });
         return await tenantHttpRoute(req, res);
       }
       if (req.method === 'GET' && req.url === '/api/state') return json(res, 200, snapshot());
