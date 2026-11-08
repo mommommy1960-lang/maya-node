@@ -61,13 +61,31 @@ export class SyntheticOrderStore {
   _mappedHolds(o) {
     const b=this.db.prepare("SELECT signature,state FROM bundles WHERE id=?").get(o.bundle_id);
     requireInput(b?.state==="active","inactive_reservation");
-    const expected=JSON.parse(b.signature);
+    // Cross-check the original order signature against the current bundle and
+    // each hold. Otherwise a coordinated edit of bundle.signature AND a hold's
+    // quantity can mint capacity on cancellation or delivery.
+    let expected, original;
+    try { expected=JSON.parse(b.signature); original=JSON.parse(o.signature); }
+    catch { throw Error("corrupt_order_reservation"); }
+    const items=original?.items, parties=original?.parties;
+    requireInput(Array.isArray(items) && items.length>0 &&
+      items.every(x=>validId(x?.resourceId) && Number.isSafeInteger(x.quantity) && x.quantity>0) &&
+      new Set(items.map(x=>x.resourceId)).size===items.length &&
+      JSON.stringify(expected)===JSON.stringify({items,expiresAt:o.expires_at}) &&
+      original.offerId===o.offer_id && original.needId===o.need_id &&
+      original.quantity===o.quantity && original.bundleId===o.bundle_id &&
+      original.expiresAt===o.expires_at && original.at===o.created_at &&
+      parties?.donor===o.donor_id && parties?.receiver===o.receiver_id &&
+      parties?.transport===o.transport_id, "corrupt_order_reservation");
     const holds=this.db.prepare("SELECT bh.resource_id,h.id,h.resource_id AS hold_resource,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(o.bundle_id);
-    requireInput(Array.isArray(expected.items) && holds.length===expected.items.length && holds.length>0 &&
+    // Pickup extends every active lease to MAX_SAFE_INTEGER; before pickup
+    // the exact initial deadline must still be present, never merely >=.
+    const exactDeadline=o.state==="picked_up"?Number.MAX_SAFE_INTEGER:o.expires_at;
+    requireInput(holds.length===items.length &&
       holds.every(h=>h.state==="active" && h.resource_id===h.hold_resource &&
-      h.id===o.bundle_id+":"+h.resource_id &&
-      expected.items.some(x=>x.resourceId===h.resource_id && x.quantity===h.quantity) &&
-      h.expires_at>=o.expires_at), "corrupt_order_reservation");
+        h.id===o.bundle_id+":"+h.resource_id &&
+        items.some(x=>x.resourceId===h.resource_id && x.quantity===h.quantity) &&
+        h.expires_at===exactDeadline), "corrupt_order_reservation");
     return holds;
   }
   _active(o,at){
