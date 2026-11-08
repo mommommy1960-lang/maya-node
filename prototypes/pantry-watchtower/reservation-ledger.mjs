@@ -35,14 +35,16 @@ export class ReservationLedger {
       const hold=this.db.prepare("SELECT * FROM holds WHERE id=?").get(id);
       if(!hold||hold.state!=="active"){this.db.exec("COMMIT");return false;}
       // A bundled hold must be released as a unit: no half-freed truck/food/storage.
-      if(this.db.prepare("SELECT 1 FROM bundle_holds WHERE hold_id=?").get(id)) throw Error("bundle_hold_requires_group_release");
+      if(this.db.prepare("SELECT 1 FROM bundle_holds WHERE hold_id=?").get(id) ||
+         this.db.prepare("SELECT 1 FROM bundles WHERE state='active' AND ?=id||':'||?").get(id,hold.resource_id))
+        throw Error("bundle_hold_requires_group_release");
       this.db.prepare("UPDATE holds SET state='released' WHERE id=?").run(id);
       this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(hold.quantity,hold.resource_id);
       this.db.exec("COMMIT");return true;
     }catch(e){try{this.db.exec("ROLLBACK")}catch{};throw e;}
   }
   expire(now=Date.now()){
-    const ids=this.db.prepare("SELECT h.id FROM holds h LEFT JOIN bundle_holds bh ON bh.hold_id=h.id WHERE h.state='active' AND h.expires_at<=? AND bh.hold_id IS NULL").all(now).map(x=>x.id);
+    const ids=this.db.prepare("SELECT h.id FROM holds h LEFT JOIN bundle_holds bh ON bh.hold_id=h.id WHERE h.state='active' AND h.expires_at<=? AND bh.hold_id IS NULL AND NOT EXISTS(SELECT 1 FROM bundles b WHERE b.state='active' AND h.id=b.id||':'||h.resource_id)").all(now).map(x=>x.id);
     for(const id of ids)this.release(id);
     return ids.length;
   }
@@ -61,6 +63,7 @@ export class ReservationLedger {
       const existing=this.db.prepare("SELECT signature,state FROM bundles WHERE id=?").get(id);
       if(existing){
         if(existing.signature!==signature) throw Error("idempotency_conflict");
+        if(existing.state==="active" && !this.db.prepare("SELECT 1 FROM bundle_holds WHERE bundle_id=? LIMIT 1").get(id)) throw Error("legacy_bundle_requires_migration");
         this.db.exec("COMMIT");return existing.state==="active";
       }
       for(const item of normalized) {
@@ -83,7 +86,8 @@ export class ReservationLedger {
       if(!bundle || bundle.state!=="active"){this.db.exec("COMMIT");return false;}
       const holds=this.db.prepare("SELECT h.resource_id,h.quantity FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=? AND h.state='active'").all(id);
       for(const h of holds)this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(h.quantity,h.resource_id);
-      if(!holds.length) throw Error("corrupt_bundle_no_active_holds");
+      const mapped=this.db.prepare("SELECT COUNT(*) n FROM bundle_holds WHERE bundle_id=?").get(id).n;
+      if(!holds.length || holds.length!==mapped) throw Error("corrupt_bundle_ownership");
       this.db.prepare("UPDATE holds SET state='released' WHERE id IN (SELECT hold_id FROM bundle_holds WHERE bundle_id=?) AND state='active'").run(id);
       this.db.prepare("UPDATE bundles SET state='released' WHERE id=?").run(id);
       this.db.exec("COMMIT");return true;
