@@ -28,12 +28,8 @@ function App() {
         <footer className="footer">
           <div className="container">
             <div className="footer-content">
-              <p>&copy; {new Date().getFullYear()} MayaNode. Commons Verified Engineering.</p>
-              <div className="footer-links">
-                <a href="https://calendly.com/mayanode1" target="_blank" rel="noopener noreferrer">
-                  Book a Clarity Call
-                </a>
-              </div>
+              <p>&copy; {new Date().getFullYear()} Civic Continuum. People over profit.</p>
+              <div className="footer-links"><a href="/contact">Contact</a></div>
             </div>
           </div>
         </footer>
