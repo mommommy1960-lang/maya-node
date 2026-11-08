@@ -12,22 +12,30 @@ button.secondary{background:#fff;color:var(--accent)}#error{color:#9e1722;font-w
 @media(max-width:540px){main{padding:.5rem}header,section{padding:.85rem}dl{grid-template-columns:1fr}}
 </style></head>
 <body><main><header><p><strong>Civic Continuum · Operation Operator</strong></p><h1>Maya Node: fictional pantry journey</h1>
-<p class="warning" role="note">SYNTHETIC DEMONSTRATION ONLY. No real pantry participants, authenticated approvals, actual shipments, payments or customer records.</p>
+<p class="warning" role="note">SYNTHETIC DEMONSTRATION ONLY. No real pantry participants, authenticated approvals, actual shipments, payments or customer records. Checkout below is a LOCAL MOCK, NOT Stripe sandbox, not a real charge or refund.</p>
 <p>Local computer demonstration: fictional food, freezer space and transport are reserved together. Actions below impersonate fictional participants; they do not request anyone's consent.</p></header>
 <section aria-labelledby="progress-heading"><h2 id="progress-heading">Order progress</h2><p id="status" role="status" aria-live="polite">Loading fictional order…</p>
-<ol id="steps"><li>Reserve fictional food, cold storage and truck capacity</li><li>Obtain three simulated approvals</li><li>Simulate a pickup</li><li>Record receiver delivery receipt</li><li>Reconcile or document an exception</li></ol>
+<ol id="steps"><li>Reserve fictional food, cold storage and truck capacity</li><li>Obtain three simulated approvals</li><li>Prepare fictional quote, terms and local mock authorization</li><li>Simulate a pickup</li><li>Record receiver delivery receipt</li><li>Reconcile or document an exception</li><li>Optionally record local fake capture/refund</li></ol>
 <p id="error" role="alert" aria-live="assertive"></p></section>
 <section aria-labelledby="actions-heading"><h2 id="actions-heading">Demo actions</h2>
 <div id="actions"><button data-action="start">1. Reserve fictional bundle</button>
 <button data-action="approve" data-role="donor">2. Donor approval (simulated)</button>
 <button data-action="approve" data-role="receiver">3. Receiver approval (simulated)</button>
 <button data-action="approve" data-role="transport">4. Transport approval (simulated)</button>
-<button data-action="pickup">5. Simulate pickup</button>
+<button data-action="quote">5. Prepare fictional $2.50 sponsor quote</button>
+<button data-action="accept-terms">6. Fictional sponsor accepts versioned sample terms</button>
+<button data-action="mock-decline" class="secondary">7. Simulate declined payment attempt</button>
+<button data-action="mock-authorize">8. Simulate payment authorization (no Stripe)</button>
+<button data-action="pickup">9. Simulate pickup</button>
 <button data-action="deliver" data-mode="full">6. Deliver all eight units</button>
 <button data-action="deliver" data-mode="partial" class="secondary">6. Deliver six, reject one, report one missing</button>
-<button data-action="document-exception" class="secondary">7. Document discrepancy</button>
+<button data-action="document-exception" class="secondary">Document discrepancy</button>
+<button data-action="mock-capture" class="secondary">Record mock capture after reconciliation</button>
+<button data-action="mock-refund" class="secondary">Record mock refund (no money moves)</button>
 <button data-action="cancel" class="secondary">Cancel before pickup</button></div>
-<p>These buttons work only on <strong>localhost</strong>. They are not a real customer or authorized staff interface.</p></section>
+<p>These buttons work only on <strong>localhost</strong>. They are not a real customer or authorized staff interface.</p>
+<p><strong>Fictional commercial terms:</strong> sponsor demonstration service fee $2.50 (USD); food recipient pays $0.00. Sample terms version SYN-TERMS-2026-11-07-v1 is not a real contract. No Stripe account, credentials, real payment authorization, capture, chargeback or refund is involved.</p>
+<p id="commercial" role="status" aria-live="polite">No fictional quote yet.</p></section>
 <section aria-labelledby="evidence-heading"><h2 id="evidence-heading">Fictional evidence and capacity</h2>
 <dl><div><dt>Food units available</dt><dd id="food">Not loaded</dd></div><div><dt>Cold capacity available</dt><dd id="cold">Not loaded</dd></div><div><dt>Truck capacity available</dt><dd id="truck">Not loaded</dd></div><div><dt>Receipt</dt><dd id="receipt">Not loaded</dd></div></dl>
 <h2>Order audit trail</h2><ol id="events" aria-label="Fictional order events"><li>None yet</li></ol>
