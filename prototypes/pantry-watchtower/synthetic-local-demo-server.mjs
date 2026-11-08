@@ -1,0 +1,129 @@
+/**
+ * Loopback-only, fictional Maya pantry order journey.
+ * No production/hosted integration, real identities, records, dispatch, notifications, or billing.
+ * Start: node prototypes/pantry-watchtower/synthetic-local-demo-server.mjs
+ */
+import http from 'node:http';
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+import { ReservationLedger } from './reservation-ledger.mjs';
+import { SyntheticOrderStore } from './synthetic-order-store.mjs';
+import { SyntheticDeliverySettlement } from './synthetic-delivery-settlement.mjs';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const HOST = '127.0.0.1';
+const ORDER = 'SYN-DEMO-ORDER';
+const ROLES = Object.freeze({ donor: 'fictional-donor', receiver: 'fictional-receiver', transport: 'fictional-transporter' });
+const RESOURCE = Object.freeze({ food: 'SYN-FOOD', cold: 'SYN-COLD', truck: 'SYN-TRUCK' });
+const ACTIONS = new Set(['start', 'approve', 'pickup', 'deliver', 'document-exception', 'cancel']);
+const FILES = Object.freeze({
+  '/': ['synthetic-journey.html', 'text/html; charset=utf-8'],
+  '/synthetic-journey-client.mjs': ['synthetic-journey-client.mjs', 'text/javascript; charset=utf-8'],
+});
+const HEADERS = Object.freeze({
+  'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'no-referrer', 'X-Frame-Options': 'DENY',
+  'Content-Security-Policy': "default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+});
+function json(res, status, value) {
+  const body = JSON.stringify(value);
+  res.writeHead(status, { ...HEADERS, 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': Buffer.byteLength(body) });
+  res.end(body);
+}
+function readJson(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk;
+      if (body.length > 2048) { reject(Error('request_too_large')); req.destroy(); }
+    });
+    req.on('end', () => {
+      try { const data = JSON.parse(body); if (!data || typeof data !== 'object' || Array.isArray(data)) throw Error(); resolve(data); }
+      catch { reject(Error('invalid_json')); }
+    });
+    req.on('error', reject);
+  });
+}
+
+export function createLocalDemo({ filename = ':memory:', clock = () => Date.now() } = {}) {
+  const ledger = new ReservationLedger(filename);
+  const orders = new SyntheticOrderStore(ledger);
+  const delivery = new SyntheticDeliverySettlement(orders);
+  for (const id of Object.values(RESOURCE)) ledger.seedResource(id, 12);
+  const snapshot = () => {
+    const order = orders.get(ORDER);
+    return { synthetic: true, live: false, dataLabel: 'FICTIONAL ONLY', order,
+      receipt: delivery.getReceipt(ORDER),
+      capacity: Object.fromEntries(Object.entries(RESOURCE).map(([name, id]) => [name, ledger.available(id)])),
+      permissions: 'Demo buttons impersonate fictional actors. No authentication, real consent, dispatch, or billing.',
+    };
+  };
+  function act(input) {
+    if (!ACTIONS.has(input.action)) throw Error('unknown_action');
+    const now = clock();
+    if (!Number.isSafeInteger(now) || now < 0) throw Error('invalid_demo_clock');
+    if (input.action === 'start') {
+      if (orders.get(ORDER)) throw Error('demo_already_started');
+      orders.createReserved({ id: ORDER, offerId: 'SYN-OFFER', needId: 'SYN-NEED', quantity: 8,
+        parties: ROLES, at: now,
+        bundle: { id: 'SYN-DEMO-BUNDLE', expiresAt: now + 900_000,
+          items: Object.values(RESOURCE).map(resourceId => ({ resourceId, quantity: 8 })) }
+      }, now);
+    } else if (input.action === 'approve') {
+      if (!Object.hasOwn(ROLES, input.role)) throw Error('invalid_demo_role');
+      orders.approve({ id: ORDER, role: input.role, actorId: ROLES[input.role], evidenceRef: 'SYN-' + input.role + '-approval', at: now });
+    } else if (input.action === 'pickup') {
+      orders.pickup({ id: ORDER, actorId: ROLES.transport, evidenceRef: 'SYN-pickup', at: now });
+    } else if (input.action === 'deliver') {
+      if (input.mode !== 'full' && input.mode !== 'partial') throw Error('invalid_demo_receipt_mode');
+      delivery.recordReceipt({ id: ORDER, receiptId: 'SYN-DEMO-RECEIPT', actorId: ROLES.receiver,
+        evidenceRef: 'SYN-receiver-receipt-' + input.mode, foodResourceId: RESOURCE.food,
+        received: input.mode === 'full' ? 8 : 6, rejected: input.mode === 'full' ? 0 : 1,
+        damaged: 0, at: now });
+    } else if (input.action === 'document-exception') {
+      delivery.recordDisposition({ id: ORDER, actorId: ROLES.receiver, evidenceRef: 'SYN-exception-review',
+        resolutionCode: 'exception_documented', explanation: 'Fictional discrepancy reviewed; not evidence of recovered stock.', at: now });
+    } else if (input.action === 'cancel') {
+      orders.cancel({ id: ORDER, actorId: ROLES.donor, evidenceRef: 'SYN-cancellation', at: now });
+    }
+    return snapshot();
+  }
+  const server = http.createServer(async (req, res) => {
+    try {
+      const host = req.headers.host ?? '';
+      if (!/^((127\.0\.0\.1)|(localhost)):\d{1,5}$/.test(host)) return json(res, 403, { error: 'loopback_host_required' });
+      if (req.headers.origin && req.headers.origin !== 'http://' + host) return json(res, 403, { error: 'cross_origin_denied' });
+      if (req.headers['sec-fetch-site'] && !['same-origin', 'none'].includes(req.headers['sec-fetch-site']))
+        return json(res, 403, { error: 'cross_site_denied' });
+      if (req.method === 'GET' && req.url === '/api/state') return json(res, 200, snapshot());
+      if (req.method === 'POST' && req.url === '/api/action') {
+        if (!(req.headers['content-type'] || '').startsWith('application/json')) return json(res, 415, { error: 'json_required' });
+        return json(res, 200, act(await readJson(req)));
+      }
+      if (req.method === 'GET' && Object.hasOwn(FILES, req.url)) {
+        const [file, type] = FILES[req.url];
+        const body = await readFile(join(here, file));
+        res.writeHead(200, { ...HEADERS, 'Content-Type': type, 'Content-Length': body.length });
+        return res.end(body);
+      }
+      json(res, 404, { error: 'not_found' });
+    } catch (err) {
+      const known = new Set(['invalid_json', 'request_too_large', 'unknown_action', 'invalid_demo_role', 'invalid_demo_receipt_mode', 'demo_already_started', 'unknown_order', 'invalid_order_state', 'pickup_requires_approvals', 'delivery_requires_pickup', 'disposition_requires_exception', 'cancellation_requires_pre_pickup', 'reservation_expired', 'unauthorized_party']);
+      json(res, known.has(err?.message) ? 409 : 500, { error: known.has(err?.message) ? err.message : 'synthetic_demo_action_failed' });
+    }
+  });
+  return { server, ledger, orders, delivery, snapshot, act,
+    async listen(port = 0) {
+      await new Promise((resolve, reject) => { server.once('error', reject); server.listen(port, HOST, resolve); });
+      return 'http://' + HOST + ':' + server.address().port;
+    },
+    async close() { await new Promise((resolve, reject) => server.close(err => err ? reject(err) : resolve())); ledger.close(); },
+  };
+}
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  const app = createLocalDemo();
+  const port = Number(process.env.MAYA_SYNTHETIC_PORT || 8789);
+  app.listen(port).then(url => console.log('Synthetic-only loopback demonstration: ' + url)).catch(err => { console.error(err); process.exitCode = 1; });
+}
