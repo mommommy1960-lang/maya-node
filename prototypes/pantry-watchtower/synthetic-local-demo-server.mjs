@@ -7,6 +7,7 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { createReceivingDashboard } from './receiving-dashboard.mjs';
 import { ReservationLedger } from './reservation-ledger.mjs';
 import { SyntheticOrderStore } from './synthetic-order-store.mjs';
 import { SyntheticDeliverySettlement } from './synthetic-delivery-settlement.mjs';
@@ -20,6 +21,8 @@ const RESOURCE = Object.freeze({ food: 'SYN-FOOD', cold: 'SYN-COLD', truck: 'SYN
 const ACTIONS = new Set(['start', 'approve', 'quote', 'accept-terms', 'mock-decline', 'mock-authorize', 'pickup', 'deliver', 'document-exception', 'mock-capture', 'mock-refund', 'cancel']);
 const FILES = Object.freeze({
   '/': ['synthetic-journey.html', 'text/html; charset=utf-8'],
+  '/receiving': ['receiving-dashboard.html', 'text/html; charset=utf-8'],
+  '/receiving-dashboard-client.mjs': ['receiving-dashboard-client.mjs', 'text/javascript; charset=utf-8'],
   '/synthetic-journey-client.mjs': ['synthetic-journey-client.mjs', 'text/javascript; charset=utf-8'],
 });
 const HEADERS = Object.freeze({
@@ -48,6 +51,7 @@ function readJson(req) {
 }
 
 export function createLocalDemo({ filename = ':memory:', clock = () => Date.now() } = {}) {
+  const receiving = createReceivingDashboard(clock);
   const ledger = new ReservationLedger(filename);
   const orders = new SyntheticOrderStore(ledger);
   const delivery = new SyntheticDeliverySettlement(orders);
@@ -113,6 +117,15 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       if (req.headers.origin && req.headers.origin !== 'http://' + host) return json(res, 403, { error: 'cross_origin_denied' });
       if (req.headers['sec-fetch-site'] && !['same-origin', 'none'].includes(req.headers['sec-fetch-site']))
         return json(res, 403, { error: 'cross_site_denied' });
+      if (req.method === 'GET' && req.url === '/api/receiving') return json(res, 200, receiving.snapshot());
+      if (req.method === 'GET' && req.url === '/api/receiving/sponsor') return json(res, 200, receiving.snapshot('sponsor'));
+      if (req.method === 'POST' && req.url === '/api/receiving/fixture') {
+        if (!(req.headers['content-type'] || '').startsWith('application/json')) return json(res, 415, { error: 'json_required' });
+        const input = await readJson(req);
+        if (typeof input.action !== 'string') return json(res, 400, { error: 'unknown_receiving_fixture' });
+        try { return json(res, 200, receiving.applyFixture(input.action)); }
+        catch (err) { return json(res, 409, { error: err.message }); }
+      }
       if (req.method === 'GET' && req.url === '/api/state') return json(res, 200, snapshot());
       if (req.method === 'POST' && req.url === '/api/action') {
         if (!(req.headers['content-type'] || '').startsWith('application/json')) return json(res, 415, { error: 'json_required' });
@@ -144,3 +157,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const port = Number(process.env.MAYA_SYNTHETIC_PORT || 8789);
   app.listen(port).then(url => console.log('Synthetic-only loopback demonstration: ' + url)).catch(err => { console.error(err); process.exitCode = 1; });
 }
+

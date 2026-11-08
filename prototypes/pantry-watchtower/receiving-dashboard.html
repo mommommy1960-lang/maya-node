@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maya Node | Receiving desk</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eff5f5;color:#16333d;font:1rem/1.5 system-ui,sans-serif}
+main{max-width:920px;margin:auto;padding:24px}header{background:#063e48;color:white;border-radius:18px;padding:24px}
+h1,h2{margin:.3em 0}header p{margin:.3em 0}.label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+nav,.buttons{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}button{font:inherit;min-height:44px;padding:6px 12px;background:white;color:#063e48;border:1px solid #376874;border-radius:8px;cursor:pointer}
+button[aria-pressed=true]{background:#063e48;color:white}section{background:white;border:1px solid #cbdcdd;border-radius:12px;padding:16px;margin:12px 0}
+ul{padding-left:20px}li{margin:.35em 0}#summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px}
+#summary div{border-radius:9px;background:#e3efef;padding:8px}#summary strong{display:block;font-size:1.5rem}
+small{color:#3c5961}#connection{min-height:24px}button:disabled{opacity:.55;cursor:default}
+</style>
+<main><header><div class="label">Civic Continuum · Maya Node</div><h1>Receiving desk</h1>
+<p>Fictional pantry · Synthetic rehearsal only</p></header>
+<nav aria-label="Dashboard view"><button data-view="staff" aria-pressed="true">Staff operations</button><button data-view="sponsor" aria-pressed="false">Sponsor summary</button></nav>
+<p id="connection"></p>
+<section><h2 id="view-title">Staff operations</h2><div id="summary"></div></section>
+<div id="staff">
+<section><h2>Usable storage</h2><ul id="capacity"></ul></section>
+<section><h2>Arrivals and decisions</h2><ul id="shipments"></ul>
+<div class="buttons"><button data-action="accept">Accept grains</button><button data-action="decline">Decline grains</button><button data-action="hold">Hold grains</button></div></section>
+<section><h2>Simulate incoming updates</h2><div class="buttons">
+<button data-action="outage">Cooler outage</button><button data-action="cancel">Truck canceled</button><button data-action="short">Short delivery</button><button data-action="duplicate">Resend receipt</button>
+</div><p id="feedback" role="status"></p><details><summary>Source event evidence</summary><ul id="events"></ul></details></section>
+</div></main><script type="module" src="/receiving-dashboard-client.mjs"></script></html>
