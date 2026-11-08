@@ -9,6 +9,19 @@ export function evaluateTransfer(offer, need, receiver, vehicle, now = new Date(
   if (!offer || !need || !receiver || !vehicle) return { eligible: false, reasons: ["missing_input"] };
   if (!fresh(offer) || !fresh(need) || !fresh(receiver) || !fresh(vehicle)) reasons.push("unverified_or_stale");
   if (offer.foodType !== need.foodType) reasons.push("food_mismatch");
+  if (offer.recalled === true) reasons.push("recalled_lot");
+  else if (offer.recalled != null && offer.recalled !== false) reasons.push("invalid_recall_status");
+  if (need.requiresHalal != null && need.requiresHalal !== false &&
+      (need.requiresHalal !== true || offer.halalVerified !== true)) reasons.push("halal_unverified");
+  if (need.size != null && offer.size !== need.size) reasons.push("item_size_mismatch");
+  if (offer.unit !== need.unit) reasons.push("quantity_unit_mismatch");
+  if (vehicle.estimatedArrival != null) {
+    const arrival = Date.parse(vehicle.estimatedArrival);
+    if (!Number.isFinite(arrival) || arrival < now.getTime()) reasons.push("invalid_arrival_estimate");
+    else if (arrival >= Math.min(Date.parse(need.receivingUntil), Date.parse(offer.expiresAt))) {
+      reasons.push("arrival_outside_safe_window");
+    }
+  }
   if (offer.handling !== receiver.handling || offer.handling !== vehicle.handling) reasons.push("handling_mismatch");
   if (![offer.quantity, need.quantity, receiver.freeCapacity, vehicle.capacity].every(x => Number.isFinite(x) && x > 0)) reasons.push("invalid_capacity");
   if (!validTime(offer.expiresAt) || Date.parse(offer.expiresAt) <= now.getTime()) reasons.push("expired_food");
@@ -23,3 +36,4 @@ export function recordEvent(log, event) {
   if (log.some(existing => existing.id === event.id)) return log;
   return [...log, Object.freeze({ ...event })];
 }
+
