@@ -70,6 +70,10 @@ export class SyntheticTenantOrderGate {
   assertPickupPermission(orderId) {
     this._authorize(orderId, ['transport']);
   }
+  /** Receiver-only authorization before checking any delivery or receipt state. */
+  assertReceiptPermission(orderId) {
+    return this._authorize(orderId, ['receiver']);
+  }
   approve({ id, role, evidenceRef, at }) {
     const p = this._authorize(id, [role]);
     if (p.role === 'operator' || !['donor','receiver','transport'].includes(role))
