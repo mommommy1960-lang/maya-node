@@ -1,4 +1,5 @@
 import test from 'node:test';
+import http from 'node:http';
 import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -100,7 +101,14 @@ test('reject malformed body, wrong content type, missing path and untrusted Host
   let r=await fetch(url+'/api/action',{method:'POST',headers:{'content-type':'text/plain'},body:'{}'});assert.equal(r.status,415);
   r=await fetch(url+'/api/action',{method:'POST',headers:{'content-type':'application/json'},body:'nonsense'});assert.equal(r.status,409);
   r=await fetch(url+'/../../.git/config');assert.equal(r.status,404);
-  assert.equal((await get(url,'/api/state',{host:'evil.example:8000'}))[0],403);
+  const badHostStatus = await new Promise((resolve, reject) => {
+    const req = http.request({hostname:'127.0.0.1',port:Number(new URL(url).port),
+      path:'/api/state',headers:{Host:'evil.example:8000'}}, res => {
+        res.resume(); res.on('end',()=>resolve(res.statusCode));
+      });
+    req.on('error',reject);req.end();
+  });
+  assert.equal(badHostStatus,403);
 }));
 
 test('SQLite file recovers fictional receipt and order across app restart',async()=>{
