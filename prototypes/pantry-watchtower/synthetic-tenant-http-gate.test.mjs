@@ -70,7 +70,7 @@ test('missing principal, cross-tenant and cross-actor HTTP reads fail before lea
   assert.equal(body.order.id,'SYN-DEMO-ORDER');
   assert.equal(body.synthetic,true);
   assert.equal(Object.hasOwn(body,'commercial'),false);
-  assert.equal(Object.hasOwn(body,'receipt'),false);
+  // Scoped receiver may now view a receipt, but none exists before pickup.\n  assert.equal(body.receipt,null);
 },{resolveServerPrincipal:resolver}));
 
 test('HTTP approval uses server-selected fictional role, never client identity fields',async()=>withDemo(async(url,app)=>{
