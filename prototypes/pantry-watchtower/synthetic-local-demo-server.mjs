@@ -128,7 +128,7 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
     const verified = resolveServerPrincipal(req);
     return requestPrincipal.run(verified, async () => {
       if (req.method === 'GET') {
-        return json(res, 200, { synthetic: true, authenticatedTestOnly: true,
+        return json(res, 200, { synthetic: true, identityMode: 'SERVER_INJECTED_TEST_DOUBLE_NOT_REAL_AUTH',
           order: tenantGate.read(ORDER) });
       }
       const input = await readJson(req);
@@ -147,7 +147,7 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       } else if (input.action === 'cancel')
         tenantGate.cancel({ id: ORDER, evidenceRef: 'SYN-HTTP-cancel', at: now });
       else throw Error('unknown_tenant_action');
-      return json(res, 200, { synthetic: true, authenticatedTestOnly: true,
+      return json(res, 200, { synthetic: true, identityMode: 'SERVER_INJECTED_TEST_DOUBLE_NOT_REAL_AUTH',
         order: tenantGate.read(ORDER) });
     });
   }
