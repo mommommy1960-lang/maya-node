@@ -57,6 +57,15 @@ def run_flow(browser, partial):
         for role in ("donor", "receiver", "transport"):
             page.locator('button[data-role="'+role+'"]').click()
             expect(page.locator("#events")).to_contain_text(role + " approved")
+        expect(page.locator('button[data-action="pickup"]')).to_be_disabled()
+        page.locator('button[data-action="quote"]').click()
+        expect(page.locator("#commercial")).to_contain_text("recipient charge $0.00")
+        page.locator('button[data-action="accept-terms"]').click()
+        if partial:
+            page.locator('button[data-action="mock-decline"]').click()
+            expect(page.locator("#commercial")).to_contain_text("state: accepted")
+        page.locator('button[data-action="mock-authorize"]').click()
+        expect(page.locator("#commercial")).to_contain_text("state: authorized")
         expect(page.locator('button[data-action="pickup"]')).to_be_enabled()
         page.locator('button[data-action="pickup"]').click()
         expect(page.locator("#status")).to_contain_text("pickup logged")
@@ -70,6 +79,10 @@ def run_flow(browser, partial):
         else:
             expect(page.locator("#receipt")).to_contain_text("8 accepted, 0 rejected, 0 damaged, 0 missing")
         expect(page.locator("#status")).to_contain_text("reconciled")
+        page.locator('button[data-action="mock-capture"]').click()
+        expect(page.locator("#commercial")).to_contain_text("fake net $2.50")
+        page.locator('button[data-action="mock-refund"]').click()
+        expect(page.locator("#commercial")).to_contain_text("fake net $0.00")
         expect(page.locator("#food")).to_have_text("4")
         expect(page.locator("#cold")).to_have_text("12")
         expect(page.locator("#truck")).to_have_text("12")
