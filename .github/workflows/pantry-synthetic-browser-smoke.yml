@@ -28,3 +28,5 @@ jobs:
         run: python -m pip install --disable-pip-version-check 'playwright==1.56.0'
       - name: Verify actual loopback-browser-to-SQLite fictional full and partial order flows
         run: python prototypes/pantry-watchtower/synthetic-browser-smoke.py
+      - name: Verify guarded fictional tenant/actor Chromium to SQLite journey (TEST headers, not auth)
+        run: python prototypes/pantry-watchtower/synthetic-guarded-browser-smoke.py

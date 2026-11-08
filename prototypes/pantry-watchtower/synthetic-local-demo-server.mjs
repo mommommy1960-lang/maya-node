@@ -23,6 +23,13 @@ const RESOURCE = Object.freeze({ food: 'SYN-FOOD', cold: 'SYN-COLD', truck: 'SYN
 // leave them exposed as an alternate path around its tenant/actor checks.
 const UNTRUSTED_DEMO_PATHS = new Set(['/', '/synthetic-journey-client.mjs', '/api/state', '/api/action']);
 const ACTIONS = new Set(['start', 'approve', 'quote', 'accept-terms', 'mock-decline', 'mock-authorize', 'pickup', 'deliver', 'document-exception', 'mock-capture', 'mock-refund', 'cancel']);
+// Strictly opt-in TEST UI. The HTML/JS has no identity picker; the only
+// principals come from a server-injected test fixture. Never deploy this as
+// customer authentication or make this surface public.
+const GUARDED_FILES = Object.freeze({
+  '/guarded': ['synthetic-guarded-dashboard.html', 'text/html; charset=utf-8'],
+  '/synthetic-guarded-dashboard-client.mjs': ['synthetic-guarded-dashboard-client.mjs', 'text/javascript; charset=utf-8'],
+});
 const FILES = Object.freeze({
   '/': ['synthetic-journey.html', 'text/html; charset=utf-8'],
   '/synthetic-journey-client.mjs': ['synthetic-journey-client.mjs', 'text/javascript; charset=utf-8'],
@@ -212,6 +219,12 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       // This is still NOT authentic login or permission to host publicly.
       if (tenantGuardedOnly && UNTRUSTED_DEMO_PATHS.has(req.url))
         return json(res, 403, { error: 'untrusted_demo_routes_disabled' });
+      if (tenantGuardedOnly && req.method === 'GET' && Object.hasOwn(GUARDED_FILES, req.url)) {
+        const [file, type] = GUARDED_FILES[req.url];
+        const body = await readFile(join(here, file));
+        res.writeHead(200, { ...HEADERS, 'Content-Type': type, 'Content-Length': body.length });
+        return res.end(body);
+      }
       if (req.url === '/api/tenant-order' && ['GET','POST'].includes(req.method)) {
         return await tenantHttpRoute(req, res);
       }
