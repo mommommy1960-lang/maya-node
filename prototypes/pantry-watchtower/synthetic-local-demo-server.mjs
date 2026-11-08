@@ -4,6 +4,7 @@
  * Start: node prototypes/pantry-watchtower/synthetic-local-demo-server.mjs
  */
 import http from 'node:http';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -11,6 +12,7 @@ import { ReservationLedger } from './reservation-ledger.mjs';
 import { SyntheticOrderStore } from './synthetic-order-store.mjs';
 import { SyntheticDeliverySettlement } from './synthetic-delivery-settlement.mjs';
 import { SyntheticCommercialRehearsal } from './synthetic-commercial-rehearsal.mjs';
+import { SyntheticTenantOrderGate } from './synthetic-tenant-order-gate.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const HOST = '127.0.0.1';
@@ -47,11 +49,23 @@ function readJson(req) {
   });
 }
 
-export function createLocalDemo({ filename = ':memory:', clock = () => Date.now() } = {}) {
+export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(), resolveServerPrincipal = null } = {}) {
+  // This resolver is a TEST HARNESS injection, not user authentication.
+  // Neither browser-supplied identity fields nor role selectors are credentials.
+  if (resolveServerPrincipal !== null && typeof resolveServerPrincipal !== 'function')
+    throw Error('invalid_test_principal_resolver');
   const ledger = new ReservationLedger(filename);
   const orders = new SyntheticOrderStore(ledger);
   const delivery = new SyntheticDeliverySettlement(orders);
   const commercial = new SyntheticCommercialRehearsal(orders);
+  // AsyncLocalStorage keeps independent concurrent HTTP test principals isolated.
+  // No browser route can register/provision its own tenant. Provisioning is local
+  // test-fixture code only, and this separate route must never be deployed as auth.
+  const requestPrincipal = new AsyncLocalStorage();
+  const tenantGate = new SyntheticTenantOrderGate(orders, () => requestPrincipal.getStore());
+  const guardedErrors = new Set(['tenant_route_unavailable', 'verified_principal_required',
+    'tenant_scope_denied', 'role_denied', 'actor_scope_denied',
+    'client_identity_claim_denied', 'unknown_tenant_action']);
   for (const id of Object.values(RESOURCE)) ledger.seedResource(id, 12);
   const snapshot = () => {
     const order = orders.get(ORDER);
@@ -106,6 +120,37 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
     }
     return snapshot();
   }
+  async function tenantHttpRoute(req, res) {
+    // The public demo API remains intentionally untrusted and fictional. This
+    // NEW, opt-in endpoint exercises the tenant gate over real HTTP without
+    // treating a header, body, or selector as proof of a genuine login.
+    if (!resolveServerPrincipal) throw Error('tenant_route_unavailable');
+    const verified = resolveServerPrincipal(req);
+    return requestPrincipal.run(verified, async () => {
+      if (req.method === 'GET') {
+        return json(res, 200, { synthetic: true, authenticatedTestOnly: true,
+          order: tenantGate.read(ORDER) });
+      }
+      const input = await readJson(req);
+      if (['actorId', 'tenantId', 'role', 'authenticated'].some(k => Object.hasOwn(input, k)))
+        throw Error('client_identity_claim_denied');
+      const now = clock();
+      if (!Number.isSafeInteger(now) || now < 0) throw Error('invalid_demo_clock');
+      // All four operations use the *server-resolved* actor; supplied actor IDs
+      // and tenant IDs never decide the effective principal.
+      const role = requestPrincipal.getStore()?.role;
+      if (input.action === 'approve')
+        tenantGate.approve({ id: ORDER, role, evidenceRef: 'SYN-HTTP-' + role + '-approval', at: now });
+      else if (input.action === 'pickup') {
+        if (commercial.get(ORDER)?.state !== 'authorized') throw Error('mock_authorization_required');
+        tenantGate.pickup({ id: ORDER, evidenceRef: 'SYN-HTTP-pickup', at: now });
+      } else if (input.action === 'cancel')
+        tenantGate.cancel({ id: ORDER, evidenceRef: 'SYN-HTTP-cancel', at: now });
+      else throw Error('unknown_tenant_action');
+      return json(res, 200, { synthetic: true, authenticatedTestOnly: true,
+        order: tenantGate.read(ORDER) });
+    });
+  }
   const server = http.createServer(async (req, res) => {
     try {
       const host = req.headers.host ?? '';
@@ -113,6 +158,11 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       if (req.headers.origin && req.headers.origin !== 'http://' + host) return json(res, 403, { error: 'cross_origin_denied' });
       if (req.headers['sec-fetch-site'] && !['same-origin', 'none'].includes(req.headers['sec-fetch-site']))
         return json(res, 403, { error: 'cross_site_denied' });
+      if (req.url === '/api/tenant-order' && ['GET','POST'].includes(req.method)) {
+        if (req.method === 'POST' && !(req.headers['content-type'] || '').startsWith('application/json'))
+          return json(res, 415, { error: 'json_required' });
+        return await tenantHttpRoute(req, res);
+      }
       if (req.method === 'GET' && req.url === '/api/state') return json(res, 200, snapshot());
       if (req.method === 'POST' && req.url === '/api/action') {
         if (!(req.headers['content-type'] || '').startsWith('application/json')) return json(res, 415, { error: 'json_required' });
@@ -127,10 +177,12 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
       json(res, 404, { error: 'not_found' });
     } catch (err) {
       const known = new Set(['invalid_json', 'request_too_large', 'unknown_action', 'invalid_demo_role', 'invalid_demo_receipt_mode', 'demo_already_started', 'unknown_order', 'invalid_order_state', 'pickup_requires_approvals', 'delivery_requires_pickup', 'disposition_requires_exception', 'cancellation_requires_pre_pickup', 'reservation_expired', 'unauthorized_party', 'quote_requires_fictional_approvals', 'missing_fictional_quote', 'fictional_agreement_mismatch', 'agreement_requires_approved_order', 'authorization_requires_fictional_agreement', 'authorization_requires_approved_order', 'invalid_commercial_state', 'mock_authorization_required', 'capture_requires_reconciled_delivery', 'capture_requires_mock_authorization', 'refund_requires_mock_capture', 'unauthorized_fictional_sponsor', 'invalid_mock_authorization_mode', 'invalid_mock_attempt', 'out_of_order_commercial_event']);
-      json(res, known.has(err?.message) ? 409 : 500, { error: known.has(err?.message) ? err.message : 'synthetic_demo_action_failed' });
+      const denial = guardedErrors.has(err?.message);
+      json(res, denial ? 403 : known.has(err?.message) ? 409 : 500,
+        { error: denial || known.has(err?.message) ? err.message : 'synthetic_demo_action_failed' });
     }
   });
-  return { server, ledger, orders, delivery, commercial, snapshot, act,
+  return { server, ledger, orders, delivery, commercial, tenantGate, snapshot, act,
     async listen(port = 0) {
       await new Promise((resolve, reject) => { server.once('error', reject); server.listen(port, HOST, resolve); });
       return 'http://' + HOST + ':' + server.address().port;
