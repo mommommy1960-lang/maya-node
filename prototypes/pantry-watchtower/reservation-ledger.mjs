@@ -64,12 +64,13 @@ export class ReservationLedger {
       if(existing){
         if(existing.signature!==signature) throw Error("idempotency_conflict");
         if(existing.state!=="active"){this.db.exec("COMMIT");return false;}
-        const mapped=this.db.prepare("SELECT bh.resource_id AS mapped_id,h.resource_id AS held_id,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(id);
+        const mapped=this.db.prepare("SELECT bh.resource_id AS mapped_id,bh.hold_id,h.resource_id AS held_id,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(id);
         if(!mapped.length) throw Error("legacy_bundle_requires_migration");
         // A same-key retry cannot confirm corrupted or expired durable capacity.
         if(mapped.length!==normalized.length || normalized.some(item=>!mapped.some(h=>
           h.mapped_id===item.resourceId && h.held_id===item.resourceId &&
-          h.quantity===item.quantity && h.state==="active" && h.expires_at>=expiresAt)))
+          h.hold_id===id+":"+item.resourceId && h.quantity===item.quantity &&
+          h.state==="active" && h.expires_at===expiresAt)))
           throw Error("corrupt_bundle_ownership");
         // A picked-up/canceled/expired order still owns history, never fresh capacity.
         const owner=this._orderOwnsBundle(id)?
@@ -99,13 +100,14 @@ export class ReservationLedger {
   releaseBundle(id) {
     this.db.exec("BEGIN IMMEDIATE");
     try {
-      const bundle=this.db.prepare("SELECT state FROM bundles WHERE id=?").get(id);
+      const bundle=this.db.prepare("SELECT signature,state FROM bundles WHERE id=?").get(id);
       if(!bundle || bundle.state!=="active"){this.db.exec("COMMIT");return false;}
       if(this._orderOwnsBundle(id)) throw Error("order_bundle_requires_order_lifecycle");
-      const holds=this.db.prepare("SELECT h.resource_id,h.quantity FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=? AND h.state='active'").all(id);
-      for(const h of holds)this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(h.quantity,h.resource_id);
-      const mapped=this.db.prepare("SELECT COUNT(*) n FROM bundle_holds WHERE bundle_id=?").get(id).n;
-      if(!holds.length || holds.length!==mapped) throw Error("corrupt_bundle_ownership");
+      // Verify the *exact* durable hold identity, quantity, and deadline before crediting
+      // capacity. A rewritten mapping to a different active hold must never mint slots.
+      const holds=this.db.prepare("SELECT bh.resource_id AS mapped_id,bh.hold_id,h.resource_id AS held_id,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(id);
+      if(!this._mappedBundleValid(id,bundle.signature,holds,Number.NEGATIVE_INFINITY)) throw Error("corrupt_bundle_ownership");
+      for(const h of holds)this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(h.quantity,h.held_id);
       this.db.prepare("UPDATE holds SET state='released' WHERE id IN (SELECT hold_id FROM bundle_holds WHERE bundle_id=?) AND state='active'").run(id);
       this.db.prepare("UPDATE bundles SET state='released' WHERE id=?").run(id);
       this.db.exec("COMMIT");return true;
@@ -120,12 +122,31 @@ export class ReservationLedger {
     for(const id of ids){if(!this._orderOwnsBundle(id) && this.releaseBundle(id))released++;}
     return released;
   }
-  /** Read-only gate for approval: do not approve a bundle on expired capacity. */
+  /** Exact durable mapping check used by approval and group release. No trust in counts alone. */
+  _mappedBundleValid(id,signature,holds,now) {
+    let data;
+    try { data=JSON.parse(signature); } catch { return false; }
+    const items=data?.items;
+    if(!Array.isArray(items) || !items.length || !Number.isSafeInteger(data.expiresAt) ||
+       holds.length!==items.length || new Set(items.map(x=>x?.resourceId)).size!==items.length) return false;
+    return items.every(x=>typeof x?.resourceId==="string" && x.resourceId.length>0 &&
+      Number.isSafeInteger(x.quantity) && x.quantity>0 &&
+      holds.some(h=>h.mapped_id===x.resourceId && h.held_id===x.resourceId &&
+        h.hold_id===id+":"+x.resourceId && h.quantity===x.quantity &&
+        h.state==="active" && h.expires_at===data.expiresAt && h.expires_at>now));
+  }
+  /** Read-only gate for approval: require exact mapped capacity and a nonterminal owner. */
   isBundleActive(id,now=Date.now()){
-    const bundle=this.db.prepare("SELECT state FROM bundles WHERE id=?").get(id);
+    if(!Number.isSafeInteger(now) || now<0)return false;
+    const bundle=this.db.prepare("SELECT signature,state FROM bundles WHERE id=?").get(id);
     if(bundle?.state!=="active")return false;
-    const counts=this.db.prepare("SELECT COUNT(*) total, SUM(CASE WHEN h.state='active' AND h.expires_at>? THEN 1 ELSE 0 END) valid FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").get(now,id);
-    return counts.total>0 && counts.total===counts.valid;
+    const holds=this.db.prepare("SELECT bh.resource_id AS mapped_id,bh.hold_id,h.resource_id AS held_id,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(id);
+    if(!this._mappedBundleValid(id,bundle.signature,holds,now))return false;
+    if(this._orderOwnsBundle(id)) {
+      const owner=this.db.prepare("SELECT state,expires_at FROM synthetic_orders WHERE bundle_id=?").get(id);
+      return !!owner && ["reserved","approved"].includes(owner.state) && now<owner.expires_at;
+    }
+    return true;
   }
   available(id){return this.db.prepare("SELECT available FROM resources WHERE id=?").get(id)?.available??null;}
   close(){this.db.close();}
