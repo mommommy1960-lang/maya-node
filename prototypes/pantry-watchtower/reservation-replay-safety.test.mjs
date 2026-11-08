@@ -23,7 +23,7 @@ test("a single-hold replay at expiry never reports capacity",()=>{
     const hold={id:"old",resourceId:"truck",quantity:1,expiresAt:200};
     assert.equal(l.reserve(hold,100),true);
     assert.equal(l.reserve(hold,199),true);
-    assert.equal(l.reserve(hold,200),false);
+    assert.throws(()=>l.reserve(hold,200),/invalid_hold/);
     assert.equal(l.available("truck"),0,"no premature reclamation");
     assert.equal(l.expire(200),1);
     assert.equal(l.reserve(hold,100),false,"released idempotency key is terminal");
@@ -36,12 +36,12 @@ test("an order-owned bundle cannot be reconfirmed after expiry, even after resta
     let {ledger:l,orders:s}=setup(file);
     s.createReserved(order());
     assert.equal(l.reserveBundle(order().bundle,200),true);
-    assert.equal(l.reserveBundle(order().bundle,300),false,"generic sweep must not free order-owned capacity");
+    assert.throws(()=>l.reserveBundle(order().bundle,300),/invalid_bundle/);
     assert.equal(l.available("truck"),0);
     l.close();
     ({ledger:l,orders:s}=setup(file));
     try {
-      assert.equal(l.reserveBundle(order().bundle,301),false,"no stale capacity after restart");
+      assert.throws(()=>l.reserveBundle(order().bundle,301),/invalid_bundle/);
       assert.equal(s.expireDue(301),1);
       assert.equal(l.reserveBundle(order().bundle,200),false);
       assert.deepEqual(["food","freezer","truck"].map(x=>l.available(x)),[10,10,1]);
