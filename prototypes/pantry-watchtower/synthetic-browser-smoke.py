@@ -7,7 +7,7 @@ import shutil
 import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 
 HERE = Path(__file__).resolve().parent
 SERVER = HERE / "synthetic-local-demo-server.mjs"
@@ -52,24 +52,27 @@ def run_flow(browser, partial):
         page.keyboard.press("Tab")
         assert page.evaluate("document.activeElement?.tagName === 'BUTTON'"), "keyboard tab cannot reach buttons"
         page.locator('button[data-action="start"]').click()
-        assert page.locator("#food").inner_text() == "4"
+        expect(page.locator("#food")).to_have_text("4")
         assert page.locator('button[data-action="pickup"]').is_disabled()
         for role in ("donor", "receiver", "transport"):
             page.locator('button[data-role="'+role+'"]').click()
-        assert page.locator('button[data-action="pickup"]').is_enabled()
+            expect(page.locator("#events")).to_contain_text(role + " approved")
+        expect(page.locator('button[data-action="pickup"]')).to_be_enabled()
         page.locator('button[data-action="pickup"]').click()
-        assert "pickup logged" in page.locator("#status").inner_text()
+        expect(page.locator("#status")).to_contain_text("pickup logged")
         choice = "partial" if partial else "full"
         page.locator('button[data-action="deliver"][data-mode="'+choice+'"]').click()
         if partial:
-            assert "discrepancy recorded" in page.locator("#status").inner_text()
-            assert "6 accepted, 1 rejected, 0 damaged, 1 missing" in page.locator("#receipt").inner_text()
+            expect(page.locator("#status")).to_contain_text("discrepancy recorded")
+            expect(page.locator("#receipt")).to_contain_text("6 accepted, 1 rejected, 0 damaged, 1 missing")
             page.locator('button[data-action="document-exception"]').click()
-            assert "Discrepancy documented" in page.locator("#receipt").inner_text()
+            expect(page.locator("#receipt")).to_contain_text("Discrepancy documented")
         else:
-            assert "8 accepted, 0 rejected, 0 damaged, 0 missing" in page.locator("#receipt").inner_text()
-        assert "reconciled" in page.locator("#status").inner_text()
-        assert (page.locator("#food").inner_text(),page.locator("#cold").inner_text(),page.locator("#truck").inner_text()) == ("4","12","12")
+            expect(page.locator("#receipt")).to_contain_text("8 accepted, 0 rejected, 0 damaged, 0 missing")
+        expect(page.locator("#status")).to_contain_text("reconciled")
+        expect(page.locator("#food")).to_have_text("4")
+        expect(page.locator("#cold")).to_have_text("12")
+        expect(page.locator("#truck")).to_have_text("12")
         assert not errors, errors
         print("PASS: real Chromium -> localhost HTTP -> SQLite -> rendered browser, partial=" + str(partial))
     finally:
