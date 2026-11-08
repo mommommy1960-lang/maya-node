@@ -38,15 +38,30 @@ function json(res, status, value) {
   res.end(body);
 }
 function readJson(req) {
+  // Enforce the bound on raw UTF-8 bytes, not JavaScript character count.
+  // Reject once while draining the request; destroying the socket prevents
+  // a caller from reliably receiving the explicit 413 response.
   return new Promise((resolve, reject) => {
-    let body = '';
+    const parts = [];
+    let bytes = 0, overLimit = false;
     req.on('data', chunk => {
-      body += chunk;
-      if (body.length > 2048) { reject(Error('request_too_large')); req.destroy(); }
+      if (overLimit) return;
+      bytes += chunk.length;
+      if (bytes > 2048) {
+        overLimit = true;
+        reject(Error('request_too_large'));
+        req.resume();
+        return;
+      }
+      parts.push(chunk);
     });
     req.on('end', () => {
-      try { const data = JSON.parse(body); if (!data || typeof data !== 'object' || Array.isArray(data)) throw Error(); resolve(data); }
-      catch { reject(Error('invalid_json')); }
+      if (overLimit) return;
+      try {
+        const data = JSON.parse(Buffer.concat(parts, bytes).toString('utf8'));
+        if (!data || typeof data !== 'object' || Array.isArray(data)) throw Error();
+        resolve(data);
+      } catch { reject(Error('invalid_json')); }
     });
     req.on('error', reject);
   });
@@ -215,7 +230,7 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
     } catch (err) {
       const known = new Set(['invalid_json', 'request_too_large', 'unknown_action', 'invalid_demo_role', 'invalid_demo_receipt_mode', 'demo_already_started', 'unknown_order', 'invalid_order_state', 'pickup_requires_approvals', 'delivery_requires_pickup', 'disposition_requires_exception', 'cancellation_requires_pre_pickup', 'reservation_expired', 'unauthorized_party', 'quote_requires_fictional_approvals', 'missing_fictional_quote', 'fictional_agreement_mismatch', 'agreement_requires_approved_order', 'authorization_requires_fictional_agreement', 'authorization_requires_approved_order', 'invalid_commercial_state', 'mock_authorization_required', 'capture_requires_reconciled_delivery', 'capture_requires_mock_authorization', 'refund_requires_mock_capture', 'unauthorized_fictional_sponsor', 'invalid_mock_authorization_mode', 'invalid_mock_attempt', 'out_of_order_commercial_event']);
       const denial = guardedErrors.has(err?.message);
-      json(res, denial ? 403 : known.has(err?.message) ? 409 : 500,
+      json(res, denial ? 403 : err?.message === 'request_too_large' ? 413 : known.has(err?.message) ? 409 : 500,
         { error: denial || known.has(err?.message) ? err.message : 'synthetic_demo_action_failed' });
     }
   });
