@@ -15,6 +15,7 @@ const actors = {
   receiver: { authenticated:true, tenantId:'SYN-A', role:'receiver', actorId:'fictional-receiver' },
   transport: { authenticated:true, tenantId:'SYN-A', role:'transport', actorId:'fictional-transporter' },
   outsider: { authenticated:true, tenantId:'SYN-B', role:'donor', actorId:'fictional-donor' },
+  impostor: { authenticated:true, tenantId:'SYN-A', role:'transport', actorId:'other-transporter' },
 };
 const fakeResolver = req => actors[req.headers['x-syn-session']] ?? null;
 
@@ -104,4 +105,28 @@ test('strict mode rejects cross-origin requests and never serves the untrusted U
   assert.equal((await call(url,'/',{who:'donor'}))[0],403);
   assert.equal((await call(url,'/api/state'))[0],403);
   assert.equal(app.orders.get('SYN-DEMO-ORDER').state,'reserved');
+}));
+
+
+test('guarded pickup hides fictional payment status from unauthenticated or unauthorized actors',async()=>withGuard(async(url,app)=>{
+  seedInProcess(app);
+  for(const role of ['donor','receiver','transport']) app.act({action:'approve',role});
+  const denied = [null,'outsider','donor','impostor'];
+  async function checkUnauthorized() {
+    const before = app.snapshot();
+    for(const who of denied) {
+      const [status,body] = await call(url,'/api/tenant-order',{method:'POST',who,action:'pickup'});
+      assert.equal(status,403,'unauthorized pickup must not reveal commercial progress');
+      assert.equal(Object.hasOwn(body,'order'),false);
+      assert.notEqual(body.error,'mock_authorization_required');
+    }
+    assert.deepEqual(app.snapshot(),before,'denied calls must not mutate fictional order');
+  }
+  await checkUnauthorized(); // no mock authorization yet
+  assert.equal((await call(url,'/api/tenant-order',{method:'POST',who:'transport',action:'pickup'}))[0],409);
+  for(const action of ['quote','accept-terms','mock-authorize']) app.act({action}); // trusted in-process fixture
+  await checkUnauthorized(); // authorized mock state must not change unauthorized response
+  const [status,body]=await call(url,'/api/tenant-order',{method:'POST',who:'transport',action:'pickup'});
+  assert.equal(status,200);
+  assert.equal(body.order.state,'picked_up');
 }));
