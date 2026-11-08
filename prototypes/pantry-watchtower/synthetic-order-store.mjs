@@ -65,6 +65,7 @@ export class SyntheticOrderStore {
     const holds=this.db.prepare("SELECT bh.resource_id,h.id,h.resource_id AS hold_resource,h.quantity,h.state,h.expires_at FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=?").all(o.bundle_id);
     requireInput(Array.isArray(expected.items) && holds.length===expected.items.length && holds.length>0 &&
       holds.every(h=>h.state==="active" && h.resource_id===h.hold_resource &&
+      h.id===o.bundle_id+":"+h.resource_id &&
       expected.items.some(x=>x.resourceId===h.resource_id && x.quantity===h.quantity) &&
       h.expires_at>=o.expires_at), "corrupt_order_reservation");
     return holds;
