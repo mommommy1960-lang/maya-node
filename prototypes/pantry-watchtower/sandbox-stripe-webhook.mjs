@@ -20,7 +20,7 @@ const isRecord = value => !!value && typeof value === 'object' && !Array.isArray
 
 /** Stripe signs the *raw bytes*, not JSON reserialized by the application. */
 export function verifyTestWebhook({ rawBody, signatureHeader, webhookSecret, nowSeconds = Math.floor(Date.now() / 1000) }) {
-  demand(typeof webhookSecret === 'string' && /^whsec_[A-Za-z0-9_+/-]{8,}$/.test(webhookSecret), 'test_webhook_secret_required');
+  demand(typeof webhookSecret === 'string' && /^whsec_[A-Za-z0-9_+-]{8,}$/.test(webhookSecret), 'test_webhook_secret_required');
   demand(Number.isSafeInteger(nowSeconds) && nowSeconds >= 0, 'invalid_clock');
   demand(typeof rawBody === 'string' || Buffer.isBuffer(rawBody), 'invalid_raw_body');
   const raw = Buffer.isBuffer(rawBody) ? rawBody : Buffer.from(rawBody, 'utf8');
