@@ -79,11 +79,17 @@ export class ReservationLedger {
       this.db.exec("COMMIT");return true;
     }catch(e){try{this.db.exec("ROLLBACK")}catch{};throw e;}
   }
+  /** Order-owned bundles must be settled/expired through the order transaction, never a generic release. */
+  _orderOwnsBundle(id) {
+    const exists=this.db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='synthetic_orders'").get();
+    return !!exists && !!this.db.prepare("SELECT 1 FROM synthetic_orders WHERE bundle_id=?").get(id);
+  }
   releaseBundle(id) {
     this.db.exec("BEGIN IMMEDIATE");
     try {
       const bundle=this.db.prepare("SELECT state FROM bundles WHERE id=?").get(id);
       if(!bundle || bundle.state!=="active"){this.db.exec("COMMIT");return false;}
+      if(this._orderOwnsBundle(id)) throw Error("order_bundle_requires_order_lifecycle");
       const holds=this.db.prepare("SELECT h.resource_id,h.quantity FROM bundle_holds bh JOIN holds h ON h.id=bh.hold_id WHERE bh.bundle_id=? AND h.state='active'").all(id);
       for(const h of holds)this.db.prepare("UPDATE resources SET available=available+? WHERE id=?").run(h.quantity,h.resource_id);
       const mapped=this.db.prepare("SELECT COUNT(*) n FROM bundle_holds WHERE bundle_id=?").get(id).n;
@@ -96,8 +102,11 @@ export class ReservationLedger {
   /** Expire active bundles as a group, avoiding partially released allocations. */
   expireBundles(now=Date.now()) {
     const ids=this.db.prepare("SELECT DISTINCT b.id FROM bundles b JOIN bundle_holds bh ON bh.bundle_id=b.id JOIN holds h ON h.id=bh.hold_id WHERE b.state='active' AND h.state='active' AND h.expires_at<=?").all(now).map(r=>r.id);
-    for(const id of ids)this.releaseBundle(id);
-    return ids.length;
+    let released=0;
+    // Owned orders require a matching, audited order-state transition and are not
+    // safe to reclaim using the generic bundle expiry worker.
+    for(const id of ids){if(!this._orderOwnsBundle(id) && this.releaseBundle(id))released++;}
+    return released;
   }
   /** Read-only gate for approval: do not approve a bundle on expired capacity. */
   isBundleActive(id,now=Date.now()){
