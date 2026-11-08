@@ -1,5 +1,13 @@
 # BRUCE-TO-BRUCE — Maya Node status ledger (2026-11-07)
 
+## New verified browser integration milestone — November 7, ~7:10 PM PST
+
+- **Real GitHub-hosted Chromium successfully completed the actual browser → loopback HTTP API → SQLite order/receipt database path**, not mocked API: both a full fictional delivery and partial/rejected/missing delivery requiring fictional discrepancy disposition. Browser used 390px viewport, checked keyboard Tab focus and horizontal overflow, three simulated approval gates, rendered receipts, capacity and no page errors. Inspected [browser workflow run 42441539126](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441539126), [job 128611623666](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441539126/job/128611623666), two PASS lines. Source `c020eb5316bf9fc58f0984c8ffcc93287aa7c69a`.
+- **86/86 Node synthetic tests passed**, 0 failed, 0 skipped on same commit in [run 42441542860](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441542860), job 128611635097 (TAP inspected). Five [Security & Ethics jobs succeeded](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441542892).
+- **Material milestone achieved before Nov 10–14 target:** local executable fictional order journey now has independently verified actual browser-to-database paths. It remains strictly **operator-local**, not a hosted customer website or Android-device/screen-reader certification. Fictional actor buttons do not authenticate real people. No sandbox payment/quote yet.
+- **NO-GO** for real data, messages, dispatch, live billing/customer onboarding. Next: sandbox-only quote, agreement/refund/webhook-replay flow; browser denial/restart cases, accessible Android/screen-reader verification; hosted deletion and isolated backup recovery, independent security/food-safety/legal review, staffed incident escalation and written partner permissions. Do not presume launch clearance from this milestone.
+- Runbook: [MAYA_SYNTHETIC_LOOPBACK_JOURNEY_2026-11-07.md](MAYA_SYNTHETIC_LOOPBACK_JOURNEY_2026-11-07.md). See draft PR #109 and issue #111.
+
 ## Verified engineering checkpoint — November 7, 2026 ~7:06 PM Pacific (supersedes 74-test count)
 
 - **86 synthetic Node tests passed, 0 failed, 0 skipped** on code commit `483e0872e440250bf99a513ba0a08560b2de04ca`. Inspected [Pantry Watchtower CI run 42441241879](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441241879), [node-tests job 128610717633](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441241879/job/128610717633), including exact TAP totals. Five [Security & Ethics jobs passed in run 42441241859](https://github.com/mommommy1960-lang/maya-node/actions/runs/42441241859).
