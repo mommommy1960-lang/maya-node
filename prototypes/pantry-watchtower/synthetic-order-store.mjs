@@ -86,7 +86,13 @@ export class SyntheticOrderStore {
     const sig=JSON.stringify({offerId,needId,quantity,parties,items,expiresAt:bundle.expiresAt,bundleId:bundle.id,at});
     this.tx(()=>{
       const old=this.db.prepare("SELECT signature FROM synthetic_orders WHERE id=?").get(id);
-      if(old){requireInput(old.signature===sig,"order_idempotency_conflict");return;}
+      if(old){
+        requireInput(old.signature===sig,"order_idempotency_conflict");
+        const previous=this._order(id);
+        requireInput(["reserved","approved"].includes(previous.state),"inactive_order_idempotency_replay");
+        this._active(previous,now);
+        return;
+      }
       requireInput(!this.db.prepare("SELECT id FROM bundles WHERE id=?").get(bundle.id),"bundle_already_used");
       for(const item of items){
         const changed=this.db.prepare("UPDATE resources SET available=available-? WHERE id=? AND available>=?").run(item.quantity,item.resourceId,item.quantity).changes;
