@@ -82,6 +82,7 @@ export class SyntheticCommercialRehearsal {
     this.orders.tx(()=>{
       const order=this._time(orderId,at);
       demand(order.state==='approved', 'quote_requires_fictional_approvals');
+      this.orders._active(this.orders._order(orderId), at); // Expired capacity cannot acquire a quote.
       const old=this.get(orderId);
       if (old) { demand(old.quoteId===QUOTE.quoteId && old.termsVersion===QUOTE.termsVersion,'quote_conflict'); return; }
       this.db.prepare('INSERT INTO synthetic_commercial(order_id,quote_id,terms_version,sponsor_id,fee_cents,receiver_fee_cents,currency,state,created_at) VALUES(?,?,?,?,?,?,?, ?,?)').run(
@@ -94,6 +95,7 @@ export class SyntheticCommercialRehearsal {
     this.orders.tx(()=>{
       const order=this._time(orderId,at), row=this._row(orderId);
       demand(order.state==='approved','agreement_requires_approved_order');
+      this.orders._active(this.orders._order(orderId), at); // No late fictional consent after expiry.
       demand(actorId===row.sponsor_id && termsVersion===row.terms_version,'fictional_agreement_mismatch');
       if (row.state==='accepted'||row.state==='authorized'||row.state==='captured'||row.state==='refunded') return;
       demand(row.state==='quoted','invalid_commercial_state');
@@ -108,6 +110,7 @@ export class SyntheticCommercialRehearsal {
     this.orders.tx(()=>{
       const order=this._time(orderId,at), row=this._row(orderId);
       demand(order.state==='approved','authorization_requires_approved_order');
+      this.orders._active(this.orders._order(orderId), at); // Fail closed before mock payment.
       demand(actorId===row.sponsor_id,'unauthorized_fictional_sponsor');
       const previous=this.db.prepare('SELECT kind FROM synthetic_commercial_events WHERE order_id=? AND event_key=?').get(orderId,attemptId);
       if(previous) { demand(previous.kind===(mode==='approve'?'mock_authorized':'mock_declined'),'mock_attempt_conflict');return; }
