@@ -135,15 +135,17 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
     const verified = resolveServerPrincipal(req);
     return requestPrincipal.run(verified, async () => {
       if (req.method === 'GET') {
+        const order = tenantGate.read(ORDER);
+        const receipt = requestPrincipal.getStore()?.role === 'receiver' ? delivery.getReceipt(ORDER) : undefined;
         return json(res, 200, { synthetic: true, identityMode: 'SERVER_INJECTED_TEST_DOUBLE_NOT_REAL_AUTH',
-          order: tenantGate.read(ORDER) });
+          order, receipt });
       }
       const input = await readJson(req);
       if (['actorId', 'tenantId', 'role', 'authenticated'].some(k => Object.hasOwn(input, k)))
         throw Error('client_identity_claim_denied');
       const now = clock();
       if (!Number.isSafeInteger(now) || now < 0) throw Error('invalid_demo_clock');
-      // All four operations use the *server-resolved* actor; supplied actor IDs
+      // Every operation uses the *server-resolved* actor; supplied actor IDs
       // and tenant IDs never decide the effective principal.
       const role = requestPrincipal.getStore()?.role;
       if (input.action === 'approve')
@@ -154,11 +156,27 @@ export function createLocalDemo({ filename = ':memory:', clock = () => Date.now(
         tenantGate.assertPickupPermission(ORDER);
         if (commercial.get(ORDER)?.state !== 'authorized') throw Error('mock_authorization_required');
         tenantGate.pickup({ id: ORDER, evidenceRef: 'SYN-HTTP-pickup', at: now });
+      } else if (input.action === 'deliver') {
+        // Authorize the server-resolved receiver BEFORE inspecting delivery state
+        // or request mode. No HTTP caller can nominate its own actor or receipt ID.
+        const receiver = tenantGate.assertReceiptPermission(ORDER);
+        if (!['full', 'partial'].includes(input.mode)) throw Error('invalid_demo_receipt_mode');
+        delivery.recordReceipt({ id: ORDER, receiptId: 'SYN-DEMO-RECEIPT',
+          actorId: receiver.actorId, evidenceRef: 'SYN-HTTP-receiver-receipt-' + input.mode,
+          foodResourceId: RESOURCE.food, received: input.mode === 'full' ? 8 : 6,
+          rejected: input.mode === 'full' ? 0 : 1, damaged: 0, at: now });
+      } else if (input.action === 'document-exception') {
+        const receiver = tenantGate.assertReceiptPermission(ORDER);
+        delivery.recordDisposition({ id: ORDER, actorId: receiver.actorId,
+          evidenceRef: 'SYN-HTTP-exception-review', resolutionCode: 'exception_documented',
+          explanation: 'Fictional discrepancy documented; no physical stock recovery is claimed.', at: now });
       } else if (input.action === 'cancel')
         tenantGate.cancel({ id: ORDER, evidenceRef: 'SYN-HTTP-cancel', at: now });
       else throw Error('unknown_tenant_action');
+      const order = tenantGate.read(ORDER);
+      const receipt = requestPrincipal.getStore()?.role === 'receiver' ? delivery.getReceipt(ORDER) : undefined;
       return json(res, 200, { synthetic: true, identityMode: 'SERVER_INJECTED_TEST_DOUBLE_NOT_REAL_AUTH',
-        order: tenantGate.read(ORDER) });
+        order, receipt });
     });
   }
   const server = http.createServer(async (req, res) => {
